@@ -1,3 +1,5 @@
+// code 5 print nth fibonacci numbers
+
 public class FabinocciSeries {
 
     public static void main(String[] args) {

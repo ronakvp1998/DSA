@@ -1,3 +1,4 @@
+// code 10 optimized x^n => 2^10=1024 in log(n) time complexity
 public class optimizedPrintXPowN {
 
     public static void main(String[] args) {

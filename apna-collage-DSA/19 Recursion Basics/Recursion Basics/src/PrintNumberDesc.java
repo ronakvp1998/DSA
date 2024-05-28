@@ -1,3 +1,5 @@
+// Code 1 print numbers from n to 1
+
 public class PrintNumberDesc {
 
     public static void main(String[] args) {

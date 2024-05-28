@@ -1,0 +1,15 @@
+Ronak SB1 2021 2
+Ronak SD2 2022 1
+Harsh SD1 2023 1
+Ashish SD2 2022 2
+Ashish SD3 2023 1
+
+select e1.name, e1.des, Max(date) from employees e1
+join Employee e2
+group by name;
+
+// 
+
+Ronak 2022
+Harsh 2023
+Ashish 2023

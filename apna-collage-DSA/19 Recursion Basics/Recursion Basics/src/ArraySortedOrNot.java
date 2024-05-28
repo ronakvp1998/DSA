@@ -1,3 +1,5 @@
+
+// code 6 check if a given array is sorted or not
 public class ArraySortedOrNot {
 
     public static void main(String[] args) {

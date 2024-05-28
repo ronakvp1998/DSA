@@ -1,3 +1,5 @@
+// code 4 print sum of first n natural numbers
+
 public class SumNNaturalNumber {
 
     public static void main(String[] args) {

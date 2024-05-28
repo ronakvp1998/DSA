@@ -1,3 +1,4 @@
+// code 9 print x^n => 2^10= 1024
 public class printXPowN {
 
     public static void main(String[] args) {

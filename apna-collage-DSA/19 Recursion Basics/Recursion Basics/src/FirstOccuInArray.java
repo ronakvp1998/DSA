@@ -1,5 +1,6 @@
+// code 7 WAP to find the first occurance of a value in an array
+
 public class FirstOccuInArray {
-// WAP to find the first occurance of a value in an array
     public static void main(String[] args) {
         int[] arr = {8,3,15,9,15,10,2,15,5};
         System.out.println(firstOccurance(arr,5,0));

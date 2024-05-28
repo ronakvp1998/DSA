@@ -1,3 +1,5 @@
+// code 3 print factorial of a number
+
 public class PrintFactorial {
 
     public static void main(String[] args) {

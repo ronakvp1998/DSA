@@ -1,3 +1,5 @@
+// Code 2 print nmbers from 1 to n
+
 public class PrintNumberAsc {
 
     public static void main(String[] args) {
