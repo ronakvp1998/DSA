@@ -21,10 +21,6 @@ public class PushBottomOfStack {
         s.push(1);
         s.push(2);
         s.push(3);
-//        while(!s.empty()){
-//            System.out.println(s.pop());
-//        }
-//        System.out.println();
 
         pushBottom(s,4);
 
