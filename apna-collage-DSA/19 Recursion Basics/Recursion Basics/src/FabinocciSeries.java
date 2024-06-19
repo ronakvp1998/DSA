@@ -12,6 +12,7 @@ public class FabinocciSeries {
         if(n==0 || n==1){
             return n;
         }
+        // fib(n) = fib(n-1) + fib(n-2)
         int fact1 = fabinonacciSeries(n-1);
         int fact2 = fabinonacciSeries(n-2);
         return fact1 + fact2;

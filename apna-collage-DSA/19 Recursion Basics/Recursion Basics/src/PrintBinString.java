@@ -1,4 +1,5 @@
 // code 14 print binary String
+// print all binary String of size N without consecutive ones
 public class PrintBinString {
 
     public static void main(String[] args) {
