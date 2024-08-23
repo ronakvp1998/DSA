@@ -1,7 +1,9 @@
 package BinarySearchTree.Part1;
 
-// code 4 :- Print in Range BST
-public class PrintInRangeInBST {
+import java.util.ArrayList;
+
+// code 5 :- print all the paths from Root to Leaf in BST
+public class RootToLeafPathInBST {
 
     static class Node{
         int data;
@@ -38,32 +40,27 @@ public class PrintInRangeInBST {
         System.out.print(root.data + " ");
         inorder(root.right);
     }
+    
+    public static void printPath(ArrayList<Integer> path){
+        for(int i=0; i<path.size(); i++){
+            System.out.print(path.get(i) + "->");
+        }
+        System.out.println("Null");
+    }
 
-    public static void printInRange(Node root, int k1, int k2){
-
+    public static void printRoot2Leaf(Node root, ArrayList<Integer> path){
         if(root == null){
             return;
         }
+        path.add(root.data);
 
-        // case 1 -> root lies between k1 and k2
-        // go in both left and right subtree
-        if(root.data >= k1 && root.data <= k2){
-            // check in left subtree
-            printInRange(root.left, k1, k2);
-            System.out.print(root.data + " ");
-            // check in right subtree
-            printInRange(root.right, k1, k2);
+        if(root.left == null && root.right == null){
+            printPath(path);
         }
 
-        // case 2 -> check in left subtree of the root
-        else if (root.data < k1) {
-            printInRange(root.left, k1, k2);
-        }
-
-        // case 3 -> check in right subtree of the root
-        else{
-            printInRange(root.right, k1, k2);
-        }
+        printRoot2Leaf(root.left,path);
+        printRoot2Leaf(root.right,path);
+        path.remove(path.size()-1);
     }
 
     public static void main(String[] args) {
@@ -77,7 +74,7 @@ public class PrintInRangeInBST {
         inorder(root);
         System.out.println();
 
-        printInRange(root, 5, 12);
+        printRoot2Leaf(root,new ArrayList<Integer>());
 
     }
 }

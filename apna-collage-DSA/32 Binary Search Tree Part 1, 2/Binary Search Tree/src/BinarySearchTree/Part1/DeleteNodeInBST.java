@@ -1,7 +1,7 @@
 package BinarySearchTree.Part1;
 
-// code 2 :- BST Search
-public class BSTSearch {
+// code 3 :- Delete Node in BST
+public class DeleteNodeInBST {
 
     static class Node{
         int data;
@@ -29,50 +29,72 @@ public class BSTSearch {
 
         return root;
     }
-//
-//    public static void inorder(Node root){
-//        if(root == null){
-//            return;
-//        }
-//        inorder(root.left);
-//        System.out.println(root.data + " ");
-//        inorder(root.right);
-//    }
 
-    public static boolean search(Node root, int key){  // O(H)
+    public static Node delete(Node root, int val){
+        if(root.data < val){
+            root.right = delete(root.right,val);
+        }
+        else if(root.data > val){
+            root.left = delete(root.left,val);
+        }else{  // got the node to be deleted
 
+            // case 1 - leaf node
+            if(root.left == null && root.right == null){
+                return null;
+            }
+
+            // case 2 - single child
+            if(root.left == null){
+                return root.right;
+            }
+            else if(root.right == null){
+                return root.left;
+            }
+
+            // case 3 - both left and right children exists
+            Node is = findInOrderSuccessor(root.right);
+            // replace the data with inorder successor data
+            root.data = is.data;
+            // delete the inorder successor data node
+            root.right = delete(root.right,is.data);
+
+        }
+
+        return root;
+    }
+
+    public static Node findInOrderSuccessor(Node root){
+        while(root.left != null){
+            root = root.left;
+        }
+
+        return root;
+    }
+
+    public static void inorder(Node root){
         if(root == null){
-            return false;
+            return;
         }
-
-        if(root.data == key){
-            return true;
-        }
-
-        if(root.data > key){
-            return search(root.left, key);
-        }
-
-        else{
-            return search(root.right, key);
-        }
+        inorder(root.left);
+        System.out.print(root.data + " ");
+        inorder(root.right);
     }
 
     public static void main(String[] args) {
-        int values[] = {5,1,3,4,2,7};
+        int values[] = {8,5,3,1,4,6,10,11,14};
         Node root = null;
 
         for(int i=0;i<values.length;i++){  
             root = insert(root,values[i]);
         }
 
-//        inorder(root);
-//        System.out.println();
+        inorder(root);
+        System.out.println();
 
-        if(search(root,6)){
-            System.out.println("Found");
-        }else{
-            System.out.println("Not found");
-        }
+        root = delete(root,1);
+        System.out.println();
+
+        inorder(root);
+
     }
 }

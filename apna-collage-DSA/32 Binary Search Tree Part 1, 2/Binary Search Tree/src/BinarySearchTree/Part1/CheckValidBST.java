@@ -1,7 +1,7 @@
 package BinarySearchTree.Part1;
 
-// code 4 :- Print in Range BST
-public class PrintInRangeInBST {
+// code 6 :- Check valid BST
+public class CheckValidBST {
 
     static class Node{
         int data;
@@ -39,35 +39,26 @@ public class PrintInRangeInBST {
         inorder(root.right);
     }
 
-    public static void printInRange(Node root, int k1, int k2){
-
+    public static boolean isValidBST(Node root, Node min, Node max){
         if(root == null){
-            return;
+            return true;
         }
 
-        // case 1 -> root lies between k1 and k2
-        // go in both left and right subtree
-        if(root.data >= k1 && root.data <= k2){
-            // check in left subtree
-            printInRange(root.left, k1, k2);
-            System.out.print(root.data + " ");
-            // check in right subtree
-            printInRange(root.right, k1, k2);
+        if(min != null && root.data <= min.data){
+            return false;
         }
 
-        // case 2 -> check in left subtree of the root
-        else if (root.data < k1) {
-            printInRange(root.left, k1, k2);
+        else if(max != null && root.data >= max.data){
+            return false;
         }
 
-        // case 3 -> check in right subtree of the root
-        else{
-            printInRange(root.right, k1, k2);
-        }
+        return isValidBST(root.left,min,root)
+                && isValidBST(root.right, root, max);
+
     }
 
     public static void main(String[] args) {
-        int values[] = {8,5,3,1,4,6,10,11,14};
+        int values[] = {8,5,3, 36,10,11,14};
         Node root = null;
 
         for(int i=0;i<values.length;i++){  
@@ -77,7 +68,11 @@ public class PrintInRangeInBST {
         inorder(root);
         System.out.println();
 
-        printInRange(root, 5, 12);
+        if (isValidBST(root,null,null)){
+            System.out.println("Valid");
+        }else{
+            System.out.println("not valid");
+        }
 
     }
 }

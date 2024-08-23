@@ -1,7 +1,7 @@
 package BinarySearchTree.Part1;
 
-// code 3 :- Delete Node in BST
-public class DeleteNodeInBST {
+// code 4 :- Print in Range BST
+public class PrintInRangeInBST {
 
     static class Node{
         int data;
@@ -30,47 +30,6 @@ public class DeleteNodeInBST {
         return root;
     }
 
-    public static Node delete(Node root, int val){
-        if(root.data < val){
-            root.right = delete(root.right,val);
-        }
-        else if(root.data > val){
-            root.left = delete(root.left,val);
-        }else{  // got the node to be deleted
-
-            // case 1 - leaf node
-            if(root.left == null && root.right == null){
-                return null;
-            }
-
-            // case 2 - single child
-            if(root.left == null){
-                return root.right;
-            }
-            else if(root.right == null){
-                return root.left;
-            }
-
-            // case 3 - both left and right children exists
-            Node is = findInOrderSuccessor(root.right);
-            // replace the data with inorder successor data
-            root.data = is.data;
-            // delete the inorder successor data node
-            root.right = delete(root.right,is.data);
-
-        }
-
-        return root;
-    }
-
-    public static Node findInOrderSuccessor(Node root){
-        while(root.left != null){
-            root = root.left;
-        }
-
-        return root;
-    }
-
     public static void inorder(Node root){
         if(root == null){
             return;
@@ -78,6 +37,33 @@ public class DeleteNodeInBST {
         inorder(root.left);
         System.out.print(root.data + " ");
         inorder(root.right);
+    }
+
+    public static void printInRange(Node root, int k1, int k2){
+
+        if(root == null){
+            return;
+        }
+
+        // case 1 -> root lies between k1 and k2
+        // go in both left and right subtree
+        if(root.data >= k1 && root.data <= k2){
+            // check in left subtree
+            printInRange(root.left, k1, k2);
+            System.out.print(root.data + " ");
+            // check in right subtree
+            printInRange(root.right, k1, k2);
+        }
+
+        // case 2 -> check in left subtree of the root
+        else if (root.data < k1) {
+            printInRange(root.left, k1, k2);
+        }
+
+        // case 3 -> check in right subtree of the root
+        else{
+            printInRange(root.right, k1, k2);
+        }
     }
 
     public static void main(String[] args) {
@@ -91,10 +77,7 @@ public class DeleteNodeInBST {
         inorder(root);
         System.out.println();
 
-        root = delete(root,1);
-        System.out.println();
-
-        inorder(root);
+        printInRange(root, 5, 12);
 
     }
 }
