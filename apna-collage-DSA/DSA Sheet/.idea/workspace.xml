@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="592c1eac-e1b4-42d9-8952-cba182f79748" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../10 FunctionCode/FunctionCode/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10 FunctionCode/FunctionCode/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10 FunctionCode/FunctionCode/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10 FunctionCode/FunctionCode/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10 FunctionCode/FunctionCode/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10 FunctionCode/FunctionCode/FunctionCode.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10 FunctionCode/FunctionCode/src/FunctionMethods/BinaryToDecimal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10 FunctionCode/FunctionCode/src/FunctionMethods/BinomialCoefficient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10 FunctionCode/FunctionCode/src/FunctionMethods/DecimalToBinary.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10 FunctionCode/FunctionCode/src/FunctionMethods/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10 FunctionCode/FunctionCode/src/FunctionMethods/PrimeNumber.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10 FunctionCode/FunctionCode/src/FunctionMethods/PrimeRange.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/ArraysCode.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/ArraysCode/ArrayCC.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/ArraysCode/BinarySearchCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/ArraysCode/BuySellCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/ArraysCode/DuplicateInArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/ArraysCode/LargestNum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/ArraysCode/LinearSearchCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/ArraysCode/MaxSubArraySumKadanesCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/ArraysCode/MaxSubArraySumPrefixCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/ArraysCode/PairCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/ArraysCode/RearrangeArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/ArraysCode/ReverseCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/ArraysCode/SubArrayCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/ArraysCode/SubArraySumCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/ArraysCode/WaterTrapped.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/Collections/CollectionsDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/Collections/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/Collections/GenericList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/Collections/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/SheetQuestions/arrays/ArrayReverse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/SheetQuestions/arrays/ChocolateDistributionProblem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/SheetQuestions/arrays/ContainsDuplicates.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/SheetQuestions/arrays/MaximumSubarraySum.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/SheetQuestions/arrays/MinMaxArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/SheetQuestions/arrays/SearchInSortedArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/generics/GenericList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/generics/Instructor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/generics/KeyValuePair.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/generics/List.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/generics/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/generics/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/generics/Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/practice/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../12 ArraysCode/ArraysCode/src/practice/DynamicArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/SortingProject.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/out/production/SortingProject/BubbleSortingCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/out/production/SortingProject/InsertionSortingCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/out/production/SortingProject/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/out/production/SortingProject/SelectionSortCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/sortingCode/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/sortingCode/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/sortingCode/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/sortingCode/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/sortingCode/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/sortingCode/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/sortingCode/sortingCode.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/sortingCode/src/BubbleSortingCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/sortingCode/src/CountingSortCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/sortingCode/src/InsertionSortingCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/sortingCode/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/sortingCode/src/SelectionSortCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../13 SortingProject/sortingCode/src/practice/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../15 2DArray/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../15 2DArray/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../15 2DArray/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../15 2DArray/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../15 2DArray/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../15 2DArray/A2DArrays.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../15 2DArray/src/Create2dArrays.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../15 2DArray/src/DiagonalSumCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../15 2DArray/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../15 2DArray/src/SearchInSortedMatrixCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../15 2DArray/src/SpiralMatrixCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../15 2DArray/src/practice/Create2dArrayDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/16 String.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/StringCodes/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/StringCodes/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/StringCodes/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/StringCodes/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/StringCodes/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/StringCodes/StringCodes.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/StringCodes/src/FirstLetterUpper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/StringCodes/src/LargestStringLexographicallyCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/StringCodes/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/StringCodes/src/PalindromeCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/StringCodes/src/SortestDistanceCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/StringCodes/src/StringCompressCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/StringCodes/src/SubStringCode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/StringCodes/src/practice/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/out/production/16 String/FirstLetterUpper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/out/production/16 String/LargestStringLexographicallyCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/out/production/16 String/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/out/production/16 String/PalindromeCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/out/production/16 String/SortestDistanceCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/out/production/16 String/StringCompressCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../16 String/out/production/16 String/SubStringCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/src/main/java/org/example/ClearBit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/src/main/java/org/example/ClearLastIBits.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/src/main/java/org/example/ClearRangeBits.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/src/main/java/org/example/CountSetBits.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/src/main/java/org/example/EvenOdd.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/src/main/java/org/example/GetIBit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/src/main/java/org/example/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/src/main/java/org/example/PowerOfTwo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/src/main/java/org/example/SetBit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../17 Bit Manipulation/Bit_Manupulation/src/main/java/org/example/UpdateBit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/19 Recursion Basics.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/Recursion Basics.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/ArraySortedOrNot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/FabinocciSeries.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/FirstOccuInArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/FriendsPairing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/LastOccuInArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/PrintBinString.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/PrintFactorial.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/PrintNumberAsc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/PrintNumberDesc.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/RemoveDuplicates.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/SumNNaturalNumber.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/TilingProblem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/TitlingProblem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/optimizedPrintXPowN.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/practice/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/Recursion Basics/src/printXPowN.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/out/production/19 Recursion Basics/ArraySortedOrNot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/out/production/19 Recursion Basics/FabinocciSeries.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/out/production/19 Recursion Basics/FirstOccuInArray.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/out/production/19 Recursion Basics/LastOccuInArray.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/out/production/19 Recursion Basics/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/out/production/19 Recursion Basics/PrintFactorial.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/out/production/19 Recursion Basics/PrintNumberAsc.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/out/production/19 Recursion Basics/PrintNumberDesc.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/out/production/19 Recursion Basics/SumNNaturalNumber.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/out/production/19 Recursion Basics/TitlingProblem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/out/production/19 Recursion Basics/optimizedPrintXPowN.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../19 Recursion Basics/out/production/19 Recursion Basics/printXPowN.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/.idea/20 Divide-Conqure.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/DivideAndConqure/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/DivideAndConqure/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/DivideAndConqure/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/DivideAndConqure/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/DivideAndConqure/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/DivideAndConqure/DivideAndConqure.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/DivideAndConqure/src/DivideConqure.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/DivideAndConqure/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/DivideAndConqure/src/QuickSort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/DivideAndConqure/src/SortedAndRotatedArraySearch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../20 Divide-Conqure/DivideAndConqure/src/practice/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/BackTracking.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/src/backtracking/BacktrackingOnArrays.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/src/backtracking/GridWays.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/src/backtracking/NQueensAllSolutionsWitAttack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/src/backtracking/NQueensAllSolutionsWitAttackPrint1Solution.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/src/backtracking/NQueensAllSolutionsWithoutAttack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/src/backtracking/PermutationString.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/src/backtracking/PrintSubsets.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../22 Back Tracking/BackTracking/src/backtracking/practice/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/ArrayList.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/src/ArrayListCodes/Classroom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/src/ArrayListCodes/ContainerWithMostWater.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/src/ArrayListCodes/ContainerWithMostWater2PointerApproach.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/src/ArrayListCodes/FindMax.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/src/ArrayListCodes/MDArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/src/ArrayListCodes/PairSum2PointerApproach.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/src/ArrayListCodes/PairSumBruteForce.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/src/ArrayListCodes/PairSumRotatedArray2PointerApproach.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/src/ArrayListCodes/PrintReverseArrayList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/src/ArrayListCodes/SortingArrayList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/src/ArrayListCodes/Swap2Numbers.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../23 ArrayList/ArrayList/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/LinkedList.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/src/LinkedListPart1/LinkedList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/src/LinkedListPart1/Palindrome.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/src/LinkedListPart2/DoubleLL.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/src/LinkedListPart2/IsCycle.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/src/LinkedListPart2/LinkedListCollectionsDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/src/LinkedListPart2/LinkedListMergeSort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/src/LinkedListPart2/ZigZagLL.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/src/practice/LLList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/Stack.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/src/StackDemos/DuplicateParentheses.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/src/StackDemos/NextGreaterElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/src/StackDemos/PushBottomOfStack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/src/StackDemos/ReverseAStack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/src/StackDemos/ReverseStringStack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/src/StackDemos/StackB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/src/StackDemos/StackCollection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/src/StackDemos/StackLL.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/src/StackDemos/StockSpan.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/src/StackDemos/ValidParenthesis.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../26 Stack/Stack/src/practice/Test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/Queues.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/src/QueuesDemos/ArrayQueue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/src/QueuesDemos/CircularQueue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/src/QueuesDemos/DequeDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/src/QueuesDemos/FirstNonRepeatingLetterInString.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/src/QueuesDemos/Interleave2HalvesOfQueue.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/src/QueuesDemos/QueueReversal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/src/QueuesDemos/QueueUsing2StacksPushOn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/src/QueuesDemos/QueueUsingCollections.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/src/QueuesDemos/QueueUsingDeque.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/src/QueuesDemos/QueueUsingLinkedList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/src/QueuesDemos/StackUsingDeque.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../27 Queues/Queues/src/QueuesDemos/Stackusing2QueuePopOn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../28 Greedy Algorithm/Greedy Algorithm/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../28 Greedy Algorithm/Greedy Algorithm/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../28 Greedy Algorithm/Greedy Algorithm/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../28 Greedy Algorithm/Greedy Algorithm/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../28 Greedy Algorithm/Greedy Algorithm/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../28 Greedy Algorithm/Greedy Algorithm/Greedy Algorithm.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../28 Greedy Algorithm/Greedy Algorithm/src/GreedyAlgorithm/ActivitySelection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../28 Greedy Algorithm/Greedy Algorithm/src/GreedyAlgorithm/FractionalKnapsack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../28 Greedy Algorithm/Greedy Algorithm/src/GreedyAlgorithm/IndianCoinChangeCalculation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../28 Greedy Algorithm/Greedy Algorithm/src/GreedyAlgorithm/JobSequencing.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../28 Greedy Algorithm/Greedy Algorithm/src/GreedyAlgorithm/MaxLengthChainPair.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../28 Greedy Algorithm/Greedy Algorithm/src/GreedyAlgorithm/MinAbsolutePair.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../28 Greedy Algorithm/Greedy Algorithm/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/Binary Tree 1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP1Demos/BuildTreePreorder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP1Demos/DiameterOfTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP1Demos/DiameterOfTreeApporach2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP1Demos/HeightOfTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP1Demos/InOrderTraversals.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP1Demos/LevelOrderTraversals.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP1Demos/NodeCountOfTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP1Demos/NodeSumOfTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP1Demos/PostOrderTraversals.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP1Demos/PreOrderTraversals.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP1Demos/practice/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP2Demos/SubTreeOfAnotherTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP2Demos/TopViewOfBinaryTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP3Demos/KAncestor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP3Demos/KthLevelOfTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP3Demos/LowestCommonAncestors.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP3Demos/LowestCommonAncestorsApproach2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/BinaryTreeP3Demos/MinDistanceBtwNodes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../29 Binary Tree part 1/Binary Tree 1/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../32 Binary Search Tree Part 1, 2/Binary Search Tree/src/BinarySearchTree/Part1/BST.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../32 Binary Search Tree Part 1, 2/Binary Search Tree/src/BinarySearchTree/Part1/BSTSearch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../32 Binary Search Tree Part 1, 2/Binary Search Tree/src/BinarySearchTree/Part1/CheckValidBST.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../32 Binary Search Tree Part 1, 2/Binary Search Tree/src/BinarySearchTree/Part1/DeleteNodeInBST.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../32 Binary Search Tree Part 1, 2/Binary Search Tree/src/BinarySearchTree/Part1/PrintInRangeInBST.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../32 Binary Search Tree Part 1, 2/Binary Search Tree/src/BinarySearchTree/Part1/RootToLeafPathInBST.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaCollectionFramework/CollectionFramework/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaCollectionFramework/CollectionFramework/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaCollectionFramework/CollectionFramework/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaCollectionFramework/CollectionFramework/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaCollectionFramework/CollectionFramework/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaCollectionFramework/CollectionFramework/CollectionFramework.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaCollectionFramework/CollectionFramework/src/ArrayListDemos/CrudArrayList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaCollectionFramework/CollectionFramework/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/JavaStreamApiProject.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/AvgOfNumInList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/CountChar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/DuplicateFromString.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/DuplicateNumList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/FilterMapReduce.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/FindElementStartsWith1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/FirstNonRepeatElement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/IntStreamRange.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/JoinString.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/LongestStringFromArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/MapFlatMapStreams.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/MinMaxDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/MyntraJavaQuestion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/ReverseArrayString.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/SecondHighestNumArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/SecondLowestHighest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/SecondLowestNumArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/SmallestStringFromArray.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/SortingListComparator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/SortingMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/SquareofNumsInList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/StringJoin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/SumAllNumInList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/SumFirstFiveNumberLimit2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/UniqueelementsString.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/printNumPrefix.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/JavaStreamAPIDemo/sortList.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/Test/Demo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/Test/Employees.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/Test/ListDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/Test/TestDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/Test/a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../JavaStreamApiProject/src/package-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/practice.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/src/ArraysDemos/Demos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/src/Backtracking/Demos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/src/Basics/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/src/BinaryTree/BuildTreePreOrder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/src/DivideConquer/Demos.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/src/functions/CheckPrime.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/src/functions/FactorialDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../PracticeDemo/practice/src/recursion/Demos.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2pEjyJ3poligjG84Awb1JaExyFB" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/DSA-Java/apna-collage-DSA/DSA Sheet&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Application.MaxSubArraySum">
+    <configuration name="MajorityElement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.arrays.medium.MajorityElement" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.strivers.arrays.medium.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MaxSubArraySum" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.arrays.medium.MaxSubArraySum" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.strivers.arrays.medium.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MinInRotatedArray" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.array.MinInRotatedArray" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.array.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SortArray012" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.arrays.medium.SortArray012" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.strivers.arrays.medium.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Sum2Problem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.arrays.medium.Sum2Problem" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.strivers.arrays.medium.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MaxSubArraySum" />
+        <item itemvalue="Application.MajorityElement" />
+        <item itemvalue="Application.SortArray012" />
+        <item itemvalue="Application.Sum2Problem" />
+        <item itemvalue="Application.MinInRotatedArray" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="592c1eac-e1b4-42d9-8952-cba182f79748" name="Changes" comment="" />
+      <created>1732338382216</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1732338382216</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/array/MinMaxFinder.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/array/NextPermutation.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/array/NextPermutation.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/arrays/medium/SortArray012.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
