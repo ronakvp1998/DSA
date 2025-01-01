@@ -13,45 +13,60 @@ public class RearrangeArrayBySign {
 //        System.out.println(Arrays.toString(rearrangeArray3(arr)));
 
         //  the arr number of pos and neg are not same
-        int arr[] = {1,2,-4,-5,3,6};
-        System.out.println(Arrays.toString(rearrangeOddArray(arr)));
+        Integer arr[] = {1,2,-4,-5,3,-6,7};
+        System.out.println(RearrangebySign(Arrays.asList(arr),arr.length));
     }
 
     // 2nd variant the arr number of pos and neg are not same
-    public static int[] rearrangeOddArray(int arr[]){
-        List<Integer> pos = new ArrayList<>();
-        List<Integer> neg = new ArrayList<>();
+    public static List<Integer> RearrangebySign(List<Integer> A, int n) {
+        // Define 2 ArrayLists, one for storing positive
+        // and other for negative elements of the array.
+        ArrayList<Integer> pos = new ArrayList<>();
+        ArrayList<Integer> neg = new ArrayList<>();
 
-        for(int i=0;i<arr.length;i++){
-            if(arr[i] > 0){
-                pos.add(arr[i]);
-            }else{
-                neg.add(arr[i]);
-            }
+        // Segregate the array into positives and negatives.
+        for (int i = 0; i < n; i++) {
+            if (A.get(i) > 0)
+                pos.add(A.get(i));
+            else
+                neg.add(A.get(i));
         }
 
-        if(pos.size() > neg.size()){
-            for(int i=0;i<neg.size();i++){
-                arr[2*i] = pos.remove(i);
-                arr[2*i+1] = neg.remove(i);
+        // If positives are lesser than the negatives.
+        if (pos.size() < neg.size()) {
+
+            // First, fill array alternatively till the point
+            // where positives and negatives are equal in number.
+            for (int i = 0; i < pos.size(); i++) {
+                A.set(2 * i, pos.get(i));
+                A.set(2 * i + 1, neg.get(i));
             }
-            int index = neg.size() * 2;
-            for(int i=neg.size();i<pos.size();i++){
-                arr[index] = pos.remove(i);
-                index++;
-            }
-        }else{
-            for(int i=0;i<pos.size();i++){
-                arr[2*i] = pos.remove(i);
-                arr[2*i+1] = neg.remove(i);
-            }
+
+            // Fill the remaining negatives at the end of the array.
             int index = pos.size() * 2;
-            for(int i=pos.size();i<neg.size();i++){
-                arr[index] = neg.remove(i);
+            for (int i = pos.size(); i < neg.size(); i++) {
+                A.set(index, neg.get(i));
                 index++;
             }
         }
-        return arr;
+
+        // If negatives are lesser than the positives.
+        else {
+            // First, fill array alternatively till the point
+            // where positives and negatives are equal in number.
+            for (int i = 0; i < neg.size(); i++) {
+                A.set(2 * i, pos.get(i));
+                A.set(2 * i + 1, neg.get(i));
+            }
+
+            // Fill the remaining positives at the end of the array.
+            int index = neg.size() * 2;
+            for (int i = neg.size(); i < pos.size(); i++) {
+                A.set(index, pos.get(i));
+                index++;
+            }
+        }
+        return A;
     }
 
 

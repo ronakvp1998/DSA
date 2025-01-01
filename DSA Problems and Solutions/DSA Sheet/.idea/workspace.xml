@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="592c1eac-e1b4-42d9-8952-cba182f79748" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../apna-collage-DSA/DSA Sheet/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../apna-collage-DSA/DSA Sheet/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../24 Linked List/LinkedList/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +44,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -52,13 +52,13 @@
       <recent name="com.questions.strivers.arrays.hard" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CountOccurance">
-    <configuration name="CountOccurance" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarysearch.bson1darray.CountOccurance" />
+  <component name="RunManager" selected="Application.CombinationSum2">
+    <configuration name="CombinationSum1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.CombinationSum1" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.binarysearch.bson1darray.*" />
+          <option name="PATTERN" value="com.questions.strivers.recursion.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -66,12 +66,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FirstAndLastPosition" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarysearch.bson1darray.FirstAndLastPosition" />
+    <configuration name="CombinationSum2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.CombinationSum2" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.binarysearch.bson1darray.*" />
+          <option name="PATTERN" value="com.questions.strivers.recursion.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -79,12 +79,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FloorCeilSortedArr" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarysearch.bson1darray.FloorCeilSortedArr" />
+    <configuration name="CountSubsequences" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.basics.recursion.CountSubsequences" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.binarysearch.bson1darray.*" />
+          <option name="PATTERN" value="com.questions.strivers.basics.recursion.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -92,12 +92,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LowerBound" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarysearch.bson1darray.LowerBound" />
+    <configuration name="MergeSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.basics.recursion.MergeSort" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.binarysearch.bson1darray.*" />
+          <option name="PATTERN" value="com.questions.strivers.basics.recursion.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -105,12 +105,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UpperBound" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarysearch.bson1darray.UpperBound" />
+    <configuration name="QuickSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.basics.recursion.QuickSort" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.binarysearch.bson1darray.*" />
+          <option name="PATTERN" value="com.questions.strivers.basics.recursion.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -120,11 +120,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CountOccurance" />
-        <item itemvalue="Application.FirstAndLastPosition" />
-        <item itemvalue="Application.FloorCeilSortedArr" />
-        <item itemvalue="Application.UpperBound" />
-        <item itemvalue="Application.LowerBound" />
+        <item itemvalue="Application.CombinationSum2" />
+        <item itemvalue="Application.CombinationSum1" />
+        <item itemvalue="Application.QuickSort" />
+        <item itemvalue="Application.MergeSort" />
+        <item itemvalue="Application.CountSubsequences" />
       </list>
     </recent_temporary>
   </component>
@@ -171,6 +171,81 @@
           <url>file://$PROJECT_DIR$/src/com/questions/strivers/arrays/medium/CountSubarraySum.java</url>
           <line>54</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/practice/arrays/MajorityElement.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/practice/arrays/MaximumSubarray.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/practice/arrays/MaximumSubarray.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/arrays/medium/NextPermutation.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/arrays/medium/NextPermutation.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/practice/arrays/SetMatrixZero.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/binarysearch/bson1darray/SearchInRotatedArr.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/linkedlist/linkedlist1d/LinkedList.java</url>
+          <line>152</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/linkedlist/doublylinkedlist/DoublyLinkedList.java</url>
+          <line>162</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/linkedlist/doublylinkedlist/DoublyLinkedList.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/linkedlist/mediumProblemsLL/LLPalindromeOrNot.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/linkedlist/mediumProblemsLL/LengthOfLoop.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/basics/recursion/PrintSubseqSumK.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/basics/recursion/Print1SubseqSum.java</url>
+          <line>12</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/recursion/CombinationSum2.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
