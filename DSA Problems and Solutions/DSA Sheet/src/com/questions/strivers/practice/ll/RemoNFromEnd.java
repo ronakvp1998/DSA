@@ -1,7 +1,6 @@
-package com.questions.strivers.linkedlist.mediumProblemsLL;
+package com.questions.strivers.practice.ll;
 
-
-public class RemoveNthLastNode {
+public class RemoNFromEnd {
 
     public static void main(String[] args) {
         int arr[] = {1,2,3,4,5};
@@ -14,7 +13,7 @@ public class RemoveNthLastNode {
     }
 
     // approach 2 fast and slow pointers TC->O(N) SC->O(1)
-    public static Node removeNode2(Node head, int n){
+    public static Node removeNode2(Node head,int n){
         if(head == null){
             return null;
         }
@@ -32,13 +31,13 @@ public class RemoveNthLastNode {
             fast = fast.next;
         }
 
-        slow.next = slow.next.next;
+            slow.next = slow.next.next;
         return head;
 
     }
 
     // appraoch 1 count - n TC->O(2N) SC->O(1)
-    public Node removeNode(Node head, int n){
+    public static Node removeNode(Node head,int n){
         if(head == null ){
             return null;
         }

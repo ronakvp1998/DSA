@@ -192,8 +192,8 @@ class Node{
 
     Node(int data,Node next, Node prev){
         this.data = data;
-        this.next = next;
-        this.prev = prev;
+        this.prev = null;
+        this.next = null;
     }
 
     Node(int data){

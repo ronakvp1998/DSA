@@ -1,25 +1,9 @@
-package com.questions.strivers.linkedlist.linkedlist1d;
+package com.questions.strivers.practice.ll;
 
-class Node {
-
-    int data;
-    Node next;
-
-    Node(int data1, Node next1){
-        this.data = data1;
-        this.next = next1;
-    }
-
-    Node(int data){
-        this.data = data;
-        this.next = null;
-    }
-}
-
-public class LinkedList{
+public class LinkedListDemo {
 
     public static void main(String[] args) {
-        int arr[] = {2, 5, 4,6,2, 9, 8,4,4};
+        int arr[] = {1,2,3,4,5,6};
         Node head = arrayToLinkedList(arr);
         printLL(head);
 //        System.out.println(searchElement(head,2));
@@ -59,7 +43,7 @@ public class LinkedList{
     }
 
     // 3 insert at last
-    public static Node insertLast(Node head, int value){
+    public static Node insertLast(Node head,int value){
         if(head == null){
             return insertAtHead(head,value);
         }
@@ -74,7 +58,7 @@ public class LinkedList{
     }
 
     // 2 insert at index
-    public static Node insertAtIndex(Node head, int index, int value){
+    public static Node insertAtIndex(Node head,int index,int value){
         if(head == null && index != 0){
             return null;
         }
@@ -109,7 +93,7 @@ public class LinkedList{
     }
 
     // 5 delete all occ of value from LL
-    public static Node deleteAllOccValue(Node head, int value){
+    public static Node deleteAllOccValue(Node head,int value){
         if(head == null){
             return null;
         }
@@ -123,15 +107,15 @@ public class LinkedList{
                 prev.next = temp.next;
                 temp = temp.next;
             }else {
-                prev = temp;
-                temp = temp.next;}
+            prev = temp;
+            temp = temp.next;}
         }
         return head;
     }
 
 
     // 4 delete a value from LL
-    public static Node deleteValue(Node head, int value){
+    public static Node deleteValue(Node head,int value){
         if(head == null){
             return null;
         }
@@ -154,16 +138,16 @@ public class LinkedList{
 
     // 3 delete last
     public static Node deleteLast(Node head){
-        if(head == null || head.next == null){
-            return null;
-        }
+         if(head == null || head.next == null){
+             return null;
+         }
 
-        Node temp = head;
-        while (temp.next.next != null){
-            temp = temp.next;
-        }
-        temp.next = null;
-        return head;
+         Node temp = head;
+         while (temp.next.next != null){
+             temp = temp.next;
+         }
+         temp.next = null;
+         return head;
     }
 
     // 2 delete a position or index
@@ -201,7 +185,7 @@ public class LinkedList{
     }
 
     // 3 search element in LL
-    public static int searchElement(Node head, int target){
+    public static int searchElement(Node head,int target){
         if(head == null){
             System.out.println("Empty LL");
             return -1;
@@ -250,4 +234,3 @@ public class LinkedList{
     }
 
 }
-

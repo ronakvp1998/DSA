@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592c1eac-e1b4-42d9-8952-cba182f79748" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../24 Linked List/LinkedList/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../24 Linked List/LinkedList/.idea/misc.xml" afterDir="false" />
-    </list>
+    <list default="true" id="592c1eac-e1b4-42d9-8952-cba182f79748" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +38,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/DSA-Java/DSA Problems and Solutions/DSA Sheet&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/DSA-Java/DSA Problems and Solutions/DSA Sheet/src/com/questions/strivers/stackandqueues/learning&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -48,17 +46,20 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\DSA-Java\DSA Problems and Solutions\DSA Sheet\src\com\questions\strivers\stackandqueues\learning" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.questions.strivers.arrays.hard" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CombinationSum2">
-    <configuration name="CombinationSum1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.CombinationSum1" />
+  <component name="RunManager" selected="Application.NextGreatestElement">
+    <configuration name="InfixToPostfix" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.stackandqueues.prefixinfixpostfix.InfixToPostfix" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.*" />
+          <option name="PATTERN" value="com.questions.strivers.stackandqueues.prefixinfixpostfix.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -66,12 +67,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CombinationSum2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.CombinationSum2" />
+    <configuration name="NextGreatestElement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.stackandqueues.monotonicstackqueue.NextGreatestElement" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.*" />
+          <option name="PATTERN" value="com.questions.strivers.stackandqueues.monotonicstackqueue.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -79,12 +80,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CountSubsequences" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.basics.recursion.CountSubsequences" />
+    <configuration name="QueueUsingStack" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.stackandqueues.learning.QueueUsingStack" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.basics.recursion.*" />
+          <option name="PATTERN" value="com.questions.strivers.stackandqueues.learning.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -92,12 +93,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MergeSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.basics.recursion.MergeSort" />
+    <configuration name="QueueUsingStack2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.stackandqueues.learning.QueueUsingStack2" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.basics.recursion.*" />
+          <option name="PATTERN" value="com.questions.strivers.stackandqueues.learning.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -105,12 +106,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="QuickSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.basics.recursion.QuickSort" />
+    <configuration name="ValidParentheses" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.stackandqueues.learning.ValidParentheses" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.basics.recursion.*" />
+          <option name="PATTERN" value="com.questions.strivers.stackandqueues.learning.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -120,11 +121,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CombinationSum2" />
-        <item itemvalue="Application.CombinationSum1" />
-        <item itemvalue="Application.QuickSort" />
-        <item itemvalue="Application.MergeSort" />
-        <item itemvalue="Application.CountSubsequences" />
+        <item itemvalue="Application.NextGreatestElement" />
+        <item itemvalue="Application.InfixToPostfix" />
+        <item itemvalue="Application.ValidParentheses" />
+        <item itemvalue="Application.QueueUsingStack2" />
+        <item itemvalue="Application.QueueUsingStack" />
       </list>
     </recent_temporary>
   </component>
@@ -209,7 +210,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/questions/strivers/linkedlist/linkedlist1d/LinkedList.java</url>
-          <line>152</line>
+          <line>19</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -229,7 +230,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/questions/strivers/linkedlist/mediumProblemsLL/LengthOfLoop.java</url>
-          <line>29</line>
+          <line>89</line>
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -246,6 +247,31 @@
           <url>file://$PROJECT_DIR$/src/com/questions/strivers/recursion/CombinationSum2.java</url>
           <line>16</line>
           <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/practice/dll/DoubleLinkedList.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/practice/ll/RemoNFromEnd.java</url>
+          <line>56</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/practice/ll/RemoNFromEnd.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/practice/ll/RemoNFromEnd.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/strivers/practice/ll/ReverseSLL.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,5 +1,4 @@
-package com.questions.strivers.linkedlist.mediumProblemsLL;
-
+package com.questions.strivers.practice.ll;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -80,7 +79,7 @@ public class LengthOfLoop {
 
         for (int i = 1; i < arr.length; i++) {
             // Create a new node with data from the array and set its 'back' pointer to the previous node
-            Node temp = new Node(arr[i]);
+            Node temp = new Node(arr[i], null);
             prev.next = temp; // Update the 'next' pointer of the previous node to point to the new node
             prev = temp; // Move 'prev' to the newly created node for the next iteration
         }

@@ -1,17 +1,17 @@
-package com.questions.strivers.linkedlist.mediumProblemsLL;
-
+package com.questions.strivers.practice.ll;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class LengthOfLoop {
+public class StartingPoint {
+
     public static void main(String[] args) {
-        int arr1[] = {1,2,3,4,5,6,7,8,9};
+        int arr1[] = {1,2,3,15,4,13,6,7,8,9};
         Node head1 = convertArrToDLL(arr1);
 
         Node tempInt = head1;
         while (tempInt != null){
-            if(tempInt.data == 3){
+            if(tempInt.data == 15){
                 break;
             }
             tempInt = tempInt.next;
@@ -23,45 +23,40 @@ public class LengthOfLoop {
         }
 
         tempLast.next = tempInt;
+        System.out.println(startingPoint1(head1).data);
 
-        System.out.println(detectLoop1(head1));
     }
 
-    // approach 2 using fast slow pointer
-    public static int detectLoop1(Node head){
+    // approach 2 fast and slow
+    public static Node startingPoint1(Node head){
         Node slow = head, fast = head;
         while (fast != null && fast.next != null){
             slow = slow.next;
             fast = fast.next.next;
-            if(slow == fast) {
-                int length = 1;
-                fast = fast.next;
-                while (fast != slow){
-                    length++;
+            if(slow == fast){
+                slow = head;
+                while (slow != fast){
+                    slow = slow.next;
                     fast = fast.next;
                 }
-                return length;
+                return slow;
             }
         }
-        return 0;
+        return null;
     }
 
-    // approach 1 using hashmap TC->O(n*2*logn) SC->O(n)
-    public static int detectLoop(Node head){
+    // approach 1 hashmap TC->O(N)*[O(N) + O(N)]
+    public static Node startingPoint(Node head){
         Map<Node,Integer> map = new HashMap<>();
-        int timer = 1;
         Node temp = head;
         while (temp != null){
             if(map.get(temp) != null){
-                int value = map.get(temp);
-                return timer - value;
-            }else{
-                map.put(temp,timer);
-                timer++;
-                temp = temp.next;
+                return temp;
             }
+            map.put(temp,1);
+            temp = temp.next;
         }
-        return 0;
+        return null;
     }
 
     public static void traverseDLL(Node head){
@@ -80,7 +75,7 @@ public class LengthOfLoop {
 
         for (int i = 1; i < arr.length; i++) {
             // Create a new node with data from the array and set its 'back' pointer to the previous node
-            Node temp = new Node(arr[i]);
+            Node temp = new Node(arr[i], null);
             prev.next = temp; // Update the 'next' pointer of the previous node to point to the new node
             prev = temp; // Move 'prev' to the newly created node for the next iteration
         }
