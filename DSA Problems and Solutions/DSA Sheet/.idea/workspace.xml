@@ -42,7 +42,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -53,13 +53,13 @@
       <recent name="com.questions.strivers.arrays.hard" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.NextGreatestElement">
-    <configuration name="InfixToPostfix" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.stackandqueues.prefixinfixpostfix.InfixToPostfix" />
+  <component name="RunManager" selected="Application.BinarySubarray">
+    <configuration name="BinarySubarray" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.BinarySubarray" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.stackandqueues.prefixinfixpostfix.*" />
+          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -67,12 +67,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NextGreatestElement" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.stackandqueues.monotonicstackqueue.NextGreatestElement" />
+    <configuration name="LongestRepeatCharReplace" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.LongestRepeatCharReplace" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.stackandqueues.monotonicstackqueue.*" />
+          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -80,12 +80,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="QueueUsingStack" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.stackandqueues.learning.QueueUsingStack" />
+    <configuration name="LongestSubstringKDistChar" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.LongestSubstringKDistChar" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.stackandqueues.learning.*" />
+          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -93,12 +93,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="QueueUsingStack2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.stackandqueues.learning.QueueUsingStack2" />
+    <configuration name="NumSubstringCont3Char" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.NumSubstringCont3Char" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.stackandqueues.learning.*" />
+          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -106,12 +106,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ValidParentheses" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.stackandqueues.learning.ValidParentheses" />
+    <configuration name="com.questions.practice.slidingwindow.LongestRepeatCharReplace" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.slidingwindow.LongestRepeatCharReplace" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.stackandqueues.learning.*" />
+          <option name="PATTERN" value="com.questions.practice.slidingwindow.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -121,11 +121,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.NextGreatestElement" />
-        <item itemvalue="Application.InfixToPostfix" />
-        <item itemvalue="Application.ValidParentheses" />
-        <item itemvalue="Application.QueueUsingStack2" />
-        <item itemvalue="Application.QueueUsingStack" />
+        <item itemvalue="Application.BinarySubarray" />
+        <item itemvalue="Application.com.questions.practice.slidingwindow.LongestRepeatCharReplace" />
+        <item itemvalue="Application.LongestRepeatCharReplace" />
+        <item itemvalue="Application.NumSubstringCont3Char" />
+        <item itemvalue="Application.LongestSubstringKDistChar" />
       </list>
     </recent_temporary>
   </component>
