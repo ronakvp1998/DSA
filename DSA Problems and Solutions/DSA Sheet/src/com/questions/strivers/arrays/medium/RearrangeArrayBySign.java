@@ -125,9 +125,9 @@ public class RearrangeArrayBySign {
 
         for(int i=0;i<arr.length;i++){
             if(i%2 ==0 ){
-                arr[i] = pos.removeFirst();
+//                arr[i] = pos.removeFirst();
             }else {
-                arr[i] = neg.removeFirst();
+//                arr[i] = neg.removeFirst();
             }
         }
     }

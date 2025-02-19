@@ -32,28 +32,44 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/DSA-Java/DSA Problems and Solutions/DSA Sheet/src/com/questions/strivers/stackandqueues/learning&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BasicProblems.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/DSA/DSA/DSA Problems and Solutions/DSA Sheet/src/com/questions/strivers/recursion/basics",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\DSA\DSA\DSA Problems and Solutions\DSA Sheet\src\com\questions\strivers\recursion\basics" />
       <recent name="D:\DSA-Java\DSA Problems and Solutions\DSA Sheet\src\com\questions\strivers\stackandqueues\learning" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.questions.strivers.arrays.hard" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BinarySubarray">
+  <component name="RunManager" selected="Application.BasicProblems">
+    <configuration name="BasicProblems" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.BasicProblems" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.practice.recursion.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="BinarySubarray" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.BinarySubarray" />
       <module name="DSA Sheet" />
@@ -69,19 +85,6 @@
     </configuration>
     <configuration name="LongestRepeatCharReplace" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.LongestRepeatCharReplace" />
-      <module name="DSA Sheet" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LongestSubstringKDistChar" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.LongestSubstringKDistChar" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
@@ -121,11 +124,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.BasicProblems" />
         <item itemvalue="Application.BinarySubarray" />
         <item itemvalue="Application.com.questions.practice.slidingwindow.LongestRepeatCharReplace" />
         <item itemvalue="Application.LongestRepeatCharReplace" />
         <item itemvalue="Application.NumSubstringCont3Char" />
-        <item itemvalue="Application.LongestSubstringKDistChar" />
       </list>
     </recent_temporary>
   </component>
@@ -249,27 +252,27 @@
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/practice/dll/DoubleLinkedList.java</url>
+          <url>file://$PROJECT_DIR$/src/com/questions/practice/dll/DoubleLinkedList.java</url>
           <line>23</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/practice/ll/RemoNFromEnd.java</url>
+          <url>file://$PROJECT_DIR$/src/com/questions/practice/ll/RemoNFromEnd.java</url>
           <line>56</line>
           <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/practice/ll/RemoNFromEnd.java</url>
+          <url>file://$PROJECT_DIR$/src/com/questions/practice/ll/RemoNFromEnd.java</url>
           <line>54</line>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/practice/ll/RemoNFromEnd.java</url>
+          <url>file://$PROJECT_DIR$/src/com/questions/practice/ll/RemoNFromEnd.java</url>
           <line>25</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/practice/ll/ReverseSLL.java</url>
+          <url>file://$PROJECT_DIR$/src/com/questions/practice/ll/ReverseSLL.java</url>
           <line>8</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
