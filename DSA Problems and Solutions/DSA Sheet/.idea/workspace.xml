@@ -53,7 +53,7 @@
       <recent name="com.questions.strivers.arrays.hard" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BinarySubarray">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="BinarySubarray" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.BinarySubarray" />
       <module name="DSA Sheet" />
@@ -80,8 +80,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LongestSubstringKDistChar" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.LongestSubstringKDistChar" />
+    <configuration name="NiceSubarray" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.NiceSubarray" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
@@ -93,12 +93,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NumSubstringCont3Char" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.NumSubstringCont3Char" />
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.slidingwindow.Test" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.*" />
+          <option name="PATTERN" value="com.questions.practice.slidingwindow.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -121,11 +121,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.NiceSubarray" />
         <item itemvalue="Application.BinarySubarray" />
         <item itemvalue="Application.com.questions.practice.slidingwindow.LongestRepeatCharReplace" />
         <item itemvalue="Application.LongestRepeatCharReplace" />
-        <item itemvalue="Application.NumSubstringCont3Char" />
-        <item itemvalue="Application.LongestSubstringKDistChar" />
       </list>
     </recent_temporary>
   </component>
@@ -139,6 +139,17 @@
       <updated>1732338382216</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -273,6 +284,10 @@
           <line>8</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="30" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
