@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="592c1eac-e1b4-42d9-8952-cba182f79748" name="Changes" comment="" />
+    <list default="true" id="b99a488f-6eb2-4944-a82c-51c276506775" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,46 +20,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/com/questions/strivers/arrays/medium/CountSubarraySum.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
+  &quot;associatedIndex&quot;: 3
 }</component>
-  <component name="ProjectId" id="2pEjyJ3poligjG84Awb1JaExyFB" />
+  <component name="ProjectId" id="2tGjf56M4sXg9BlDjS26JyeGBQ1" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BasicProblems.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/DSA/DSA/DSA Problems and Solutions/DSA Sheet/src/com/questions/strivers/recursion/basics",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/DSA-Java/DSA Problems and Solutions&quot;
   }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\DSA\DSA\DSA Problems and Solutions\DSA Sheet\src\com\questions\strivers\recursion\basics" />
-      <recent name="D:\DSA-Java\DSA Problems and Solutions\DSA Sheet\src\com\questions\strivers\stackandqueues\learning" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.questions.strivers.arrays.hard" />
-    </key>
-  </component>
-<<<<<<< HEAD
-  <component name="RunManager" selected="Application.Test">
-=======
-  <component name="RunManager" selected="Application.BasicProblems">
+}</component>
+  <component name="RunManager" selected="Application.MergeSort">
     <configuration name="BasicProblems" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.BasicProblems" />
       <module name="DSA Sheet" />
@@ -73,13 +51,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
->>>>>>> 0e36eaecd16d9f4022789a1ce2d01d03c30b4d4a
-    <configuration name="BinarySubarray" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.BinarySubarray" />
+    <configuration name="MergeSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.MergeSort" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.*" />
+          <option name="PATTERN" value="com.questions.practice.recursion.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -87,56 +64,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LongestRepeatCharReplace" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.LongestRepeatCharReplace" />
+    <configuration name="Subsequence1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.Subsequence1" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-<<<<<<< HEAD
-    <configuration name="NiceSubarray" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.NiceSubarray" />
-      <module name="DSA Sheet" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.slidingwindow.Test" />
-=======
-    <configuration name="NumSubstringCont3Char" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.NumSubstringCont3Char" />
->>>>>>> 0e36eaecd16d9f4022789a1ce2d01d03c30b4d4a
-      <module name="DSA Sheet" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.questions.practice.slidingwindow.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="com.questions.practice.slidingwindow.LongestRepeatCharReplace" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.slidingwindow.LongestRepeatCharReplace" />
-      <module name="DSA Sheet" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.questions.practice.slidingwindow.*" />
+          <option name="PATTERN" value="com.questions.practice.recursion.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -146,182 +79,24 @@
     </configuration>
     <recent_temporary>
       <list>
-<<<<<<< HEAD
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.NiceSubarray" />
-        <item itemvalue="Application.BinarySubarray" />
-        <item itemvalue="Application.com.questions.practice.slidingwindow.LongestRepeatCharReplace" />
-        <item itemvalue="Application.LongestRepeatCharReplace" />
-=======
+        <item itemvalue="Application.MergeSort" />
+        <item itemvalue="Application.Subsequence1" />
         <item itemvalue="Application.BasicProblems" />
-        <item itemvalue="Application.BinarySubarray" />
-        <item itemvalue="Application.com.questions.practice.slidingwindow.LongestRepeatCharReplace" />
-        <item itemvalue="Application.LongestRepeatCharReplace" />
-        <item itemvalue="Application.NumSubstringCont3Char" />
->>>>>>> 0e36eaecd16d9f4022789a1ce2d01d03c30b4d4a
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="592c1eac-e1b4-42d9-8952-cba182f79748" name="Changes" comment="" />
-      <created>1732338382216</created>
+      <changelist id="b99a488f-6eb2-4944-a82c-51c276506775" name="Changes" comment="" />
+      <created>1739985410675</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1732338382216</updated>
+      <updated>1739985410675</updated>
     </task>
     <servers />
   </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/array/MinMaxFinder.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/array/NextPermutation.java</url>
-          <line>39</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/array/NextPermutation.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/arrays/medium/SortArray012.java</url>
-          <line>17</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/arrays/medium/LongestConsecutiveSeq.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/arrays/medium/CountSubarraySum.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/practice/arrays/MajorityElement.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/practice/arrays/MaximumSubarray.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/practice/arrays/MaximumSubarray.java</url>
-          <line>17</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/arrays/medium/NextPermutation.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/arrays/medium/NextPermutation.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/practice/arrays/SetMatrixZero.java</url>
-          <line>18</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/binarysearch/bson1darray/SearchInRotatedArr.java</url>
-          <line>41</line>
-          <option name="timeStamp" value="15" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/linkedlist/linkedlist1d/LinkedList.java</url>
-          <line>19</line>
-          <option name="timeStamp" value="16" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/linkedlist/doublylinkedlist/DoublyLinkedList.java</url>
-          <line>162</line>
-          <option name="timeStamp" value="17" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/linkedlist/doublylinkedlist/DoublyLinkedList.java</url>
-          <line>104</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/linkedlist/mediumProblemsLL/LLPalindromeOrNot.java</url>
-          <line>34</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/linkedlist/mediumProblemsLL/LengthOfLoop.java</url>
-          <line>89</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/basics/recursion/PrintSubseqSumK.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/basics/recursion/Print1SubseqSum.java</url>
-          <line>12</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/strivers/recursion/CombinationSum2.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/practice/dll/DoubleLinkedList.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/practice/ll/RemoNFromEnd.java</url>
-          <line>56</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/practice/ll/RemoNFromEnd.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="26" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/practice/ll/RemoNFromEnd.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/practice/ll/ReverseSLL.java</url>
-          <line>8</line>
-          <option name="timeStamp" value="28" />
-        </line-breakpoint>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
-          <option name="timeStamp" value="30" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>

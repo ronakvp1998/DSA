@@ -2,26 +2,36 @@ package com.questions.strivers.recursion.basics;
 
 public class FibonacciSeries {
     public static void main(String[] args) {
-        int n = 4;
-//        System.out.println(fibonacciSer(n));
-       fibonacciSer1(n,0);
+        int n = 10;  // We want the first 10 Fibonacci numbers
+//        fibonacci(n, 0, 1);  // Start the Fibonacci sequence with 0 and 1
+
+        // Print the first 10 Fibonacci numbers
+        for (int i = 0; i < n; i++) {
+            System.out.println(fibonacci(i));
+        }
     }
 
     // parametrized approach
-    public static void fibonacciSer1(int n, int res){
-        if(n <= 1 ){
+    public static void fibonacci(int n, int first, int second) {
+        // Base case: when n reaches 0, stop the recursion
+        if (n <= 0) {
             return;
         }
-        fibonacciSer1(n-1,res+(n-1));
-        fibonacciSer1(n-2,res+(n-2));
-        System.out.println(res);
+
+        // Print the current Fibonacci number
+        System.out.println(first);
+
+        // Call the function for the next Fibonacci number
+        fibonacci(n - 1, second, first + second);
     }
 
     // functional approach
-    public static int fibonacciSer(int n){
-        if(n <= 1) return n;
-        int last = fibonacciSer(n-1);
-        int secondLast = fibonacciSer(n-2);
-        return last + secondLast;
+    // Recursive Fibonacci function
+    public static int fibonacci(int n) {
+        if (n <= 1) {
+            return n;  // Base cases: fibonacci(0) = 0, fibonacci(1) = 1
+        }
+        return fibonacci(n - 1) + fibonacci(n - 2);  // Recursive call for fibonacci(n-1) + fibonacci(n-2)
     }
+
 }
