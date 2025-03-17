@@ -1,4 +1,4 @@
-package com.questions.practice.slidingwindow;
+package com.questions.practice.slidingwindow.old;
 
 public class MaxPoints {
     public static void main(String[] args) {

@@ -37,9 +37,14 @@
     &quot;last_opened_file_path&quot;: &quot;D:/DSA-Java/DSA Problems and Solutions&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.MergeSort">
-    <configuration name="BasicProblems" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.BasicProblems" />
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.questions.strivers.recursion" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.PrintPermutation">
+    <configuration name="CombinationSum1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.CombinationSum1" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
@@ -51,8 +56,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MergeSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.MergeSort" />
+    <configuration name="CombinationSum2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.CombinationSum2" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
@@ -64,8 +69,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Subsequence1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.Subsequence1" />
+    <configuration name="PrintPermutation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.PrintPermutation" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.practice.recursion.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SubsetSum1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.SubsetSum1" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.practice.recursion.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SubsetSum2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.SubsetSum2" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
@@ -79,9 +110,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MergeSort" />
-        <item itemvalue="Application.Subsequence1" />
-        <item itemvalue="Application.BasicProblems" />
+        <item itemvalue="Application.PrintPermutation" />
+        <item itemvalue="Application.SubsetSum2" />
+        <item itemvalue="Application.SubsetSum1" />
+        <item itemvalue="Application.CombinationSum2" />
+        <item itemvalue="Application.CombinationSum1" />
       </list>
     </recent_temporary>
   </component>
