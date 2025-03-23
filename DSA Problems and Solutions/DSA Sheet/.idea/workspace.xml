@@ -39,16 +39,17 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.questions.strivers.binarytrees.easy" />
       <recent name="com.questions.strivers.recursion" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PrintPermutation">
-    <configuration name="CombinationSum1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.CombinationSum1" />
+  <component name="RunManager" selected="Application.SymmetricBT">
+    <configuration name="BoundaryTraverse" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarytrees.medium.BoundaryTraverse" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.practice.recursion.*" />
+          <option name="PATTERN" value="com.questions.strivers.binarytrees.medium.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -56,12 +57,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CombinationSum2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.CombinationSum2" />
+    <configuration name="LeftRightView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarytrees.medium.LeftRightView" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.practice.recursion.*" />
+          <option name="PATTERN" value="com.questions.strivers.binarytrees.medium.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -69,12 +70,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PrintPermutation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.PrintPermutation" />
+    <configuration name="SymmetricBT" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarytrees.medium.SymmetricBT" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.practice.recursion.*" />
+          <option name="PATTERN" value="com.questions.strivers.binarytrees.medium.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -82,12 +83,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SubsetSum1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.SubsetSum1" />
+    <configuration name="TopView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarytrees.medium.TopView" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.practice.recursion.*" />
+          <option name="PATTERN" value="com.questions.strivers.binarytrees.medium.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -95,12 +96,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SubsetSum2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.recursion.SubsetSum2" />
+    <configuration name="VerticalTraverse" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarytrees.medium.VerticalTraverse" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.practice.recursion.*" />
+          <option name="PATTERN" value="com.questions.strivers.binarytrees.medium.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -110,11 +111,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PrintPermutation" />
-        <item itemvalue="Application.SubsetSum2" />
-        <item itemvalue="Application.SubsetSum1" />
-        <item itemvalue="Application.CombinationSum2" />
-        <item itemvalue="Application.CombinationSum1" />
+        <item itemvalue="Application.SymmetricBT" />
+        <item itemvalue="Application.LeftRightView" />
+        <item itemvalue="Application.TopView" />
+        <item itemvalue="Application.VerticalTraverse" />
+        <item itemvalue="Application.BoundaryTraverse" />
       </list>
     </recent_temporary>
   </component>
