@@ -1,28 +1,63 @@
 package com.questions.strivers.slidingwind2pointer;
 
+/* L2. Maximum Points You Can Obtain from Cards
+There are several cards arranged in a row, and each card has an associated number of points.
+The points are given in the integer array cardPoints.
+In one step, you can take one card from the beginning or from the end of the row. You have to take exactly k cards.
+Your score is the sum of the points of the cards you have taken.
+Given the integer array cardPoints and the integer k, return the maximum score you can obtain.
+
+Example 1: Input: cardPoints = [1,2,3,4,5,6,1], k = 3 Output: 12
+Explanation: After the first step, your score will always be 1. However,
+choosing the rightmost card first will maximize your total score.
+The optimal strategy is to take the three cards on the right, giving a final score of 1 + 6 + 5 = 12.
+
+Example 2: Input: cardPoints = [2,2,2], k = 2 Output: 4
+Explanation: Regardless of which two cards you take, your score will always be 4.
+
+Example 3: Input: cardPoints = [9,7,7,9,7,7,9], k = 7 Output: 55
+Explanation: You have to take all the cards. Your score is the sum of points of all cards..*/
+
 public class MaximumPointsCards {
 
     public static void main(String[] args) {
-        int arr[] = {61,16,51,40,37,21,96,70,13,98,28,75,74,87,68,55,95,24,46,87};
-        int k = 19;
-        System.out.println(maxSum1(arr,k));
+        int arr[] = {6,2,3,4,7,2,1,7,1};
+        int k = 4;
+//        System.out.println(maxSum1(arr,k));
+        System.out.println(maxSum2(arr,k));
     }
 
-    public static int maxSum1(int arr[], int k){
-        int n= arr.length;
-        int maxSum=Integer.MIN_VALUE, lsum=0,rsum=0;
+    // code2
+    public static int maxSum2(int arr[], int k){
+        int maxSum=Integer.MIN_VALUE,lsum=0,rsum=0,n=arr.length;
         for(int i=0;i<k;i++){
             lsum = lsum + arr[i];
         }
         maxSum = lsum;
+        int rightIndex=n-1;
+        for(int i=k-1;i>=0;i--){
+            lsum = lsum - arr[i];
+            rsum = rsum + arr[rightIndex];
+            rightIndex = rightIndex - 1;
+            maxSum = Math.max(maxSum,lsum + rsum);
+        }
+        return maxSum;
+    }
 
-        int l=k-1, r=n-1;
+    // code1
+    public static int maxSum1(int arr[], int k){
+        int maxSum=Integer.MIN_VALUE,sum=0,l=0,r=0,n=arr.length;
+        for(int i=0;i<k;i++){
+            sum = sum + arr[i];
+        }
+        maxSum = sum;
+        l=k-1; r=n-1;
         while (l >= 0){
-            lsum = lsum - arr[l];
-            rsum = rsum + arr[r];
+            sum = sum - arr[l];
+            sum = sum + arr[r];
             l--;
             r--;
-            maxSum = Math.max(maxSum,lsum+rsum);
+            maxSum = Math.max(sum,maxSum);
         }
         return maxSum;
     }
