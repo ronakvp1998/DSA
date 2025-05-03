@@ -1,8 +1,8 @@
-package com.questions.strivers.slidingwind2pointer;
+package com.questions.strivers.slidingwind2pointer.length;
 
 import java.util.Map;
 
-// L2 find the longest substring length with sum <= k
+// L2 find the longest substring length with sum <= k (return maxlength)
 public class LongestSubstringCondition {
     public static void main(String[] args) {
         int arr[] = {2,5,1,7,10};

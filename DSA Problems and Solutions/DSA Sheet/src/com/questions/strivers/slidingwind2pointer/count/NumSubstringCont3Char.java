@@ -1,4 +1,4 @@
-package com.questions.strivers.slidingwind2pointer;
+package com.questions.strivers.slidingwind2pointer.count;
 
 /* L7   Number of Substrings Containing All Three Characters
         Given a string s consisting only of characters a, b and c.

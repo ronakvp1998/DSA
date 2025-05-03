@@ -1,4 +1,4 @@
-package com.questions.strivers.slidingwind2pointer;
+package com.questions.strivers.slidingwind2pointer.length;
 /* L8 424. Longest Repeating Character Replacement
         You are given a string s and an integer k.
         You can choose any character of the string and change it to any other uppercase English character.

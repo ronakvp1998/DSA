@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b99a488f-6eb2-4944-a82c-51c276506775" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../.idea/misc.xml" afterDir="false" />
-    </list>
+    <list default="true" id="b99a488f-6eb2-4944-a82c-51c276506775" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,11 +45,11 @@
   </component>
   <component name="RunManager" selected="Application.Test">
     <configuration name="FruitBaskets" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.FruitBaskets" />
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.length.FruitBaskets" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.*" />
+          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.sum.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -60,11 +58,11 @@
       </method>
     </configuration>
     <configuration name="LongestSubstringKDistChar" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.LongestSubstringKDistChar" />
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.length.LongestSubstringKDistChar" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.*" />
+          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.sum.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -73,11 +71,11 @@
       </method>
     </configuration>
     <configuration name="LongestSubstringWithoutRepeatingChar" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.LongestSubstringWithoutRepeatingChar" />
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.length.LongestSubstringWithoutRepeatingChar" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.*" />
+          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.sum.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -86,11 +84,11 @@
       </method>
     </configuration>
     <configuration name="MaxConsOnes" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.MaxConsOnes" />
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.length.MaxConsOnes" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.*" />
+          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.sum.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -114,10 +112,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Test" />
+        <item itemvalue="Application.LongestSubstringWithoutRepeatingChar" />
         <item itemvalue="Application.LongestSubstringKDistChar" />
         <item itemvalue="Application.FruitBaskets" />
         <item itemvalue="Application.MaxConsOnes" />
-        <item itemvalue="Application.LongestSubstringWithoutRepeatingChar" />
       </list>
     </recent_temporary>
   </component>
@@ -142,6 +140,11 @@
           <url>file://$PROJECT_DIR$/src/com/questions/strivers/binarytrees/easy/PreOrderTraversalIterative.java</url>
           <line>19</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/practice2/Test.java</url>
+          <line>6</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,4 +1,4 @@
-package com.questions.strivers.slidingwind2pointer;
+package com.questions.strivers.slidingwind2pointer.length;
 /* L3. Longest Substring Without Repeating Characters
         Hint
         Given a string s, find the length of the longest substring without duplicate characters.
@@ -20,18 +20,18 @@ public class LongestSubstringWithoutRepeatingChar {
     }
 
     // Approach2 using sliding window
-    public static int longestSubstringWithoutRepeatingChar2(String s){
-        int map[] = new int [256];
-        int l=0,r=0,maxLen=0,n=s.length();
-        while (r < n){
-            if(map[s.charAt(r)] != -1){
-                if(map[s.charAt(r)] >= l){
+    public static int longestSubstringWithoutRepeatingChar2(String s) {
+        int map[] = new int[256];
+        int l = 0, r = 0, maxLen = 0, n = s.length();
+        while (r < n) {
+            if (map[s.charAt(r)] != -1) {
+                if (map[s.charAt(r)] >= l) {
                     l = map[s.charAt(r)] + 1;
                 }
             }
             int len = r - l + 1;
             maxLen = Math.max(maxLen, len);
-            map[s.charAt(r)] = r ;
+            map[s.charAt(r)] = r;
             r++;
         }
         return maxLen;
@@ -53,5 +53,4 @@ public class LongestSubstringWithoutRepeatingChar {
         }
         return maxLen;
     }
-
 }

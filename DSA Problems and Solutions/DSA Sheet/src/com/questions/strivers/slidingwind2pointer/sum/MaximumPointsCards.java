@@ -1,4 +1,4 @@
-package com.questions.strivers.slidingwind2pointer;
+package com.questions.strivers.slidingwind2pointer.sum;
 
 /* L2. Maximum Points You Can Obtain from Cards
 There are several cards arranged in a row, and each card has an associated number of points.

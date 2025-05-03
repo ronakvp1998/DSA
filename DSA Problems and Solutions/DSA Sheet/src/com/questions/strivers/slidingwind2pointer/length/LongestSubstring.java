@@ -1,4 +1,4 @@
-package com.questions.strivers.slidingwind2pointer;
+package com.questions.strivers.slidingwind2pointer.length;
 
 import java.util.Arrays;
 import java.util.HashMap;

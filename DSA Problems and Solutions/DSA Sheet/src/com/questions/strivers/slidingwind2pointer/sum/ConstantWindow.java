@@ -1,6 +1,6 @@
-package com.questions.strivers.slidingwind2pointer;
+package com.questions.strivers.slidingwind2pointer.sum;
 
-// L1 Max sum by picking k elements consectively
+// L1 Return Max sum by picking k elements consectively
 
 public class ConstantWindow {
     public static void main(String[] args) {
