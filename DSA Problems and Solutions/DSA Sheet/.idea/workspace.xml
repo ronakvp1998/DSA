@@ -43,7 +43,7 @@
       <recent name="com.questions.strivers.recursion" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Test">
+  <component name="RunManager" selected="Application.TestRecursion">
     <configuration name="FruitBaskets" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.length.FruitBaskets" />
       <module name="DSA Sheet" />
@@ -83,19 +83,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MaxConsOnes" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.length.MaxConsOnes" />
-      <module name="DSA Sheet" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.sum.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.questions.practice2.Test" />
       <module name="DSA Sheet" />
@@ -109,13 +96,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestRecursion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice2.TestRecursion" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.practice2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TestRecursion" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.LongestSubstringWithoutRepeatingChar" />
         <item itemvalue="Application.LongestSubstringKDistChar" />
         <item itemvalue="Application.FruitBaskets" />
-        <item itemvalue="Application.MaxConsOnes" />
       </list>
     </recent_temporary>
   </component>
