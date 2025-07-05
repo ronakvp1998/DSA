@@ -34,7 +34,8 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/DSA-Java/DSA Problems and Solutions/DSA Sheet&quot;
+    &quot;last_opened_file_path&quot;: &quot;D:/LLD - Design Patterns/Design Patterns&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -43,13 +44,13 @@
       <recent name="com.questions.strivers.recursion" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.TestRecursion">
-    <configuration name="FruitBaskets" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.length.FruitBaskets" />
+  <component name="RunManager" selected="Application.FrogJumpKDP">
+    <configuration name="ClimbingStairs" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.oneddp.ClimbingStairs" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.sum.*" />
+          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.oneddp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -57,12 +58,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LongestSubstringKDistChar" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.length.LongestSubstringKDistChar" />
+    <configuration name="FibonacciDP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.intro.FibonacciDP" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.sum.*" />
+          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.intro.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -70,12 +71,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LongestSubstringWithoutRepeatingChar" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.length.LongestSubstringWithoutRepeatingChar" />
+    <configuration name="FrogJumpDP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.oneddp.FrogJumpDP" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.sum.*" />
+          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.oneddp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -83,12 +84,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice2.Test" />
+    <configuration name="FrogJumpKDP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.oneddp.FrogJumpKDP" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.practice2.*" />
+          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.oneddp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -96,12 +97,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestRecursion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice2.TestRecursion" />
+    <configuration name="NumOfProvinces" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.graph.NumOfProvinces" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.practice2.*" />
+          <option name="PATTERN" value="com.questions.practice.graph.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -111,11 +112,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestRecursion" />
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.LongestSubstringWithoutRepeatingChar" />
-        <item itemvalue="Application.LongestSubstringKDistChar" />
-        <item itemvalue="Application.FruitBaskets" />
+        <item itemvalue="Application.FrogJumpKDP" />
+        <item itemvalue="Application.FrogJumpDP" />
+        <item itemvalue="Application.ClimbingStairs" />
+        <item itemvalue="Application.FibonacciDP" />
+        <item itemvalue="Application.NumOfProvinces" />
       </list>
     </recent_temporary>
   </component>
