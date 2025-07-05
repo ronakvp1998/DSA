@@ -40,30 +40,19 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.questions.strivers.dynamicprogramming.twoddp" />
+      <recent name="com.questions.strivers.dynamicprogramming.oneddp" />
       <recent name="com.questions.strivers.binarytrees.easy" />
       <recent name="com.questions.strivers.recursion" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FrogJumpKDP">
-    <configuration name="ClimbingStairs" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.oneddp.ClimbingStairs" />
+  <component name="RunManager" selected="Application.DPonGridsObstracles">
+    <configuration name="DPonGridsObstracles" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.twoddp.DPonGridsObstracles" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.oneddp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FibonacciDP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.intro.FibonacciDP" />
-      <module name="DSA Sheet" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.intro.*" />
+          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.twoddp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -76,7 +65,7 @@
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.oneddp.*" />
+          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.twoddp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -89,7 +78,7 @@
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.oneddp.*" />
+          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.twoddp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -97,12 +86,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NumOfProvinces" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.graph.NumOfProvinces" />
+    <configuration name="MaxSumNonAdj" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.oneddp.MaxSumNonAdj" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.practice.graph.*" />
+          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.twoddp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NinjaTraining" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.twoddp.NinjaTraining" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.twoddp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -112,11 +114,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.DPonGridsObstracles" />
+        <item itemvalue="Application.NinjaTraining" />
+        <item itemvalue="Application.MaxSumNonAdj" />
         <item itemvalue="Application.FrogJumpKDP" />
         <item itemvalue="Application.FrogJumpDP" />
-        <item itemvalue="Application.ClimbingStairs" />
-        <item itemvalue="Application.FibonacciDP" />
-        <item itemvalue="Application.NumOfProvinces" />
       </list>
     </recent_temporary>
   </component>

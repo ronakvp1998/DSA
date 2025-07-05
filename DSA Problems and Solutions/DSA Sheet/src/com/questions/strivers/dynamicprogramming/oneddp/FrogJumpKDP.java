@@ -18,6 +18,26 @@ public class FrogJumpKDP {
         // tabulation
         Arrays.fill(dp,-1);
         System.out.println(tabulation(n,arr,k));
+
+        // space optimized
+        System.out.println(spaceOptimized(n,arr,k));
+    }
+
+    public static int spaceOptimized(int n, int arr[], int k) {
+        int[] dp = new int[k]; // Sliding window to store the last k costs
+        dp[0] = 0; // Base case: cost to reach the first step is 0
+
+        for (int i = 1; i < n; i++) {
+            int minCost = Integer.MAX_VALUE;
+            for (int j = 1; j <= k; j++) {
+                if (i - j >= 0) {
+                    int cost = dp[(i - j) % k] + Math.abs(arr[i] - arr[i - j]);
+                    minCost = Math.min(minCost, cost);
+                }
+            }
+            dp[i % k] = minCost; // Update the sliding window
+        }
+        return dp[(n - 1) % k]; // Final cost to reach the last step
     }
 
     public static int tabulation(int n,int arr[],int k){
