@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class FibonacciDP {
 
     public static void main(String[] args) {
-        int n = 5; // Example input
+        int n = 6; // Example input
         System.out.println("Fibonacci of " + n + " (Recursive): " + fibonacciRecursive(n));
         int dp[] = new int[n+1];
         Arrays.fill(dp,-1);
@@ -15,13 +15,16 @@ public class FibonacciDP {
     }
 
     public static int fibonacciSpaceOptimized(int n){
-        int i = 0, j = 1;
-        for(int k=2;k<=n;k++){
-            int curr = i + j;
-            i = j;
-            j = curr;
+        if(n<=1){
+            return n;
         }
-        return j;
+        int prev1= 0 , prev2 = 1;
+        for(int i=2;i<=n;i++){
+            int curr = prev1 + prev2;
+            prev1 = prev2;
+            prev2 = curr;
+        }
+        return prev2;
     }
 
     public static int fibonacciTabulation(int n,int []dp){
@@ -34,7 +37,7 @@ public class FibonacciDP {
     }
 
     public static int fibonacciMemoization(int n,int []dp){
-        if(n <= 1){
+        if(n == 0 || n == 1){
             return n;
         }
         if(dp[n] != -1){
@@ -42,16 +45,17 @@ public class FibonacciDP {
         }
         int left = fibonacciMemoization(n-1,dp);
         int right = fibonacciMemoization(n-2,dp);
-        return dp[n] = left + right;
+        dp[n] = left + right;
+        return dp[n];
     }
 
     public static int fibonacciRecursive(int n){
-        if(n <= 1){
+        if (n == 0 || n == 1){
             return n;
         }
         int left = fibonacciRecursive(n-1);
         int right = fibonacciRecursive(n-2);
-        return  left + right;
+        return left + right;
     }
 
 

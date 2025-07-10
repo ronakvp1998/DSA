@@ -46,13 +46,13 @@
       <recent name="com.questions.strivers.recursion" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FrogDP">
-    <configuration name="DPonGridsObstracles" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.twoddp.DPonGridsObstracles" />
+  <component name="RunManager" selected="Application.MaxSumCircular">
+    <configuration name="FibonacciDP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.dynamicprogramming.FibonacciDP" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.twoddp.*" />
+          <option name="PATTERN" value="com.questions.practice.dynamicprogramming.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -60,8 +60,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FibonacciDP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.dynamicprogramming.FibonacciDP" />
+    <configuration name="ForgkDP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.dynamicprogramming.ForgkDP" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
@@ -99,12 +99,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="com.questions.strivers.dynamicprogramming.intro.FibonacciDP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.intro.FibonacciDP" />
+    <configuration name="MaxSumCircular" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.dynamicprogramming.MaxSumCircular" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.intro.*" />
+          <option name="PATTERN" value="com.questions.practice.dynamicprogramming.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -114,11 +114,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MaxSumCircular" />
+        <item itemvalue="Application.ForgkDP" />
         <item itemvalue="Application.FrogDP" />
-        <item itemvalue="Application.FrogJumpDP" />
         <item itemvalue="Application.FibonacciDP" />
-        <item itemvalue="Application.com.questions.strivers.dynamicprogramming.intro.FibonacciDP" />
-        <item itemvalue="Application.DPonGridsObstracles" />
+        <item itemvalue="Application.FrogJumpDP" />
       </list>
     </recent_temporary>
   </component>

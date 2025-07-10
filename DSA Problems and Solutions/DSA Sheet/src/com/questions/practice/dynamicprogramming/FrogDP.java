@@ -29,7 +29,7 @@ public class FrogDP {
     }
 
     private static int recursive(int i, int[] arr) {
-        if(i == 0){
+        if(i == 0 ){
             return 0;
         }
         int left = recursive(i-1,arr) + Math.abs(arr[i] - arr[i-1]);
@@ -41,8 +41,8 @@ public class FrogDP {
     }
 
     private static int  spaceOptimized(int n, int[] arr) {
-        int prev1 = 0,prev2=0;
-        for(int i=1;i<n;i++){
+        int prev1 = 0, prev2 = 0;
+        for(int i=1;i<arr.length;i++){
             int jumpOne = prev1 + Math.abs(arr[i] - arr[i-1]);
             int jumpTwo = Integer.MAX_VALUE;
             if(i > 1){
@@ -54,11 +54,11 @@ public class FrogDP {
         }
         return prev1;
     }
-
+//
     private static int tabulation(int n, int[] arr, int[] dp) {
         dp[0] = 0;
         for(int i=1;i<n;i++){
-            int jumpOne = dp[i-1] + Math.abs(arr[i] - arr[i-1]);
+            int jumpOne = dp[i-1] + Math.abs( arr[i] - arr[i-1]);
             int jumpTwo = Integer.MAX_VALUE;
             if(i > 1){
                 jumpTwo = dp[i-2] + Math.abs(arr[i] - arr[i-2]);
@@ -67,19 +67,17 @@ public class FrogDP {
         }
         return dp[n-1];
     }
-
+//
     private static int memorization(int i, int[] arr, int[] dp) {
         if(i == 0){
             return 0;
         }
-
         if(dp[i] != -1){
             return dp[i];
         }
-
         int left = memorization(i-1,arr,dp) + Math.abs(arr[i] - arr[i-1]);
         int right = Integer.MAX_VALUE;
-        if(i > 1){
+        if( i > 1){
             right = memorization(i-2,arr,dp) + Math.abs(arr[i] - arr[i-2]);
         }
         return dp[i] = Math.min(left,right);
