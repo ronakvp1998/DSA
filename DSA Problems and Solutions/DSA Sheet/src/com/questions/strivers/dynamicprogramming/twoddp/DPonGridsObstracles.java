@@ -1,8 +1,16 @@
 package com.questions.strivers.dynamicprogramming.twoddp;
 
 import java.util.Arrays;
-
-// Class to solve the unique paths problem with obstacles
+//https://takeuforward.org/data-structure/grid-unique-paths-2-dp-9/
+//We are given an “N*M” Maze. The maze contains some obstacles.
+// A cell is ‘blockage’ in the maze if its value is -1. 0 represents non-blockage.
+// There is no path possible through a blocked cell.
+//We need to count the total number of unique paths from the top-left corner of the maze to the bottom-right corner.
+// At every cell, we can move either down or towards the right.
+// o/p m=3, n =3 output = 2
+//  0  0  0
+//  0 -1  0
+//  0  0  0
 public class DPonGridsObstracles {
 
     // Recursive approach to find unique paths with obstacles

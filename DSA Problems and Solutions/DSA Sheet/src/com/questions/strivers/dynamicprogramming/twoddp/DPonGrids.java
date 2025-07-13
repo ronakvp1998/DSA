@@ -3,6 +3,9 @@ package com.questions.strivers.dynamicprogramming.twoddp;
 import java.util.Arrays;
 
 // https://takeuforward.org/data-structure/grid-unique-paths-dp-on-grids-dp8/
+//Given two values M and N, which represent a matrix[M][N].
+//We need to find the total unique paths from the top-left cell (matrix[0][0]) to the rightmost cell (matrix[M-1][N-1]).
+//At any cell we are allowed to move in only two directions:- bottom and right.
 public class DPonGrids {
 
     public static void main(String[] args) {

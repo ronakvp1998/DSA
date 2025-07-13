@@ -1,183 +1,225 @@
 package com.questions.strivers.dynamicprogramming.twoddp;
-//https://takeuforward.org/data-structure/minimum-maximum-falling-path-sum-dp-12/
+
+//https://takeuforward.org/data-structure/3-d-dp-ninja-and-his-friends-dp-13/
+//We are given an ‘N*M’ matrix. Every cell of the matrix has some chocolates on it,
+//        mat[i][j] gives us the number of chocolates.
+//We have two friends ‘Alice’ and ‘Bob’. initially,
+//        Alice is standing on the cell(0,0) and Bob is standing on the cell(0, M-1).
+//Both of them can move only to the cells below them in these three directions:
+//        to the bottom cell (↓), to the bottom-right cell(↘), or to the bottom-left cell(↙).
+//When Alica and Bob visit a cell, they take all the chocolates from that cell with them.
+//It can happen that they visit the same cell, in that case, the chocolates need to be considered only once.
+//They cannot go out of the boundary of the given matrix,
+//we need to return the maximum number of chocolates that Bob and Alice can together collect.
+// 2  3  1  2
+// 3  4  2  2
+// 5  6  3  5
+// Alice(2 + 4 + 6) + Bob(2 + 2 + 5) = 21
+import java.util.Arrays;
+
 public class MinMaxFallingSumPath {
-        // ====================== 1. PURE RECURSION ======================
-        // Time Complexity: O(3^N), as we explore 3 choices at every level (down, diag-left, diag-right)
-        // Space Complexity: O(N), due to recursion stack
-        public static int maxPathSumRec(int[][] matrix) {
-            int n = matrix.length;
-            int m = matrix[0].length;
-            int max = Integer.MIN_VALUE;
 
-            // Try all possible starting positions in the first row
-            for (int j = 0; j < m; j++) {
-                max = Math.max(max, recursive(matrix, 0, j));
+    public static void main(String[] args) {
+        // Example input grid where each cell contains chocolates
+        int[][] grid = {
+                {2, 3, 1, 2},
+                {3, 4, 2, 2},
+                {5, 6, 3, 5}
+        };
+
+        // Print maximum chocolates collected using each approach
+        System.out.println("Recursive (Plain): " + getMaxChocoRecursive(grid));
+        System.out.println("Recursive + Memoization: " + getMaxChocoMemo(grid));
+        System.out.println("Tabulation: " + getMaxChocoTab(grid));
+        System.out.println("Space Optimized: " + getMaxChocoSpaceOpt(grid));
+    }
+
+    // -------------------- 0. Plain Recursive ----------------------
+    public static int getMaxChocoRecursive(int[][] grid) {
+        int n = grid.length, m = grid[0].length;
+        return recursiveHelper(0, 0, m - 1, grid);
+    }
+
+    public static int recursiveHelper(int i, int j1, int j2, int[][] grid) {
+        int n = grid.length, m = grid[0].length;
+
+        // Base case 1: Out-of-bounds check
+        if (j1 < 0 || j1 >= m || j2 < 0 || j2 >= m) return Integer.MIN_VALUE;
+
+        // Base case 2: if we are on the last row (reached the bottom)
+        // alice grid[i][j1] and bob grid[i][j2]
+        if (i == n - 1) return (j1 == j2) ? grid[i][j1] : grid[i][j1] + grid[i][j2];
+
+        int max = Integer.MIN_VALUE; // Track maximum chocolates
+
+        // Try all possible moves (3 for Alice * 3 for Bob = 9 combinations)
+        // for every movement of alice (3 movements), bob also has 3 movements, so total 9 combinations of moves
+        // rows are fixed, we are moving downwards, columns are -1, 0, +1
+        for (int dj1 = -1; dj1 <= 1; dj1++) {
+            for (int dj2 = -1; dj2 <= 1; dj2++) {
+                int nextJ1 = j1 + dj1, nextJ2 = j2 + dj2;
+
+                // Chocolates collected at current step
+                int chocolates = (j1 == j2) ? grid[i][j1] : grid[i][j1] + grid[i][j2];
+
+                // Add result from recursive call
+                chocolates += recursiveHelper(i + 1, nextJ1, nextJ2, grid);
+
+                // Update max if this path yields more
+                max = Math.max(max, chocolates);
             }
-            return max;
         }
 
-        // Recursive helper function to calculate max path sum from (i, j)
-        private static int recursive(int[][] mat, int i, int j) {
-            int n = mat.length, m = mat[0].length;
+        return max; // Return the best among all 9 options
+    }
+    // Time: O(3^N * 3^N) worst case, exponential
+    // Space: O(N) recursion stack depth
 
-            // If column index goes out of bounds, we return a very small value
-            if (j < 0 || j >= m) return Integer.MIN_VALUE;
+    // -------------------- 1. Recursive + Memoization ----------------------
 
-            // Base case: if we reached the last row, return the value at this cell
-            if (i == n - 1) return mat[i][j];
+    public static int getMaxChocoMemo(int[][] grid) {
+        int n = grid.length, m = grid[0].length; // Grid dimensions
 
-            // Explore all 3 valid directions
-            int down = recursive(mat, i + 1, j);         // ↓
-            int diagLeft = recursive(mat, i + 1, j - 1); // ↙
-            int diagRight = recursive(mat, i + 1, j + 1);// ↘
-
-            // Return current cell value + maximum of the three paths
-            return mat[i][j] + Math.max(down, Math.max(diagLeft, diagRight));
+        // 3D memoization table initialized with -1
+        int[][][] dp = new int[n][m][m];
+        for (int[][] layer : dp) {
+            for (int[] row : layer) Arrays.fill(row, -1);
         }
 
-        // ====================== 2. MEMOIZATION (TOP-DOWN DP) ======================
-        // Time Complexity: O(N*M)
-        // Space Complexity: O(N*M) for DP + O(N) recursion stack
-        public static int maxPathSumMemo(int[][] matrix) {
-            int n = matrix.length;
-            int m = matrix[0].length;
+        // Start recursion from (0,0) for Alice and (0,m-1) for Bob
+        return memoHelper(0, 0, m - 1, grid, dp);
+    }
 
-            // Initialize memoization table (dp) with "uncomputed" values
-            int[][] dp = new int[n][m];
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < m; j++)
-                    dp[i][j] = Integer.MIN_VALUE;
+    public static int memoHelper(int i, int j1, int j2, int[][] grid, int[][][] dp) {
+        int n = grid.length, m = grid[0].length;
 
-            int max = Integer.MIN_VALUE;
+        // Out-of-bounds check
+        if (j1 < 0 || j1 >= m || j2 < 0 || j2 >= m) return Integer.MIN_VALUE;
 
-            // Try all starting points in the first row
-            for (int j = 0; j < m; j++) {
-                max = Math.max(max, memo(matrix, 0, j, dp));
+        // Base case: if we are on the last row
+        if (i == n - 1) return (j1 == j2) ? grid[i][j1] : grid[i][j1] + grid[i][j2];
+
+        // If already computed, return cached result
+        if (dp[i][j1][j2] != -1) return dp[i][j1][j2];
+
+        int max = Integer.MIN_VALUE; // Track maximum chocolates
+
+        // Try all possible moves (3 for Alice * 3 for Bob = 9 combinations)
+        for (int dj1 = -1; dj1 <= 1; dj1++) {
+            for (int dj2 = -1; dj2 <= 1; dj2++) {
+                int nextJ1 = j1 + dj1, nextJ2 = j2 + dj2; // Next positions
+
+                // Chocolates collected at current step
+                int chocolates = (j1 == j2) ? grid[i][j1] : grid[i][j1] + grid[i][j2];
+
+                // Add result from recursive call
+                chocolates += memoHelper(i + 1, nextJ1, nextJ2, grid, dp);
+
+                // Update max if this path yields more
+                max = Math.max(max, chocolates);
             }
-            return max;
         }
 
-        // Memoized version of recursive function
-        private static int memo(int[][] mat, int i, int j, int[][] dp) {
-            int n = mat.length;
-            int m = mat[0].length;
+        // Store result and return
+        return dp[i][j1][j2] = max;
+    }
 
-            // Out-of-bounds condition
-            if (j < 0 || j >= m) return Integer.MIN_VALUE;
+    // Time: O(N*M*M*9) = O(N*M^2), Space: O(N*M*M) + O(N) stack
 
-            // Base case
-            if (i == n - 1) return mat[i][j];
+    // -------------------- 2. Tabulation ----------------------
 
-            // If already calculated, return stored value
-            if (dp[i][j] != Integer.MIN_VALUE) return dp[i][j];
+    public static int getMaxChocoTab(int[][] grid) {
+        int n = grid.length, m = grid[0].length;
 
-            // Otherwise compute and store it
-            int down = memo(mat, i + 1, j, dp);
-            int diagLeft = memo(mat, i + 1, j - 1, dp);
-            int diagRight = memo(mat, i + 1, j + 1, dp);
+        // 3D DP array to hold results
+        int[][][] dp = new int[n][m][m];
 
-            // Store the result in dp table
-            return dp[i][j] = mat[i][j] + Math.max(down, Math.max(diagLeft, diagRight));
-        }
-
-        // ====================== 3. TABULATION (BOTTOM-UP DP) ======================
-        // Time Complexity: O(N*M)
-        // Space Complexity: O(N*M)
-        public static int maxPathSumTab(int[][] mat) {
-            int n = mat.length;
-            int m = mat[0].length;
-
-            // Create a DP table to store solutions to subproblems
-            int[][] dp = new int[n][m];
-
-            // Base case: first row values are copied as is
-            for (int j = 0; j < m; j++) {
-                dp[0][j] = mat[0][j];
+        // Fill base case for last row
+        for (int j1 = 0; j1 < m; j1++) {
+            for (int j2 = 0; j2 < m; j2++) {
+                if (j1 == j2)
+                    dp[n - 1][j1][j2] = grid[n - 1][j1]; // Same cell, count once
+                else
+                    dp[n - 1][j1][j2] = grid[n - 1][j1] + grid[n - 1][j2]; // Different cells
             }
+        }
 
-            // Fill the DP table row-by-row
-            for (int i = 1; i < n; i++) {
-                for (int j = 0; j < m; j++) {
-                    // Move ↓ from above
-                    int down = dp[i - 1][j];
+        // Build solution bottom-up
+        for (int i = n - 2; i >= 0; i--) {
+            for (int j1 = 0; j1 < m; j1++) {
+                for (int j2 = 0; j2 < m; j2++) {
+                    int max = Integer.MIN_VALUE;
+                    // Try all combinations of movements
+                    for (int dj1 = -1; dj1 <= 1; dj1++) {
+                        for (int dj2 = -1; dj2 <= 1; dj2++) {
+                            int nj1 = j1 + dj1, nj2 = j2 + dj2;
+                            // Check if within bounds
+                            if (nj1 >= 0 && nj1 < m && nj2 >= 0 && nj2 < m) {
+                                int choco = (j1 == j2) ? grid[i][j1] : grid[i][j1] + grid[i][j2];
+                                choco += dp[i + 1][nj1][nj2]; // Add future state
+                                max = Math.max(max, choco);
+                            }
+                        }
+                    }
+                    dp[i][j1][j2] = max; // Store best result for state
+                }
+            }
+        }
 
-                    // Move ↙ from top-left (if valid)
-                    int diagLeft = (j > 0) ? dp[i - 1][j - 1] : Integer.MIN_VALUE;
+        // Final answer: start at top-left for Alice and top-right for Bob
+        return dp[0][0][m - 1];
+    }
 
-                    // Move ↘ from top-right (if valid)
-                    int diagRight = (j < m - 1) ? dp[i - 1][j + 1] : Integer.MIN_VALUE;
+    // Time: O(N*M*M*9) = O(N*M^2), Space: O(N*M*M)
 
-                    // Store current cell result = current matrix value + max of 3 paths
-                    dp[i][j] = mat[i][j] + Math.max(down, Math.max(diagLeft, diagRight));
+    // -------------------- 3. Space Optimized ----------------------
+
+    public static int getMaxChocoSpaceOpt(int[][] grid) {
+        int n = grid.length, m = grid[0].length;
+
+        // Only keep current and previous 2D state
+        int[][] front = new int[m][m];
+
+        // Fill base case for last row
+        for (int j1 = 0; j1 < m; j1++) {
+            for (int j2 = 0; j2 < m; j2++) {
+                front[j1][j2] = (j1 == j2) ? grid[n - 1][j1] : grid[n - 1][j1] + grid[n - 1][j2];
+            }
+        }
+
+        // Iterate from second last row to top
+        for (int i = n - 2; i >= 0; i--) {
+            int[][] curr = new int[m][m]; // Current row's state
+
+            for (int j1 = 0; j1 < m; j1++) {
+                for (int j2 = 0; j2 < m; j2++) {
+                    int max = Integer.MIN_VALUE;
+                    for (int dj1 = -1; dj1 <= 1; dj1++) {
+                        for (int dj2 = -1; dj2 <= 1; dj2++) {
+                            int nj1 = j1 + dj1, nj2 = j2 + dj2;
+                            if (nj1 >= 0 && nj1 < m && nj2 >= 0 && nj2 < m) {
+                                int choco = (j1 == j2) ? grid[i][j1] : grid[i][j1] + grid[i][j2];
+                                choco += front[nj1][nj2]; // Use previous row's results
+                                max = Math.max(max, choco);
+                            }
+                        }
+                    }
+                    curr[j1][j2] = max; // Update current state
                 }
             }
 
-            // Final answer is the max element in the last row
-            int max = Integer.MIN_VALUE;
-            for (int j = 0; j < m; j++) {
-                max = Math.max(max, dp[n - 1][j]);
-            }
-
-            return max;
+            front = curr; // Move curr to front for next iteration
         }
 
-        // ====================== 4. SPACE OPTIMIZED DP ======================
-        // Time Complexity: O(N*M)
-        // Space Complexity: O(M)
-        public static int maxPathSumSpaceOpt(int[][] mat) {
-            int n = mat.length;
-            int m = mat[0].length;
+        // Answer is when Alice at (0,0) and Bob at (0,m-1)
+        return front[0][m - 1];
+    }
 
-            // prev[] will store the DP results for the previous row
-            int[] prev = new int[m];
-
-            // Base case: initialize with first row
-            for (int j = 0; j < m; j++) {
-                prev[j] = mat[0][j];
-            }
-
-            // Build row by row, only keeping 1 row in memory at a time
-            for (int i = 1; i < n; i++) {
-                int[] curr = new int[m]; // Current row DP results
-
-                for (int j = 0; j < m; j++) {
-                    int down = prev[j]; // From above
-                    int diagLeft = (j > 0) ? prev[j - 1] : Integer.MIN_VALUE;
-                    int diagRight = (j < m - 1) ? prev[j + 1] : Integer.MIN_VALUE;
-
-                    // Calculate max path sum for current cell
-                    curr[j] = mat[i][j] + Math.max(down, Math.max(diagLeft, diagRight));
-                }
-
-                // Move to the next row: current becomes previous
-                prev = curr;
-            }
-
-            // Final result is max in last processed row
-            int max = Integer.MIN_VALUE;
-            for (int val : prev) {
-                max = Math.max(max, val);
-            }
-
-            return max;
-        }
-
-        // ====================== MAIN METHOD FOR TESTING ======================
-        public static void main(String[] args) {
-            // Sample matrix (4x6)
-            int[][] matrix = {
-                    {10, 10, 2, 0, 20, 4},
-                    {1, 0, 0, 30, 2, 5},
-                    {0, 10, 4, 0, 2, 0},
-                    {1, 0, 2, 20, 0, 4}
-            };
-
-            // Test all four approaches
-            System.out.println("Recursion:        " + maxPathSumRec(matrix));
-            System.out.println("Memoization:      " + maxPathSumMemo(matrix));
-            System.out.println("Tabulation:       " + maxPathSumTab(matrix));
-            System.out.println("Space Optimized:  " + maxPathSumSpaceOpt(matrix));
-        }
-
+    // Time: O(N*M*M*9) = O(N*M^2), Space: O(M*M)
 }
+
+
+
+
+
 

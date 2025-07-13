@@ -2,6 +2,14 @@ package com.questions.strivers.dynamicprogramming.twoddp;
 
 import java.util.Arrays;
 //https://takeuforward.org/data-structure/minimum-path-sum-in-triangular-grid-dp-11/
+//We are given a Triangular matrix. We need to find the minimum path sum from the first row to the last row.
+//At every cell we can move in only two directions: either to the bottom cell (↓) or to the bottom-right cell(↘)
+// 1
+// 2 3
+// 3 6 7
+// 8 9 6 10
+// The minimum path sum is 1 + 2 + 3 + 8 = 14
+
 public class MinPathSumTraingle {
 
     // Recursive approach

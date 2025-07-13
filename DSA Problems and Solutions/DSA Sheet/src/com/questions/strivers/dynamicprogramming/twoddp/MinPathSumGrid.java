@@ -1,8 +1,15 @@
 package com.questions.strivers.dynamicprogramming.twoddp;
-//https://takeuforward.org/data-structure/minimum-path-sum-in-a-grid-dp-10/
-
 import java.util.Arrays;
-
+//https://takeuforward.org/data-structure/minimum-path-sum-in-a-grid-dp-10/
+//We are given an “N*M” matrix of integers.
+// We need to find a path from the top-left corner to the bottom-right corner of the matrix,
+// such that there is a minimum cost past that we select.
+//At every cell, we can move in only two directions: right and bottom.
+// The cost of a path is given as the sum of values of cells of the given matrix.
+// n=2, m=3
+//  5  9  6
+// 11  5  2
+// output = 21 (5+9+5+2) MinPath Sum
 public class MinPathSumGrid {
 
     // Recursive approach

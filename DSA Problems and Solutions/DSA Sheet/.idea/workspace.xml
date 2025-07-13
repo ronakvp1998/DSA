@@ -46,9 +46,35 @@
       <recent name="com.questions.strivers.recursion" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MaxSumCircular">
-    <configuration name="FibonacciDP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.dynamicprogramming.FibonacciDP" />
+  <component name="RunManager" selected="Application.CountSubsetsWithSumK">
+    <configuration name="BalancedSubsetPartition" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.dponsubsequences.BalancedSubsetPartition" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.dponsubsequences.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CountSubsetsWithSumK" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.dponsubsequences.CountSubsetsWithSumK" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.dponsubsequences.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DpOnGridK" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.dynamicprogramming.DpOnGridK" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
@@ -60,12 +86,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ForgkDP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.dynamicprogramming.ForgkDP" />
+    <configuration name="MinMaxFallingSumPath" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.twoddp.MinMaxFallingSumPath" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.practice.dynamicprogramming.*" />
+          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.twoddp.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -73,38 +99,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FrogDP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.dynamicprogramming.FrogDP" />
+    <configuration name="PartitionEqualSubsetSum" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.dponsubsequences.PartitionEqualSubsetSum" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.practice.dynamicprogramming.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FrogJumpDP" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.oneddp.FrogJumpDP" />
-      <module name="DSA Sheet" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.oneddp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MaxSumCircular" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.dynamicprogramming.MaxSumCircular" />
-      <module name="DSA Sheet" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.questions.practice.dynamicprogramming.*" />
+          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.dponsubsequences.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -114,11 +114,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MaxSumCircular" />
-        <item itemvalue="Application.ForgkDP" />
-        <item itemvalue="Application.FrogDP" />
-        <item itemvalue="Application.FibonacciDP" />
-        <item itemvalue="Application.FrogJumpDP" />
+        <item itemvalue="Application.CountSubsetsWithSumK" />
+        <item itemvalue="Application.BalancedSubsetPartition" />
+        <item itemvalue="Application.PartitionEqualSubsetSum" />
+        <item itemvalue="Application.MinMaxFallingSumPath" />
+        <item itemvalue="Application.DpOnGridK" />
       </list>
     </recent_temporary>
   </component>
@@ -148,6 +148,11 @@
           <url>file://$PROJECT_DIR$/src/com/questions/practice2/Test.java</url>
           <line>6</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/questions/practice/dynamicprogramming/DPOnGrid.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
