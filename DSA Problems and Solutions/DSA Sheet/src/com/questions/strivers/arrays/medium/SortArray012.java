@@ -1,34 +1,54 @@
 package com.questions.strivers.arrays.medium;
 
 import java.util.Arrays;
-//https://leetcode.com/problems/majority-element/description/
-// pg 3 book4
+
+// LeetCode Link: https://leetcode.com/problems/sort-colors/
+// Problem from: Striver SDE Sheet, Page 3 Book 4
+//https://takeuforward.org/data-structure/sort-an-array-of-0s-1s-and-2s/
+//Problem Statement: Given an array consisting of only 0s, 1s, and 2s.
+//Write a program to in-place sort the array without using inbuilt sort functions.
+//        ( Expected: Single pass-O(N) and constant space)
+
 public class SortArray012 {
 
     public static void main(String[] args) {
+        // Sample input array containing only 0s, 1s, and 2s
         int arr[] = {0,1,1,0,1,2,1,2,0,0,0};
-        sortArray(arr,arr.length);
-        System.out.println(Arrays.toString(arr));
 
+        // Call sorting function
+        sortArray(arr, arr.length);
+
+        // Print the sorted array
+        System.out.println(Arrays.toString(arr));
     }
 
-    public static void sortArray(int arr[], int n){
-        int low = 0,mid=0,high=n-1;
+    // Function to sort the array using Dutch National Flag Algorithm
+    public static void sortArray(int arr[], int n) {
+        int low = 0;      // Points to the beginning of the array (boundary for 0s)
+        int mid = 0;      // Traverses the array
+        int high = n - 1; // Points to the end of the array (boundary for 2s)
 
-        while (mid<=high){
-            if(arr[mid] == 0){
-                swap(arr,mid,low);
-                mid++;low++;
-            }else if(arr[mid] == 1){
+        // Continue until mid crosses high
+        while (mid <= high) {
+            if (arr[mid] == 0) {
+                // If current element is 0, swap it to the 'low' region
+                swap(arr, mid, low);
+                mid++;    // move to next element
+                low++;    // expand the 0s region
+            } else if (arr[mid] == 1) {
+                // If current element is 1, just move forward
                 mid++;
-            } else{
-                swap(arr,mid,high);
-                high--;
+            } else {
+                // If current element is 2, swap it to the 'high' region
+                swap(arr, mid, high);
+                high--;   // shrink the 2s region
+                // don't increment mid, because swapped value could be 0 or 1
             }
         }
     }
 
-    public static void swap(int arr[], int i, int j){
+    // Utility function to swap two elements in the array
+    public static void swap(int arr[], int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
