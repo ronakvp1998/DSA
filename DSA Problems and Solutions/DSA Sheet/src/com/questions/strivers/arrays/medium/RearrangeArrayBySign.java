@@ -3,7 +3,9 @@ package com.questions.strivers.arrays.medium;
 //https://leetcode.com/problems/rearrange-array-elements-by-sign/description/
 // pg 6 book4
 /* Problem Statement:
-        There’s an array ‘A’ of size ‘N’ with an equal number of positive and negative elements. Without altering the relative order of positive and negative elements, you must return an array of alternately positive and negative values.
+        There’s an array ‘A’ of size ‘N’ with an equal number of positive and negative elements.
+        Without altering the relative order of positive and negative elements,
+        you must return an array of alternately positive and negative values.
         Note: Start the array with positive elements.
         Example 1:
         Input:
@@ -134,11 +136,7 @@ public class RearrangeArrayBySign {
     }
 
     /**
-     * Time Complexity: O(2
-     *
-     *
-     *
-     * n)
+     * Time Complexity: O(2n)
      * Space Complexity: O(2n)
      */
     public static void rearrangeArray(int arr[]) {

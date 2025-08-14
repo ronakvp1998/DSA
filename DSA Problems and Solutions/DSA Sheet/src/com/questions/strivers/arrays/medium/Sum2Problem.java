@@ -38,40 +38,53 @@ public class Sum2Problem {
     }
 
     /**
-     * 🔁 Optimized Approach 2: Two-pointer technique
-     * Time Complexity: O(n log n) due to sorting
-     * Space Complexity: O(1)
-     * ⚠️ Note: Indices returned are of the sorted array, not original
+     * ✅ Optimized Approach: Two-pointer technique after sorting
+     *
+     * 🔍 Idea:
+     * Instead of using a brute-force nested loop, sort the array and apply the two-pointer
+     * approach to find the two numbers that add up to the target. To retain original indices,
+     * we pair each number with its original index before sorting.
+     *
+     * 🕒 Time Complexity: O(n log n)
+     * - O(n) to create the paired array
+     * - O(n log n) for sorting
+     * - O(n) for two-pointer traversal
+     * - Overall: O(n log n)
+     *
+     * 🧠 Space Complexity: O(n)
+     * - Extra space used for storing value-index pairs (not O(1) as previously stated)
+     *
+     * ⚠️ Note: Returned indices correspond to the original array, not the sorted one.
      */
     public static int[] find2Sum2(int arr[], int target) {
-        // Create a copy of original array to track original indices after sort
+        // Step 1: Create a new array of [value, original_index] pairs
         int[][] numsWithIndex = new int[arr.length][2];
-
         for (int i = 0; i < arr.length; i++) {
-            numsWithIndex[i][0] = arr[i]; // value
-            numsWithIndex[i][1] = i;      // original index
+            numsWithIndex[i][0] = arr[i]; // Store value
+            numsWithIndex[i][1] = i;      // Store original index
         }
 
-        // Sort by values (index 0)
+        // Step 2: Sort the array based on the values
         Arrays.sort(numsWithIndex, (a, b) -> a[0] - b[0]);
 
-        // Initialize two pointers
+        // Step 3: Initialize two pointers
         int left = 0, right = arr.length - 1;
 
+        // Step 4: Traverse using two pointers to find the target sum
         while (left < right) {
             int sum = numsWithIndex[left][0] + numsWithIndex[right][0];
 
             if (sum == target) {
-                // Return original indices
+                // Pair found, return their original indices
                 return new int[]{numsWithIndex[left][1], numsWithIndex[right][1]};
             } else if (sum < target) {
-                left++; // Need a bigger sum
+                left++; // Move to a larger value
             } else {
-                right--; // Need a smaller sum
+                right--; // Move to a smaller value
             }
         }
 
-        // No pair found
+        // Step 5: No such pair found
         return new int[]{-1, -1};
     }
 
