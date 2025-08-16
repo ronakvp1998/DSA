@@ -2,6 +2,8 @@ package com.questions.strivers.binarysearch.bson1darray;
 
 //https://leetcode.com/problems/binary-search/
 //pg 15 book4
+// Binary Search:
+// Explained https://takeuforward.org/data-structure/binary-search-explained/
 
 public class BinarySearch {
 
@@ -17,7 +19,6 @@ public class BinarySearch {
         if(low>high){
             return -1;
         }
-
         int mid = low + (high-low)/2;
 
         if(arr[mid] == target){
