@@ -50,7 +50,7 @@
       <recent name="com.questions.strivers.recursion" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.Test">
     <configuration name="CountSubarraySum" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.questions.strivers.arrays.medium.CountSubarraySum" />
       <module name="DSA Sheet" />
@@ -103,12 +103,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReverseWordString" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.string.easy.ReverseWordString" />
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.slidingwind2pointer.Test" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.string.easy.*" />
+          <option name="PATTERN" value="com.questions.strivers.slidingwind2pointer.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -118,11 +118,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.LongestSubarraySumk" />
         <item itemvalue="Application.MaximumConsecutiveOnes" />
         <item itemvalue="Application.CountSubarraySum" />
-        <item itemvalue="Application.ReverseWordString" />
       </list>
     </recent_temporary>
   </component>

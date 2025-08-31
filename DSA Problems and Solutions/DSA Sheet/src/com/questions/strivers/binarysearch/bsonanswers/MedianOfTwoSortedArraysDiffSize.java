@@ -142,10 +142,18 @@ public class MedianOfTwoSortedArraysDiffSize {
 
             // Check valid partition
             if (l1 <= r2 && l2 <= r1) {
-                if (n % 2 == 1) return Math.max(l1, l2); // odd → max of left
-                else return ((double) (Math.max(l1, l2) + Math.min(r1, r2))) / 2.0; // even → avg
-            } else if (l1 > r2) high = mid1 - 1; // move left
-            else low = mid1 + 1; // move right
+                if (n % 2 == 1) {
+                    return Math.max(l1, l2); // odd → max of left
+                }
+                else{
+                    return ((double) (Math.max(l1, l2) + Math.min(r1, r2))) / 2.0; // even → avg
+                }
+            } else if (l1 > r2){
+                high = mid1 - 1; // move left
+            }
+            else{
+                low = mid1 + 1; // move right
+            }
         }
         return 0; // dummy return
     }
