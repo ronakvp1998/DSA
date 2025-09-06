@@ -48,21 +48,24 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.questions.strivers.recursion.hard" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.questions.strivers.recursion.hard.nqueens" />
       <recent name="com.questions.strivers.arrays.hard" />
       <recent name="com.questions.strivers.dynamicprogramming.twoddp" />
       <recent name="com.questions.strivers.dynamicprogramming.oneddp" />
       <recent name="com.questions.strivers.binarytrees.easy" />
-      <recent name="com.questions.strivers.recursion" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.PrintPermutations">
-    <configuration name="CombinationSum2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.CombinationSum2" />
+  <component name="RunManager" selected="Application.KthPermutationSequence">
+    <configuration name="KthPermutationSequence" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.hard.KthPermutationSequence" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.*" />
+          <option name="PATTERN" value="com.questions.strivers.recursion.hard.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -83,12 +86,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PrintPermutations" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.PrintPermutations" />
+    <configuration name="NQueensWithAttach" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.hard.nqueens.NQueensWithAttach" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.*" />
+          <option name="PATTERN" value="com.questions.strivers.recursion.hard.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -96,12 +99,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Subset1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.Subset1" />
+    <configuration name="RatInRace" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.hard.RatInRace" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.*" />
+          <option name="PATTERN" value="com.questions.strivers.recursion.hard.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -109,12 +112,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Subset2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.Subset2" />
+    <configuration name="SodukoSolver" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.hard.SodukoSolver" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.*" />
+          <option name="PATTERN" value="com.questions.strivers.recursion.hard.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -124,11 +127,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.PrintPermutations" />
+        <item itemvalue="Application.KthPermutationSequence" />
+        <item itemvalue="Application.RatInRace" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Subset2" />
-        <item itemvalue="Application.Subset1" />
-        <item itemvalue="Application.CombinationSum2" />
+        <item itemvalue="Application.SodukoSolver" />
+        <item itemvalue="Application.NQueensWithAttach" />
       </list>
     </recent_temporary>
   </component>

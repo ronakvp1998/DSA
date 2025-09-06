@@ -5,27 +5,66 @@ import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) {
-        int arr[] = {1,2,3};
-        List<List<Integer>> list = new ArrayList<>();
-        test(arr,list,new ArrayList<>(),new boolean[arr.length]);
-        System.out.println(list);
-    }
-
-    public static void test(int arr[], List<List<Integer>> list,List<Integer>temp,boolean[] freq){
-        if(temp.size() == arr.length){
-            list.add(new ArrayList<>(temp));
-            return;
-        }
-        for(int i=0;i<arr.length;i++){
-            if(!freq[i]){
-                freq[i] = true;
-                temp.add(arr[i]);
-                test(arr,list,temp,freq);
-                temp.remove(temp.size()-1);
-                freq[i] = false;
+    public static boolean solveSudoku1(char[][] board) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++) {
+                if (board[i][j] == '.') {
+                    for (char c = '1'; c <= '9'; c++) {
+                        if (isValid(board, i, j, c)) {
+                            board[i][j] = c;
+                            if (solveSudoku1(board) == true) {
+                                return true;
+                            } else {
+                                board[i][j] = '.';
+                            }
+                        }
+                    }
+                    return false;
+                }
             }
         }
+
+        return true;
+    }
+
+    public static boolean isValid(char[][] board, int row, int col, char c) {
+        for (int i = 0; i < 9; i++) {
+            if (board[i][col] == c) {
+                return false;
+            }
+            if (board[row][i] == c) {
+                return false;
+            }
+            if (board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        char[][] board = {
+                { '9', '5', '7', '.', '1', '3', '.', '8', '4' },
+                { '4', '8', '3', '.', '5', '7', '1', '.', '6' },
+                { '.', '1', '2', '.', '4', '9', '5', '3', '7' },
+                { '1', '7', '.', '3', '.', '4', '9', '.', '2' },
+                { '5', '.', '4', '9', '7', '.', '3', '6', '.' },
+                { '3', '.', '9', '5', '.', '8', '7', '.', '1' },
+                { '8', '4', '5', '7', '9', '.', '6', '1', '3' },
+                { '.', '9', '1', '.', '3', '6', '.', '7', '5' },
+                { '7', '.', '6', '1', '8', '5', '4', '.', '9' }
+        };
+
+        // Solve the board
+        solveSudoku1(board);
+
+        // Print final solved board
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++)
+                System.out.print(board[i][j] + " ");
+            System.out.println();
+        }
+
     }
 
 }
