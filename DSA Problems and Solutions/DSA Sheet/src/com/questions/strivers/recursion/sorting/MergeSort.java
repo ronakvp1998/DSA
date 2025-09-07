@@ -1,4 +1,4 @@
-package com.questions.strivers.recursion;
+package com.questions.strivers.recursion.sorting;
 
 import java.util.ArrayList;
 import java.util.Arrays;

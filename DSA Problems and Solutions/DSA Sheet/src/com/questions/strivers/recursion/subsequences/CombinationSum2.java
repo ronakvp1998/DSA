@@ -1,4 +1,4 @@
-package com.questions.strivers.recursion;
+package com.questions.strivers.recursion.subsequences;
 
 import java.util.ArrayList;
 import java.util.Arrays;
