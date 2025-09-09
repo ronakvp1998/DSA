@@ -1,4 +1,4 @@
-package com.questions.strivers.recursion.basics.stacksproblem;
+package com.questions.strivers.recursion.basics.stacksqueuesproblem;
 
 import java.util.Stack;
 

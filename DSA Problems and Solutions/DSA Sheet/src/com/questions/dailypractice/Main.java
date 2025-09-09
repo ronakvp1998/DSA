@@ -1,8 +1,5 @@
 package com.questions.dailypractice;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
 
     public static boolean solveSudoku1(char[][] board) {
