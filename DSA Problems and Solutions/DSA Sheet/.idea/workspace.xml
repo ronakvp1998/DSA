@@ -32,24 +32,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CombinationSum2.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.PrintPermutations.executor": "Run",
-    "Application.ReverseQueueRecursion.executor": "Run",
-    "Application.SortQueueRecursion.executor": "Run",
-    "Application.Subset1.executor": "Run",
-    "Application.Subset2.executor": "Run",
-    "Application.com.questions.strivers.recursion.basics.queuesqueuesproblem.ReverseQueueRecursion.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/DSA-Java/DSA Problems and Solutions/DSA Sheet",
-    "settings.editor.selected.configurable": "editor.preferences.import"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CombinationSum2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PrintPermutations.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ReverseQueueRecursion.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SortQueueRecursion.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Subset1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Subset2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.com.questions.strivers.recursion.basics.queuesqueuesproblem.ReverseQueueRecursion.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/DSA-Java/DSA Problems and Solutions/DSA Sheet&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.questions.strivers.recursion.hard" />
@@ -62,13 +62,13 @@
       <recent name="com.questions.strivers.binarytrees.easy" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.com.questions.strivers.recursion.basics.queuesqueuesproblem.ReverseQueueRecursion">
-    <configuration name="KthPermutationSequence" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.hard.KthPermutationSequence" />
+  <component name="RunManager" selected="Application.SumN">
+    <configuration name="LetterCasePermutation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.medium.subsequences.LetterCasePermutation" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.hard.*" />
+          <option name="PATTERN" value="com.questions.strivers.recursion.medium.binaryproblems.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -76,12 +76,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReverseQueueRecursion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.basics.stacksqueuesproblem.ReverseQueueRecursion" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.dailypractice.Main" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.basics.stacksqueuesproblem.*" />
+          <option name="PATTERN" value="com.questions.dailypractice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -89,12 +89,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SortQueueRecursion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.basics.stacksqueuesproblem.SortQueueRecursion" />
+    <configuration name="NBitBinaryNum1MorePrefix" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.medium.binaryproblems.NBitBinaryNum1MorePrefix" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.basics.stacksqueuesproblem.*" />
+          <option name="PATTERN" value="com.questions.strivers.recursion.medium.binaryproblems.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -102,12 +102,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StringToIntegerATOI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.basics.StringToIntegerATOI" />
+    <configuration name="SumN" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.basics.SumN" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.sorting.*" />
+          <option name="PATTERN" value="com.questions.strivers.recursion.basics.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -115,12 +115,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="com.questions.strivers.recursion.basics.queuesqueuesproblem.ReverseQueueRecursion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.basics.queuesqueuesproblem.ReverseQueueRecursion" />
+    <configuration name="SumN2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.basics.SumN2" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.basics.queuesqueuesproblem.*" />
+          <option name="PATTERN" value="com.questions.strivers.recursion.basics.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -130,11 +130,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.com.questions.strivers.recursion.basics.queuesqueuesproblem.ReverseQueueRecursion" />
-        <item itemvalue="Application.ReverseQueueRecursion" />
-        <item itemvalue="Application.SortQueueRecursion" />
-        <item itemvalue="Application.StringToIntegerATOI" />
-        <item itemvalue="Application.KthPermutationSequence" />
+        <item itemvalue="Application.SumN" />
+        <item itemvalue="Application.SumN2" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.NBitBinaryNum1MorePrefix" />
+        <item itemvalue="Application.LetterCasePermutation" />
       </list>
     </recent_temporary>
   </component>
