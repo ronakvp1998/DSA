@@ -62,13 +62,13 @@
       <recent name="com.questions.strivers.binarytrees.easy" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.SumN">
-    <configuration name="LetterCasePermutation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.medium.subsequences.LetterCasePermutation" />
+  <component name="RunManager" selected="Application.com.questions.strivers.recursionbacktracking.medium.stacksqueuesproblem.ReverseQueueRecursion">
+    <configuration name="GenerateBinaryNumbers" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursionbacktracking.medium.binaryproblems.GenerateBinaryNumbers" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.medium.binaryproblems.*" />
+          <option name="PATTERN" value="com.questions.strivers.recursionbacktracking.medium.binaryproblems.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -89,12 +89,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NBitBinaryNum1MorePrefix" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.medium.binaryproblems.NBitBinaryNum1MorePrefix" />
+    <configuration name="ReverseQueueRecursion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.basics.queuesqueuesproblem.ReverseQueueRecursion" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.medium.binaryproblems.*" />
+          <option name="PATTERN" value="com.questions.strivers.recursion.basics.queuesqueuesproblem.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -103,11 +103,11 @@
       </method>
     </configuration>
     <configuration name="SumN" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.basics.SumN" />
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursionbacktracking.basics.SumN" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.basics.*" />
+          <option name="PATTERN" value="com.questions.strivers.recursionbacktracking.basics.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -115,12 +115,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SumN2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.basics.SumN2" />
+    <configuration name="com.questions.strivers.recursionbacktracking.medium.stacksqueuesproblem.ReverseQueueRecursion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursionbacktracking.medium.stacksqueuesproblem.ReverseQueueRecursion" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.basics.*" />
+          <option name="PATTERN" value="com.questions.strivers.recursionbacktracking.medium.stacksqueuesproblem.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -130,11 +130,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.SumN" />
-        <item itemvalue="Application.SumN2" />
+        <item itemvalue="Application.com.questions.strivers.recursionbacktracking.medium.stacksqueuesproblem.ReverseQueueRecursion" />
+        <item itemvalue="Application.ReverseQueueRecursion" />
+        <item itemvalue="Application.GenerateBinaryNumbers" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.NBitBinaryNum1MorePrefix" />
-        <item itemvalue="Application.LetterCasePermutation" />
+        <item itemvalue="Application.SumN" />
       </list>
     </recent_temporary>
   </component>
