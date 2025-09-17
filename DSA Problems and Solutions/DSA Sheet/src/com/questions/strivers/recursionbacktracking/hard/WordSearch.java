@@ -88,20 +88,13 @@ public class WordSearch {
 
 /*
 Time Complexity:
-
 For each cell (m × n), we may start a DFS.
-
 In worst case, DFS explores 4 directions at each step, up to word length L.
-
 O(m × n × 4^L) worst case.
-
 But since m, n ≤ 6 and L ≤ 15, it’s manageable.
 
 Space Complexity:
-
 DFS recursion depth = L → O(L).
-
 We use in-place marking, so no extra visited array.
-
 O(L) auxiliary space.
  */
