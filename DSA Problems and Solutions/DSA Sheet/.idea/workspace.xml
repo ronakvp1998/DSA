@@ -32,24 +32,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.CombinationSum2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.PrintPermutations.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ReverseQueueRecursion.executor&quot;: &quot;Run&quot;,
-    &quot;Application.SortQueueRecursion.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Subset1.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Subset2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.com.questions.strivers.recursion.basics.queuesqueuesproblem.ReverseQueueRecursion.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/DSA-Java/DSA Problems and Solutions/DSA Sheet&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.import&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CombinationSum2.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.PrintPermutations.executor": "Run",
+    "Application.ReverseQueueRecursion.executor": "Run",
+    "Application.SortQueueRecursion.executor": "Run",
+    "Application.Subset1.executor": "Run",
+    "Application.Subset2.executor": "Run",
+    "Application.com.questions.strivers.recursion.basics.queuesqueuesproblem.ReverseQueueRecursion.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/DSA-Java/DSA Problems and Solutions/DSA Sheet",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.questions.strivers.recursion.hard" />
@@ -62,13 +62,13 @@
       <recent name="com.questions.strivers.binarytrees.easy" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.IncreasingNDigitNumbers">
-    <configuration name="GenerateBinaryNumbers" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursionbacktracking.medium.binaryproblems.GenerateBinaryNumbers" />
+  <component name="RunManager" selected="Application.Traversal">
+    <configuration name="BinaryTreeRep" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.binarytrees.BinaryTreeRep" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursionbacktracking.medium.binaryproblems.*" />
+          <option name="PATTERN" value="com.questions.practice.binarytrees.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -102,12 +102,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ReverseQueueRecursion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursion.basics.queuesqueuesproblem.ReverseQueueRecursion" />
+    <configuration name="Traversal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.binarytrees.Traversal" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursion.basics.queuesqueuesproblem.*" />
+          <option name="PATTERN" value="com.questions.practice.binarytrees.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -130,11 +130,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Traversal" />
+        <item itemvalue="Application.BinaryTreeRep" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.IncreasingNDigitNumbers" />
         <item itemvalue="Application.com.questions.strivers.recursionbacktracking.medium.stacksqueuesproblem.ReverseQueueRecursion" />
-        <item itemvalue="Application.ReverseQueueRecursion" />
-        <item itemvalue="Application.GenerateBinaryNumbers" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>

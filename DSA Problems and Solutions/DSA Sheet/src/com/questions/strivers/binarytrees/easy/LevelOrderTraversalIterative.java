@@ -36,52 +36,83 @@ public class LevelOrderTraversalIterative {
             printList(level);
         }
     }
-
-    // iterative solution 1
+    // Approach 1 — Iterative Level Order Traversal (Breadth-First Search using Queue)
+// -----------------------------------------------------------------------------
+// ✔ Explanation:
+//   - This approach uses a Queue data structure to perform Breadth-First Search (BFS).
+//   - Nodes are processed level-by-level.
+//   - For each level, we extract all nodes currently in the queue (size = number of nodes at that level).
+//   - Then we push their children (left → right) into the queue.
+//   - We repeat this until the queue becomes empty.
+//
+// ✔ Why this approach is used / When to use:
+//   - This is the MOST COMMON and MOST EFFICIENT approach for level-order traversal.
+//   - Perfect for problems where:
+//        → You need levels in proper order.
+//        → You need to do operations level-by-level (sum, max, depth tracking, zigzag, etc.).
+//
+// ✔ Time Complexity:
+//   - O(N) — Each node is visited exactly once.
+//
+// ✔ Space Complexity:
+//   - O(N) — Worst case (a complete binary tree), the queue can hold N/2 nodes.
+//
+// ✔ Drawbacks:
+//   - Uses extra space for the queue (cannot be done truly in-place).
+//   - Pure level order only (no zigzag or spiral) — separate logic needed for those.
+// -----------------------------------------------------------------------------
     public static List<List<Integer>> levelOrderTraversalIterative(TreeNode root){
+
+        // Result list to store all levels
         List<List<Integer>> ans = new ArrayList<>();
+
+        // Base case — if tree is empty, return empty list
         if (root == null) {
-            // If the tree is empty,
-            // return an empty list
             return ans;
         }
 
-        // Create a queue to store nodes
-        // for level-order traversal
+        // Queue used for BFS
         Queue<TreeNode> q = new LinkedList<>();
-        // Push the root node to the queue
+
+        // Initially, push the root node into the queue
         q.add(root);
 
+        // Continue until all nodes are processed
         while (!q.isEmpty()) {
-            // Get the size of the current level
+
+            // Number of nodes present in the current level
             int size = q.size();
-            // Create a list to store
-            // nodes at the current level
+
+            // List to store values of nodes belonging to current level
             List<Integer> level = new ArrayList<>();
 
+            // Process all nodes at the current level
             for (int i = 0; i < size; i++) {
-                // Get the front node in the queue
+
+                // Remove the front node from the queue
                 TreeNode node = q.poll();
-                // Store the node value
-                // in the current level list
+
+                // Add its value to the current level list
                 level.add(node.val);
 
-                // Enqueue the child nodes if they exist
+                // Push the left child if it exists
                 if (node.left != null) {
                     q.add(node.left);
                 }
+
+                // Push the right child if it exists
                 if (node.right != null) {
                     q.add(node.right);
                 }
             }
-            // Store the current level
-            // in the answer list
+
+            // Add the fully processed level to the final answer
             ans.add(level);
         }
-        // Return the level-order
-        // traversal of the tree
-        return ans;
 
+        // Return the list containing all levels
+        return ans;
     }
+
 
 }
