@@ -47,7 +47,7 @@ Space Complexity:
 public class NBitBinaryNum1MorePrefix {
 
     // Recursive function to generate N-bit binary numbers
-    public static void generateBinary(int n, int ones, int zeros, String output, List<String> result) {
+    private static void generateBinary(int n, int ones, int zeros, String output, List<String> result) {
         // Base case: if output string has reached length n, add it to result
         if (output.length() == n) {
             result.add(output);

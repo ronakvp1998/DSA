@@ -16,7 +16,7 @@ public class SecondLargSmallElement {
     }
 
     // ✅ Function to find the second smallest element in an array
-    public static int secondSmallest(int arr[]){
+    private static int secondSmallest(int arr[]){
         // Initialize smallest and second smallest with maximum possible integer value
         int small = Integer.MAX_VALUE;
         int secSmall = Integer.MAX_VALUE;
@@ -47,7 +47,7 @@ public class SecondLargSmallElement {
     */
 
     // ✅ Function to find the second largest element in an array
-    public static int secondLargest(int arr[]){
+    private static int secondLargest(int arr[]){
         // Initialize largest and second largest with minimum possible integer value
         int large = Integer.MIN_VALUE;
         int secLarge = Integer.MIN_VALUE;

@@ -43,7 +43,7 @@ public class LeaderInArray {
      * Time Complexity: O(n^2) → For each element, scanning the right side.
      * Space Complexity: O(k) → Storing leaders in result set/list (k ≤ n).
      */
-    public static List<Integer> leaderArrayBrute(int arr[]) {
+    private static List<Integer> leaderArrayBrute(int arr[]) {
         Set<Integer> res = new HashSet<>(); // Stores leaders without duplicates
 
         // Outer loop: pick each element
@@ -79,7 +79,7 @@ public class LeaderInArray {
      * Time Complexity: O(n) → Single pass from right to left + O(k) reverse.
      * Space Complexity: O(k) → To store leaders (k ≤ n).
      */
-    public static List<Integer> leaderArrayOptimized(int arr[]) {
+    private static List<Integer> leaderArrayOptimized(int arr[]) {
         List<Integer> res = new ArrayList<>(); // Stores leaders in reverse order
 
         int maxElement = arr[arr.length - 1]; // Last element is always a leader
@@ -109,7 +109,7 @@ public class LeaderInArray {
      * Time Complexity: O(n) → Single pass from right to left.
      * Space Complexity: O(k) → To store leaders.
      */
-    public static List<Integer> leaderArrayAddFirst(int arr[]) {
+    private static List<Integer> leaderArrayAddFirst(int arr[]) {
         LinkedList<Integer> res = new LinkedList<>(); // Supports addFirst in O(1)
 
         int max = Integer.MIN_VALUE; // Initialize max to smallest integer

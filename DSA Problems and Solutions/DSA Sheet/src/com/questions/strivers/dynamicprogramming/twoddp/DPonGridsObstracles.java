@@ -16,7 +16,7 @@ public class DPonGridsObstracles {
     // Recursive approach to find unique paths with obstacles
     // Time Complexity: Exponential, O(2^(N*M)), due to recursive calls
     // Space Complexity: O(N+M), recursion stack depth
-    public static int uniquePathsRecursive(int row, int col, int[][] grid) {
+    private static int uniquePathsRecursive(int row, int col, int[][] grid) {
         // Base case: If we reach the top-left cell and it's not blocked
         if (row == 0 && col == 0 && grid[row][col] != 1) {
             return 1; // Only one path exists if the starting cell is not blocked
@@ -34,7 +34,7 @@ public class DPonGridsObstracles {
     // Memoization approach to find unique paths with obstacles
     // Time Complexity: O(N*M), each cell is computed once
     // Space Complexity: O(N*M + N+M), space for dp array and recursion stack
-    public static int uniquePathsMemoization(int row, int col, int[][] grid, int[][] dp) {
+    private static int uniquePathsMemoization(int row, int col, int[][] grid, int[][] dp) {
         // Base case: If we reach the top-left cell and it's not blocked
         if (row == 0 && col == 0 && grid[row][col] != 1) {
             return 1; // Only one path exists if the starting cell is not blocked
@@ -56,7 +56,7 @@ public class DPonGridsObstracles {
     // Tabulation approach to find unique paths with obstacles
     // Time Complexity: O(N*M), iterates through the matrix
     // Space Complexity: O(N*M), space for dp array
-    public static int uniquePathsTabulation(int[][] grid) {
+    private static int uniquePathsTabulation(int[][] grid) {
         int n = grid.length, m = grid[0].length;
         int[][] dp = new int[n][m]; // Create a dp array to store results
 
@@ -89,7 +89,7 @@ public class DPonGridsObstracles {
     // Space-optimized approach to find unique paths with obstacles
     // Time Complexity: O(N*M), iterates through the matrix
     // Space Complexity: O(M), space for a single row
-    public static int uniquePathsSpaceOptimized(int[][] grid) {
+    private static int uniquePathsSpaceOptimized(int[][] grid) {
         int n = grid.length, m = grid[0].length;
         int[] prev = new int[m]; // Array to store results for the previous row
 

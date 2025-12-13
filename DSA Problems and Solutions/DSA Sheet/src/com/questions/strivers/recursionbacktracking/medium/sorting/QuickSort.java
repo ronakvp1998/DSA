@@ -44,7 +44,7 @@ public class QuickSort {
      * - O(log n) in best case due to recursion stack depth.
      * - O(n) in worst case (skewed recursion tree).
      */
-    public static void quickSort(int arr[], int low, int high){
+    private static void quickSort(int arr[], int low, int high){
         if(low < high){ // corrected condition (<= would cause infinite recursion for single elements)
             int partition = func(arr, low, high); // partition index
             quickSort(arr, low, partition - 1);   // sort left subarray
@@ -67,7 +67,7 @@ public class QuickSort {
      * Space Complexity: O(1)
      * - In-place partitioning (only a few variables).
      */
-    public static int func(int arr[], int low, int high){
+    private static int func(int arr[], int low, int high){
         int i = low;
         int j = high;
         int pivot = arr[low]; // first element as pivot
@@ -100,7 +100,7 @@ public class QuickSort {
      * Time Complexity: O(1)
      * Space Complexity: O(1)
      */
-    public static void swap(int i, int j, int arr[]){
+    private static void swap(int i, int j, int arr[]){
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;

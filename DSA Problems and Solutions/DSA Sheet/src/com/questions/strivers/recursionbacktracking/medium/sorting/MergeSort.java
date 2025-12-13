@@ -42,7 +42,7 @@ public class MergeSort {
      * - Extra temporary array (ArrayList) used in merging at each recursion level.
      * - Recursion stack depth = O(log n).
      */
-    public static void mergeSort(int arr[], int low, int high) {
+    private static void mergeSort(int arr[], int low, int high) {
         if (low >= high) {
             return; // Base case: single element or invalid range
         }
@@ -77,7 +77,7 @@ public class MergeSort {
      * Space Complexity: O(n)
      * - Temporary ArrayList stores up to (high - low + 1) elements.
      */
-    public static void merge(int arr[], int low, int mid, int high) {
+    private static void merge(int arr[], int low, int mid, int high) {
         ArrayList<Integer> temp = new ArrayList<>();
         int left = low;
         int right = mid + 1;

@@ -14,7 +14,7 @@ public class TwoSum {
 
 
     // 3rd app
-    public static int [] twoSum2(int arr[], int target){
+    private static int [] twoSum2(int arr[], int target){
         Arrays.sort(arr);
         int n = arr.length;
         int left=0, right = n-1;
@@ -34,7 +34,7 @@ public class TwoSum {
     }
 
     // 2nd app
-    public static int[] twoSum1(int[] arr, int target){
+    private static int[] twoSum1(int[] arr, int target){
         int n = arr.length;
         Map<Integer,Integer> map = new HashMap<>();
 //        int ans[] = new int[2];
@@ -51,7 +51,7 @@ public class TwoSum {
         return new int [] {-1,-1};
     }
 
-    public static int[] twoSum(int arr[],int target){
+    private static int[] twoSum(int arr[],int target){
         int n = arr.length;
         for(int i=0;i<arr.length;i++){
             for(int j=i+1;j<arr.length;j++){

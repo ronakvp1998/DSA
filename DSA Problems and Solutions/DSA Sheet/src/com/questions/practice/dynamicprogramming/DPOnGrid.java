@@ -23,7 +23,7 @@ public class DPOnGrid {
 //        System.out.println("Space Optimized: " + uniquePathsSpaceOptimized(m, n));
     }
 
-    public static int uniquePathsRecursive(int m, int n){
+    private static int uniquePathsRecursive(int m, int n){
         if(m == 0 && n == 0){
             return 1;
         }

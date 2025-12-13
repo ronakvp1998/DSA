@@ -24,7 +24,7 @@ public class MaxSubArraySum {
 
     // Approach 1: Brute Force - Try all subarrays using 3 loops
     // Time: O(N^3), Space: O(1)
-    public static int maxSubarraySum1(int[] arr, int n) {
+    private static int maxSubarraySum1(int[] arr, int n) {
         int maxi = Integer.MIN_VALUE;
 
         for (int i = 0; i < n; i++) {
@@ -44,7 +44,7 @@ public class MaxSubArraySum {
 
     // Approach 2: Better Approach - Remove inner loop by maintaining sum
     // Time: O(N^2), Space: O(1)
-    public static int maxSubarraySum2(int[] arr, int n) {
+    private static int maxSubarraySum2(int[] arr, int n) {
         int maxi = Integer.MIN_VALUE;
 
         for (int i = 0; i < n; i++) {
@@ -61,7 +61,7 @@ public class MaxSubArraySum {
 
     // Approach 3: Kadane’s Algorithm (Optimized) - No printing
     // Time: O(N), Space: O(1)
-    public static long maxSubarraySum3(int[] arr, int n) {
+    private static long maxSubarraySum3(int[] arr, int n) {
         long maxi = Long.MIN_VALUE;
         long sum = 0;
 
@@ -76,7 +76,7 @@ public class MaxSubArraySum {
 
     // Approach 4: Kadane’s with Subarray Printing
     // Time: O(N), Space: O(1)
-    public static long maxSubarraySum4(int[] arr, int n) {
+    private static long maxSubarraySum4(int[] arr, int n) {
         long maxi = Long.MIN_VALUE;
         long sum = 0;
 
@@ -109,7 +109,7 @@ public class MaxSubArraySum {
 
     // Approach 5: Kadane’s with Handling All-Negatives (no printing)
     // Time: O(N), Space: O(1)
-    public static int maxSubarraySum5(int[] arr) {
+    private static int maxSubarraySum5(int[] arr) {
         int maxSum = Integer.MIN_VALUE;
         int sum = 0;
 
@@ -135,7 +135,7 @@ public class MaxSubArraySum {
 
     // Approach 6: Kadane’s Full - Print + Handle all-negative case
     // Time: O(N), Space: O(1)
-    public static int maxSubarraySum6(int[] arr) {
+    private static int maxSubarraySum6(int[] arr) {
         int maxSum = Integer.MIN_VALUE;
         int sum = 0;
         int start = 0, ansStart = -1, ansEnd = -1;

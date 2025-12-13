@@ -11,7 +11,7 @@ public class PrintSubseqSumK {
     }
 
     // parametrized approach
-    public static void printSubseqSumK(int arr[], int sum, int res, List<Integer> list, int index){
+    private static void printSubseqSumK(int arr[], int sum, int res, List<Integer> list, int index){
         if(index == arr.length){
             if(res == sum){
                 System.out.println(list);

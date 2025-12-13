@@ -24,7 +24,7 @@ public class Sum4Problem {
      * Time Complexity: O(n⁴ * log(4)) ≈ O(n⁴) due to 4 nested loops
      * Space Complexity: O(k) where k is number of unique quadruplets
      */
-    public static List<List<Integer>> fourSum(int[] nums, int target) {
+    private static List<List<Integer>> fourSum(int[] nums, int target) {
         int n = nums.length;
         Set<List<Integer>> set = new HashSet<>();
 
@@ -63,7 +63,7 @@ public class Sum4Problem {
      *   - O(n) for HashSet
      *   - O(k) for result set
      */
-    public static List<List<Integer>> fourSum2(int[] nums, int target) {
+    private static List<List<Integer>> fourSum2(int[] nums, int target) {
         int n = nums.length;
         Set<List<Integer>> st = new HashSet<>();
 
@@ -102,7 +102,7 @@ public class Sum4Problem {
      * Space Complexity: O(k)
      *   - For storing result list
      */
-    public static List<List<Integer>> fourSum3(int[] nums, int target) {
+    private static List<List<Integer>> fourSum3(int[] nums, int target) {
         int n = nums.length;
         List<List<Integer>> ans = new ArrayList<>();
 

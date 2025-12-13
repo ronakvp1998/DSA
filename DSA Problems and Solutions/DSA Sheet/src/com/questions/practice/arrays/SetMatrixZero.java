@@ -13,7 +13,7 @@ public class SetMatrixZero {
         setMatrixZero(arr);
     }
 
-    public static void setMatrixZero(int arr[][]){
+    private static void setMatrixZero(int arr[][]){
         for(int i=0;i<arr.length;i++){
             for(int j=0;j<arr[0].length;j++){
                 if(arr[i][j] == 0){

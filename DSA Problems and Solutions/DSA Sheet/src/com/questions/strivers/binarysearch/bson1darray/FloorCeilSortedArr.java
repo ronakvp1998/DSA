@@ -24,7 +24,7 @@ public class FloorCeilSortedArr {
         System.out.println(ceil(arr,target));
     }
 
-    public static int ceil(int arr[], int target) {
+    private static int ceil(int arr[], int target) {
         int low = 0,high = arr.length-1, ans = -1;
         while (low<=high){
             int mid = low + (high-low)/2;
@@ -38,7 +38,7 @@ public class FloorCeilSortedArr {
         return ans;
     }
 
-    public static int floor(int arr[], int target){
+    private static int floor(int arr[], int target){
         int low=0,high=arr.length-1,ans=-1;
         while (low<=high){
             int mid = low + (high-low)/2;

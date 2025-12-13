@@ -10,7 +10,7 @@ public class LinkedList {
     }
 
     // 3 delete kth element of ll
-    public static Node deleteKthElement(Node head, int k){
+    private static Node deleteKthElement(Node head, int k){
         if(head == null){
             return head;
         }
@@ -33,7 +33,7 @@ public class LinkedList {
 
 
     // 2 delete tail of ll
-    public static Node deleteTail(Node head){
+    private static Node deleteTail(Node head){
         if(head == null || head.next == null){
             return head;
         }
@@ -46,7 +46,7 @@ public class LinkedList {
     }
 
     // 1 delete head of LL
-    public static Node deleteHead(Node head){
+    private static Node deleteHead(Node head){
         if(head == null){
             return head;
         }
@@ -54,7 +54,7 @@ public class LinkedList {
         return head;
     }
 
-    public static int searchElement(int data, Node head){
+    private static int searchElement(int data, Node head){
         Node temp = head;
         int count = 0;
         while (temp != null){
@@ -67,7 +67,7 @@ public class LinkedList {
         return -1;
     }
 
-    public static void printLL(Node head){
+    private static void printLL(Node head){
         Node temp = head;
         int count = 0;
         while (temp != null){
@@ -78,7 +78,7 @@ public class LinkedList {
         System.out.println("count " + count);
     }
 
-    public static Node arrayToLL(int arr[]){
+    private static Node arrayToLL(int arr[]){
         Node head = new Node(arr[0]);
         Node temp = head;
         int i=1;

@@ -10,7 +10,7 @@ public class MaximumSubarray {
 
     }
 
-    public static int maxSubarraySum(int arr[], int n){
+    private static int maxSubarraySum(int arr[], int n){
         int sum=0;
         int ans = Integer.MIN_VALUE;
         int start=0, end = 0;

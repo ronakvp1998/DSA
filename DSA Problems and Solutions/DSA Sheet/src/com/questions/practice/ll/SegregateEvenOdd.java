@@ -15,7 +15,7 @@ public class SegregateEvenOdd {
 
 
     // approach 1
-    public static Node segregateEO(Node head){
+    private static Node segregateEO(Node head){
         // odd
         List<Integer> list = new ArrayList<>();
         Node temp = head;
@@ -47,7 +47,7 @@ public class SegregateEvenOdd {
     }
 
     // 2 traverse into ll
-    public static void printLL(Node head){
+    private static void printLL(Node head){
         if(head == null ){
             System.out.println("Empty LL");
             return;
@@ -61,7 +61,7 @@ public class SegregateEvenOdd {
     }
 
     // 1 convert array into linkedlist
-    public static Node arrayToLinkedList(int arr[]){
+    private static Node arrayToLinkedList(int arr[]){
         if(arr.length <= 0){
             System.out.println("Empty LL");
             return null;

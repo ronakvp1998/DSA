@@ -6,7 +6,7 @@ public class DeleteMiddleNode {
 
     }
 
-    public static Node deleteMiddle(Node head) {
+    private static Node deleteMiddle(Node head) {
         if(head == null || head.next == null) {
             return null;
         }

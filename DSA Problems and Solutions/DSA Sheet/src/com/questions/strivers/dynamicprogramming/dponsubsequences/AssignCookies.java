@@ -27,7 +27,7 @@ import java.util.Arrays;
 public class AssignCookies {
 
     // Recursive Approach (TLE for large input)
-    public static int recursive(int[] g, int[] s, int i, int j) {
+    private static int recursive(int[] g, int[] s, int i, int j) {
         // Base case: If all children or all cookies are processed
         if (i == g.length || j == s.length) return 0;
 
@@ -45,7 +45,7 @@ public class AssignCookies {
     }
 
     // Memoization Approach (Top-down DP)
-    public static int memo(int[] g, int[] s, int i, int j, int[][] dp) {
+    private static int memo(int[] g, int[] s, int i, int j, int[][] dp) {
         // Base case
         if (i == g.length || j == s.length) return 0;
 
@@ -65,7 +65,7 @@ public class AssignCookies {
     }
 
     // Tabulation (Bottom-up DP)
-    public static int tabulation(int[] g, int[] s) {
+    private static int tabulation(int[] g, int[] s) {
         int n = g.length;
         int m = s.length;
 
@@ -86,7 +86,7 @@ public class AssignCookies {
     }
 
     // Space Optimization
-    public static int spaceOptimized(int[] g, int[] s) {
+    private static int spaceOptimized(int[] g, int[] s) {
         Arrays.sort(g);
         Arrays.sort(s);
 

@@ -28,7 +28,7 @@ public class StartingPoint {
     }
 
     // approach 2 fast and slow
-    public static Node startingPoint1(Node head){
+    private static Node startingPoint1(Node head){
         Node slow = head, fast = head;
         while (fast != null && fast.next != null){
             slow = slow.next;
@@ -46,7 +46,7 @@ public class StartingPoint {
     }
 
     // approach 1 hashmap TC->O(N)*[O(N) + O(N)]
-    public static Node startingPoint(Node head){
+    private static Node startingPoint(Node head){
         Map<Node,Integer> map = new HashMap<>();
         Node temp = head;
         while (temp != null){
@@ -59,7 +59,7 @@ public class StartingPoint {
         return null;
     }
 
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -69,7 +69,7 @@ public class StartingPoint {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

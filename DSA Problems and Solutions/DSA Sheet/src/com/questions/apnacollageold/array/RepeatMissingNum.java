@@ -31,7 +31,7 @@ public class RepeatMissingNum {
     }
 
     // using formula TC O(n) SC O(1)
-    public static ArrayList<Integer> repeatedNumber2(final List<Integer> A) {
+    private static ArrayList<Integer> repeatedNumber2(final List<Integer> A) {
         long n = A.size();
 
         long expectedSum = n * (n+1)/2;
@@ -57,7 +57,7 @@ public class RepeatMissingNum {
 
 
     // using hashmap SC O(n)
-    public static ArrayList<Integer> repeatedNumber(final List<Integer> A) {
+    private static ArrayList<Integer> repeatedNumber(final List<Integer> A) {
         HashMap<Integer,Integer> map = new HashMap<>();
         int duplicate = -1;
         int missing = -1;

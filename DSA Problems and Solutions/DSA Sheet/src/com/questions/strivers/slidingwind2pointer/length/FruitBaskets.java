@@ -58,7 +58,7 @@ public class FruitBaskets {
      * Space Complexity: O(3) ≈ O(1)
      * - HashSet stores at most 3 fruit types before breaking.
      */
-    public static int fruitBaskets1(int arr[]) {
+    private static int fruitBaskets1(int arr[]) {
         int maxLen = 0;
         for (int i = 0; i < arr.length; i++) {
             Set<Integer> set = new HashSet<>();
@@ -89,7 +89,7 @@ public class FruitBaskets {
      * Space Complexity: O(2) ≈ O(1)
      * - HashMap stores at most 2 fruit types at a time.
      */
-    public static int fruitBaskets2(int arr[]) {
+    private static int fruitBaskets2(int arr[]) {
         int n = arr.length;
         int maxLen = 0, left = 0, right = 0;
         Map<Integer, Integer> map = new HashMap<>();

@@ -42,7 +42,7 @@ public class PainterPartitionProblem {
 
     // Helper function to count how many painters are required if
     // each painter cannot exceed "time" amount of work.
-    public static int countPainters(ArrayList<Integer> boards, int time) {
+    private static int countPainters(ArrayList<Integer> boards, int time) {
         int n = boards.size();
         int painters = 1; // at least one painter is needed
         long boardsPainter = 0; // workload of current painter
@@ -61,7 +61,7 @@ public class PainterPartitionProblem {
     }
 
     // Brute force approach (Linear Search)
-    public static int findLargestMinDistance(ArrayList<Integer> boards, int k) {
+    private static int findLargestMinDistance(ArrayList<Integer> boards, int k) {
         // Lower bound = max single board (cannot be less than this)
         int low = Collections.max(boards);
         // Upper bound = sum of all boards (one painter does everything)
@@ -77,7 +77,7 @@ public class PainterPartitionProblem {
     }
 
     // Helper function (same logic as above, for binary search version)
-    public static int countPainters2(ArrayList<Integer> boards, int time) {
+    private static int countPainters2(ArrayList<Integer> boards, int time) {
         int n = boards.size();
         int painters = 1;
         long boardsPainter = 0;
@@ -93,7 +93,7 @@ public class PainterPartitionProblem {
     }
 
     // Optimal approach using Binary Search
-    public static int findLargestMinDistance2(ArrayList<Integer> boards, int k) {
+    private static int findLargestMinDistance2(ArrayList<Integer> boards, int k) {
         int low = Collections.max(boards);
         int high = boards.stream().mapToInt(Integer::intValue).sum();
 

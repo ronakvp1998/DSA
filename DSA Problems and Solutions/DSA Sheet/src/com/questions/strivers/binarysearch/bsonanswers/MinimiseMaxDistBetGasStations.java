@@ -25,7 +25,7 @@ Let’s consider a small example like this: given gas stations = {1, 7} and k = 
 Observation: A possible arrangement for placing 2 gas stations is as follows: {1, 7, 8, 9}. In this arrangement, the new gas stations are positioned after the last existing one. Prior to adding the new stations, the maximum distance between stations was 6 (i.e. the distance between 1 and 7). Even after placing the 2 new stations, the maximum distance remains unchanged at 6.
  */
 public class MinimiseMaxDistBetGasStations {
-    public static double minimiseMaxDistance(int[] arr, int k) {
+    private static double minimiseMaxDistance(int[] arr, int k) {
         int n = arr.length; //size of array.
         int[] howMany = new int[n - 1];
 
@@ -62,7 +62,7 @@ public class MinimiseMaxDistBetGasStations {
 
 
 
-    public static class Pair {
+    private static class Pair {
         double first;
         int second;
 
@@ -72,7 +72,7 @@ public class MinimiseMaxDistBetGasStations {
         }
     }
 
-    public static double minimiseMaxDistance2(int[] arr, int k) {
+    private static double minimiseMaxDistance2(int[] arr, int k) {
         int n = arr.length; // size of array.
         int[] howMany = new int[n - 1];
         PriorityQueue<Pair> pq = new PriorityQueue<>((a, b) -> Double.compare(b.first, a.first));
@@ -103,7 +103,7 @@ public class MinimiseMaxDistBetGasStations {
 
 
 
-    public static int numberOfGasStationsRequired3(double dist, int[] arr) {
+    private static int numberOfGasStationsRequired3(double dist, int[] arr) {
         int n = arr.length; // size of the array
         int cnt = 0;
         for (int i = 1; i < n; i++) {
@@ -116,7 +116,7 @@ public class MinimiseMaxDistBetGasStations {
         return cnt;
     }
 
-    public static double minimiseMaxDistance3(int[] arr, int k) {
+    private static double minimiseMaxDistance3(int[] arr, int k) {
         int n = arr.length; // size of the array
         double low = 0;
         double high = 0;

@@ -60,7 +60,7 @@ public class PostOrderTraversal2Stack {
      * @param node root of the binary tree
      * @return list containing postorder traversal
      */
-    public static List<Integer> postorderTraversal(TreeNode node) {
+    private static List<Integer> postorderTraversal(TreeNode node) {
 
         // Stack 1 : used to traverse the tree
         Stack<TreeNode> stack1 = new Stack<>();

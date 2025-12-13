@@ -16,7 +16,7 @@ public class PreOrderTraversalIterative {
         System.out.println(preOrder(root));
     }
 
-    public static List<Integer> preOrder(TreeNode root){
+    private static List<Integer> preOrder(TreeNode root){
         List<Integer> ans = new ArrayList<>();
         if(root == null){
             return ans;

@@ -21,7 +21,7 @@ public class RotateArrayByK {
     - Shift the first n-k elements to the right.
     - Copy the stored k elements to the beginning.
     */
-    public static void rotateToRightExtraSpace(int[] arr, int n, int k) {
+    private static void rotateToRightExtraSpace(int[] arr, int n, int k) {
         if (n == 0) return;
         k = k % n; // handle k > n
 
@@ -53,7 +53,7 @@ public class RotateArrayByK {
     - Shift the remaining n-k elements to the left.
     - Copy the stored k elements to the end.
     */
-    public static void rotateToLeftExtraSpace(int[] arr, int n, int k) {
+    private static void rotateToLeftExtraSpace(int[] arr, int n, int k) {
         if (n == 0) return;
         k = k % n;
 
@@ -79,7 +79,7 @@ public class RotateArrayByK {
     // ----------------------------------------------------------------
     // Helper Method: Reverse an array section
     // ----------------------------------------------------------------
-    public static void reverse(int[] arr, int start, int end) {
+    private static void reverse(int[] arr, int start, int end) {
         while (start < end) {
             int temp = arr[start];
             arr[start] = arr[end];
@@ -98,7 +98,7 @@ public class RotateArrayByK {
     2. Reverse last k elements.
     3. Reverse the whole array.
     */
-    public static void rotateRightReverse(int[] arr, int n, int k) {
+    private static void rotateRightReverse(int[] arr, int n, int k) {
         k = k % n;
         reverse(arr, 0, n - k - 1);
         reverse(arr, n - k, n - 1);
@@ -119,7 +119,7 @@ public class RotateArrayByK {
     2. Reverse last n-k elements.
     3. Reverse the whole array.
     */
-    public static void rotateLeftReverse(int[] arr, int n, int k) {
+    private static void rotateLeftReverse(int[] arr, int n, int k) {
         k = k % n;
         reverse(arr, 0, k - 1);
         reverse(arr, k, n - 1);

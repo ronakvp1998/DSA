@@ -9,7 +9,7 @@ public class ValidParentheses {
         System.out.println(checkPar(str));
     }
 
-    public static boolean checkPar(String s){
+    private static boolean checkPar(String s){
         Stack<Character> stack = new Stack<>();
         for(char c : s.toCharArray()){
             if(c == '(' || c == '{' || c == '['){

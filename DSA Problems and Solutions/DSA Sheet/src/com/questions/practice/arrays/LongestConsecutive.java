@@ -12,7 +12,7 @@ public class LongestConsecutive {
         System.out.println(longestConsecutive1(arr));
     }
 
-    public static int longestConsecutive1(int arr[]){
+    private static int longestConsecutive1(int arr[]){
         Set<Integer> set = new HashSet<>();
         for(int i=0;i< arr.length;i++){
             set.add(arr[i]);
@@ -33,7 +33,7 @@ public class LongestConsecutive {
     }
 
 
-    public static int longestConsecutive(int arr[]){
+    private static int longestConsecutive(int arr[]){
         Arrays.sort(arr);
         int longest=1,currCount=0,lastSmallest=Integer.MIN_VALUE;
         int n = arr.length;

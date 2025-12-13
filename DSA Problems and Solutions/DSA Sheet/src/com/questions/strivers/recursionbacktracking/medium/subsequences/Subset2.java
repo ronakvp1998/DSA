@@ -22,7 +22,7 @@ public class Subset2 {
     // ----------- Brute Force Approach (using HashSet) -----------
     // Generate ALL subsets (using pick/not pick recursion) and store them as Strings in a HashSet.
     // Sorting each subset before insertion ensures duplicates are avoided.
-    public static void fun(int[] nums, int index, List<Integer> ds, HashSet<String> res) {
+    private static void fun(int[] nums, int index, List<Integer> ds, HashSet<String> res) {
         // Base case: if index reaches end of array, store subset
         if (index == nums.length) {
             Collections.sort(ds); // sort to handle duplicates (e.g., [2,1] vs [1,2])
@@ -42,7 +42,7 @@ public class Subset2 {
     }
 
     // Wrapper for brute force approach
-    public static List<String> subsetsWithDup(int[] nums) {
+    private static List<String> subsetsWithDup(int[] nums) {
         List<String> ans = new ArrayList<>();
         HashSet<String> res = new HashSet<>();
         fun(nums, 0, new ArrayList<>(), res);
@@ -68,7 +68,7 @@ public class Subset2 {
     // ----------- Optimized Approach (Backtracking + Pruning) -----------
     // Sort array first, then generate subsets recursively.
     // Skip duplicates by ensuring we only pick the *first occurrence* of a number at each recursion depth.
-    public static void findSubsets(int ind, int[] nums, List<Integer> ds, List<List<Integer>> ansList) {
+    private static void findSubsets(int ind, int[] nums, List<Integer> ds, List<List<Integer>> ansList) {
         // Add current subset to answer
         ansList.add(new ArrayList<>(ds));
 
@@ -86,7 +86,7 @@ public class Subset2 {
         }
     }
 
-    public static List<List<Integer>> subsetsWithDup2(int[] nums) {
+    private static List<List<Integer>> subsetsWithDup2(int[] nums) {
         Arrays.sort(nums); // sorting is important to group duplicates
         List<List<Integer>> ansList = new ArrayList<>();
         findSubsets(0, nums, new ArrayList<>(), ansList);

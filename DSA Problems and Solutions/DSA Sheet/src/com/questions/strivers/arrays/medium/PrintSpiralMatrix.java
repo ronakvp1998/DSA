@@ -69,7 +69,7 @@ public class PrintSpiralMatrix {
      * Time Complexity: O(m * n) → Each element is visited exactly once.
      * Space Complexity: O(1) extra (excluding output list) → Only a few variables.
      */
-    public static List<Integer> printSpiral(int arr[][]) {
+    private static List<Integer> printSpiral(int arr[][]) {
         // Initialize boundaries
         int rowStart = 0, rowEnd = arr.length - 1;
         int colStart = 0, colEnd = arr[0].length - 1;

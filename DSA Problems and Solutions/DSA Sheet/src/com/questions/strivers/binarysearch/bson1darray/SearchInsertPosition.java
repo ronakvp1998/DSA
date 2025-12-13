@@ -56,7 +56,7 @@ public class SearchInsertPosition {
      * @param k   Target element
      * @return Index where k exists or should be inserted
      */
-    public static int lowerBound(int arr[], int n, int k) {
+    private static int lowerBound(int arr[], int n, int k) {
         int low = 0, high = n - 1;
         int ans = n; // Default to n (insert at the end if greater than all elements)
 

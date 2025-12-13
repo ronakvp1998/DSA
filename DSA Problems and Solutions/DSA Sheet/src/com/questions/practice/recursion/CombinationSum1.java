@@ -11,7 +11,7 @@ public class CombinationSum1 {
         System.out.println(ans);
     }
 
-    public static void combinationSum(int index, int arr[],
+    private static void combinationSum(int index, int arr[],
                                       ArrayList<ArrayList<Integer>> ans,
                                       ArrayList<Integer>ds,int target,int sum){
         if(index == arr.length){

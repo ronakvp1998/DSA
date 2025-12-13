@@ -10,7 +10,7 @@ public class Add2Numbers {
         traverseDLL(head);
     }
 
-    public static Node addTwoNumber(Node head1, Node head2){
+    private static Node addTwoNumber(Node head1, Node head2){
         Node dummyHead = new Node(-1);
         Node curr = dummyHead;
         Node temp1 = head1;
@@ -35,7 +35,7 @@ public class Add2Numbers {
         return dummyHead.next;
     }
 
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -45,7 +45,7 @@ public class Add2Numbers {
 
     }
     
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

@@ -47,7 +47,7 @@ public class WordBreakRecursion {
      * @param dict  set of valid dictionary words
      * @return      true if s can be segmented, false otherwise
      */
-    public static boolean wordBreak(String s, Set<String> dict) {
+    private static boolean wordBreak(String s, Set<String> dict) {
         // Base case: empty string means successfully segmented
         if (s.length() == 0) {
             return true;

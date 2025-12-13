@@ -25,7 +25,7 @@ public class MinInRotatedArray {
         System.out.println(findMin(arr));
     }
 
-    public static int findMin(int arr[]){
+    private static int findMin(int arr[]){
         int n = arr.length;
         int low = 0, high = n-1, ans = Integer.MAX_VALUE;
         while (low <= high){

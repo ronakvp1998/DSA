@@ -11,7 +11,7 @@ public class ReverseSLL {
     }
 
     // approach 2 using Recursion
-    public static Node reverseLL2(Node head,Node prev,Node next,Node curr){
+    private static Node reverseLL2(Node head,Node prev,Node next,Node curr){
         if(curr == null){
             return prev;
         }
@@ -23,7 +23,7 @@ public class ReverseSLL {
     }
 
     // approach 1 using link changes
-    public static Node reverseLL(Node head){
+    private static Node reverseLL(Node head){
         if(head == null || head.next == null){
             return head;
         }
@@ -39,7 +39,7 @@ public class ReverseSLL {
         return prev;
     }
 
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -49,7 +49,7 @@ public class ReverseSLL {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

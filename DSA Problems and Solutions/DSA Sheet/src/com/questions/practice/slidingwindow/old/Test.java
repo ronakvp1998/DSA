@@ -14,7 +14,7 @@ public class Test {
     }
 
     // Maxsum for window == k back or front
-    public static int maxPoint(int arr[], int k){
+    private static int maxPoint(int arr[], int k){
         int n=arr.length,maxSum=0,sum=0,l=0,r=n-k;
         for(int i=0;i<k;i++){
             sum = sum + arr[i];
@@ -29,7 +29,7 @@ public class Test {
 
 
     // longest subarray where sum <= k
-    public static int conditionSubarray2(int arr[], int k){
+    private static int conditionSubarray2(int arr[], int k){
         int maxLen=0,n=arr.length,l=0,r=0,sum = 0;
         while (r < n){
             sum = sum + arr[r];
@@ -46,7 +46,7 @@ public class Test {
     }
 
     // longest subarray where sum <= k
-    public static int conditionSubarray(int arr[], int k){
+    private static int conditionSubarray(int arr[], int k){
         int maxLen=0,n=arr.length;
         for(int i=0;i<n;i++){
             int sum = 0;
@@ -62,7 +62,7 @@ public class Test {
         return maxLen;
     }
 
-    public static int constantWindow2(int arr[], int k) {
+    private static int constantWindow2(int arr[], int k) {
         int maxSum=0,l=0,r=k-1,n=arr.length,sum=0;
         for(int i=0;i<=r;i++){
             sum = sum + arr[i];
@@ -78,7 +78,7 @@ public class Test {
         return maxSum;
     }
 
-    public static int constantWindow(int arr[], int w){
+    private static int constantWindow(int arr[], int w){
         int maxSum=0,n=arr.length;
         for(int i=0;i<n-w;i++){
             for(int j=i;j<n-w;j++){

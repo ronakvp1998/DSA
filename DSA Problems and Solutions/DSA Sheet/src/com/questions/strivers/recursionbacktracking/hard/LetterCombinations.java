@@ -60,7 +60,7 @@ public class LetterCombinations {
      * @param current current combination being formed
      * @param result  list to store valid combinations
      */
-    public static void backtrack(String digits, int index, String current, List<String> result) {
+    private static void backtrack(String digits, int index, String current, List<String> result) {
         // Base case: if length matches, add to result
         if (index == digits.length()) {
             result.add(current);
@@ -79,7 +79,7 @@ public class LetterCombinations {
     /**
      * Main function to generate all letter combinations
      */
-    public static List<String> letterCombinations(String digits) {
+    private static List<String> letterCombinations(String digits) {
         List<String> result = new ArrayList<>();
 
         // Edge case: empty input

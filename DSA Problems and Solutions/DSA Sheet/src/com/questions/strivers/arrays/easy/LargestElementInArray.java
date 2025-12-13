@@ -22,7 +22,7 @@ public class LargestElementInArray {
      * Space Complexity: O(1)
      *    → We use only a single variable 'max' for storing the largest value.
      */
-    public static int largestElement1(int arr[]) {
+    private static int largestElement1(int arr[]) {
         int max = arr[0]; // Initialize max with the first element
 
         // Loop through all elements in the array
@@ -51,7 +51,7 @@ public class LargestElementInArray {
      * @param longest - Current largest element found so far
      * @return - The largest element in the array
      */
-    public static int largestElement(int arr[], int i, int longest) {
+    private static int largestElement(int arr[], int i, int longest) {
         // Base case: If we've reached the end of the array, return the largest found
         if (i == arr.length) {
             return longest;

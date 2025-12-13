@@ -26,7 +26,7 @@ public class FibonacciDP {
      * Space Complexity: O(n)
      * - Due to the recursion stack in the worst case (linear depth)
      */
-    public static int basicRecursion(int n) {
+    private static int basicRecursion(int n) {
         if (n <= 1) return n;  // Base case: F(0) = 0, F(1) = 1
 
         // Recursive calls for F(n-1) and F(n-2)
@@ -44,7 +44,7 @@ public class FibonacciDP {
      * - O(n) for the dp[] array
      * - O(n) for recursion stack (function call depth)
      */
-    public static int f(int n, int[] dp) {
+    private static int f(int n, int[] dp) {
         if (n <= 1) return n;  // Base case
 
         if (dp[n] != -1) {     // If already computed, return from dp
@@ -66,7 +66,7 @@ public class FibonacciDP {
      * Space Complexity: O(n)
      * - Array of size n+1 used to store intermediate results
      */
-    public static int tabulation(int n, int[] dp) {
+    private static int tabulation(int n, int[] dp) {
         dp[0] = 0;  // Base value: F(0)
         dp[1] = 1;  // Base value: F(1)
 
@@ -88,7 +88,7 @@ public class FibonacciDP {
      * Space Complexity: O(1)
      * - Only uses three integer variables
      */
-    public static int spaceOpt(int n) {
+    private static int spaceOpt(int n) {
         if (n <= 1) return n;  // Base cases
 
         int prev1 = 0;  // Initially F(0)

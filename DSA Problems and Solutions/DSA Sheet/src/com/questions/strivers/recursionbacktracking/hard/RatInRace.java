@@ -75,7 +75,7 @@ public class RatInRace {
      * Function to find all paths from (0,0) to (n-1,n-1).
      * It initializes the visited array and calls the recursive solver.
      */
-    public static ArrayList<String> findPath(int[][] m, int n) {
+    private static ArrayList<String> findPath(int[][] m, int n) {
         int vis[][] = new int[n][n];  // visited array to track path
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {

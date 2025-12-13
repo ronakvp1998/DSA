@@ -9,7 +9,7 @@ public class PrintSubsequences {
         System.out.println(printSubsequence2(0,new ArrayList<>(),arr));
     }
 
-     public static void printSubsequence(int index, List<Integer> list, int arr[]){
+     private static void printSubsequence(int index, List<Integer> list, int arr[]){
         if(index >= arr.length){
             System.out.println(list);
             return;
@@ -20,7 +20,7 @@ public class PrintSubsequences {
         printSubsequence(index+1,list,arr);
      }
 
-    public static List<List<Integer>> printSubsequence2(int index, List<Integer> list, int[] arr) {
+    private static List<List<Integer>> printSubsequence2(int index, List<Integer> list, int[] arr) {
         // List to store all subsequences
         List<List<Integer>> result = new ArrayList<>();
 

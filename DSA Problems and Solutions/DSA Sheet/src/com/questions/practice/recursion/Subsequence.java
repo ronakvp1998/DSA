@@ -11,7 +11,7 @@ public class Subsequence {
     }
 
     // count all the subsequences with sum is k
-    public static int subsequences4(int index,int arr[],int sum,int k,int count){
+    private static int subsequences4(int index,int arr[],int sum,int k,int count){
         if(index == arr.length){
             if(sum == k){
                 count++;
@@ -24,7 +24,7 @@ public class Subsequence {
     }
 
     // print any one subsequence with sum is k
-    public static boolean subsequences3(int index,int arr[],
+    private static boolean subsequences3(int index,int arr[],
                                         ArrayList<Integer>ds,int sum,int k){
         if(index == arr.length){
             if(sum == k){
@@ -48,7 +48,7 @@ public class Subsequence {
     }
 
     // print all the subsequences with sum = k
-    public static void subsequence2(int index,int arr[],ArrayList<Integer>ds,
+    private static void subsequence2(int index,int arr[],ArrayList<Integer>ds,
                                     ArrayList<ArrayList<Integer>>ans,int sum,int k){
         if(index == arr.length){
             if(sum == k){
@@ -65,7 +65,7 @@ public class Subsequence {
     }
 
     // print all the subsequences
-    public static void subsequence1(int index, int arr[], ArrayList<Integer> ds,
+    private static void subsequence1(int index, int arr[], ArrayList<Integer> ds,
                                     ArrayList<ArrayList<Integer>>ans){
 
         if(index == arr.length){

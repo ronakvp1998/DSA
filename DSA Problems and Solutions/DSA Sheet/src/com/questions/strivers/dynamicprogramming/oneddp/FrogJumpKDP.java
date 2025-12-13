@@ -37,7 +37,7 @@ public class FrogJumpKDP {
     }
 
     // -------------------- 1️⃣ Recursive (Brute-force) --------------------
-    public static int recursive(int n, int[] arr, int k) {
+    private static int recursive(int n, int[] arr, int k) {
         // ✅ Base condition: No cost to stay at the starting stair
         if (n == 0) {
             return 0;
@@ -62,7 +62,7 @@ public class FrogJumpKDP {
     }
 
     // -------------------- 2️⃣ Memoization (Top-down DP) --------------------
-    public static int memorization(int n, int[] arr, int[] dp, int k) {
+    private static int memorization(int n, int[] arr, int[] dp, int k) {
         // ✅ Base condition: cost to reach first stair is 0
         if (n == 0) {
             return 0;
@@ -93,7 +93,7 @@ public class FrogJumpKDP {
     }
 
     // -------------------- 3️⃣ Tabulation (Bottom-up DP) --------------------
-    public static int tabulation(int n, int[] arr, int k) {
+    private static int tabulation(int n, int[] arr, int k) {
         int dp[] = new int[n]; // dp[i] = min cost to reach i-th stair
         dp[0] = 0;             // 🟢 Base case: no cost to start at stair 0
 
@@ -121,7 +121,7 @@ public class FrogJumpKDP {
     }
 
     // -------------------- 4️⃣ Space Optimized DP --------------------
-    public static int spaceOptimized(int n, int[] arr, int k) {
+    private static int spaceOptimized(int n, int[] arr, int k) {
         int[] dp = new int[k];  // Circular buffer of size k to store recent results
         dp[0] = 0;              // 🟢 Cost to reach stair 0 is 0
 

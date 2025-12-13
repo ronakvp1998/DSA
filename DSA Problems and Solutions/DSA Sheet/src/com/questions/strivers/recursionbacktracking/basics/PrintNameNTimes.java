@@ -11,7 +11,7 @@ public class PrintNameNTimes {
     }
 
     // functional
-    public static String[] printName1(String name, int n, String[] res){
+    private static String[] printName1(String name, int n, String[] res){
         if(n == 0){
             res[n] = name;
             return res;
@@ -22,7 +22,7 @@ public class PrintNameNTimes {
     }
 
     // parametized
-    public static void printName(String name, int n){
+    private static void printName(String name, int n){
         if(n == 0){
             return;
         }

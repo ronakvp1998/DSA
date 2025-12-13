@@ -8,7 +8,7 @@ public class MaxConsOnes {
     }
 
     // Approach 2 max consecutive ones
-    public static int maxConsOnes2(int arr[], int k){
+    private static int maxConsOnes2(int arr[], int k){
         int maxLen=0,l=0,r=0,len=0,zeros=0,n=arr.length;
         while (r < n){
             if(arr[r] == 0){
@@ -30,7 +30,7 @@ public class MaxConsOnes {
     }
 
     // Approach 1 max consecutive ones
-    public static int maxConsOnes1(int arr[], int k){
+    private static int maxConsOnes1(int arr[], int k){
         int maxLen=0;
         for(int i=0;i<arr.length;i++){
             int zeros = 0;

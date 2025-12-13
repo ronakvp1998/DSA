@@ -57,7 +57,7 @@ public class CombinationSum2 {
      * Space Complexity: O(n) recursion depth + O(k) for temporary list
      *                  where k = average size of combination.
      */
-    public static void combinationSum2(int index, int arr[], List<List<Integer>> ans,
+    private static void combinationSum2(int index, int arr[], List<List<Integer>> ans,
                                        List<Integer> ds, int target) {
         if (target == 0) {
             ans.add(new ArrayList<>(ds));
@@ -90,7 +90,7 @@ public class CombinationSum2 {
      * Space Complexity: O(2^n * n) for storing subsets in worst case
      *                   O(n) recursion stack
      */
-    public static List<List<Integer>> combinationSum2BruteForce(int[] arr, int target) {
+    private static List<List<Integer>> combinationSum2BruteForce(int[] arr, int target) {
         Arrays.sort(arr); // sorting ensures duplicates can be compared in Set properly
         Set<List<Integer>> set = new HashSet<>();
         generateSubsequences(0, arr, new ArrayList<>(), set, target);

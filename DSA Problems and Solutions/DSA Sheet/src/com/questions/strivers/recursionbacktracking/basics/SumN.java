@@ -8,7 +8,7 @@ public class SumN {
     }
 
     //parametrized way
-    public static void sum1(int index, int sum){
+    private static void sum1(int index, int sum){
         if(index < 1){
             System.out.println(sum);
             return;
@@ -17,7 +17,7 @@ public class SumN {
     }
 
     // functional way
-    public static int sum2(int n){
+    private static int sum2(int n){
         if(n == 0){
             return 0;
         }

@@ -9,7 +9,7 @@ public class ReverseLL {
         head = reverse(head);
     }
 
-    public static Node reverse(Node head){
+    private static Node reverse(Node head){
         Node temp = head;
         Node prev = null;
         while (temp != null){
@@ -25,7 +25,7 @@ public class ReverseLL {
     
 
     // iterative approach
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -35,7 +35,7 @@ public class ReverseLL {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

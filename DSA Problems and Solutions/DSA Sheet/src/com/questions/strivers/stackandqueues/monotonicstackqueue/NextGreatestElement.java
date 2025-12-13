@@ -13,7 +13,7 @@ public class NextGreatestElement {
         System.out.println(findNGE(arr));
     }
 
-    public static List<Integer> findNGE(int arr[]){
+    private static List<Integer> findNGE(int arr[]){
         int n = arr.length;
         int nge[] = new int[n];
         Stack<Integer> stack = new Stack<>();

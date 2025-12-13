@@ -7,7 +7,7 @@ public class RotateALL {
 
     }
 
-    public static Node rotateLL(Node head,int k){
+    private static Node rotateLL(Node head,int k){
         int len = 1;
         Node tail = head;
         while (tail.next != null){
@@ -24,7 +24,7 @@ public class RotateALL {
         return head;
     }
 
-    public static Node findKthNode(Node temp , int k){
+    private static Node findKthNode(Node temp , int k){
         int count = 1;
         while (temp != null){
             if(count == k) return temp;

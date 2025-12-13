@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class UnboundedKnapsack {
 
     // 1️⃣ Recursive Approach
-    public static int unboundedKnapsackRecursive(int index, int[] wt, int[] val, int W) {
+    private static int unboundedKnapsackRecursive(int index, int[] wt, int[] val, int W) {
         // Base case: when we're at the first item (index 0)
         // We can take this item as many times as it fits into capacity W
         if (index == 0) {
@@ -40,7 +40,7 @@ public class UnboundedKnapsack {
     // Space Complexity: O(W) — recursion stack depth
 
     // 2️⃣ Memoization (Top-Down DP)
-    public static int unboundedKnapsackMemo(int index, int[] wt, int[] val, int W, int[][] dp) {
+    private static int unboundedKnapsackMemo(int index, int[] wt, int[] val, int W, int[][] dp) {
         // Base case: only one item to consider
         if (index == 0) {
             return (W / wt[0]) * val[0];
@@ -62,7 +62,7 @@ public class UnboundedKnapsack {
     // Space Complexity: O(N * W) + O(W) stack depth
 
     // 3️⃣ Tabulation (Bottom-Up DP)
-    public static int unboundedKnapsackTabulation(int[] wt, int[] val, int W) {
+    private static int unboundedKnapsackTabulation(int[] wt, int[] val, int W) {
         int n = wt.length;
 
         // dp[i][w] = max value using first i+1 items to make weight w
@@ -91,7 +91,7 @@ public class UnboundedKnapsack {
     // Space Complexity: O(N * W)
 
     // 4️⃣ Space Optimization
-    public static int unboundedKnapsackSpaceOptimized(int[] wt, int[] val, int W) {
+    private static int unboundedKnapsackSpaceOptimized(int[] wt, int[] val, int W) {
         int n = wt.length;
 
         // Create a 1D array to store current dp state

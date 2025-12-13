@@ -43,7 +43,7 @@ public class Subsequence {
      * Space Complexity: O(n)
      * - Recursion stack depth is at most n.
      */
-    public static int subsequences4(int index, int arr[], int sum, int k, int count) {
+    private static int subsequences4(int index, int arr[], int sum, int k, int count) {
         // Base case: reached end of array
         if(index == arr.length){
             if(sum == k){ // subsequence found
@@ -72,7 +72,7 @@ public class Subsequence {
      * - Recursion depth = n.
      * - 'ds' list can hold at most n elements.
      */
-    public static boolean subsequences3(int index, int arr[],
+    private static boolean subsequences3(int index, int arr[],
                                         ArrayList<Integer> ds, int sum, int k) {
         if(index == arr.length){
             if(sum == k){
@@ -112,7 +112,7 @@ public class Subsequence {
      * - 'ds' temporary list = O(n).
      * - Storing all subsequences = O(2^n * n).
      */
-    public static void subsequence2(int index, int arr[], ArrayList<Integer> ds,
+    private static void subsequence2(int index, int arr[], ArrayList<Integer> ds,
                                     ArrayList<ArrayList<Integer>> ans, int sum, int k) {
         if(index == arr.length){
             if(sum == k){
@@ -146,7 +146,7 @@ public class Subsequence {
      * - 'ds' temporary list = O(n).
      * - Storing all subsequences = O(2^n * n).
      */
-    public static void subsequence1(int index, int arr[], ArrayList<Integer> ds,
+    private static void subsequence1(int index, int arr[], ArrayList<Integer> ds,
                                     ArrayList<ArrayList<Integer>> ans) {
         if(index == arr.length){
             ans.add(new ArrayList<>(ds)); // store subsequence

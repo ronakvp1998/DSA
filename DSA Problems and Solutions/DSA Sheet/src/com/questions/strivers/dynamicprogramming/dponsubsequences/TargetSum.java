@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class TargetSum {
 
     // 1. ============================ RECURSION ============================
-    public static int countWaysRecursive(int index, int target, int[] arr) {
+    private static int countWaysRecursive(int index, int target, int[] arr) {
         // Base case: if we're at the first element
         if (index == 0) {
             // If adding or subtracting the current number gives the target, return 1
@@ -40,7 +40,7 @@ public class TargetSum {
 
 
     // 2. ============================ MEMOIZATION ============================
-    public static int countWaysMemo(int index, int target, int[] arr, int[][] dp, int offset) {
+    private static int countWaysMemo(int index, int target, int[] arr, int[][] dp, int offset) {
         // offset is used to avoid negative indexing by shifting range
         if (index == 0) {
             if (target == arr[0] || target == -arr[0]) {
@@ -64,7 +64,7 @@ public class TargetSum {
 
 
     // 3. ============================ TABULATION ============================
-    public static int countWaysTabulation(int[] arr, int target) {
+    private static int countWaysTabulation(int[] arr, int target) {
         int n = arr.length;
 
         // Find the range of possible sums to handle negative targets
@@ -99,7 +99,7 @@ public class TargetSum {
 
 
     // 4. ============================ SPACE OPTIMIZATION ============================
-    public static int countWaysSpaceOptimized(int[] arr, int target) {
+    private static int countWaysSpaceOptimized(int[] arr, int target) {
         int n = arr.length;
         int sum = Arrays.stream(arr).sum();
         int offset = sum;

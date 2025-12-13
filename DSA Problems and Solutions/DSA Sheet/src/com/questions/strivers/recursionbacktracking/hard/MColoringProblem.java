@@ -42,7 +42,7 @@ Explanation: It is not possible to color.
 public class MColoringProblem {
 
     // Function to check if the graph can be colored with at most 'C' colors
-    public static boolean graphColoring(List<Integer>[] G, int[] color, int i, int C) {
+    private static boolean graphColoring(List<Integer>[] G, int[] color, int i, int C) {
         int n = G.length;
         // Start recursive backtracking from node 0
         return solve(i, G, color, n, C);

@@ -35,12 +35,12 @@ public class MinMaxFallingSumPath {
     }
 
     // -------------------- 0. Plain Recursive ----------------------
-    public static int getMaxChocoRecursive(int[][] grid) {
+    private static int getMaxChocoRecursive(int[][] grid) {
         int n = grid.length, m = grid[0].length;
         return recursiveHelper(0, 0, m - 1, grid);
     }
 
-    public static int recursiveHelper(int i, int j1, int j2, int[][] grid) {
+    private static int recursiveHelper(int i, int j1, int j2, int[][] grid) {
         int n = grid.length, m = grid[0].length;
 
         // Base case 1: Out-of-bounds check
@@ -77,7 +77,7 @@ public class MinMaxFallingSumPath {
 
     // -------------------- 1. Recursive + Memoization ----------------------
 
-    public static int getMaxChocoMemo(int[][] grid) {
+    private static int getMaxChocoMemo(int[][] grid) {
         int n = grid.length, m = grid[0].length; // Grid dimensions
 
         // 3D memoization table initialized with -1
@@ -90,7 +90,7 @@ public class MinMaxFallingSumPath {
         return memoHelper(0, 0, m - 1, grid, dp);
     }
 
-    public static int memoHelper(int i, int j1, int j2, int[][] grid, int[][][] dp) {
+    private static int memoHelper(int i, int j1, int j2, int[][] grid, int[][][] dp) {
         int n = grid.length, m = grid[0].length;
 
         // Out-of-bounds check
@@ -128,7 +128,7 @@ public class MinMaxFallingSumPath {
 
     // -------------------- 2. Tabulation ----------------------
 
-    public static int getMaxChocoTab(int[][] grid) {
+    private static int getMaxChocoTab(int[][] grid) {
         int n = grid.length, m = grid[0].length;
 
         // 3D DP array to hold results
@@ -174,7 +174,7 @@ public class MinMaxFallingSumPath {
 
     // -------------------- 3. Space Optimized ----------------------
 
-    public static int getMaxChocoSpaceOpt(int[][] grid) {
+    private static int getMaxChocoSpaceOpt(int[][] grid) {
         int n = grid.length, m = grid[0].length;
 
         // Only keep current and previous 2D state

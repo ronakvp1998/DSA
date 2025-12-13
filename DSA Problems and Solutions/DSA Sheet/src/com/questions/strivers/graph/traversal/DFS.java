@@ -18,7 +18,7 @@ public class DFS {
         //O/P  [0, 1, 4, 2, 3]
     }
 
-    public static List<Integer> DfsOfGraph(int V, ArrayList<ArrayList<Integer>> adjList) {
+    private static List<Integer> DfsOfGraph(int V, ArrayList<ArrayList<Integer>> adjList) {
         ArrayList<Integer> ls = new ArrayList<>();
         boolean vis[] = new boolean[V+1];
         vis[0] = true;
@@ -26,7 +26,7 @@ public class DFS {
         return ls;
     }
 
-    public static void dfs(int node,boolean vis[], ArrayList<ArrayList<Integer>> adj,ArrayList<Integer>ls){
+    private static void dfs(int node,boolean vis[], ArrayList<ArrayList<Integer>> adj,ArrayList<Integer>ls){
         // making current node as visited and added into the list
         vis[node] = true;
         ls.add(node);

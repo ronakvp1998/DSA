@@ -17,7 +17,7 @@ public class ChocolateDistributionProblem {
         m = 5;
     }
 
-    public static int findMinDiff(int arr[], int m){
+    private static int findMinDiff(int arr[], int m){
         int n = arr.length;
         Arrays.sort(arr);
 

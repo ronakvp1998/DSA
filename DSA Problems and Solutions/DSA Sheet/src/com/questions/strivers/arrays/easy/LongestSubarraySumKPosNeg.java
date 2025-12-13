@@ -29,7 +29,7 @@ public class LongestSubarraySumKPosNeg {
      * Time Complexity: O(N^3)
      * Space Complexity: O(1)
      */
-    public static int getLongestSubarray1(int[] a, int k) {
+    private static int getLongestSubarray1(int[] a, int k) {
         int n = a.length;
         int len = 0;
 
@@ -54,7 +54,7 @@ public class LongestSubarraySumKPosNeg {
      * Time Complexity: O(N^2)
      * Space Complexity: O(1)
      */
-    public static int getLongestSubarray2(int[] a, int k) {
+    private static int getLongestSubarray2(int[] a, int k) {
         int n = a.length;
         int len = 0;
 
@@ -78,7 +78,7 @@ public class LongestSubarraySumKPosNeg {
      * Time Complexity: O(N)
      * Space Complexity: O(N)
      */
-    public static int getLongestSubarray3(int[] a, int k) {
+    private static int getLongestSubarray3(int[] a, int k) {
         int n = a.length;
         Map<Integer, Integer> preSumMap = new HashMap<>();
         int sum = 0;

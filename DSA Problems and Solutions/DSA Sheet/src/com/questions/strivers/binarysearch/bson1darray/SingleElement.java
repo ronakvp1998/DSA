@@ -10,7 +10,7 @@ public class SingleElement {
         System.out.println(singleElement(arr,n));
     }
 
-    public static int singleElement(int arr[], int n){
+    private static int singleElement(int arr[], int n){
         if(n == 1) return arr[0];
         if(arr[0] != arr[1]) return arr[0];
         if(arr[n-1] != arr[n-2]) return arr[n-1];

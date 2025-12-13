@@ -9,7 +9,7 @@ public class LongestSubstringCond {
     }
 
     // Approach3 longest subarray with sum<=k
-    public static int longestSubstringCond3(int arr[], int k){
+    private static int longestSubstringCond3(int arr[], int k){
         int l=0,r=0,sum=0,maxLen=0,n=arr.length;
         while (r < n){
             sum = sum + arr[l];
@@ -26,7 +26,7 @@ public class LongestSubstringCond {
     }
 
     // Approach2 longest subarray with sum<=k
-    public static int longestSubstringCond2(int arr[], int k){
+    private static int longestSubstringCond2(int arr[], int k){
         int l=0,r=0,sum=0,maxLen=0,n=arr.length;
         while (r<n){
             sum = sum + arr[r];
@@ -43,7 +43,7 @@ public class LongestSubstringCond {
     }
 
     // Approach1 longest subarray with sum<=k
-    public static int longestSubstringCond1(int arr[], int k){
+    private static int longestSubstringCond1(int arr[], int k){
         int maxLen = 0,n=arr.length;
         for(int i=0;i<n;i++){
             int sum = 0;

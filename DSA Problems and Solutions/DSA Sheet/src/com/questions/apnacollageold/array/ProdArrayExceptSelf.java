@@ -17,7 +17,7 @@ public class ProdArrayExceptSelf {
     }
 
     // 4 optimized using prefix and suffix array TC O(3n) SC O(1)
-    public static int[] productArrayExceptSelf4(int arr[]){
+    private static int[] productArrayExceptSelf4(int arr[]){
         int temp[] = new int[arr.length];
         Arrays.fill(temp,1);
         // get prefix
@@ -37,7 +37,7 @@ public class ProdArrayExceptSelf {
 
 
     // 3 optimized using prefix and suffix array TC O(3n) SC O(3n)
-    public static int[] productArrayExceptSelf3(int arr[]){
+    private static int[] productArrayExceptSelf3(int arr[]){
         int suffix[] = new int[arr.length];
         int prefix[] = new int[arr.length];
         suffix[0] = 1;
@@ -59,7 +59,7 @@ public class ProdArrayExceptSelf {
     }
 
     // 2 bruteforce approach without division method
-    public static int[] productArrayExceptSelf2(int arr[]){
+    private static int[] productArrayExceptSelf2(int arr[]){
         int temp[] = new int[arr.length];
         Arrays.fill(temp,1);
         for(int i=0;i< arr.length;i++){
@@ -88,7 +88,7 @@ public class ProdArrayExceptSelf {
 
 
     // 1 bruteforce approach using divide method
-    public static void productArrayExceptSelf(int arr[]){
+    private static void productArrayExceptSelf(int arr[]){
         int product = 1;
         for(int a : arr){
             product *= a;

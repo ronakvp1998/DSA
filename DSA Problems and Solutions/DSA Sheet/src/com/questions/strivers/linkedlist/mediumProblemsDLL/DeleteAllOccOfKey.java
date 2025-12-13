@@ -6,7 +6,7 @@ public class DeleteAllOccOfKey {
 
     }
 
-    public static NodeDLL deleteAllOccKey(NodeDLL head, int key){
+    private static NodeDLL deleteAllOccKey(NodeDLL head, int key){
 
         NodeDLL temp = head;
         while (temp != null){

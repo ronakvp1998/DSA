@@ -42,7 +42,7 @@ public class Search2DMatrix {
     Time Complexity: O(N * M)  -> N = number of rows, M = number of columns
     Space Complexity: O(1)     -> No extra space used
      */
-    public static boolean searchMatrix(ArrayList<ArrayList<Integer>> matrix, int target) {
+    private static boolean searchMatrix(ArrayList<ArrayList<Integer>> matrix, int target) {
         int n = matrix.size(), m = matrix.get(0).size();
 
         // Traverse each element in the matrix
@@ -62,7 +62,7 @@ public class Search2DMatrix {
     Time Complexity: O(log M)
     Space Complexity: O(1)
      */
-    public static boolean binarySearch2(ArrayList<Integer> nums, int target) {
+    private static boolean binarySearch2(ArrayList<Integer> nums, int target) {
         int n = nums.size();
         int low = 0, high = n - 1;
 
@@ -85,7 +85,7 @@ public class Search2DMatrix {
     Time Complexity: O(N * log M) -> N = rows, log M for binary search on each row
     Space Complexity: O(1)
      */
-    public static boolean searchMatrix2(ArrayList<ArrayList<Integer>> matrix, int target) {
+    private static boolean searchMatrix2(ArrayList<ArrayList<Integer>> matrix, int target) {
         int n = matrix.size();
         int m = matrix.get(0).size();
 
@@ -108,7 +108,7 @@ public class Search2DMatrix {
     Time Complexity: O(log(N*M)) -> Binary search on total elements
     Space Complexity: O(1)
      */
-    public static boolean searchMatrix3(ArrayList<ArrayList<Integer>> matrix, int target) {
+    private static boolean searchMatrix3(ArrayList<ArrayList<Integer>> matrix, int target) {
         int n = matrix.size();
         int m = matrix.get(0).size();
 

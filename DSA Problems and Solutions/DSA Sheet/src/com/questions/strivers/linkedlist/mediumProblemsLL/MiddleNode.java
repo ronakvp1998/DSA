@@ -11,7 +11,7 @@ public class MiddleNode {
         System.out.println(middleNode(head2).data);
     }
 
-    public static Node middleNode(Node head){
+    private static Node middleNode(Node head){
         Node slow = head;
         Node fast = head;
         while (fast != null && fast.next != null){
@@ -23,7 +23,7 @@ public class MiddleNode {
 
 
     // iterative approach
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -33,7 +33,7 @@ public class MiddleNode {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

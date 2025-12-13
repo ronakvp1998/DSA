@@ -65,7 +65,7 @@ Note: We actually pass a particular day as a parameter to the possible() functio
 * */
 public class MinDayMBounq {
     // Function to check if it is possible to make at least m bouquets on a given day
-    public static boolean possible(int[] arr, int day, int m, int k) {
+    private static boolean possible(int[] arr, int day, int m, int k) {
         int n = arr.length; // total number of flowers
         int cnt = 0; // count of consecutive bloomed flowers
         int noOfB = 0; // number of bouquets made
@@ -90,7 +90,7 @@ public class MinDayMBounq {
     }
 
     // Brute-force approach to find the minimum day to make m bouquets
-    public static int roseGarden(int[] arr, int k, int m) {
+    private static int roseGarden(int[] arr, int k, int m) {
         long val = (long) m * k; // total number of flowers needed
 
         int n = arr.length;
@@ -124,7 +124,7 @@ public class MinDayMBounq {
      */
 
     // Optimized helper function reused in binary search version
-    public static boolean possible2(int[] arr, int day, int m, int k) {
+    private static boolean possible2(int[] arr, int day, int m, int k) {
         int n = arr.length;
         int cnt = 0, noOfB = 0;
 
@@ -142,7 +142,7 @@ public class MinDayMBounq {
     }
 
     // Optimized solution using binary search on the answer space
-    public static int roseGarden2(int[] arr, int k, int m) {
+    private static int roseGarden2(int[] arr, int k, int m) {
         long val = (long) m * k;
         int n = arr.length;
 

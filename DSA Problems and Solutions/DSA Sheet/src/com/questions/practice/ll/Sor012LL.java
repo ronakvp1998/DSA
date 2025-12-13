@@ -11,7 +11,7 @@ public class Sor012LL {
         traverseDLL(head);
     }
 
-    public static Node sort0122(Node head){
+    private static Node sort0122(Node head){
         if(head == null || head.next == null) return head;
         Node temp = head;
         Node dummy0 = new Node(-1);
@@ -39,7 +39,7 @@ public class Sor012LL {
         return dummy0.next;
     }
 
-    public static Node sort012(Node head){
+    private static Node sort012(Node head){
         Node temp = head;
         int count0=0, count1=0, count2=2;
         while (temp != null){
@@ -71,7 +71,7 @@ public class Sor012LL {
     }
 
 
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -81,7 +81,7 @@ public class Sor012LL {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

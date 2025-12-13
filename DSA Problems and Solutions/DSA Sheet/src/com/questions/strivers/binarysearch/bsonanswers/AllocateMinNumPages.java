@@ -62,7 +62,7 @@ public class AllocateMinNumPages {
      * Helper function for both approaches.
      * Returns how many students are needed if max pages allowed = 'pages'.
      */
-    public static int countStudents(ArrayList<Integer> arr, int pages) {
+    private static int countStudents(ArrayList<Integer> arr, int pages) {
         int n = arr.size();
         int students = 1;       // Start with first student
         long pagesStudent = 0;  // Pages assigned to current student
@@ -87,7 +87,7 @@ public class AllocateMinNumPages {
      * Time Complexity: O((sum-max) * n)
      * Space Complexity: O(1)
      */
-    public static int findPages(ArrayList<Integer> arr, int n, int m) {
+    private static int findPages(ArrayList<Integer> arr, int n, int m) {
         if (m > n) return -1; // Impossible if more students than books
 
         int low = Collections.max(arr); // At least one student gets largest book
@@ -108,7 +108,7 @@ public class AllocateMinNumPages {
      * Time Complexity: O(n log(sum-max))
      * Space Complexity: O(1)
      */
-    public static int findPages2(ArrayList<Integer> arr, int n, int m) {
+    private static int findPages2(ArrayList<Integer> arr, int n, int m) {
         if (m > n) return -1; // Impossible if more students than books
 
         int low = Collections.max(arr);

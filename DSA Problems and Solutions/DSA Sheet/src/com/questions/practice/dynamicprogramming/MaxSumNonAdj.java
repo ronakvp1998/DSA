@@ -7,7 +7,7 @@ public class MaxSumNonAdj {
         System.out.println(resursive(n-1,arr));
     }
 
-    public static int resursive(int n, int arr[]){
+    private static int resursive(int n, int arr[]){
         if(n < 0){
             return 0;
         }

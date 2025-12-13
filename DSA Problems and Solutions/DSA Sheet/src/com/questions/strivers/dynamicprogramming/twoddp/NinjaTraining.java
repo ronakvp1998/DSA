@@ -34,7 +34,7 @@ public class NinjaTraining {
     // Recursive approach to solve the problem
     // Time Complexity: O(3^N) - Each day has 3 tasks, and recursion explores all combinations
     // Space Complexity: O(N) - Recursion stack depth is equal to the number of days
-    public static int recursive(int day, int lastTask, int[][] meritPoints) {
+    private static int recursive(int day, int lastTask, int[][] meritPoints) {
         // Base case: If it's the first day, return the maximum points for tasks not performed on the last day
         if (day == 0) {
             int maxPoints = 0;
@@ -58,7 +58,7 @@ public class NinjaTraining {
     }
 
     // Wrapper function for the recursive approach
-    public static int ninjaTrainingRecursive(int[][] meritPoints) {
+    private static int ninjaTrainingRecursive(int[][] meritPoints) {
         int days = meritPoints.length;
         // Start with no task performed on the last day (represented by 3)
         return recursive(days - 1, 3, meritPoints);
@@ -67,7 +67,7 @@ public class NinjaTraining {
     // Memoization approach to solve the problem
     // Time Complexity: O(N * 4) - Each state (day, lastTask) is computed once
     // Space Complexity: O(N * 4 + N) - Space for dp array and recursion stack
-    public static int memoization(int day, int lastTask, int[][] meritPoints, int[][] dp) {
+    private static int memoization(int day, int lastTask, int[][] meritPoints, int[][] dp) {
         // Base case: If it's the first day, return the maximum points for tasks not performed on the last day
         if (day == 0) {
             int maxPoints = 0;
@@ -96,7 +96,7 @@ public class NinjaTraining {
     }
 
     // Wrapper function for the memoization approach
-    public static int ninjaTrainingMemoization(int[][] meritPoints) {
+    private static int ninjaTrainingMemoization(int[][] meritPoints) {
         int days = meritPoints.length;
         int[][] dp = new int[days][4]; // dp array to store results
         for (int[] row : dp) {
@@ -109,7 +109,7 @@ public class NinjaTraining {
     // Tabulation approach to solve the problem
     // Time Complexity: O(N * 4 * 3) - For each day, compute results for 4 possible lastTask values, iterating over 3 tasks
     // Space Complexity: O(N * 4) - Space for dp array
-    public static int ninjaTrainingTabulation(int[][] meritPoints) {
+    private static int ninjaTrainingTabulation(int[][] meritPoints) {
         int days = meritPoints.length;
         int[][] dp = new int[days][4]; // dp array to store results
 
@@ -138,7 +138,7 @@ public class NinjaTraining {
     // Space-optimized approach to solve the problem
     // Time Complexity: O(N * 4 * 3) - Similar to tabulation, but uses reduced space
     // Space Complexity: O(4) - Only stores results for the current and previous day
-    public static int ninjaTrainingSpaceOptimized(int[][] meritPoints) {
+    private static int ninjaTrainingSpaceOptimized(int[][] meritPoints) {
         int days = meritPoints.length;
         int[] prevDay = new int[4]; // Array to store results for the previous day
 

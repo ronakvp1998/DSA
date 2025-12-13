@@ -8,7 +8,7 @@ public class NextGreatestElment2 {
 
     }
 
-    public static int[] findNGE(int arr[]){
+    private static int[] findNGE(int arr[]){
         int nge[] = new int[arr.length];
         Stack<Integer> stack = new Stack<>();
         int n = arr.length;

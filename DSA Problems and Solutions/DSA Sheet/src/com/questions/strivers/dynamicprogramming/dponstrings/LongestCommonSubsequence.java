@@ -17,7 +17,7 @@ public class LongestCommonSubsequence {
     // 1. Recursive Approach
     // Time Complexity: O(2^(m + n)) -> Exponential due to overlapping subproblems
     // Space Complexity: O(m + n) -> Stack space due to recursion depth
-    public static int lcsRecursive(String str1, String str2, int index1, int index2) {
+    private static int lcsRecursive(String str1, String str2, int index1, int index2) {
         // Base Case: If we have reached the beginning of either string, there is no LCS
         if (index1 < 0 || index2 < 0) return 0;
 
@@ -38,7 +38,7 @@ public class LongestCommonSubsequence {
     // 2. Memoization Approach (Top-Down DP)
     // Time Complexity: O(m * n) -> Each state (i, j) is computed only once
     // Space Complexity: O(m * n) for dp[][] + O(m + n) recursion stack
-    public static int lcsMemoization(String s1, String s2) {
+    private static int lcsMemoization(String s1, String s2) {
         int m = s1.length(); // Length of first string
         int n = s2.length(); // Length of second string
 
@@ -75,7 +75,7 @@ public class LongestCommonSubsequence {
     // 3. Tabulation (Bottom-Up DP)
     // Time Complexity: O(m * n) -> Each cell of dp table is filled once
     // Space Complexity: O(m * n) for the 2D dp array
-    public static int lcsTabulation(String s1, String s2) {
+    private static int lcsTabulation(String s1, String s2) {
         int m = s1.length(); // Length of first string
         int n = s2.length(); // Length of second string
 
@@ -101,7 +101,7 @@ public class LongestCommonSubsequence {
     // 4. Space Optimized Approach
     // Time Complexity: O(m * n)
     // Space Complexity: O(2 * n) = O(n) -> Only two rows required at a time
-    public static int lcsSpaceOptimized(String s1, String s2) {
+    private static int lcsSpaceOptimized(String s1, String s2) {
         int m = s1.length(); // Length of s1
         int n = s2.length(); // Length of s2
 

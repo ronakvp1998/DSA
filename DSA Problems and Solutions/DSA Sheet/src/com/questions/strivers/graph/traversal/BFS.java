@@ -1,9 +1,6 @@
 package com.questions.strivers.graph.traversal;
 
-import com.questions.strivers.graph.graphrepresentation.AdjucancyList;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -14,11 +11,11 @@ public class BFS {
 //        4 --- 2
 //        |
 //        3
-        System.out.println(bfsOfGraph(5, AdjucancyList.createAdjList()));
+//        System.out.println(bfsOfGraph(5, AdjucancyList.createAdjList()));
         //O/P  [0, 1, 4, 2, 3]
     }
 
-    public static ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj){
+    private static ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj){
         ArrayList<Integer> bfs = new ArrayList<>();
         boolean vis[] = new boolean[V];
         Queue<Integer> q = new LinkedList<>();

@@ -34,7 +34,7 @@ public class LongestCommonPrefix {
      * - M = length of the shortest string
      * Space Complexity: O(1)
      */
-    public static String longestCommonPrefixHorizontal(String[] strs) {
+    private static String longestCommonPrefixHorizontal(String[] strs) {
         if (strs == null || strs.length == 0) return "";
 
         String prefix = strs[0];
@@ -60,7 +60,7 @@ public class LongestCommonPrefix {
      * Time Complexity: O(N * M)
      * Space Complexity: O(1)
      */
-    public static String longestCommonPrefixVertical(String[] strs) {
+    private static String longestCommonPrefixVertical(String[] strs) {
         if (strs == null || strs.length == 0) return "";
 
         for (int i = 0; i < strs[0].length(); i++) {
@@ -88,7 +88,7 @@ public class LongestCommonPrefix {
      * - Sorting dominates, comparison of two strings is linear in length M.
      * Space Complexity: O(1) extra (ignoring sorting space)
      */
-    public static String longestCommonPrefixSorting(String[] strs) {
+    private static String longestCommonPrefixSorting(String[] strs) {
         if (strs == null || strs.length == 0) return "";
 
         Arrays.sort(strs); // Sort lexicographically
@@ -114,7 +114,7 @@ public class LongestCommonPrefix {
      * Time Complexity: O(N * M)
      * Space Complexity: O(logN) for recursion stack
      */
-    public static String longestCommonPrefixDivideAndConquer(String[] strs) {
+    private static String longestCommonPrefixDivideAndConquer(String[] strs) {
         if (strs == null || strs.length == 0) return "";
         return divide(strs, 0, strs.length - 1);
     }

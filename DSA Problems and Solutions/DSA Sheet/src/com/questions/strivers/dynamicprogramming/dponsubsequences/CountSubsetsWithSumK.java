@@ -15,7 +15,7 @@ public class CountSubsetsWithSumK {
 
     // ===================== 1. RECURSION =====================
     // Time Complexity: O(2^n), Space Complexity: O(n) for recursion stack
-    public static int countSubsetsRecursive(int index, int target, int[] arr) {
+    private static int countSubsetsRecursive(int index, int target, int[] arr) {
         // Base Case: If we are at index 0
         if (index == 0) {
             // If target is 0 and element is also 0, we have 2 options: take or not take
@@ -38,7 +38,7 @@ public class CountSubsetsWithSumK {
 
     // ===================== 2. MEMOIZATION =====================
     // Time Complexity: O(n * k), Space: O(n * k) + O(n) recursion stack
-    public static int countSubsetsMemo(int index, int target, int[] arr, int[][] dp) {
+    private static int countSubsetsMemo(int index, int target, int[] arr, int[][] dp) {
         if (index == 0) {
             if (target == 0 && arr[0] == 0) return 2;
             if (target == 0 || target == arr[0]) return 1;
@@ -59,7 +59,7 @@ public class CountSubsetsWithSumK {
 
     // ===================== 3. TABULATION =====================
     // Time Complexity: O(n * k), Space: O(n * k)
-    public static int countSubsetsTabulation(int[] arr, int k) {
+    private static int countSubsetsTabulation(int[] arr, int k) {
         int n = arr.length;
         int[][] dp = new int[n][k + 1];
 
@@ -89,7 +89,7 @@ public class CountSubsetsWithSumK {
 
     // ===================== 4. SPACE OPTIMIZATION =====================
     // Time Complexity: O(n * k), Space: O(k)
-    public static int countSubsetsSpaceOptimized(int[] arr, int k) {
+    private static int countSubsetsSpaceOptimized(int[] arr, int k) {
         int n = arr.length;
         int[] prev = new int[k + 1];
         int[] curr = new int[k + 1];

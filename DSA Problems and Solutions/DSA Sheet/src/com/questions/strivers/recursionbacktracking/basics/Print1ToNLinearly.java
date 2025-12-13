@@ -9,7 +9,7 @@ public class Print1ToNLinearly {
     }
 
     // functional way
-    public static int[] print1ToN2(int i, int n, int[] arr){
+    private static int[] print1ToN2(int i, int n, int[] arr){
         if(i == n){
             return arr;
         }
@@ -19,7 +19,7 @@ public class Print1ToNLinearly {
     }
 
     // parametrised way
-    public static void print1ToN(int i, int n){
+    private static void print1ToN(int i, int n){
         if( i== n){
             return;
         }

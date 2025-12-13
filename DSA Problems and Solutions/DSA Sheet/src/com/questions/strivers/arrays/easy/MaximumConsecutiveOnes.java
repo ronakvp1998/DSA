@@ -41,7 +41,7 @@ public class MaximumConsecutiveOnes {
      * Time Complexity: O(n) — single pass over the array
      * Space Complexity: O(1) — constant extra space
      */
-    public static int maxConsecutiveOnes(int arr[]) {
+    private static int maxConsecutiveOnes(int arr[]) {
         int count = 0, maxCount = 0;
 
         for (int i = 0; i < arr.length; i++) {
@@ -63,7 +63,7 @@ public class MaximumConsecutiveOnes {
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      */
-    public static int maxConsecutiveOnesSlidingWindow(int[] arr) {
+    private static int maxConsecutiveOnesSlidingWindow(int[] arr) {
         int left = 0, right = 0, maxCount = 0;
 
         while (right < arr.length) {
@@ -86,7 +86,7 @@ public class MaximumConsecutiveOnes {
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      */
-    public static int maxConsecutiveOnesTwoPointers(int[] arr) {
+    private static int maxConsecutiveOnesTwoPointers(int[] arr) {
         int start = 0, end = 0, maxCount = 0;
 
         while (end < arr.length) {

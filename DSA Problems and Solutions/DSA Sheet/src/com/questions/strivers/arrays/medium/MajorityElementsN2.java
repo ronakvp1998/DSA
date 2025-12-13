@@ -34,7 +34,7 @@ public class MajorityElementsN2 {
 
     // ✅ 1. Moore's Voting Algorithm (When majority element is guaranteed to exist)
     // Time: O(N), Space: O(1)
-    public static int majority2(int n, int arr[]) {
+    private static int majority2(int n, int arr[]) {
         int res = arr[0]; // Assume first element is the majority
         int count = 1;
 
@@ -55,7 +55,7 @@ public class MajorityElementsN2 {
 
     // ✅ 2. Moore's Voting Algorithm (Validation step added: when majority MAY NOT exist)
     // Time: O(N) + O(N) = O(N), Space: O(1)
-    public static int majorityElement3(int arr[]) {
+    private static int majorityElement3(int arr[]) {
         int count = 0;
         int element = arr[0];
         int n = arr.length;
@@ -86,7 +86,7 @@ public class MajorityElementsN2 {
 
     // ✅ 3. Java Streams Approach
     // Time: O(N), Space: O(N)
-    public static int majorityElement2(int arr[]) {
+    private static int majorityElement2(int arr[]) {
         int n = arr.length;
 
         // Group elements by value and count occurrences using Streams
@@ -103,7 +103,7 @@ public class MajorityElementsN2 {
 
     // ✅ 4. HashMap Frequency Count
     // Time: O(N), Space: O(N)
-    public static int majorityElement1(int arr[]) {
+    private static int majorityElement1(int arr[]) {
         int n = arr.length;
         Map<Integer, Integer> map = new HashMap<>();
 
@@ -124,7 +124,7 @@ public class MajorityElementsN2 {
 
     // ❌ 5. Brute-force approach (Nested loop)
     // Time: O(N^2), Space: O(1)
-    public static int majorityElement(int arr[], int n) {
+    private static int majorityElement(int arr[], int n) {
         for (int i = 0; i < arr.length; i++) {
             int count = 0;
 

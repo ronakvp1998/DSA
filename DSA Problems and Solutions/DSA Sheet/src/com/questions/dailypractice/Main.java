@@ -16,7 +16,7 @@ public class Main {
         System.out.println(temp);
     }
 
-    public static void subsetSum1(int arr[], int index,List<Integer>res,  int sum){
+    private static void subsetSum1(int arr[], int index,List<Integer>res,  int sum){
         if(index == arr.length){
             res.add(sum);
             return;
@@ -26,7 +26,7 @@ public class Main {
 
     }
 
-    public static void combinationSum2(int arr[], int index, List<List<Integer>> res,List<Integer> temp,int target){
+    private static void combinationSum2(int arr[], int index, List<List<Integer>> res,List<Integer> temp,int target){
 
         if(target == 0){
                 res.add(new ArrayList<>(temp));
@@ -46,7 +46,7 @@ public class Main {
 
     }
 
-    public static void combinationSum1(int arr[], int index, List<List<Integer>> res,List<Integer> temp,int target){
+    private static void combinationSum1(int arr[], int index, List<List<Integer>> res,List<Integer> temp,int target){
 
         if(index == arr.length){
             if(target == 0){

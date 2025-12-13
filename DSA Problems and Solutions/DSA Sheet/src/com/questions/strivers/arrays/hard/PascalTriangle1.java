@@ -29,7 +29,7 @@ O(1) – Constant extra space used, since we’re just using variables (no array
 public class PascalTriangle1 {
 
     // Function to compute nCr using an optimized iterative method
-    public static long nCr(int n, int r) {
+    private static long nCr(int n, int r) {
         long res = 1; // Initialize result
 
         // Iteratively calculate value of nCr using the formula:
@@ -43,7 +43,7 @@ public class PascalTriangle1 {
     }
 
     // Function to return the element at position (r, c) in Pascal's Triangle
-    public static int pascalTriangle(int r, int c) {
+    private static int pascalTriangle(int r, int c) {
         // Since Pascal Triangle is 0-indexed, we use (r - 1) and (c - 1)
         int element = (int) nCr(r - 1, c - 1);
         return element; // Return the element at position (r, c)

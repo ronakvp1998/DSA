@@ -12,7 +12,7 @@ public class FibonacciSeries {
     }
 
     // parametrized approach
-    public static void fibonacci(int n, int first, int second) {
+    private static void fibonacci(int n, int first, int second) {
         // Base case: when n reaches 0, stop the recursion
         if (n <= 0) {
             return;
@@ -27,7 +27,7 @@ public class FibonacciSeries {
 
     // functional approach
     // Recursive Fibonacci function
-    public static int fibonacci(int n) {
+    private static int fibonacci(int n) {
         if (n <= 1) {
             return n;  // Base cases: fibonacci(0) = 0, fibonacci(1) = 1
         }

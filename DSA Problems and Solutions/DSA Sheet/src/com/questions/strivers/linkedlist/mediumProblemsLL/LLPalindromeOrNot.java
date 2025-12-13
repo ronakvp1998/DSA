@@ -13,7 +13,7 @@ public class LLPalindromeOrNot {
     }
 
     // approach 2
-    public static boolean checkIsPalindrome2(Node head) {
+    private static boolean checkIsPalindrome2(Node head) {
         Stack<Integer> st = new Stack<>();
         Node temp = head;
         while (temp != null){
@@ -30,7 +30,7 @@ public class LLPalindromeOrNot {
     }
 
     // approach 1
-    public static boolean checkIsPalindrome(Node head){
+    private static boolean checkIsPalindrome(Node head){
         if(head == null || head.next == null ) return true;
         Node slow = head, fast = head;
         while (fast.next != null && fast.next.next != null){
@@ -52,7 +52,7 @@ public class LLPalindromeOrNot {
         return true;
     }
 
-    public static Node reverseLinkedList(Node head){
+    private static Node reverseLinkedList(Node head){
         if(head == null || head.next == null) return head;
         Node newHead = reverseLinkedList(head.next);
         Node front = head.next;
@@ -61,7 +61,7 @@ public class LLPalindromeOrNot {
         return newHead;
     }
 
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -71,7 +71,7 @@ public class LLPalindromeOrNot {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

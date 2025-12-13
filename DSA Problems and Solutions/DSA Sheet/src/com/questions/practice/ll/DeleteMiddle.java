@@ -12,7 +12,7 @@ public class DeleteMiddle {
     }
 
     // approach 2 fast and slow
-    public static Node deleteMiddle1(Node head){
+    private static Node deleteMiddle1(Node head){
         if(head == null || head.next == null){
             return null;
         }
@@ -28,7 +28,7 @@ public class DeleteMiddle {
     }
 
     // approach 1
-    public static Node deleteMiddle(Node head){
+    private static Node deleteMiddle(Node head){
         if(head == null || head.next == null){
             return null;
         }
@@ -50,7 +50,7 @@ public class DeleteMiddle {
         return head;
     }
 
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -60,7 +60,7 @@ public class DeleteMiddle {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

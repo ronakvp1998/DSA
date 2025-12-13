@@ -35,7 +35,7 @@ public class MergeOverlappingSubIntervals {
      * 🧠 Space Complexity: O(n)
      *      - For storing merged intervals in `ans`
      */
-    public static List<List<Integer>> mergeOverlappingIntervals(int[][] arr) {
+    private static List<List<Integer>> mergeOverlappingIntervals(int[][] arr) {
         int n = arr.length; // total number of intervals
 
         // 🔽 Step 1: Sort the array by the start time of each interval
@@ -89,7 +89,7 @@ public class MergeOverlappingSubIntervals {
      * 🧠 Space Complexity: O(n)
      *      - For output list `ans`
      */
-    public static List<List<Integer>> mergeOverlappingIntervals2(int[][] arr) {
+    private static List<List<Integer>> mergeOverlappingIntervals2(int[][] arr) {
         int n = arr.length;
 
         // 🔽 Step 1: Sort the intervals based on start time

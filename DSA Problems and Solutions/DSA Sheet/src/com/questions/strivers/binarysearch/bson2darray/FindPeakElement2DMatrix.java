@@ -34,7 +34,7 @@ Space Complexity:
 */
 public class FindPeakElement2DMatrix {
 
-    public static int[] findPeakGrid(int[][] mat) {
+    private static int[] findPeakGrid(int[][] mat) {
         int m = mat.length;
         int n = mat[0].length;
 

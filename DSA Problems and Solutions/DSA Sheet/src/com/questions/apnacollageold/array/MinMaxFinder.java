@@ -27,7 +27,7 @@ public class MinMaxFinder {
         }
     }
 
-    public static Pair getMinMax(Integer arr[] ,int n){
+    private static Pair getMinMax(Integer arr[] ,int n){
         Pair pair = new Pair();
         arr= Arrays.stream(arr).sorted().collect(Collectors.toList()).toArray(Integer[] :: new);
         pair.min = arr[0];
@@ -35,11 +35,11 @@ public class MinMaxFinder {
         return pair;
     }
 
-    public static int setMin(int arr[] ,int n){
+    private static int setMin(int arr[] ,int n){
         return Arrays.stream(arr).reduce(Integer.MAX_VALUE,(min,element) -> element < min ? element : min);
     }
 
-    public static int setMax(int arr[] ,int n){
+    private static int setMax(int arr[] ,int n){
         return Arrays.stream(arr).reduce(Integer.MIN_VALUE,(max,element) -> element > max ?element:max);
     }
 }

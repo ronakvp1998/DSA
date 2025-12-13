@@ -52,7 +52,7 @@ public class GenerateBinaryNumbers {
     }
 
     // Recursive function to generate all binary strings of length n
-    public static void generateBinary(int n, String output, List<String> result) {
+    private static void generateBinary(int n, String output, List<String> result) {
         // Base case: if output length reaches n, add it to result
         if (output.length() == n) {
             result.add(output);

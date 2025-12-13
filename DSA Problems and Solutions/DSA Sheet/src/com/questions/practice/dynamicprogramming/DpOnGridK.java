@@ -27,7 +27,7 @@ public class DpOnGridK {
 //        System.out.println("Space Optimized: " + uniquePathsSpaceOptimized(grid));
     }
 
-    public static int uniquePathsRecursive(int m, int n, int [][]grid){
+    private static int uniquePathsRecursive(int m, int n, int [][]grid){
         if(m == 0 && n == 0){
             return 1;
         }

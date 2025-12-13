@@ -38,7 +38,7 @@ There is at least one word in s.
  */
 public class ReverseWordString {
 
-    public static String reverse(String s){
+    private static String reverse(String s){
         String [] arr = s.trim().split(" ");
         StringBuilder sb = new StringBuilder();
         for(int i=arr.length-1;i>=0;i--){
@@ -47,7 +47,7 @@ public class ReverseWordString {
         return sb.toString().trim();
     }
 
-    public static String reverse2(String s){
+    private static String reverse2(String s){
         String word[] = s.trim().split("\\s+");
         Collections.reverse(Arrays.asList(word));
         return String.join(" ",word);

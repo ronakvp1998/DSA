@@ -41,7 +41,7 @@ public class NumSubstringCont3Char {
 //    Approach 3: Optimized using last seen indices
 //   - Time: O(n)
 //   - Space: O(1)
-    public static int numSubStringCont3(String s) {
+    private static int numSubStringCont3(String s) {
         int lastSeen[] = new int[3]; // stores last seen indices for 'a','b','c'
         int n = s.length();
         Arrays.fill(lastSeen, -1);
@@ -68,7 +68,7 @@ public class NumSubstringCont3Char {
 //    Approach 2: Improved Brute Force (break early when all 3 chars found)
 //   - Time: O(n^2) in worst case, but faster in practice.
 //            - Space: O(1)
-    public static int numSubStringCont2(String s) {
+    private static int numSubStringCont2(String s) {
         int count = 0, n = s.length();
         for (int i = 0; i < n; i++) {
             int arr[] = new int[3]; // track if 'a','b','c' are seen
@@ -92,7 +92,7 @@ public class NumSubstringCont3Char {
 //    Approach 1: Naive Brute Force
 //   - Time: O(n^2)
 //   - Space: O(1)
-    public static int numSubStringCont1(String s) {
+    private static int numSubStringCont1(String s) {
         int count = 0;
         for (int i = 0; i < s.length(); i++) {
             int arr[] = new int[3];

@@ -9,7 +9,7 @@ public class MaxProdSubArray {
         System.out.println(maxProd3(nums));
     }
 
-    public static int maxProd3(int arr[]){
+    private static int maxProd3(int arr[]){
         int prefix=1, sufix=1;
         int ans = Integer.MIN_VALUE;
         int n = arr.length;
@@ -25,7 +25,7 @@ public class MaxProdSubArray {
     }
 
     // approach2
-    public static int maxProd2(int arr[]) {
+    private static int maxProd2(int arr[]) {
         int maxProd = Integer.MIN_VALUE;
         for(int i=0;i<arr.length;i++){
             int prod = 1;
@@ -40,7 +40,7 @@ public class MaxProdSubArray {
     }
 
     // brute force approach1
-    public static int maxProd1(int arr[]){
+    private static int maxProd1(int arr[]){
         int maxProd = Integer.MIN_VALUE;
         for(int i=0;i<arr.length;i++){
             for(int j=i;j<arr.length;j++){
@@ -57,7 +57,7 @@ public class MaxProdSubArray {
         return maxProd;
     }
 
-    public static int maxProd(int arr[]){
+    private static int maxProd(int arr[]){
         int prodArr[] = new int[arr.length];
 //        int s = Arrays.stream(arr).max().getAsInt();
 //        if(s<0){

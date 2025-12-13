@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class LongestPalindromicSubsequence {
 
     // Function to find the LPS recursively
-    public static int longestPalindromicSubsequence(String str) {
+    private static int longestPalindromicSubsequence(String str) {
         return lpsHelper(str, 0, str.length() - 1);
     }
 
@@ -39,7 +39,7 @@ public class LongestPalindromicSubsequence {
     // Time Complexity: O(2^n)
     // Space Complexity: O(n) → Recursion stack space
 
-    public static int lpsMemoization(String s) {
+    private static int lpsMemoization(String s) {
         int n = s.length();
         // dp[i][j] will store the LPS of substring s[i..j]
         int[][] dp = new int[n][n];
@@ -73,7 +73,7 @@ public class LongestPalindromicSubsequence {
 // Time Complexity: O(n^2) → Every i-j pair is computed once
 // Space Complexity: O(n^2) + O(n) → DP + Recursion stack
 
-    public static int lpsTabulation(String s) {
+    private static int lpsTabulation(String s) {
         int n = s.length();
 
         // dp[i][j] = length of LPS from index i to j
@@ -106,7 +106,7 @@ public class LongestPalindromicSubsequence {
 
 // Time Complexity: O(n^2)
 // Space Complexity: O(n^2)
-public static int lpsSpaceOptimized(String s) {
+private static int lpsSpaceOptimized(String s) {
     int n = s.length();
     int[] prev = new int[n];
     int[] curr = new int[n];

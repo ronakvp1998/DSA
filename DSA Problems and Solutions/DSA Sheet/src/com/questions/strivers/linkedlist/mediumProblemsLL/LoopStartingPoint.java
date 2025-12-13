@@ -5,7 +5,7 @@ public class LoopStartingPoint {
 
     }
 
-    public static Node startingPoint(Node head){
+    private static Node startingPoint(Node head){
         Node slow = head, fast = head;
         while (fast != null && fast.next != null){
             slow = slow.next;

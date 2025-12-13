@@ -47,7 +47,7 @@ public class FactorialsLessThanEqualN {
      * @param n upper bound
      * @return list of factorial numbers
      */
-    public static ArrayList<Long> factorialNumbers(long n) {
+    private static ArrayList<Long> factorialNumbers(long n) {
         ArrayList<Long> list = new ArrayList<>();
         fact(n, list, 1, 2); // start with 1! = 1 and multiplier i = 2
         return list;
@@ -61,7 +61,7 @@ public class FactorialsLessThanEqualN {
      * @param res  current factorial value
      * @param i    next multiplier (for computing i!)
      */
-    public static void fact(long n, List<Long> list, long res, long i) {
+    private static void fact(long n, List<Long> list, long res, long i) {
         // Base case: stop if factorial exceeds n
         if (res > n) {
             return;

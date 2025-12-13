@@ -10,7 +10,7 @@ public class FirstAndLastPosition {
     }
 
     // binary search approach without lower and upper bound
-    public static int [] firstLast1(int arr[], int target){
+    private static int [] firstLast1(int arr[], int target){
         int n = arr.length;
         int first = firstOccurance(arr,n,target);
         if(first == -1){
@@ -20,7 +20,7 @@ public class FirstAndLastPosition {
         return new int[]{first,last};
     }
 
-    public static int firstOccurance(int arr[], int n, int target){
+    private static int firstOccurance(int arr[], int n, int target){
         int low=0,high = n-1;
         int first = -1;
         while (low<=high){
@@ -38,7 +38,7 @@ public class FirstAndLastPosition {
 
     }
 
-    public static int lastOccurance(int arr[], int n, int target){
+    private static int lastOccurance(int arr[], int n, int target){
         int low=0,high = n-1;
         int last = -1;
         while (low<=high){
@@ -57,7 +57,7 @@ public class FirstAndLastPosition {
 
 
     // using the lower and upper bound approach
-    public static int [] firstLast(int arr[], int target){
+    private static int [] firstLast(int arr[], int target){
         int lb = lowerBound(arr,target);
         if(lb == arr.length || arr[lb] != target){
             return new int[]{-1,-1};
@@ -65,7 +65,7 @@ public class FirstAndLastPosition {
         return new int[]{lb,upperBound(arr,target)-1};
     }
 
-    public static int lowerBound(int arr[], int target){
+    private static int lowerBound(int arr[], int target){
         int n = arr.length;
         int low=0, high = n-1, ans = n;
         while (low<=high){
@@ -81,7 +81,7 @@ public class FirstAndLastPosition {
         return ans;
     }
 
-    public static int upperBound(int arr[], int target){
+    private static int upperBound(int arr[], int target){
         int n = arr.length;
         int low=0, high = n-1, ans = n;
         while (low<=high){

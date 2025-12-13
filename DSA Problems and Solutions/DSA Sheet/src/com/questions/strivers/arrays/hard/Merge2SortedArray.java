@@ -38,7 +38,7 @@ public class Merge2SortedArray {
      * Time Complexity: O(n + m) + O(n + m) = O(n + m)
      * Space Complexity: O(n + m) for the extra array
      */
-    public static void merge(long[] arr1, long[] arr2, int n, int m) {
+    private static void merge(long[] arr1, long[] arr2, int n, int m) {
         // Temporary array to store merged result
         long[] arr3 = new long[n + m];
         int left = 0;
@@ -80,7 +80,7 @@ public class Merge2SortedArray {
      * Time Complexity: O(min(n, m)) for swap + O(nlogn + mlogm) for sorting
      * Space Complexity: O(1) — in-place
      */
-    public static void merge2(long[] arr1, long[] arr2, int n, int m) {
+    private static void merge2(long[] arr1, long[] arr2, int n, int m) {
         int left = n - 1;
         int right = 0;
 
@@ -106,7 +106,7 @@ public class Merge2SortedArray {
     /**
      * 🔁 Utility Function: Swap if arr1[ind1] > arr2[ind2]
      */
-    public static void swapIfGreater(long[] arr1, long[] arr2, int ind1, int ind2) {
+    private static void swapIfGreater(long[] arr1, long[] arr2, int ind1, int ind2) {
         if (arr1[ind1] > arr2[ind2]) {
             long temp = arr1[ind1];
             arr1[ind1] = arr2[ind2];
@@ -120,7 +120,7 @@ public class Merge2SortedArray {
      * Time Complexity: O((n+m) * log(n+m)) — log iterations with linear scan each
      * Space Complexity: O(1) — in-place
      */
-    public static void merge3(long[] arr1, long[] arr2, int n, int m) {
+    private static void merge3(long[] arr1, long[] arr2, int n, int m) {
         int len = n + m;
 
         // Initial gap

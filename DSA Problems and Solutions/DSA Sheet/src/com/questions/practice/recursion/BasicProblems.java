@@ -26,7 +26,7 @@ public class BasicProblems {
     }
 
     // functional recursion
-    public static int fibonacci2(int n){
+    private static int fibonacci2(int n){
         if(n <= 1){
             return n;
         }
@@ -34,7 +34,7 @@ public class BasicProblems {
     }
 
     // parametrized recursion
-    public static void fibonacci(int n,int i,int j){
+    private static void fibonacci(int n,int i,int j){
         if(n<=0){
             return;
         }
@@ -43,7 +43,7 @@ public class BasicProblems {
     }
 
 
-    public static boolean checkPalindrome(String s,int i,int j){
+    private static boolean checkPalindrome(String s,int i,int j){
         if(i >= j){
             return true;
         }
@@ -54,7 +54,7 @@ public class BasicProblems {
         return checkPalindrome(s,i+1,j-1);
     }
 
-    public static void reverseArray(int arr[], int i,int j){
+    private static void reverseArray(int arr[], int i,int j){
         if(i > j){
             System.out.println(Arrays.toString(arr));
             return;
@@ -63,13 +63,13 @@ public class BasicProblems {
         reverseArray(arr,i+1,j-1);
     }
 
-    public static void swap(int arr[], int i, int j){
+    private static void swap(int arr[], int i, int j){
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
 
-    public static void factorialN2(int n,int sum){
+    private static void factorialN2(int n,int sum){
         if(n == 1){
             System.out.println(sum);
             return;
@@ -78,21 +78,21 @@ public class BasicProblems {
         factorialN2(n-1,sum);
     }
 
-    public static int factorialN(int n){
+    private static int factorialN(int n){
         if(n == 0 || n == 1){
             return 1;
         }
         return n * factorialN(n-1);
     }
 
-    public static int sumNNumbers2(int n){
+    private static int sumNNumbers2(int n){
         if(n == 0 || n == 1){
             return 1;
         }
         return n + sumNNumbers2(n-1);
     }
 
-    public static void sumNNumbers1(int n,int sum){
+    private static void sumNNumbers1(int n,int sum){
         if(n==0){
             System.out.println(sum);
             return;
@@ -102,7 +102,7 @@ public class BasicProblems {
     }
 
 
-    public static void printNTo1(int n){
+    private static void printNTo1(int n){
         if(n == 0){
             return;
         }
@@ -110,7 +110,7 @@ public class BasicProblems {
         printNTo1(n-1);
     }
 
-    public static void print1ToN(int n){
+    private static void print1ToN(int n){
         if(n == 0){
             return;
         }
@@ -118,7 +118,7 @@ public class BasicProblems {
         System.out.println(n);
     }
 
-    public static void printNameNTimes(String s,int n){
+    private static void printNameNTimes(String s,int n){
         if(n == 0){
             return ;
         }

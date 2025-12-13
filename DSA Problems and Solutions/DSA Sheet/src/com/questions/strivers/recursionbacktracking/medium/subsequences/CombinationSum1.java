@@ -66,7 +66,7 @@ public class CombinationSum1 {
      * - O(k) extra space for the temporary list `ds`.
      * - Final result storage = O(number_of_combinations * k).
      */
-    public static void combinationSum(int index, int[] arr, List<List<Integer>> ans,
+    private static void combinationSum(int index, int[] arr, List<List<Integer>> ans,
                                       List<Integer> ds, int target, int sum) {
         // Base case: reached end of array
         if (index >= arr.length) {

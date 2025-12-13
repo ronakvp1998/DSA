@@ -16,7 +16,7 @@ public class MinimumCoins {
     // ---------------------------------------
     // Time: Exponential O(2^target)
     // Space: O(target) stack space due to recursion
-    public static int recursive(int index, int target, int[] coins) {
+    private static int recursive(int index, int target, int[] coins) {
         // Base case: when we are at coin 0
         if (index == 0) {
             // If target is divisible by coin[0], return count
@@ -41,7 +41,7 @@ public class MinimumCoins {
     // ---------------------------------------
     // Time: O(N * target)
     // Space: O(N * target) for dp + O(target) recursion stack
-    public static int memo(int index, int target, int[] coins, int[][] dp) {
+    private static int memo(int index, int target, int[] coins, int[][] dp) {
         if (index == 0) {
             if (target % coins[0] == 0) {
                 return target / coins[0];
@@ -67,7 +67,7 @@ public class MinimumCoins {
     // ---------------------------------------
     // Time: O(N * target)
     // Space: O(N * target)
-    public static int tabulation(int[] coins, int target) {
+    private static int tabulation(int[] coins, int target) {
         int n = coins.length;
         int[][] dp = new int[n][target + 1];
 
@@ -100,7 +100,7 @@ public class MinimumCoins {
     // ---------------------------------------
     // Time: O(N * target)
     // Space: O(target)
-    public static int spaceOptimized(int[] coins, int target) {
+    private static int spaceOptimized(int[] coins, int target) {
         int n = coins.length;
         int[] prev = new int[target + 1];
 

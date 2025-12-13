@@ -12,7 +12,7 @@ public class BalancedSubsetPartition {
     // Time Complexity: O(2^2n) - Exponential due to branching at each index (pick or not)
     // Space Complexity: O(2n) - Maximum recursion stack depth (n is half the array size)
 
-    public static int recursive(int[] nums) {
+    private static int recursive(int[] nums) {
         int totalSum = Arrays.stream(nums).sum(); // Total sum of the entire array
         return recur(nums, 0, 0, 0, totalSum);     // Start recursive check
     }
@@ -46,7 +46,7 @@ public class BalancedSubsetPartition {
     // Time Complexity: O(N * (N/2) * totalSum)
     // Space Complexity: O(N * (N/2) * totalSum) + recursion stack
 
-    public static int memoization(int[] nums) {
+    private static int memoization(int[] nums) {
         int n = nums.length;
         int totalSum = Arrays.stream(nums).sum();
 
@@ -86,7 +86,7 @@ public class BalancedSubsetPartition {
     // Time Complexity: O(N * (N/2) * totalSum)
     // Space Complexity: O(N * (N/2) * totalSum)
 
-    public static int tabulation(int[] nums) {
+    private static int tabulation(int[] nums) {
         int N = nums.length;
         int half = N / 2;
         int totalSum = Arrays.stream(nums).sum();

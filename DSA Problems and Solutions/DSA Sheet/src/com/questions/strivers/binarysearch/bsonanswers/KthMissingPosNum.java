@@ -52,7 +52,7 @@ public class KthMissingPosNum {
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      */
-    public static int missingK(int[] vec, int n, int k) {
+    private static int missingK(int[] vec, int n, int k) {
         for (int i = 0; i < n; i++) {
             if (vec[i] <= k) {
                 // If current element is <= k, then kth missing shifts ahead
@@ -72,7 +72,7 @@ public class KthMissingPosNum {
      * Time Complexity: O(log n)
      * Space Complexity: O(1)
      */
-    public static int missingK2(int[] vec, int n, int k) {
+    private static int missingK2(int[] vec, int n, int k) {
         int low = 0, high = n - 1;
 
         while (low <= high) {

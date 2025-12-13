@@ -27,7 +27,7 @@ public class LengthOfLoop {
     }
 
     // approach 2 using fast slow pointer
-    public static int detectLoop1(Node head){
+    private static int detectLoop1(Node head){
         Node slow = head, fast = head;
         while (fast != null && fast.next != null){
             slow = slow.next;
@@ -46,7 +46,7 @@ public class LengthOfLoop {
     }
 
     // approach 1 using hashmap TC->O(n*2*logn) SC->O(n)
-    public static int detectLoop(Node head){
+    private static int detectLoop(Node head){
         Map<Node,Integer> map = new HashMap<>();
         int timer = 1;
         Node temp = head;
@@ -63,7 +63,7 @@ public class LengthOfLoop {
         return 0;
     }
 
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -73,7 +73,7 @@ public class LengthOfLoop {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

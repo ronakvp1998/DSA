@@ -13,7 +13,7 @@ public class Print1SubseqSum {
 
 
     // functional approach
-    public static boolean printSub(int index, List<Integer>list,int res, int sum,int arr[],int n){
+    private static boolean printSub(int index, List<Integer>list,int res, int sum,int arr[],int n){
         if(index == n){
             if(res == sum){
                 System.out.println(list);

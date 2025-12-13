@@ -63,7 +63,7 @@ public class IntersectionPoint {
 
     }
 
-    public static Node intersectionPoint(Node head1, Node head2){
+    private static Node intersectionPoint(Node head1, Node head2){
         Node d1 = head1;
         Node d2 = head2;
         while(d1 != d2) {

@@ -54,7 +54,7 @@ public class LongestSubstringWithoutRepeatingChar {
      * Time Complexity: O(n), because each character is processed at most twice.
      * Space Complexity: O(1), since we use a fixed array of size 256 (constant).
      */
-    public static int longestSubstringWithoutRepeatingChar2(String s) {
+    private static int longestSubstringWithoutRepeatingChar2(String s) {
         int[] map = new int[256]; // stores last index of each character
         // Initialize all positions as -1 (not seen yet)
         for (int i = 0; i < 256; i++) {
@@ -96,7 +96,7 @@ public class LongestSubstringWithoutRepeatingChar {
      * Time Complexity: O(n^2), because for each i we may scan j till n.
      * Space Complexity: O(1), fixed array of size 256.
      */
-    public static int longestSubstringWithoutRepeatingChar1(String s) {
+    private static int longestSubstringWithoutRepeatingChar1(String s) {
         int n = s.length(), maxLen = Integer.MIN_VALUE;
 
         for (int i = 0; i < n; i++) {

@@ -36,7 +36,7 @@ public class CountSubarraySum {
      *  - Sum calculation loop (O(N))
      * Space Complexity: O(1) (no extra data structures used)
      */
-    public static int findAllSubarraysWithGivenSum(int arr[], int k) {
+    private static int findAllSubarraysWithGivenSum(int arr[], int k) {
         int n = arr.length; // size of the given array
         int cnt = 0; // variable to store number of subarrays with sum = k
 
@@ -67,7 +67,7 @@ public class CountSubarraySum {
      * Time Complexity: O(N^2)
      * Space Complexity: O(1)
      */
-    public static int findAllSubarraysWithGivenSum2(int arr[], int k) {
+    private static int findAllSubarraysWithGivenSum2(int arr[], int k) {
         int n = arr.length; // size of the given array
         int cnt = 0; // variable to store number of subarrays with sum = k
 
@@ -100,7 +100,7 @@ public class CountSubarraySum {
      * Time Complexity: O(N)
      * Space Complexity: O(N) (HashMap for storing prefix sums)
      */
-    public static int findAllSubarraysWithGivenSum3(int arr[], int k) {
+    private static int findAllSubarraysWithGivenSum3(int arr[], int k) {
         int n = arr.length; // size of the given array
         Map<Integer, Integer> mpp = new HashMap<>(); // stores prefixSum -> frequency
         int preSum = 0; // running prefix sum

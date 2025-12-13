@@ -47,7 +47,7 @@ public class Subset1 {
     // Time Complexity: O(2^n)
     // Space Complexity: O(n) recursion stack
     // -----------------------------------------------------------------
-    public static void subsetSumPickNotPick(int index, int sum, int[] arr, int n, List<Integer> result) {
+    private static void subsetSumPickNotPick(int index, int sum, int[] arr, int n, List<Integer> result) {
         if (index == n) {
             result.add(sum);
             return;
@@ -65,7 +65,7 @@ public class Subset1 {
     // Time Complexity: O(2^n)
     // Space Complexity: O(n) recursion stack
     // -----------------------------------------------------------------
-    public static void subsetSumDFS(int index, int sum, int[] arr, List<Integer> result) {
+    private static void subsetSumDFS(int index, int sum, int[] arr, List<Integer> result) {
         result.add(sum); // record sum at each step
         for (int i = index; i < arr.length; i++) {
             subsetSumDFS(i + 1, sum + arr[i], arr, result);
@@ -78,7 +78,7 @@ public class Subset1 {
     // Time Complexity: O(2^n * n) (extra O(n) to compute sum at each leaf)
     // Space Complexity: O(n) recursion + O(n) subset storage
     // -----------------------------------------------------------------
-    public static void subsetSumBacktrack(int index, int[] arr, List<Integer> temp, List<Integer> result) {
+    private static void subsetSumBacktrack(int index, int[] arr, List<Integer> temp, List<Integer> result) {
         if (index == arr.length) {
             int sum = 0;
             for (int num : temp) sum += num;

@@ -6,7 +6,7 @@ public class RemoveDuplicateSortedDLL {
 
     }
 
-    public static NodeDLL removeDuplicates(NodeDLL head){
+    private static NodeDLL removeDuplicates(NodeDLL head){
         NodeDLL temp = head;
         while (temp != null && temp.next != null){
             NodeDLL nextNode = temp.next;

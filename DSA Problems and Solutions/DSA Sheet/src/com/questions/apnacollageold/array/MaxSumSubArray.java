@@ -17,7 +17,7 @@ public class MaxSumSubArray {
     }
 
     // appraoch 3 Kadane's algorithm
-    public static void maxSubarray3(int arr[], int n){
+    private static void maxSubarray3(int arr[], int n){
 
         int currSum = 0;
         int maxSum = Integer.MIN_VALUE;
@@ -33,7 +33,7 @@ public class MaxSumSubArray {
     }
 
     // approach 2 Prefix sum TC-> O(n2) SC-> O(n)
-    public static void maxSubArray2(int arr[] ,int n){
+    private static void maxSubArray2(int arr[] ,int n){
         // creating prefix array
         int prefix[] = new int[arr.length];
         prefix[0] = arr[0];
@@ -59,7 +59,7 @@ public class MaxSumSubArray {
     }
 
     // approach 1 bruteforce TC O(n3)
-    public static void maxSubArray(int arr[],int n){
+    private static void maxSubArray(int arr[],int n){
         int start = 0;
         int end = 0;
         int maxSum = Integer.MIN_VALUE;

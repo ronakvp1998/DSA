@@ -18,7 +18,7 @@ public class DoublyLinkedList {
     }
 
     // reverse DDLL
-    public static Node reverse(Node head){
+    private static Node reverse(Node head){
         if(head == null || head.next == null){
             return head;
         }
@@ -36,7 +36,7 @@ public class DoublyLinkedList {
     }
 
     // 3 inserting before kth element
-    public static Node insertBeforeKthElement(Node head,int k ,int data){
+    private static Node insertBeforeKthElement(Node head,int k ,int data){
         if(k == 1){
             return insertHead(head,data);
         }
@@ -57,7 +57,7 @@ public class DoublyLinkedList {
     }
 
     // 2 insertion of a node at tail
-    public static Node insertTail(Node head, int data){
+    private static Node insertTail(Node head, int data){
         if(head.next == null){
             return insertHead(head,data);
         }
@@ -73,14 +73,14 @@ public class DoublyLinkedList {
     }
 
     // 1 insertion at head
-    public static Node insertHead(Node head, int data){
+    private static Node insertHead(Node head, int data){
         Node newNode = new Node(data,head,null);
         head.prev = newNode;
         return newNode;
     }
 
     // 4 deletion of a node
-    public static void deleteNode(Node temp){
+    private static void deleteNode(Node temp){
         Node prev = temp.prev;
         Node front = temp.next;
         if(front == null){
@@ -96,7 +96,7 @@ public class DoublyLinkedList {
     }
 
     // 3 deletion kth element
-    public static Node deleteKElement(Node head,int k){
+    private static Node deleteKElement(Node head,int k){
         if(head == null || head.next == null){
             return null;
         }
@@ -130,7 +130,7 @@ public class DoublyLinkedList {
     }
 
     // 2 deletion of tail of LL
-    public static Node deleteTail(Node head){
+    private static Node deleteTail(Node head){
         if(head == null || head.next == null){
             return null;
         }
@@ -146,7 +146,7 @@ public class DoublyLinkedList {
 
 
     // 1 deletion head of node LL
-    public static Node deleteHead(Node head){
+    private static Node deleteHead(Node head){
         if (head == null || head.next == null) {
             return null; // Return null if the list is empty or contains only one element
         }
@@ -159,7 +159,7 @@ public class DoublyLinkedList {
     }
 
     // traversal on DLL
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -171,7 +171,7 @@ public class DoublyLinkedList {
 
 
     // convert arr to DLL
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

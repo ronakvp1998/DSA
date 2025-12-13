@@ -16,7 +16,7 @@ public class Add2Num {
         printLL(reverse(head));
     }
 
-    public static Node addTwoNum(Node head1, Node head2){
+    private static Node addTwoNum(Node head1, Node head2){
         Node t1 = head1, t2= head2,dummyNode = new Node(-1);
         Node curr = dummyNode;
         int carry = 0;
@@ -45,7 +45,7 @@ public class Add2Num {
         return dummyNode.next;
     }
 
-    public static Node reverse(Node head){
+    private static Node reverse(Node head){
         Node prev = null;
         Node curr = head;
         Node next = null;
@@ -59,7 +59,7 @@ public class Add2Num {
     }
 
     // 2 traverse into ll
-    public static void printLL(Node head){
+    private static void printLL(Node head){
         if(head == null ){
             System.out.println("Empty LL");
             return;
@@ -73,7 +73,7 @@ public class Add2Num {
     }
 
     // 1 convert array into linkedlist
-    public static Node arrayToLinkedList(int arr[]){
+    private static Node arrayToLinkedList(int arr[]){
         if(arr.length <= 0){
             System.out.println("Empty LL");
             return null;

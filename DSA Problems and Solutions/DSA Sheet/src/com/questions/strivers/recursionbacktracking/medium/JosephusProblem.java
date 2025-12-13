@@ -48,7 +48,7 @@ Space Complexity:
 public class JosephusProblem {
 
     // Recursive function to find the safe position (0-based index)
-    public static int josephus(int n, int k) {
+    private static int josephus(int n, int k) {
         // Base case: when only one person is left, return 0 (safe position in 0-based indexing)
         if (n == 1) {
             return 0;

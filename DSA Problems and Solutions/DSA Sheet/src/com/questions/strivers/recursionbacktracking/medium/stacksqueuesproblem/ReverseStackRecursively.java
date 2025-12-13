@@ -17,7 +17,7 @@ public class ReverseStackRecursively {
      */
 
     // Function to reverse the stack
-    public static void reverse(Stack<Integer> stack) {
+    private static void reverse(Stack<Integer> stack) {
         if (stack.isEmpty()) {
             return; // Base case: if stack is empty, nothing to reverse
         }

@@ -8,7 +8,7 @@ public class PrevSmallerElement {
 
     }
 
-    public static int[] prevSmallerElement(int arr[]){
+    private static int[] prevSmallerElement(int arr[]){
 
         int nse[] = new int[arr.length];
         Stack<Integer> stack = new Stack<>();

@@ -28,7 +28,7 @@ public class LinkedListDemo {
     }
 
     // 4 reverse LL
-    public static Node reverse(Node head){
+    private static Node reverse(Node head){
         Node prev = null;
         Node curr = head;
         Node next = null;
@@ -43,7 +43,7 @@ public class LinkedListDemo {
     }
 
     // 3 insert at last
-    public static Node insertLast(Node head,int value){
+    private static Node insertLast(Node head,int value){
         if(head == null){
             return insertAtHead(head,value);
         }
@@ -58,7 +58,7 @@ public class LinkedListDemo {
     }
 
     // 2 insert at index
-    public static Node insertAtIndex(Node head,int index,int value){
+    private static Node insertAtIndex(Node head,int index,int value){
         if(head == null && index != 0){
             return null;
         }
@@ -82,7 +82,7 @@ public class LinkedListDemo {
     }
 
     // 1 insert at head
-    public static Node insertAtHead(Node head, int value){
+    private static Node insertAtHead(Node head, int value){
         if(head == null){
             Node newNode = new Node(value);
             return newNode;
@@ -93,7 +93,7 @@ public class LinkedListDemo {
     }
 
     // 5 delete all occ of value from LL
-    public static Node deleteAllOccValue(Node head,int value){
+    private static Node deleteAllOccValue(Node head,int value){
         if(head == null){
             return null;
         }
@@ -115,7 +115,7 @@ public class LinkedListDemo {
 
 
     // 4 delete a value from LL
-    public static Node deleteValue(Node head,int value){
+    private static Node deleteValue(Node head,int value){
         if(head == null){
             return null;
         }
@@ -137,7 +137,7 @@ public class LinkedListDemo {
     }
 
     // 3 delete last
-    public static Node deleteLast(Node head){
+    private static Node deleteLast(Node head){
          if(head == null || head.next == null){
              return null;
          }
@@ -151,7 +151,7 @@ public class LinkedListDemo {
     }
 
     // 2 delete a position or index
-    public static Node deleteIndex(Node head, int index){
+    private static Node deleteIndex(Node head, int index){
         if (head == null){
             return null;
         }
@@ -175,7 +175,7 @@ public class LinkedListDemo {
     }
 
     // 1 delete head
-    public static Node deleteFirst(Node head){
+    private static Node deleteFirst(Node head){
         if(head == null || head.next == null){
             System.out.println("Empty LL");
             return null;
@@ -185,7 +185,7 @@ public class LinkedListDemo {
     }
 
     // 3 search element in LL
-    public static int searchElement(Node head,int target){
+    private static int searchElement(Node head,int target){
         if(head == null){
             System.out.println("Empty LL");
             return -1;
@@ -204,7 +204,7 @@ public class LinkedListDemo {
     }
 
     // 2 traverse into ll
-    public static void printLL(Node head){
+    private static void printLL(Node head){
         if(head == null ){
             System.out.println("Empty LL");
             return;
@@ -218,7 +218,7 @@ public class LinkedListDemo {
     }
 
     // 1 convert array into linkedlist
-    public static Node arrayToLinkedList(int arr[]){
+    private static Node arrayToLinkedList(int arr[]){
         if(arr.length <= 0){
             System.out.println("Empty LL");
             return null;

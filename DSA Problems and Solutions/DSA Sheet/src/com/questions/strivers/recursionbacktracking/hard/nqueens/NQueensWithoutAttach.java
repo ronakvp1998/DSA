@@ -22,7 +22,7 @@ public class NQueensWithoutAttach {
     }
 
     // Recursive function to place queens row by row
-    public static void nQueens(char board[][], int row) {
+    private static void nQueens(char board[][], int row) {
         // Base case: If all rows are filled, print the board configuration
         if (row == board.length) {
             printBoard(board);
@@ -38,7 +38,7 @@ public class NQueensWithoutAttach {
     }
 
     // Utility function to print the chessboard
-    public static void printBoard(char board[][]) {
+    private static void printBoard(char board[][]) {
         System.out.println("----------- Chess Board -------------");
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board.length; j++) {

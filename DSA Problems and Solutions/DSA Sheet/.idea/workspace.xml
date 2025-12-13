@@ -23,6 +23,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -47,7 +50,8 @@
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/DSA-Java/DSA Problems and Solutions/DSA Sheet",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -62,9 +66,35 @@
       <recent name="com.questions.strivers.binarytrees.easy" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Traversal">
-    <configuration name="BinaryTreeRep" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.binarytrees.BinaryTreeRep" />
+  <component name="RunManager" selected="Application.MinMaxBST">
+    <configuration name="BottomView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarytrees.medium.BottomView" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.strivers.binarytrees.medium.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MinMaxBST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarysearchtrees.MinMaxBST" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.strivers.binarysearchtrees.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PracticeProblems" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.binarytrees.PracticeProblems" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
@@ -76,12 +106,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="IncreasingNDigitNumbers" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursionbacktracking.hard.IncreasingNDigitNumbers" />
+    <configuration name="TopView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarytrees.medium.TopView" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursionbacktracking.hard.*" />
+          <option name="PATTERN" value="com.questions.strivers.binarytrees.medium.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -89,38 +119,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.dailypractice.Main" />
+    <configuration name="VerticalTraverse" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarytrees.medium.VerticalTraverse" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.dailypractice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Traversal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.binarytrees.Traversal" />
-      <module name="DSA Sheet" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.questions.practice.binarytrees.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="com.questions.strivers.recursionbacktracking.medium.stacksqueuesproblem.ReverseQueueRecursion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.recursionbacktracking.medium.stacksqueuesproblem.ReverseQueueRecursion" />
-      <module name="DSA Sheet" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.questions.strivers.recursionbacktracking.medium.stacksqueuesproblem.*" />
+          <option name="PATTERN" value="com.questions.strivers.binarytrees.medium.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -130,11 +134,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Traversal" />
-        <item itemvalue="Application.BinaryTreeRep" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.IncreasingNDigitNumbers" />
-        <item itemvalue="Application.com.questions.strivers.recursionbacktracking.medium.stacksqueuesproblem.ReverseQueueRecursion" />
+        <item itemvalue="Application.MinMaxBST" />
+        <item itemvalue="Application.TopView" />
+        <item itemvalue="Application.BottomView" />
+        <item itemvalue="Application.VerticalTraverse" />
+        <item itemvalue="Application.PracticeProblems" />
       </list>
     </recent_temporary>
   </component>
@@ -172,5 +176,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

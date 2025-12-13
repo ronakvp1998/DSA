@@ -32,7 +32,7 @@ public class LargestOddNumInString {
      * Space Complexity: O(1)
      * - No extra space apart from the result substring.
      */
-    public static String largestOddNumber(String num) {
+    private static String largestOddNumber(String num) {
         for (int i = num.length() - 1; i >= 0; i--) {
             char ch = num.charAt(i);
             if ((ch - '0') % 2 == 1) {
@@ -54,7 +54,7 @@ public class LargestOddNumInString {
      * Space Complexity: O(1)
      * - Only tracking max string (not storing all substrings).
      */
-    public static String largestOddNumberBruteForce(String num) {
+    private static String largestOddNumberBruteForce(String num) {
         String maxOdd = "";
 
         for (int i = 0; i < num.length(); i++) {
@@ -87,7 +87,7 @@ public class LargestOddNumInString {
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      */
-    public static String largestOddNumberRegexLike(String num) {
+    private static String largestOddNumberRegexLike(String num) {
         int i = num.length() - 1;
         while (i >= 0 && (num.charAt(i) - '0') % 2 == 0) {
             i--;

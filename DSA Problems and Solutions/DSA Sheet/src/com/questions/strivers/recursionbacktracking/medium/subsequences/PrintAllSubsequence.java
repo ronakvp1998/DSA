@@ -11,7 +11,7 @@ public class PrintAllSubsequence {
 
 
     // parametrises approach
-    public static void printSubseq(int arr[], List<Integer> list, int index){
+    private static void printSubseq(int arr[], List<Integer> list, int index){
         if(index >= arr.length){
             System.out.println(list);
             return;

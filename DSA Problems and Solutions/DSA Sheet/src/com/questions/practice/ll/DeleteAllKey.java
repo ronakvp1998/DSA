@@ -11,7 +11,7 @@ public class DeleteAllKey {
         traverseDLL(head);
     }
 
-    public static Node deleteAllKey(Node head, int key){
+    private static Node deleteAllKey(Node head, int key){
         if(head == null){
             return null;
         }
@@ -33,7 +33,7 @@ public class DeleteAllKey {
         return head;
     }
 
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -43,7 +43,7 @@ public class DeleteAllKey {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

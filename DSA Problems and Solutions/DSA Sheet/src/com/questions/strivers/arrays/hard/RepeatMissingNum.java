@@ -22,7 +22,7 @@ public class RepeatMissingNum {
      * Time Complexity: O(n^2)
      * Space Complexity: O(1)
      */
-    public static int[] findMissingRepeatingNumbers(int[] a) {
+    private static int[] findMissingRepeatingNumbers(int[] a) {
         int n = a.length;
         int repeating = -1, missing = -1;
 
@@ -48,7 +48,7 @@ public class RepeatMissingNum {
      * Time Complexity: O(n)
      * Space Complexity: O(n)
      */
-    public static int[] findMissingRepeatingNumbers2(int[] a) {
+    private static int[] findMissingRepeatingNumbers2(int[] a) {
         int n = a.length;
         int[] hash = new int[n + 1]; // Index from 1 to n
 
@@ -91,7 +91,7 @@ public class RepeatMissingNum {
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      */
-    public static int[] findMissingRepeatingNumbers3(int[] a) {
+    private static int[] findMissingRepeatingNumbers3(int[] a) {
         long n = a.length;
 
         // Expected sum and sum of squares
@@ -123,7 +123,7 @@ public class RepeatMissingNum {
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      */
-    public static int[] findMissingRepeatingNumbers4(int[] a) {
+    private static int[] findMissingRepeatingNumbers4(int[] a) {
         int n = a.length;
         int xr = 0;
 

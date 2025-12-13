@@ -25,7 +25,7 @@ public class CountInversion {
      * Time Complexity: O(n^2)
      * Space Complexity: O(1)
      */
-    public static int numberOfInversions(int[] a, int n) {
+    private static int numberOfInversions(int[] a, int n) {
         int cnt = 0;
         // Check every pair (i, j)
         for (int i = 0; i < n; i++) {
@@ -82,7 +82,7 @@ public class CountInversion {
      * Time Complexity: O(n log n)
      * Space Complexity: O(n) for temporary merge array
      */
-    public static int mergeSort(int[] arr, int low, int high) {
+    private static int mergeSort(int[] arr, int low, int high) {
         int cnt = 0;
         // Base case: single element has no inversions
         if (low >= high) return cnt;
@@ -104,7 +104,7 @@ public class CountInversion {
     /**
      * Wrapper function for optimal approach
      */
-    public static int numberOfInversions2(int[] a, int n) {
+    private static int numberOfInversions2(int[] a, int n) {
         return mergeSort(a, 0, n - 1);
     }
 

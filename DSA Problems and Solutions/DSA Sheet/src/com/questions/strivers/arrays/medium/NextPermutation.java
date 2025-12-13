@@ -31,7 +31,7 @@ public class NextPermutation {
      * @param A List of integers representing the permutation
      * @return The next permutation of the list
      */
-    public static List<Integer> nextGreaterPermutation(List<Integer> A) {
+    private static List<Integer> nextGreaterPermutation(List<Integer> A) {
         int n = A.size(); // Get the size of the list
 
         // Step 1: Find the "break point" where the order decreases from the end.

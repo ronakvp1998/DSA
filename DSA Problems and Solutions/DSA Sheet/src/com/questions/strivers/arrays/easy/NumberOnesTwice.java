@@ -26,7 +26,7 @@ public class NumberOnesTwice {
      * Time Complexity: O(n^2)
      * Space Complexity: O(1)
      */
-    public static int getSingleElement1(int[] arr) {
+    private static int getSingleElement1(int[] arr) {
         int n = arr.length;
         for (int i = 0; i < n; i++) {
             int num = arr[i];
@@ -46,7 +46,7 @@ public class NumberOnesTwice {
      * Time Complexity: O(n + max(arr[i]))
      * Space Complexity: O(max(arr[i]))
      */
-    public static int getSingleElement2(int[] arr) {
+    private static int getSingleElement2(int[] arr) {
         int n = arr.length;
         int maxi = arr[0];
         for (int num : arr) maxi = Math.max(maxi, num);
@@ -67,7 +67,7 @@ public class NumberOnesTwice {
      * Time Complexity: O(n)
      * Space Complexity: O(n)
      */
-    public static int getSingleElement3(int[] arr) {
+    private static int getSingleElement3(int[] arr) {
         HashMap<Integer, Integer> map = new HashMap<>();
         for (int num : arr) {
             map.put(num, map.getOrDefault(num, 0) + 1);
@@ -86,7 +86,7 @@ public class NumberOnesTwice {
      * Time Complexity: O(n)
      * Space Complexity: O(1)
      */
-    public static int getSingleElement4(int[] arr) {
+    private static int getSingleElement4(int[] arr) {
         int xorr = 0;
         for (int num : arr) {
             xorr ^= num;

@@ -54,7 +54,7 @@ public class LowerBound {
      * @param x   Target value for lower bound
      * @return Index of the lower bound, or n if all elements are smaller than x
      */
-    public static int lowerBound(int arr[], int n, int x) {
+    private static int lowerBound(int arr[], int n, int x) {
         int low = 0, high = n - 1;
         int ans = n; // Default value if x is greater than all elements
 

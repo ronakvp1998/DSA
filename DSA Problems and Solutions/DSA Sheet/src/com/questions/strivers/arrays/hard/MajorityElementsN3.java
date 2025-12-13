@@ -37,7 +37,7 @@ public class MajorityElementsN3 {
     Time Complexity: O(n^2)
     Space Complexity: O(1) (excluding output list)
     */
-    public static List<Integer> majorityElement(int[] v) {
+    private static List<Integer> majorityElement(int[] v) {
         int n = v.length; // size of the array
         List<Integer> ls = new ArrayList<>(); // output list to store majority elements
 
@@ -73,7 +73,7 @@ public class MajorityElementsN3 {
     Time Complexity: O(n)
     Space Complexity: O(n)
     */
-    public static List<Integer> majorityElement2(int[] v) {
+    private static List<Integer> majorityElement2(int[] v) {
         int n = v.length;
         List<Integer> ls = new ArrayList<>();
 
@@ -108,7 +108,7 @@ public class MajorityElementsN3 {
     Time Complexity: O(n)
     Space Complexity: O(1)
     */
-    public static List<Integer> majorityElement3(int[] v) {
+    private static List<Integer> majorityElement3(int[] v) {
         int n = v.length;
 
         int cnt1 = 0, cnt2 = 0; // counters for 2 elements

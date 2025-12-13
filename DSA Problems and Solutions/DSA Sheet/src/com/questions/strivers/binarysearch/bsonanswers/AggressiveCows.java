@@ -56,7 +56,7 @@ public class AggressiveCows {
      * Helper function for Brute Force approach.
      * Checks if we can place 'cows' with at least 'dist' spacing.
      */
-    public static boolean canWePlace(int[] stalls, int dist, int cows) {
+    private static boolean canWePlace(int[] stalls, int dist, int cows) {
         int n = stalls.length;
         int cntCows = 1;      // Place first cow at the first stall
         int last = stalls[0]; // Last placed cow position
@@ -78,7 +78,7 @@ public class AggressiveCows {
      * Time Complexity: O(n * (max-min))
      * Space Complexity: O(1)
      */
-    public static int aggressiveCows(int[] stalls, int k) {
+    private static int aggressiveCows(int[] stalls, int k) {
         int n = stalls.length;
         Arrays.sort(stalls); // Sort stalls in ascending order
 
@@ -96,7 +96,7 @@ public class AggressiveCows {
      * Helper function for Binary Search approach.
      * Same logic as canWePlace().
      */
-    public static boolean canWePlace2(int[] stalls, int dist, int cows) {
+    private static boolean canWePlace2(int[] stalls, int dist, int cows) {
         int n = stalls.length;
         int cntCows = 1;
         int last = stalls[0];
@@ -117,7 +117,7 @@ public class AggressiveCows {
      * Time Complexity: O(n log(max-min))
      * Space Complexity: O(1)
      */
-    public static int aggressiveCows2(int[] stalls, int k) {
+    private static int aggressiveCows2(int[] stalls, int k) {
         int n = stalls.length;
         Arrays.sort(stalls);
 

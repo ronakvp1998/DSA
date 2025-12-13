@@ -44,7 +44,7 @@ package com.questions.strivers.recursionbacktracking.medium;
 
 public class StringToIntegerATOI {
 
-    public static int myAtoi(String s) {
+    private static int myAtoi(String s) {
         // Step 1: Handle null or empty string
         if (s == null || s.length() == 0) {
             return 0;

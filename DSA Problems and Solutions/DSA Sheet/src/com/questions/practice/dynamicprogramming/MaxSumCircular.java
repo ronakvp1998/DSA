@@ -30,7 +30,7 @@ public class MaxSumCircular {
         return Math.max(excludeFirst,excludeLast);
     }
 
-    public static int recursive(int arr[],int start,int end){
+    private static int recursive(int arr[],int start,int end){
         if(end < start){
             return 0;
         }

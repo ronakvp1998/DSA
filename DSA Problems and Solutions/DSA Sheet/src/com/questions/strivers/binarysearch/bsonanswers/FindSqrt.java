@@ -6,7 +6,7 @@ public class FindSqrt {
         System.out.println(floorSqrt(25));
     }
 
-    public static int floorSqrt(int n){
+    private static int floorSqrt(int n){
         int low=1, high=n;
         while (low<=high){
             int mid = low + (high-low)/2;

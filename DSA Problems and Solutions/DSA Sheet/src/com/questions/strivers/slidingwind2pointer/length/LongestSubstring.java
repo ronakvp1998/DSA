@@ -12,7 +12,7 @@ public class LongestSubstring {
     }
 
     // approach 2 sliding window
-    public static int longestSubstring2(String s){
+    private static int longestSubstring2(String s){
         int maxLen = 0, left = 0,right = 0,n = s.length();
         Map<Character,Integer> hash = new HashMap<>();
         while (right < n){
@@ -32,7 +32,7 @@ public class LongestSubstring {
 
 
     // approach 1 generate all the substrings
-    public static int longestSubstring1(String s){
+    private static int longestSubstring1(String s){
         int n=s.length(), maxLen=0;
         for (int i=0;i<n;i++){
             int [] map = new int[256];

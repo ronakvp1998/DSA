@@ -13,7 +13,7 @@ public class RemoNFromEnd {
     }
 
     // approach 2 fast and slow pointers TC->O(N) SC->O(1)
-    public static Node removeNode2(Node head,int n){
+    private static Node removeNode2(Node head,int n){
         if(head == null){
             return null;
         }
@@ -37,7 +37,7 @@ public class RemoNFromEnd {
     }
 
     // appraoch 1 count - n TC->O(2N) SC->O(1)
-    public static Node removeNode(Node head,int n){
+    private static Node removeNode(Node head,int n){
         if(head == null ){
             return null;
         }
@@ -69,7 +69,7 @@ public class RemoNFromEnd {
     }
 
     // 2 traverse into ll
-    public static void printLL(Node head){
+    private static void printLL(Node head){
         if(head == null ){
             System.out.println("Empty LL");
             return;
@@ -83,7 +83,7 @@ public class RemoNFromEnd {
     }
 
     // 1 convert array into linkedlist
-    public static Node arrayToLinkedList(int arr[]){
+    private static Node arrayToLinkedList(int arr[]){
         if(arr.length <= 0){
             System.out.println("Empty LL");
             return null;

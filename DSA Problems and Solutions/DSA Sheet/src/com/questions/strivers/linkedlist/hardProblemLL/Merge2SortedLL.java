@@ -7,7 +7,7 @@ public class Merge2SortedLL {
 
     }
 
-    public static Node merge2LL(Node head1, Node head2){
+    private static Node merge2LL(Node head1, Node head2){
         Node t1 = head1, t2 = head2;
         Node dummyNode = new Node(-1);
         Node temp = dummyNode;

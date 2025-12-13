@@ -31,7 +31,7 @@ public class DPonGrids {
     // Recursive approach to find unique paths
     // Time Complexity: O(2^(M+N)) - Exponential due to two choices at each step
     // Space Complexity: O(M+N) - Recursion stack depth (path length)
-    public static int uniquePathsRecursive(int row, int col) {
+    private static int uniquePathsRecursive(int row, int col) {
         // Base case: If we reach the top-left cell, there's only one path
         if (row == 0 && col == 0) {
             return 1;
@@ -49,7 +49,7 @@ public class DPonGrids {
     // Memoization approach to find unique paths
     // Time Complexity: O(M * N) - Each cell is computed once
     // Space Complexity: O(M * N + M+N) - Space for dp array and recursion stack
-    public static int uniquePathsMemoization(int row, int col, int[][] dp) {
+    private static int uniquePathsMemoization(int row, int col, int[][] dp) {
         // Base case: If we reach the top-left cell, there's only one path
         if (row == 0 && col == 0) {
             return 1;
@@ -71,7 +71,7 @@ public class DPonGrids {
     // Tabulation approach to find unique paths
     // Time Complexity: O(M * N) - Iterates through the matrix
     // Space Complexity: O(M * N) - Space for dp array
-    public static int uniquePathsTabulation(int m, int n) {
+    private static int uniquePathsTabulation(int m, int n) {
         int[][] dp = new int[m][n]; // Create a dp array to store results
 
         // Base case: Fill the first row and first column with 1
@@ -96,7 +96,7 @@ public class DPonGrids {
     // Space-optimized approach to find unique paths
     // Time Complexity: O(M * N) - Iterates through the matrix
     // Space Complexity: O(N) - Space for a single row
-    public static int uniquePathsSpaceOptimized(int m, int n) {
+    private static int uniquePathsSpaceOptimized(int m, int n) {
         int[] prev = new int[n]; // Array to store results for the previous row
 
         // Base case: Initialize the first row with 1

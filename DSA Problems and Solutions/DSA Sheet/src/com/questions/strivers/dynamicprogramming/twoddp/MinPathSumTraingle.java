@@ -15,7 +15,7 @@ public class MinPathSumTraingle {
     // Recursive approach
     // Time Complexity: O(2^N), exponential due to recursion
     // Space Complexity: O(N), recursion stack space
-    public static int minPathSumRecursive(int i, int j, int[][] triangle) {
+    private static int minPathSumRecursive(int i, int j, int[][] triangle) {
         // Base case: if we reach the last row, return the value of the cell
         if (i == triangle.length - 1) return triangle[i][j];
 
@@ -30,7 +30,7 @@ public class MinPathSumTraingle {
     // Memoization approach
     // Time Complexity: O(N^2), each cell is computed once
     // Space Complexity: O(N^2) for dp array + O(N) recursion stack space
-    public static int minPathSumMemoization(int i, int j, int[][] triangle, int[][] dp) {
+    private static int minPathSumMemoization(int i, int j, int[][] triangle, int[][] dp) {
         // Base case: if we reach the last row, return the value of the cell
         if (i == triangle.length - 1) return triangle[i][j];
 
@@ -49,7 +49,7 @@ public class MinPathSumTraingle {
     // Tabulation approach
     // Time Complexity: O(N^2), iterates through the triangle
     // Space Complexity: O(N^2), space for dp array
-    public static int minPathSumTabulation(int[][] triangle) {
+    private static int minPathSumTabulation(int[][] triangle) {
         int n = triangle.length;
         int[][] dp = new int[n][n]; // Create a dp array to store results
 
@@ -73,7 +73,7 @@ public class MinPathSumTraingle {
     // Space-optimized approach
     // Time Complexity: O(N^2), iterates through the triangle
     // Space Complexity: O(N), space for a single row
-    public static int minPathSumSpaceOptimized(int[][] triangle) {
+    private static int minPathSumSpaceOptimized(int[][] triangle) {
         int n = triangle.length;
         int[] prev = new int[n]; // Array to store results for the previous row
 

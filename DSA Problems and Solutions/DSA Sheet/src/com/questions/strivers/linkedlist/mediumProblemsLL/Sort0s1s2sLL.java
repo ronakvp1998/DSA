@@ -12,7 +12,7 @@ public class Sort0s1s2sLL {
     }
 
     // approach 2 with only 1 loop
-    public static Node sort012s2(Node head){
+    private static Node sort012s2(Node head){
         if(head == null || head.next == null) return head;
         Node zeroHead = new Node(-1);
         Node oneHead = new Node(-1);
@@ -44,7 +44,7 @@ public class Sort0s1s2sLL {
     }
 
     // approach 1 with 2 loops
-    public static Node sort012s1(Node head){
+    private static Node sort012s1(Node head){
         Node temp = head;
         int cout0=0,cout1=0,cout2=0;
         while (temp != null){
@@ -70,7 +70,7 @@ public class Sort0s1s2sLL {
         return head;
     }
 
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -80,7 +80,7 @@ public class Sort0s1s2sLL {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

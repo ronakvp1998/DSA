@@ -34,7 +34,7 @@ public class CountReversePairs {
      * Time Complexity: O(n^2)
      * Space Complexity: O(1)
      */
-    public static int countPairs(int[] a, int n) {
+    private static int countPairs(int[] a, int n) {
         int cnt = 0;
         // Check each pair
         for (int i = 0; i < n; i++) {
@@ -47,7 +47,7 @@ public class CountReversePairs {
     }
 
     // Wrapper for brute force version
-    public static int team(int[] skill, int n) {
+    private static int team(int[] skill, int n) {
         return countPairs(skill, n);
     }
 
@@ -89,7 +89,7 @@ public class CountReversePairs {
      * Count valid reverse pairs (i < j and arr[i] > 2 * arr[j])
      * between two sorted halves
      */
-    public static int countPairs(int[] arr, int low, int mid, int high) {
+    private static int countPairs(int[] arr, int low, int mid, int high) {
         int cnt = 0;
         int right = mid + 1;
 
@@ -108,7 +108,7 @@ public class CountReversePairs {
      * Time Complexity: O(n log n)
      * Space Complexity: O(n) for temp merge array
      */
-    public static int mergeSort(int[] arr, int low, int high) {
+    private static int mergeSort(int[] arr, int low, int high) {
         int cnt = 0;
 
         // Base case: single element
@@ -130,7 +130,7 @@ public class CountReversePairs {
     }
 
     // Wrapper for optimized method
-    public static int team2(int[] skill, int n) {
+    private static int team2(int[] skill, int n) {
         return mergeSort(skill, 0, n - 1);
     }
 

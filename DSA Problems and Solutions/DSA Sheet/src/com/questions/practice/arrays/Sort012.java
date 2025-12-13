@@ -10,7 +10,7 @@ public class Sort012 {
         System.out.println(Arrays.toString(arr));
     }
 
-    public static void sort012(int arr[]) {
+    private static void sort012(int arr[]) {
         int n = arr.length;
         int low=0,mid=0,high=n-1;
         while (mid<=high){
@@ -27,7 +27,7 @@ public class Sort012 {
         }
     }
 
-    public static void swap(int arr[], int i, int j){
+    private static void swap(int arr[], int i, int j){
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;

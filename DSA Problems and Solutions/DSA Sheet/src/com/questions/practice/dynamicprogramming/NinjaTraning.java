@@ -15,14 +15,14 @@ public class NinjaTraning {
 //        System.out.println("Tabulation: " + ninjaTrainingTabulation(meritPoints));
 //        System.out.println("Space Optimized: " + ninjaTrainingSpaceOptimized(meritPoints));
     }
-    public static int ninjaTrainingRecursive(int arr[][]){
+    private static int ninjaTrainingRecursive(int arr[][]){
 
         int last = arr[0].length;
         int day = arr.length-1;
         return recursion(day,last,arr);
     }
 
-    public static int recursion(int day, int lastTask,int [][]arr){
+    private static int recursion(int day, int lastTask,int [][]arr){
         if(day == 0){
             int maxPoint = 0;
             for(int task = 0;task<arr[0].length;task++){

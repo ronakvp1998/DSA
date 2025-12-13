@@ -15,7 +15,7 @@ public class PartitionEqualSubsetSum {
     // ------------------------------------------------------------------------------------------
     // Time Complexity: O(2^N) — Each element has 2 choices (pick/not pick)
     // Space Complexity: O(N) — Maximum depth of recursion stack
-    public static boolean canPartitionRecursive(int index, int target, int[] arr) {
+    private static boolean canPartitionRecursive(int index, int target, int[] arr) {
         // Base Case 1: if target is 0, we found a valid subset
         if (target == 0) return true;
 
@@ -39,7 +39,7 @@ public class PartitionEqualSubsetSum {
     // ------------------------------------------------------------------------------------------
     // Time Complexity: O(N * Target) — Each state (index, target) is visited once
     // Space Complexity: O(N * Target) for DP array + O(N) recursion stack
-    public static boolean canPartitionMemo(int index, int target, int[] arr, int[][] dp) {
+    private static boolean canPartitionMemo(int index, int target, int[] arr, int[][] dp) {
         // Base Case 1: Subset with sum 0 always possible (empty set)
         if (target == 0) return true;
 
@@ -69,7 +69,7 @@ public class PartitionEqualSubsetSum {
     // ------------------------------------------------------------------------------------------
     // Time Complexity: O(N * Target) — Loop through elements and all targets
     // Space Complexity: O(N * Target) — 2D DP table
-    public static boolean canPartitionTabulation(int[] arr) {
+    private static boolean canPartitionTabulation(int[] arr) {
         int n = arr.length;
         int totalSum = 0;
 
@@ -115,7 +115,7 @@ public class PartitionEqualSubsetSum {
     // ------------------------------------------------------------------------------------------
     // Time Complexity: O(N * Target)
     // Space Complexity: O(Target) — We only need 2 rows at a time
-    public static boolean canPartitionSpaceOptimized(int[] arr) {
+    private static boolean canPartitionSpaceOptimized(int[] arr) {
         int n = arr.length;
         int totalSum = 0;
 

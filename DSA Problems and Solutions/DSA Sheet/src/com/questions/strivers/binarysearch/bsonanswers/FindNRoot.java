@@ -7,7 +7,7 @@ public class FindNRoot {
         System.out.println(findNRoot(n,m));
     }
 
-    public static int findNRoot(int n, int m){
+    private static int findNRoot(int n, int m){
         int low = 1, high=m;
 
         while (low<=high){

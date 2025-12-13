@@ -7,12 +7,12 @@
 //        System.out.println(infixToPrefix(str));
 //    }
 //
-//    public static String infixToPrefix(String str){
+//    private static String infixToPrefix(String str){
 //
 //
 //    }
 //
-//    public static String reverseWithCond(String str){
+//    private static String reverseWithCond(String str){
 //        StringBuilder sb = new StringBuilder(str).reverse();
 //        for(int i=0;i< sb.length();i++){
 //            if(sb.charAt(i) == '('){
@@ -21,7 +21,7 @@
 //        }
 //    }
 //
-//    public static String reverse(String str){
+//    private static String reverse(String str){
 //
 //    }
 //}

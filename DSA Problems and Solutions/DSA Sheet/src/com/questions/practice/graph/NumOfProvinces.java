@@ -3,7 +3,7 @@ package com.questions.practice.graph;
 import java.util.ArrayList;
 
 public class NumOfProvinces {
-    public static void dfs(int node,ArrayList<ArrayList<Integer>> adjLs,int vis[]){
+    private static void dfs(int node,ArrayList<ArrayList<Integer>> adjLs,int vis[]){
         vis[node] = 1;
         for(Integer it : adjLs.get(node)){
             if(vis[it] == 0){
@@ -12,7 +12,7 @@ public class NumOfProvinces {
         }
     }
 
-    public static int numProvinces(int V,ArrayList<ArrayList<Integer>>adj){
+    private static int numProvinces(int V,ArrayList<ArrayList<Integer>>adj){
         ArrayList<ArrayList<Integer>>adjLs = new ArrayList<>();
         for(int i=0;i<V;i++){
             adjLs.add(new ArrayList<>());

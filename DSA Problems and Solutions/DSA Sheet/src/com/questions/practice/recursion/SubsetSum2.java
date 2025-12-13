@@ -17,7 +17,7 @@ public class SubsetSum2 {
 
     // pick and not pick
     // [[1, 2, 2], [1], [2, 2], [2], [], [1, 2]]
-    public static void subset2(int index,int arr[], List<Integer>ds, Set<List<Integer>>ans){
+    private static void subset2(int index,int arr[], List<Integer>ds, Set<List<Integer>>ans){
         if(index == arr.length){
             ans.add(new ArrayList<>(ds));
             return;
@@ -30,7 +30,7 @@ public class SubsetSum2 {
 
     // optimized
     // [[], [1], [1, 2], [1, 2, 2], [2], [2, 2]]
-    public static void subsetSum(int index, int arr[], List<Integer> ds, List<List<Integer>> ans){
+    private static void subsetSum(int index, int arr[], List<Integer> ds, List<List<Integer>> ans){
         ans.add(new ArrayList<>(ds));
         for(int i=index;i<arr.length;i++){
             if(i > index && arr[i] == arr[i-1]){

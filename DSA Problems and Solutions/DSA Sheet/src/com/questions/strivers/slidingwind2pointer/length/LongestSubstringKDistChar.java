@@ -47,7 +47,7 @@ public class LongestSubstringKDistChar {
      * Space Complexity: O(k)
      * - Map can store at most k+1 distinct characters.
      */
-    public static int longestSubKDist1(String s, int k) {
+    private static int longestSubKDist1(String s, int k) {
         int maxLen = 0, n = s.length();
         Map<Character, Integer> map = new HashMap<>();
 
@@ -83,7 +83,7 @@ public class LongestSubstringKDistChar {
      * Space Complexity: O(k)
      * - Map holds at most k distinct characters at any point.
      */
-    public static int longestSubKDist2(String s, int k) {
+    private static int longestSubKDist2(String s, int k) {
         int maxLen = 0, left = 0, right = 0, n = s.length();
         Map<Character, Integer> map = new HashMap<>();
 

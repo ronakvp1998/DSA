@@ -47,7 +47,7 @@ public class CheckArrayIsSortedRotated {
     - For a sorted & rotated array, there should be at most 1 break point.
     - Also check wrap-around condition: last element > first element (extra break).
     */
-    public static boolean checkCountBreaks(int[] nums) {
+    private static boolean checkCountBreaks(int[] nums) {
         int countBreaks = 0;
         int n = nums.length;
 
@@ -74,7 +74,7 @@ public class CheckArrayIsSortedRotated {
     - For each rotation, check if it is sorted in non-decreasing order.
     - If any rotation is sorted, return true.
     */
-    public static boolean checkRotationSimulation(int[] nums) {
+    private static boolean checkRotationSimulation(int[] nums) {
         int n = nums.length;
         for (int shift = 0; shift < n; shift++) {
             boolean sorted = true;
@@ -100,7 +100,7 @@ public class CheckArrayIsSortedRotated {
     - Concatenate sorted copy with itself (to simulate all rotations).
     - Check if original array appears as a subarray in the doubled sorted array.
     */
-    public static boolean checkUsingSortedCopy(int[] nums) {
+    private static boolean checkUsingSortedCopy(int[] nums) {
         int n = nums.length;
         int[] sorted = nums.clone();
         Arrays.sort(sorted);

@@ -15,7 +15,7 @@ public class LongestSubstringCondition {
     }
 
     // approach3 using optimized silding window just change the inner while loop to if
-    public static int longestSubstringCondition3(int arr[], int k){
+    private static int longestSubstringCondition3(int arr[], int k){
         int maxLen=Integer.MIN_VALUE,l=0,r=0,n=arr.length,sum=0;
         while (r < n){
             sum = sum + arr[r];
@@ -32,7 +32,7 @@ public class LongestSubstringCondition {
     }
 
     // approach2 using sliding window & 2 pointers
-    public static int longestSubstringCondition2(int arr[], int k){
+    private static int longestSubstringCondition2(int arr[], int k){
         int maxLen = Integer.MIN_VALUE,l=0,r=0,n=arr.length,sum=0;
         while (r < n){
             sum = sum + arr[r];
@@ -49,7 +49,7 @@ public class LongestSubstringCondition {
     }
 
     // approach1 generate all substring
-    public static int longestSubstringCondition1(int arr[], int k){
+    private static int longestSubstringCondition1(int arr[], int k){
         int maxLen = Integer.MIN_VALUE, n = arr.length;
         for(int i=0;i<n;i++){
             int sum = 0;

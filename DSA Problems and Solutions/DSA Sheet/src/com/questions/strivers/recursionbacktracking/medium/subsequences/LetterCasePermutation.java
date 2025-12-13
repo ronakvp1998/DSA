@@ -17,7 +17,7 @@ public class LetterCasePermutation {
      */
 
     // Main function to generate all permutations of the string
-    public static List<String> letterCasePermutation(String s) {
+    private static List<String> letterCasePermutation(String s) {
         List<String> result = new ArrayList<>();
         // Start recursive backtracking from index 0 with an empty current string
         generatePermutations(s, 0, new StringBuilder(), result);

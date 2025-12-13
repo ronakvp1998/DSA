@@ -42,7 +42,7 @@ public class SymmetricBT {
                 && isSymmetrical(root1.left,root2.right)
                 && isSymmetrical(root1.right,root2.left);
     }
-    public static boolean isSymmetric(TreeNode root){
+    private static boolean isSymmetric(TreeNode root){
         if(root == null){
             return true;
         }

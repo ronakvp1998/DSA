@@ -64,7 +64,7 @@ public class PrintPermutations {
      * Approach 1: Using frequency array
      * Recursively build permutations by picking unused elements.
      */
-    public static void generatePermutationWithFreq(int arr[], List<Integer> temp,
+    private static void generatePermutationWithFreq(int arr[], List<Integer> temp,
                                                    List<List<Integer>> list, boolean[] freq) {
         // Base case: one complete permutation is formed
         if (temp.size() == arr.length) {
@@ -104,7 +104,7 @@ Space Complexity:
 
 -------------------------------------------------------------------------------
      */
-    public static void generatePermutationBySwapping(int index, int arr[], List<List<Integer>> list) {
+    private static void generatePermutationBySwapping(int index, int arr[], List<List<Integer>> list) {
         // Base case: one complete permutation is formed
         if (index == arr.length) {
             List<Integer> temp = new ArrayList<>();

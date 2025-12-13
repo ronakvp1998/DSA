@@ -52,7 +52,7 @@ public class SearchInRotatedArr {
      * Space Complexity: O(1)
      *  - No extra data structures used; only variables for pointers and mid.
      */
-    public static int searchRotatedArray(int arr[], int n, int target) {
+    private static int searchRotatedArray(int arr[], int n, int target) {
         int low = 0, high = n - 1;
 
         // Edge case: empty array

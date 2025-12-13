@@ -47,7 +47,7 @@ public class MaximumPointsCards {
      * Time Complexity: O(k) → We check k possible splits.
      * Space Complexity: O(1) → Only variables used.
      */
-    public static int maxSum1(int arr[], int k) {
+    private static int maxSum1(int arr[], int k) {
         int maxSum = Integer.MIN_VALUE, sum = 0, l = 0, r = 0, n = arr.length;
 
         // Step 1: Take first k elements from the left
@@ -88,7 +88,7 @@ public class MaximumPointsCards {
      * Time Complexity: O(k)
      * Space Complexity: O(1)
      */
-    public static int maxSum2(int arr[], int k) {
+    private static int maxSum2(int arr[], int k) {
         int maxSum = Integer.MIN_VALUE, lsum = 0, rsum = 0, n = arr.length;
 
         // Step 1: Sum of first k elements (all from left)

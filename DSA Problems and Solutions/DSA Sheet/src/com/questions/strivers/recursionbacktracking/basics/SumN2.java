@@ -6,7 +6,7 @@ public class SumN2 {
     }
 
     // parametrized approach
-    public static void sum2(int n,int sum){
+    private static void sum2(int n,int sum){
         if(n == 0){
             sum = sum + 0;
             System.out.println(sum);
@@ -17,7 +17,7 @@ public class SumN2 {
 
 
     // functional approach
-    public static int sum22(int n){
+    private static int sum22(int n){
         if(n == 0){
             return 0;
         }

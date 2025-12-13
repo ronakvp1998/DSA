@@ -28,7 +28,7 @@ public class MaxSumNonAdjCircular {
     }
 
     // Recursive solution for circular array
-    public static int houseRobberRecursive(int[] arr) {
+    private static int houseRobberRecursive(int[] arr) {
         int n = arr.length;
 
         // If there's only one house, return its value
@@ -47,7 +47,7 @@ public class MaxSumNonAdjCircular {
     }
 
     // Recursive helper for linear version of house robber
-    public static int recursive(int[] arr, int start, int end) {
+    private static int recursive(int[] arr, int start, int end) {
         // If the end index is before start, no houses left to rob
         if (end < start) {
             return 0;
@@ -69,7 +69,7 @@ public class MaxSumNonAdjCircular {
     }
 
     // Memoization approach for circular house robber
-    public static int houseRobberMemoization(int[] arr) {
+    private static int houseRobberMemoization(int[] arr) {
         int n = arr.length;
 
         // If there's only one house, return its value
@@ -94,7 +94,7 @@ public class MaxSumNonAdjCircular {
     }
 
     // Memoized helper for linear house robber problem
-    public static int memoization(int[] arr, int start, int end, int[] dp) {
+    private static int memoization(int[] arr, int start, int end, int[] dp) {
         // If end index is before start, return 0
         if (end < start) {
             return 0;
@@ -121,7 +121,7 @@ public class MaxSumNonAdjCircular {
     }
 
     // Tabulation approach for circular house robber
-    public static int houseRobberTabulation(int[] arr) {
+    private static int houseRobberTabulation(int[] arr) {
         int n = arr.length;
 
         // If there's only one house, return its value
@@ -137,7 +137,7 @@ public class MaxSumNonAdjCircular {
     }
 
     // Tabulated helper for linear house robber
-    public static int tabulation(int[] arr, int start, int end) {
+    private static int tabulation(int[] arr, int start, int end) {
         int n = end - start + 1; // size of subarray
 
         int[] dp = new int[n]; // dp[i] represents max sum from start to (start + i)
@@ -163,7 +163,7 @@ public class MaxSumNonAdjCircular {
     }
 
     // Space optimized version of house robber for circular array
-    public static int houseRobberSpaceOptimized(int[] arr) {
+    private static int houseRobberSpaceOptimized(int[] arr) {
         int n = arr.length;
 
         // If there's only one house, return its value
@@ -179,7 +179,7 @@ public class MaxSumNonAdjCircular {
     }
 
     // Space optimized linear house robber
-    public static int spaceOptimized(int[] arr, int start, int end) {
+    private static int spaceOptimized(int[] arr, int start, int end) {
         int prev1 = 0; // dp[i - 1]
         int prev2 = 0; // dp[i - 2]
 

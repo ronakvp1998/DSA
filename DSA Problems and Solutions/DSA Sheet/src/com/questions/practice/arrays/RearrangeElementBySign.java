@@ -14,7 +14,7 @@ public class RearrangeElementBySign {
 
     }
 
-    public static int[] rearrange1(int arr[]){
+    private static int[] rearrange1(int arr[]){
         List<Integer> pos = new ArrayList<>();
         List<Integer> neg = new ArrayList<>();
 
@@ -52,7 +52,7 @@ public class RearrangeElementBySign {
         return arr;
     }
 
-    public static int[] rearrange(int arr[]){
+    private static int[] rearrange(int arr[]){
         int temp[] = new int[arr.length];
         int pos=0,neg=1;
         int i = 0;

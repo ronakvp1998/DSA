@@ -29,7 +29,7 @@ public class NQueens {
     */
 
     // Main function to solve the N-Queens problem
-    public static List<List<String>> solveNQueens(int n) {
+    private static List<List<String>> solveNQueens(int n) {
         // Create an empty board with '.'
         char[][] board = new char[n][n];
         for (int i = 0; i < n; i++)

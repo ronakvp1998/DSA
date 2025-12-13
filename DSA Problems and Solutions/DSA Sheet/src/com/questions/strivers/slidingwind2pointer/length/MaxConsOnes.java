@@ -38,7 +38,7 @@ public class MaxConsOnes {
      * Time Complexity: O(n), each element processed at most twice.
      * Space Complexity: O(1), constant extra variables.
      */
-    public static int maxConsOnes3(int arr[], int k) {
+    private static int maxConsOnes3(int arr[], int k) {
         int maxLen = 0, l = 0, r = 0, zeros = 0;
         while (r < arr.length) {
             if (arr[r] == 0) {
@@ -68,7 +68,7 @@ public class MaxConsOnes {
      * Time Complexity: O(n), efficient.
      * Space Complexity: O(1).
      */
-    public static int maxConsOnes2(int arr[], int k) {
+    private static int maxConsOnes2(int arr[], int k) {
         int maxLen = 0, l = 0, r = 0, zeros = 0;
         while (r < arr.length) {
             if (arr[r] == 0) {
@@ -99,7 +99,7 @@ public class MaxConsOnes {
      * Time Complexity: O(n^2), because nested loops over subarrays.
      * Space Complexity: O(1).
      */
-    public static int maxConsOnes1(int arr[], int k) {
+    private static int maxConsOnes1(int arr[], int k) {
         int maxLen = 0, n = arr.length;
         for (int i = 0; i < n; i++) {
             int zeros = 0;

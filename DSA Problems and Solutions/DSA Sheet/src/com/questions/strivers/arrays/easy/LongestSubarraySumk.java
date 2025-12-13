@@ -37,7 +37,7 @@ public class LongestSubarraySumk {
      * Space Complexity: O(1)
      *     → No extra data structures used.
      */
-    public static int getLongestSubarray1(int[] a, long k) {
+    private static int getLongestSubarray1(int[] a, long k) {
         int n = a.length;
         int len = 0;
 
@@ -68,7 +68,7 @@ public class LongestSubarraySumk {
      * Space Complexity: O(1)
      *     → Only variables for sum and length are used.
      */
-    public static int getLongestSubarray2(int[] a, long k) {
+    private static int getLongestSubarray2(int[] a, long k) {
         int n = a.length;
         int len = 0;
 
@@ -96,7 +96,7 @@ public class LongestSubarraySumk {
      * Space Complexity: O(N)
      *     → HashMap stores up to N prefix sums.
      */
-    public static int getLongestSubarray3(int[] a, long k) {
+    private static int getLongestSubarray3(int[] a, long k) {
         int n = a.length;
         Map<Long, Integer> preSumMap = new HashMap<>();
         long sum = 0;
@@ -134,7 +134,7 @@ public class LongestSubarraySumk {
      * Space Complexity: O(1)
      *     → Only a few integer and long variables used.
      */
-    public static int getLongestSubarray4(int[] a, long k) {
+    private static int getLongestSubarray4(int[] a, long k) {
         int n = a.length;
         int left = 0, right = 0;
         long sum = a[0];

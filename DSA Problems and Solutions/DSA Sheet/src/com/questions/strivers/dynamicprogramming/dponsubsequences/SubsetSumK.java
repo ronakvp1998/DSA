@@ -20,7 +20,7 @@ public class SubsetSumK {
 
     // 1️⃣ Plain Recursion
     // Time: O(2^N), Space: O(N)
-    public static boolean subsetSumRecursive(int index, int target, int[] arr) {
+    private static boolean subsetSumRecursive(int index, int target, int[] arr) {
         // Base case: If target is 0, subset exists (empty subset)
         if (target == 0) return true;
 
@@ -41,7 +41,7 @@ public class SubsetSumK {
 
     // 2️⃣ Memoization (Top-down DP)
     // Time: O(N*K), Space: O(N*K + N) (dp table + recursion stack)
-    public static boolean subsetSumMemo(int index, int target, int[] arr, int[][] dp) {
+    private static boolean subsetSumMemo(int index, int target, int[] arr, int[][] dp) {
         // Base case: Target 0 is always achievable
         if (target == 0) return true;
         if (index == 0) return arr[0] == target;
@@ -66,7 +66,7 @@ public class SubsetSumK {
 
     // 3️⃣ Tabulation (Bottom-up DP)
     // Time: O(N*K), Space: O(N*K)
-    public static boolean subsetSumTabulation(int n, int k, int[] arr) {
+    private static boolean subsetSumTabulation(int n, int k, int[] arr) {
         boolean[][] dp = new boolean[n][k + 1];
 
         // Initialize all dp[i][0] = true (target = 0)
@@ -91,7 +91,7 @@ public class SubsetSumK {
 
     // 4️⃣ Space Optimized DP
     // Time: O(N*K), Space: O(K)
-    public static boolean subsetSumSpaceOptimized(int n, int k, int[] arr) {
+    private static boolean subsetSumSpaceOptimized(int n, int k, int[] arr) {
         boolean[] prev = new boolean[k + 1];
 
         prev[0] = true; // target = 0 is always achievable

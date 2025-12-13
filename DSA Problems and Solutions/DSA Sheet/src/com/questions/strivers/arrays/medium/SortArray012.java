@@ -23,7 +23,7 @@ public class SortArray012 {
     }
 
     // Function to sort the array using Dutch National Flag Algorithm
-    public static void sortArray(int arr[], int n) {
+    private static void sortArray(int arr[], int n) {
         int low = 0;      // Points to the beginning of the array (boundary for 0s)
         int mid = 0;      // Traverses the array
         int high = n - 1; // Points to the end of the array (boundary for 2s)
@@ -48,7 +48,7 @@ public class SortArray012 {
     }
 
     // Utility function to swap two elements in the array
-    public static void swap(int arr[], int i, int j) {
+    private static void swap(int arr[], int i, int j) {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;

@@ -47,7 +47,7 @@ public class RearrangeArrayBySign {
      * Time Complexity: O(n) - One full traversal to separate, then rearrange.
      * Space Complexity: O(n) - Uses two extra lists (positive and negative).
      */
-    public static List<Integer> RearrangebySign(List<Integer> A, int n) {
+    private static List<Integer> RearrangebySign(List<Integer> A, int n) {
         // Separate positives and negatives
         ArrayList<Integer> pos = new ArrayList<>();
         ArrayList<Integer> neg = new ArrayList<>();
@@ -93,7 +93,7 @@ public class RearrangeArrayBySign {
      * Time Complexity: O(n)
      * Space Complexity: O(n) - uses temp array
      */
-    public static int[] rearrangeArray3(int arr[]) {
+    private static int[] rearrangeArray3(int arr[]) {
         int temp[] = new int[arr.length];  // Result array
         int pos = 0, neg = 1;              // Indexes for positive and negative numbers
 
@@ -114,7 +114,7 @@ public class RearrangeArrayBySign {
      * Time Complexity: O(n)
      * Space Complexity: O(n)
      */
-    public static int[] rearrangeArray2(int arr[]) {
+    private static int[] rearrangeArray2(int arr[]) {
         int pos[] = new int[arr.length / 2];   // Store positives
         int neg[] = new int[arr.length / 2];   // Store negatives
 
@@ -139,7 +139,7 @@ public class RearrangeArrayBySign {
      * Time Complexity: O(2n)
      * Space Complexity: O(2n)
      */
-    public static void rearrangeArray(int arr[]) {
+    private static void rearrangeArray(int arr[]) {
         // Use LinkedList to support removeFirst()
         List<Integer> neg = new LinkedList<>();
         List<Integer> pos = new LinkedList<>();

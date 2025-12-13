@@ -15,7 +15,7 @@ public class IncreasingNDigitNumbers {
      * @param current The current number being formed (in string form)
      * @param result  List to store all valid N-digit numbers
      */
-    public static void generateNumbers(int n, int start, String current, List<String> result) {
+    private static void generateNumbers(int n, int start, String current, List<String> result) {
         // Base case: If current number length == n,
         // we found a valid increasing number → add to result
         if (current.length() == n) {

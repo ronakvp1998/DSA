@@ -15,7 +15,7 @@ public class OddEvenLinkedList {
     }
 
     // approach 2
-    public static Node segregateOE(Node head){
+    private static Node segregateOE(Node head){
         if(head == null || head.next == null){
             return head;
         }
@@ -47,7 +47,7 @@ public class OddEvenLinkedList {
     }
 
     // approach 1 TC->O(2N) SC->O(N)
-    public static Node segregateEO(Node head){
+    private static Node segregateEO(Node head){
         if(head == null || head.next == null){
             return head;
         }
@@ -82,7 +82,7 @@ public class OddEvenLinkedList {
     }
 
     // approach 2 TC->O(n/2)
-    public static Node oddEvenLL(Node head){
+    private static Node oddEvenLL(Node head){
         if(head == null || head.next == null) return head;
         Node odd=head, even=head.next, evenHead=head.next;
         while (even != null && even.next != null){
@@ -96,7 +96,7 @@ public class OddEvenLinkedList {
         return head;
     }
 
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -106,7 +106,7 @@ public class OddEvenLinkedList {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

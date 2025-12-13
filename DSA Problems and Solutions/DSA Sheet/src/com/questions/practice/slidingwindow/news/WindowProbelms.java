@@ -14,7 +14,7 @@ public class WindowProbelms {
     
 
 
-    public static int constantWindow(int arr[], int k){
+    private static int constantWindow(int arr[], int k){
         int maxSum = Integer.MIN_VALUE;
         int l=0,r=k-1,sum=0,n=arr.length;
         for(int i=0;i<=r;i++){

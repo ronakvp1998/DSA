@@ -18,7 +18,7 @@ Explanation: The ordered permutations are:
 public class KthPermutationSequence {
 
     // Function to return the kth permutation
-    public static String getPermutation(int n, int k) {
+    private static String getPermutation(int n, int k) {
         // Step 1: Prepare the list of numbers [1, 2, 3, ..., n]
         List<Integer> numbers = new ArrayList<>();
         for (int i = 1; i <= n; i++) {

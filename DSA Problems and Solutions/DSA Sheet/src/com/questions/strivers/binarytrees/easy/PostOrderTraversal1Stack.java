@@ -57,7 +57,7 @@ public class PostOrderTraversal1Stack {
      * @param root root of the binary tree
      * @return postorder traversal list
      */
-    public static List<Integer> postorderTraversal(TreeNode root) {
+    private static List<Integer> postorderTraversal(TreeNode root) {
 
         List<Integer> ans = new ArrayList<>();
 

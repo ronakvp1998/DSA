@@ -20,7 +20,7 @@ public class LongestRepeatCharReplace {
     }
 
     // approach 2
-    public static int longestRepeatCharReplace2(String s ,int k){
+    private static int longestRepeatCharReplace2(String s ,int k){
         int l=0,r=0,maxLen=0,maxFreq=0;
         int hash[] = new int[26];
         while (r < s.length()){
@@ -44,7 +44,7 @@ public class LongestRepeatCharReplace {
 
 
     // approach 1
-    public static int longestRepeatCharReplace(String s ,int k){
+    private static int longestRepeatCharReplace(String s ,int k){
         int maxLen = 0,n=s.length();
         for(int i=0;i<n;i++){
             int hash[] = new int[26];

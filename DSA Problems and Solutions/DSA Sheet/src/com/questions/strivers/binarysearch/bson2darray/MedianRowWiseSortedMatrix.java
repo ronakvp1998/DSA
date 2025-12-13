@@ -43,7 +43,7 @@ public class MedianRowWiseSortedMatrix {
      * Time Complexity: O(M*N log(M*N)) → inserting all elements + sorting
      * Space Complexity: O(M*N) → extra space to store elements
      */
-    public static int median(int matrix[][], int m, int n) {
+    private static int median(int matrix[][], int m, int n) {
         List<Integer> lst = new ArrayList<>();
 
         // Step 1: Copy all elements to list

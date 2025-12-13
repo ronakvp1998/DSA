@@ -59,7 +59,7 @@ public class BuySellStock {
     // ⚡ Efficient and readable solution
 
     // Another optimized version with slightly different condition logic
-    public static int buySellStock(int arr[]) {
+    private static int buySellStock(int arr[]) {
         int buyPrice = Integer.MAX_VALUE; // Initialize to max value so any price will be lower
         int maxProfit = 0; // Variable to store max profit
 
@@ -84,7 +84,7 @@ public class BuySellStock {
     // ✅ Recommended: Most efficient approach using single pass
 
     // print the arrays elements of buy and sell dates
-    public static int buySellStock2(int arr[]) {
+    private static int buySellStock2(int arr[]) {
         int maxprofit = 0;
         int minPrice = Integer.MAX_VALUE;
 

@@ -8,7 +8,7 @@ public class NiceSubarray {
         System.out.println(niceSubarray(arr,k) - niceSubarray(arr,k-1) );
     }
 
-    public static int niceSubarray(int arr[], int k){
+    private static int niceSubarray(int arr[], int k){
         if(k < 0) return 0;
         int l=0,r=0,sum=0,count=0;
         while (r < arr.length){

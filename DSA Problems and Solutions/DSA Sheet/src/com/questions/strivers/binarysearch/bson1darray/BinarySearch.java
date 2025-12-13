@@ -15,7 +15,7 @@ public class BinarySearch {
     }
 
     // binary search recursive approach
-    public static int binarySearch1(int arr[], int low,int high, int target) {
+    private static int binarySearch1(int arr[], int low,int high, int target) {
         if(low>high){
             return -1;
         }
@@ -36,7 +36,7 @@ public class BinarySearch {
     }
 
     // binary search iterative approach
-    public static int binarySearch(int arr[], int k){
+    private static int binarySearch(int arr[], int k){
         int n = arr.length;
         int low = 0, high = n-1;
         while (low<=high){

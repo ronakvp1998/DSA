@@ -33,7 +33,7 @@ public class Sum3Problem {
     Time Complexity: O(n^3)
     Space Complexity: O(no. of unique triplets) → up to O(n^2)
     */
-    public static List<List<Integer>> triplet(int n, int[] arr) {
+    private static List<List<Integer>> triplet(int n, int[] arr) {
         Set<List<Integer>> st = new HashSet<>(); // Set to store unique triplets
 
         // Try all combinations of triplets
@@ -64,7 +64,7 @@ public class Sum3Problem {
     Time Complexity: O(n^2)
     Space Complexity: O(n) for inner HashSet + O(unique triplets)
     */
-    public static List<List<Integer>> triplet2(int n, int[] arr) {
+    private static List<List<Integer>> triplet2(int n, int[] arr) {
         Set<List<Integer>> st = new HashSet<>();
 
         // Fix one element and use hashing to find the rest two
@@ -99,7 +99,7 @@ public class Sum3Problem {
     Time Complexity: O(n^2)
     Space Complexity: O(1) (excluding result list)
     */
-    public static List<List<Integer>> triplet3(int n, int[] arr) {
+    private static List<List<Integer>> triplet3(int n, int[] arr) {
         List<List<Integer>> ans = new ArrayList<>();
         Arrays.sort(arr); // Sort the array to use 2-pointer approach
 

@@ -10,7 +10,7 @@ public class SubsetSum1 {
         subSetSum1(0,arr,new ArrayList<>(),0);
     }
 
-    public static void subSetSum1(int index, int arr[],
+    private static void subSetSum1(int index, int arr[],
                                   List<Integer>ds,int sum){
 
         if(index == arr.length){

@@ -29,7 +29,7 @@ public class NextPermutation {
         System.out.println(Arrays.toString(arr));
     }
 
-    public static void nextPermutation(int arr[]){
+    private static void nextPermutation(int arr[]){
         // step 1 find the pivot
         int n = arr.length-1;
         int pivot = -1;
@@ -61,7 +61,7 @@ public class NextPermutation {
         reverse(arr,i,j);
     }
 
-    public static void reverse(int arr[],int i, int j){
+    private static void reverse(int arr[],int i, int j){
         while(i <= j){
             swap(arr,i,j);
             i++;
@@ -69,13 +69,13 @@ public class NextPermutation {
         }
     }
 
-    public static void swap(int arr[], int i, int j){
+    private static void swap(int arr[], int i, int j){
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
 
-    public static void allPermutation(String s,String ans){
+    private static void allPermutation(String s,String ans){
         if(s.length() == 0){
             System.out.println(ans);
             return;

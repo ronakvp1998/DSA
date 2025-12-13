@@ -17,7 +17,7 @@ The goal is to fill those cells with valid digits to complete the Sudoku.
 public class SodukoSolver {
 
     // Function to solve Sudoku using backtracking
-    public static boolean solveSudoku1(char[][] board) {
+    private static boolean solveSudoku1(char[][] board) {
         // Step 1: Traverse the entire board to find an empty cell ('.')
         for (int i = 0; i < 9; i++) {             // iterate over rows
             for (int j = 0; j < 9; j++) {         // iterate over columns
@@ -49,7 +49,7 @@ public class SodukoSolver {
     }
 
     // Helper function to check if placing 'c' at (row, col) is valid
-    public static boolean isValid(char[][] board, int row, int col, char c) {
+    private static boolean isValid(char[][] board, int row, int col, char c) {
         for (int i = 0; i < 9; i++) {
             // Check entire column
             if (board[i][col] == c)

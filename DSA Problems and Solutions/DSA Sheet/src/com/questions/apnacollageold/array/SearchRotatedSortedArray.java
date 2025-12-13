@@ -9,7 +9,7 @@ public class SearchRotatedSortedArray {
         System.out.println(sortRotatedArray2(arr,0,arr.length-1, key))   ;
     }
 
-    public static int sortRotatedArray2(int arr[], int start, int end,int key){
+    private static int sortRotatedArray2(int arr[], int start, int end,int key){
         if(start > end){
             return -1;
         }
@@ -42,7 +42,7 @@ public class SearchRotatedSortedArray {
 
 
 
-    public static int sortRotatedArray(int arr[], int start,  int end, int key){
+    private static int sortRotatedArray(int arr[], int start,  int end, int key){
         // base case
         if(start > end){
             return -1;

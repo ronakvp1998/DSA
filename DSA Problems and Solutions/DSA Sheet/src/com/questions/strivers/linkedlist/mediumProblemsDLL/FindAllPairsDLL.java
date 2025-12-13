@@ -18,7 +18,7 @@ public class FindAllPairsDLL {
 
     }
 
-    public static List<Pair> findAllPairs(NodeDLL head, int sum){
+    private static List<Pair> findAllPairs(NodeDLL head, int sum){
         NodeDLL tail = findTail(head);
         NodeDLL left = head, right = tail;
         List<Pair> res = new ArrayList<>();
@@ -37,7 +37,7 @@ public class FindAllPairsDLL {
         return res;
     }
 
-    public static NodeDLL findTail(NodeDLL head){
+    private static NodeDLL findTail(NodeDLL head){
         NodeDLL temp = head;
         while (temp.next != null){
             temp = temp.next;

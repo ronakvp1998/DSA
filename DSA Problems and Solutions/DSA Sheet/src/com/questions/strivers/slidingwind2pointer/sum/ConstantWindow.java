@@ -49,7 +49,7 @@ public class ConstantWindow {
     -----------------
     O(1) → Only a few integer variables are used, no extra space required.
     */
-    public static int constantWindow(int arr[], int k) {
+    private static int constantWindow(int arr[], int k) {
         int n = arr.length;
         int maxSum = Integer.MIN_VALUE;
         int l = 0, r = k - 1;

@@ -56,7 +56,7 @@ s and t consist of any valid ascii character.
 public class IsomorphicString {
 
     // Approach 1: Using two HashMaps
-    public static boolean isIsomorphic(String s, String t) {
+    private static boolean isIsomorphic(String s, String t) {
         // If lengths are not equal, they can't be isomorphic
         if (s.length() != t.length()) return false;
 
@@ -89,7 +89,7 @@ public class IsomorphicString {
      * Space Complexity: O(1) since we store at most 256 mappings (ASCII chars)
      */
 
-    public static boolean isIsomorphic2(String s, String t) {
+    private static boolean isIsomorphic2(String s, String t) {
         int[] sMap = new int[256];  // maps for s
         int[] tMap = new int[256];  // maps for t
 

@@ -7,7 +7,7 @@ import java.util.List;
 public class Permutation {
 
         // ------------------- 1. BASIC RECURSIVE BACKTRACKING (LIST BUILDING) -----------------------
-        public static List<List<Integer>> generatePermutationsRecursive(int[] nums) {
+        private static List<List<Integer>> generatePermutationsRecursive(int[] nums) {
             List<List<Integer>> result = new ArrayList<>();
             recursivePermute(nums, new ArrayList<>(), result);
             return result;
@@ -29,7 +29,7 @@ public class Permutation {
         }
 
         // ------------------- 2. BACKTRACKING WITH SWAP (int[]) -----------------------
-        public static List<List<Integer>> generatePermutationsSwap(int[] nums) {
+        private static List<List<Integer>> generatePermutationsSwap(int[] nums) {
             List<List<Integer>> result = new ArrayList<>();
             permuteWithSwap(nums, 0, result);
             return result;
@@ -51,7 +51,7 @@ public class Permutation {
         }
 
         // ------------------- 3. VISITED ARRAY FOR STRINGS -----------------------
-        public static List<String> generateStringPermutations(String s) {
+        private static List<String> generateStringPermutations(String s) {
             List<String> result = new ArrayList<>();
             boolean[] visited = new boolean[s.length()];
             backtrackStringPermutations(s, new StringBuilder(), visited, result);
@@ -76,7 +76,7 @@ public class Permutation {
         }
 
         // ------------------- 4. ITERATIVE USING next_permutation -----------------------
-        public static List<List<Integer>> generatePermutationsIterative(int[] nums) {
+        private static List<List<Integer>> generatePermutationsIterative(int[] nums) {
             Arrays.sort(nums);
             List<List<Integer>> result = new ArrayList<>();
 
@@ -105,7 +105,7 @@ public class Permutation {
         }
 
         // ------------------- 5. SLIDING WINDOW STYLE RECURSION (for Strings) -----------------------
-        public static List<String> generateSlidingWindowPermutations(String s) {
+        private static List<String> generateSlidingWindowPermutations(String s) {
             List<String> result = new ArrayList<>();
             slidingWindowPermute(s.toCharArray(), 0, result);
             return result;

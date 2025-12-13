@@ -7,7 +7,7 @@ public class TimesArrayRotated {
         System.out.println(count(arr));
     }
 
-    public static int count(int arr[]){
+    private static int count(int arr[]){
         int n = arr.length;
         int low = 0, high = n-1, ans = Integer.MAX_VALUE, index=0;
         while (low <= high){

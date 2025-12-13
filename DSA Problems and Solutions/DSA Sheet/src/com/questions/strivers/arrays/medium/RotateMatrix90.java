@@ -56,7 +56,7 @@ public class RotateMatrix90 {
      * Time Complexity: O(N^2) → Every element is visited twice (transpose + reverse).
      * Space Complexity: O(1) → Done in-place, no extra matrix is used.
      */
-    public static void rotateMatrix1(int matrix[][]) {
+    private static void rotateMatrix1(int matrix[][]) {
         int n = matrix.length;
 
         // Step 1: Transpose the matrix (convert rows to columns)
@@ -88,7 +88,7 @@ public class RotateMatrix90 {
      * Time Complexity: O(N^2) → Each element is moved once.
      * Space Complexity: O(N^2) → Requires a separate matrix of same size.
      */
-    public static void rotateMatrix(int arr[][]) {
+    private static void rotateMatrix(int arr[][]) {
         int n = arr.length;
         int ans[][] = new int[n][n];
 

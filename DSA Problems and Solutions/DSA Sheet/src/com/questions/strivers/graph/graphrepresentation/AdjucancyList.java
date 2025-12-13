@@ -34,12 +34,12 @@ public class AdjucancyList {
         return adjList;
     }
 
-    public static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) {
+    private static void addEdge(ArrayList<ArrayList<Integer>> adj, int u, int v) {
         adj.get(u).add(v);
         adj.get(v).add(u); // Because the graph is undirected
     }
 
-    public static void printGraph(ArrayList<ArrayList<Integer>> adj) {
+    private static void printGraph(ArrayList<ArrayList<Integer>> adj) {
         for (int i = 0; i < adj.size(); i++) {
             System.out.print(i + " → ");
             for (int node : adj.get(i)) {

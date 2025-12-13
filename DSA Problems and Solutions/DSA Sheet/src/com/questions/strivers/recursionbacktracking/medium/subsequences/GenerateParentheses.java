@@ -6,7 +6,7 @@ import java.util.List;
 public class GenerateParentheses {
 
     // Main function to generate all combinations
-    public static List<String> generateParenthesis(int n) {
+    private static List<String> generateParenthesis(int n) {
         List<String> result = new ArrayList<>();
         backtrack(result, new StringBuilder(), 0, 0, n);
         return result;

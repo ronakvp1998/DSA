@@ -6,7 +6,7 @@ public class BuySellStock {
         System.out.println(buySell(arr,arr.length));
     }
 
-    public static int buySell(int arr[], int n){
+    private static int buySell(int arr[], int n){
         int ans=Integer.MIN_VALUE, byprice=Integer.MAX_VALUE;
 
         for(int i=0;i< arr.length;i++){

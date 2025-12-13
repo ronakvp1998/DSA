@@ -5,7 +5,7 @@ public class ReverseKGroupSize {
 
     }
 
-    public static Node getKthNode(Node temp, int k){
+    private static Node getKthNode(Node temp, int k){
         k -= 1;
         while (temp != null && k > 0 ){
             k--;
@@ -14,7 +14,7 @@ public class ReverseKGroupSize {
         return temp;
     }
 
-    public static Node kReverse(Node head, int k){
+    private static Node kReverse(Node head, int k){
         Node temp = head;
         Node prevLast = null;
         while (temp != null){

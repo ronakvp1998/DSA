@@ -16,7 +16,7 @@ public class LongestCommonSubstring {
     // count: length of current matching substring till this point
     // Time Complexity: O(3^min(n, m)) → exponential (due to three recursive branches)
     // Space Complexity: O(min(n, m)) → recursion stack depth in worst case
-    public static int lcsRecursive(String s1, String s2, int i, int j, int count) {
+    private static int lcsRecursive(String s1, String s2, int i, int j, int count) {
         // 🔚 Base case: if either index is out of bounds (i.e., we’ve reached start of one string)
         // We return the current count because the substring (if any) ends here
         if (i < 0 || j < 0) return count;
@@ -47,14 +47,14 @@ public class LongestCommonSubstring {
     // Note: Since 'count' changes dynamically and we can't memoize it properly, we fallback to tabulation
     // Time Complexity: O(n * m)
     // Space Complexity: O(n * m)
-    public static int lcsMemoization(String s1, String s2) {
+    private static int lcsMemoization(String s1, String s2) {
         return lcsTabulation(s1, s2); // Reuse tabulation as effective memoization
     }
 
     // 📊 3. Tabulation (Bottom-Up DP for Longest Common Substring)
     // Time Complexity: O(n * m) → We compute each cell (i, j) once in the dp table
     // Space Complexity: O(n * m) → 2D DP array of size (n+1) x (m+1)
-    public static int lcsTabulation(String string1, String string2) {
+    private static int lcsTabulation(String string1, String string2) {
         int length1 = string1.length(); // Length of first string
         int length2 = string2.length(); // Length of second string
 
@@ -93,7 +93,7 @@ public class LongestCommonSubstring {
     // 💾 4. Space Optimized Tabulation
     // Time Complexity: O(n * m)
     // Space Complexity: O(m) → Only 2 rows needed (previous and current)
-    public static int lcsSpaceOptimized(String s1, String s2) {
+    private static int lcsSpaceOptimized(String s1, String s2) {
         int n = s1.length();
         int m = s2.length();
 

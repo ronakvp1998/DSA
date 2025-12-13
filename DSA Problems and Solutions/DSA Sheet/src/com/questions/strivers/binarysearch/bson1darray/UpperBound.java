@@ -8,7 +8,7 @@ public class UpperBound {
         System.out.println(upperBound(arr,arr.length,x));
     }
 
-    public static int upperBound(int arr[],int n,int x){
+    private static int upperBound(int arr[],int n,int x){
         int low = 0, high = n - 1;
         int ans = n;
         while (low <= high){

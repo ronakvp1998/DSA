@@ -8,7 +8,7 @@ you are tasked with finding the element that would be at the kth position of the
  */
 public class KthElementOfTwoSortedArray {
 
-    public static int kthElement(ArrayList<Integer> a, ArrayList<Integer> b, int m, int n, int k) {
+    private static int kthElement(ArrayList<Integer> a, ArrayList<Integer> b, int m, int n, int k) {
         ArrayList<Integer> arr3 = new ArrayList<>();
 
         // apply the merge step:
@@ -29,7 +29,7 @@ public class KthElementOfTwoSortedArray {
 
 
 
-    public static int kthElement2(ArrayList<Integer> a, ArrayList<Integer> b, int m, int n, int k) {
+    private static int kthElement2(ArrayList<Integer> a, ArrayList<Integer> b, int m, int n, int k) {
         int ele = -1;
         int cnt = 0; //counter
         // apply the merge step:
@@ -65,7 +65,7 @@ public class KthElementOfTwoSortedArray {
 
 
 
-    public static int kthElement3(ArrayList<Integer> a, ArrayList<Integer> b, int m, int n, int k) {
+    private static int kthElement3(ArrayList<Integer> a, ArrayList<Integer> b, int m, int n, int k) {
         if (m > n) return kthElement3(b, a, n, m, k);
 
         int left = k; // length of left half

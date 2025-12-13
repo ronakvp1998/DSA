@@ -7,7 +7,7 @@ public class SumSubarrayMin {
     }
 
     // appraoch2
-//    public static int sum(int arr[]){
+//    private static int sum(int arr[]){
 ////        int nse[] = findNse(arr);
 ////        int pse[] = findPse(arr);
 //        int n = arr.length;
@@ -20,7 +20,7 @@ public class SumSubarrayMin {
 //    }
 
     // approach1
-    public static int findMin(int arr[]){
+    private static int findMin(int arr[]){
         int sum = 0 , n = arr.length; 
         int mod = 1_000_000_007;
         for(int i=0;i<n;i++){

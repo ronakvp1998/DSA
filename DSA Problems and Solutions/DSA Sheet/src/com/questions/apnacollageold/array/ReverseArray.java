@@ -15,7 +15,7 @@ public class ReverseArray {
     }
 
     // approach 2 two pointer TC O(n) SC O(1)
-    public static void reverseArray1(int arr[] ,int n){
+    private static void reverseArray1(int arr[] ,int n){
         int start = 0;
         int end = arr.length-1;
 
@@ -30,7 +30,7 @@ public class ReverseArray {
 
 
     // approach 1 tempoaray array TC O(n) SC O(N)
-    public static void reverseArray(int arr[],int n){
+    private static void reverseArray(int arr[],int n){
         int temp[] = new int[arr.length];
 
         for(int i=0;i< arr.length;i++){

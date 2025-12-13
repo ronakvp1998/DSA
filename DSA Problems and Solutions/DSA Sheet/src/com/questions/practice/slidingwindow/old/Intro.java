@@ -8,7 +8,7 @@ public class Intro {
         System.out.println(constantWindow(arr,4));
     }
 
-    public static int constantWindow(int arr[], int k){
+    private static int constantWindow(int arr[], int k){
         int maxSum = Integer.MIN_VALUE, l=0,r=k-1,sum=0,n=arr.length;
         for(int i=0;i<=r;i++){
             sum = sum + arr[i];

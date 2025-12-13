@@ -23,7 +23,7 @@ public class MinSubsetSumDifference {
     // - Each element has two choices (include in sum1 or not)
     // Space Complexity: O(N) (due to recursion stack depth)
 
-    public static int minDifferenceRecursive(int index, int sum1, int totalSum, int[] arr) {
+    private static int minDifferenceRecursive(int index, int sum1, int totalSum, int[] arr) {
         // Base Case: when we are at the first element (index == 0)
         if (index == 0) {
             // One subset has sum1, the other has (totalSum - sum1)
@@ -49,7 +49,7 @@ public class MinSubsetSumDifference {
     // - Each state (index, sum1) is computed once
     // Space Complexity: O(N * totalSum) + O(N) stack space
 
-    public static int minDifferenceMemo(int index, int sum1, int totalSum, int[] arr, int[][] dp) {
+    private static int minDifferenceMemo(int index, int sum1, int totalSum, int[] arr, int[][] dp) {
         // Base Case
         if (index == 0) {
             int sum2 = totalSum - sum1;
@@ -79,7 +79,7 @@ public class MinSubsetSumDifference {
     // Space Complexity: O(N * totalSum)
     // - 2D DP table
 
-    public static int minDifferenceTabulation(int[] arr) {
+    private static int minDifferenceTabulation(int[] arr) {
         int n = arr.length;
         int totalSum = Arrays.stream(arr).sum();
 
@@ -129,7 +129,7 @@ public class MinSubsetSumDifference {
     // Space Complexity: O(totalSum)
     // - 1D array reused for optimization
 
-    public static int minDifferenceSpaceOptimized(int[] arr) {
+    private static int minDifferenceSpaceOptimized(int[] arr) {
         int n = arr.length;
         int totalSum = Arrays.stream(arr).sum();
 

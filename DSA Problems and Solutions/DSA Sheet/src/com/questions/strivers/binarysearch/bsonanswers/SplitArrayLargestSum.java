@@ -43,7 +43,7 @@ Approaches:
 public class SplitArrayLargestSum {
 
     // Helper function: count partitions needed for given maxSum
-    public static int countPartitions(int[] a, int maxSum) {
+    private static int countPartitions(int[] a, int maxSum) {
         int n = a.length;
         int partitions = 1; // at least one subarray
         long subarraySum = 0;
@@ -62,7 +62,7 @@ public class SplitArrayLargestSum {
     }
 
     // Brute Force Approach
-    public static int largestSubarraySumMinimized(int[] a, int k) {
+    private static int largestSubarraySumMinimized(int[] a, int k) {
         int low = a[0];  // max element
         int high = 0;    // sum of elements
 
@@ -82,7 +82,7 @@ public class SplitArrayLargestSum {
     }
 
     // Optimized helper: same as above
-    public static int countPartitions2(int[] a, int maxSum) {
+    private static int countPartitions2(int[] a, int maxSum) {
         int n = a.length;
         int partitions = 1;
         long subarraySum = 0;
@@ -99,7 +99,7 @@ public class SplitArrayLargestSum {
     }
 
     // Optimized Binary Search Approach
-    public static int largestSubarraySumMinimized2(int[] a, int k) {
+    private static int largestSubarraySumMinimized2(int[] a, int k) {
         int low = a[0];  // max element
         int high = 0;    // sum of array
 

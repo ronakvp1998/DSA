@@ -57,7 +57,7 @@ Space Complexity:
 public class KthSymbolGrammar {
 
     // Recursive function to find Kth symbol in Nth row
-    public static int kthGrammar(int n, int k) {
+    private static int kthGrammar(int n, int k) {
         // Base case: first row, first symbol is always 0
         if (n == 1 && k == 1) {
             return 0;

@@ -37,7 +37,7 @@ public class FindRowMaxNum1S {
     // Approach 1: Brute Force
     // Count the number of 1's in each row and track the row with the maximum.
     // ----------------------------------------------------------
-    public static int rowWithMax1s(ArrayList<ArrayList<Integer>> matrix, int n, int m) {
+    private static int rowWithMax1s(ArrayList<ArrayList<Integer>> matrix, int n, int m) {
         int cnt_max = 0; // maximum count of 1s found so far
         int index = -1;  // index of row with maximum 1s
 
@@ -64,7 +64,7 @@ public class FindRowMaxNum1S {
     // Utility Function: Lower Bound
     // Returns the first index where arr[index] >= x
     // ----------------------------------------------------------
-    public static int lowerBound2(ArrayList<Integer> arr, int n, int x) {
+    private static int lowerBound2(ArrayList<Integer> arr, int n, int x) {
         int low = 0, high = n - 1;
         int ans = n; // default = n (if all elements < x)
 
@@ -87,7 +87,7 @@ public class FindRowMaxNum1S {
     // first occurrence of 1 using lowerBound (O(log m)).
     // Number of 1's = m - index_of_first_1
     // ----------------------------------------------------------
-    public static int rowWithMax1s2(ArrayList<ArrayList<Integer>> matrix, int n, int m) {
+    private static int rowWithMax1s2(ArrayList<ArrayList<Integer>> matrix, int n, int m) {
         int cnt_max = 0; // maximum number of 1s
         int index = -1;  // row index with max 1s
 

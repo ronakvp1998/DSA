@@ -19,7 +19,7 @@ public class ReverseQueueRecursion {
          */
 
         // Function to reverse the queue
-        public static void reverse(List<Integer> queue) {
+        private static void reverse(List<Integer> queue) {
             if (queue.isEmpty()) {
                 return; // Base case: if queue is empty, nothing to reverse
             }

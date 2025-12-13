@@ -9,7 +9,7 @@ public class MinInRotatedArray {
         System.out.println(findMinInRotatedArray(arr));
     }
 
-    public static int findMinInRotatedArray(int arr[]){
+    private static int findMinInRotatedArray(int arr[]){
         int low = 0,high=arr.length-1;
         int ans = Integer.MAX_VALUE;
         while (low<=high){

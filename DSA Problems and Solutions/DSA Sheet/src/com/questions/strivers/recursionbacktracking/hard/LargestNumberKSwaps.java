@@ -50,7 +50,7 @@ public class LargestNumberKSwaps {
      * @param k      number of swaps remaining
      * @param index  current index we are processing
      */
-    public static void findMaximum(char[] number, int k, int index) {
+    private static void findMaximum(char[] number, int k, int index) {
         // Base condition: if no swaps left OR reached end of number, stop recursion
         if (k == 0 || index == number.length) {
             return;

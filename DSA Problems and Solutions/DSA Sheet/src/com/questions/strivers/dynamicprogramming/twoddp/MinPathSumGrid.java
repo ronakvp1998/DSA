@@ -15,7 +15,7 @@ public class MinPathSumGrid {
     // Recursive approach
     // Time Complexity: O(2^(N*M)), exponential due to recursion
     // Space Complexity: O(N*M), recursion stack space
-    public static int minPathSumRecursive(int i, int j, int[][] grid) {
+    private static int minPathSumRecursive(int i, int j, int[][] grid) {
         // Base case: if we reach the top-left corner, return its value
         if (i == 0 && j == 0) return grid[i][j];
         // If out of bounds, return a large value (infinity)
@@ -32,7 +32,7 @@ public class MinPathSumGrid {
     // Memoization approach
     // Time Complexity: O(N*M), each cell is computed once
     // Space Complexity: O(N*M) for dp array + O(N*M) recursion stack space
-    public static int minPathSumMemoization(int i, int j, int[][] grid, int[][] dp) {
+    private static int minPathSumMemoization(int i, int j, int[][] grid, int[][] dp) {
         // Base case: if we reach the top-left corner, return its value
         if (i == 0 && j == 0) return grid[i][j];
         // If out of bounds, return a large value (infinity)
@@ -52,7 +52,7 @@ public class MinPathSumGrid {
     // Tabulation approach
     // Time Complexity: O(N*M), iterates through the matrix
     // Space Complexity: O(N*M), space for dp array
-    public static int minPathSumTabulation(int[][] grid) {
+    private static int minPathSumTabulation(int[][] grid) {
         int n = grid.length, m = grid[0].length;
         int[][] dp = new int[n][m]; // Create a dp array to store results
 
@@ -82,7 +82,7 @@ public class MinPathSumGrid {
     // Space-optimized approach
     // Time Complexity: O(N*M), iterates through the matrix
     // Space Complexity: O(M), space for a single row
-    public static int minPathSumSpaceOptimized(int[][] grid) {
+    private static int minPathSumSpaceOptimized(int[][] grid) {
         int n = grid.length, m = grid[0].length;
         int[] prev = new int[m]; // Array to store results for the previous row
 

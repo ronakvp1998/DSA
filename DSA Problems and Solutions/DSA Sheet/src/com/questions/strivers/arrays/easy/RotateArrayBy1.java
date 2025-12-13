@@ -11,7 +11,7 @@ public class RotateArrayBy1 {
         System.out.println(Arrays.toString(arr));
     }
 
-    public static void rotateArray(int arr[], int k ){
+    private static void rotateArray(int arr[], int k ){
         int temp = arr[0];
         for(int i=1;i< arr.length;i++){
             arr[i-1] = arr[i];

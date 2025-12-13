@@ -16,7 +16,7 @@ Find the total number of subarrays having bitwise XOR of all elements equal to k
 
 public class CountSubarrayXORK {
 
-    public static int subarraysWithXorK(int []a, int k) {
+    private static int subarraysWithXorK(int []a, int k) {
         int n = a.length; //size of the given array.
         int cnt = 0;
 
@@ -38,7 +38,7 @@ public class CountSubarrayXORK {
         return cnt;
     }
 
-    public static int subarraysWithXorK2(int []a, int k) {
+    private static int subarraysWithXorK2(int []a, int k) {
         int n = a.length; //size of the given array.
         int cnt = 0;
 
@@ -58,7 +58,7 @@ public class CountSubarrayXORK {
         return cnt;
     }
 
-    public static int subarraysWithXorK3(int []a, int k) {
+    private static int subarraysWithXorK3(int []a, int k) {
         int n = a.length; //size of the given array.
         int xr = 0;
         Map<Integer, Integer> mpp = new HashMap<>(); //declaring the map.

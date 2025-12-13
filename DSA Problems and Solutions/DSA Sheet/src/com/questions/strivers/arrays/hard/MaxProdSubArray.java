@@ -82,7 +82,7 @@ public class MaxProdSubArray {
 
 
     // 🟡 Prefix and Suffix Product Trick - Method 3
-    public static int maxProductSubArray3(int[] arr) {
+    private static int maxProductSubArray3(int[] arr) {
         int n = arr.length;
 
         int pre = 1, suff = 1; // pre for prefix product, suff for suffix product

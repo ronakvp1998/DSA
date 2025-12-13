@@ -11,7 +11,7 @@ public class LongestSubstringRepchar {
     }
 
     // Approach 2 longest substring without repeating char using sliding window
-    public static int longestSubRep2(String s){
+    private static int longestSubRep2(String s){
         Map<Character,Integer> map = new HashMap<>();
         int l=0,r=0,maxLen=0,n=s.length();
         while (r < n){
@@ -31,7 +31,7 @@ public class LongestSubstringRepchar {
 
 
     // Approach 1 longest substring without repeating char
-    public static int longestSubRep(String s){
+    private static int longestSubRep(String s){
         int maxLen = 0;
         for(int i=0;i<s.length();i++){
             int hash[] = new int[256];

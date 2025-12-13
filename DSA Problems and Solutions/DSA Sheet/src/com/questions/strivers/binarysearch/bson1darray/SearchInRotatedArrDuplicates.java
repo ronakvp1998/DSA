@@ -7,7 +7,7 @@ public class SearchInRotatedArrDuplicates {
         System.out.println(searchInRotatedArr(arr,arr.length,target));
     }
 
-    public static int searchInRotatedArr(int arr[],int n, int target){
+    private static int searchInRotatedArr(int arr[],int n, int target){
         int low=0, high=n-1;
         while (low<=high){
             int mid = low + (high-low)/2;

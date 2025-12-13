@@ -51,7 +51,7 @@ public class FrogJumpDP {
      * Only stores the last two states, instead of full dp[].
      * Time: O(n), Space: O(1)
      */
-    public static int spaceOptimized(int n, int[] arr) {
+    private static int spaceOptimized(int n, int[] arr) {
         int prev1 = 0;  // Represents dp[i-1]: cost to reach previous stair
         int prev2 = 0;  // Represents dp[i-2]: cost to reach two stairs before
 
@@ -83,7 +83,7 @@ public class FrogJumpDP {
      * Build the solution from base cases upwards
      * Time: O(n), Space: O(n)
      */
-    public static int tabulation(int n, int[] arr, int[] dp) {
+    private static int tabulation(int n, int[] arr, int[] dp) {
         dp[0] = 0; // Base case: No energy required to stand on the first stair
 
         for (int i = 1; i < n; i++) {
@@ -110,7 +110,7 @@ public class FrogJumpDP {
      * Recursive solution with caching to avoid recomputation
      * Time: O(n), Space: O(n) for dp[] and recursion stack
      */
-    public static int memorization(int n, int[] arr, int[] dp) {
+    private static int memorization(int n, int[] arr, int[] dp) {
         if (n == 0) {
             // Base case: at first stair, no energy required
             return 0;
@@ -139,7 +139,7 @@ public class FrogJumpDP {
      * Brute force - explores all paths
      * Time: O(2^n), Space: O(n) recursion stack
      */
-    public static int recursive(int n, int[] arr) {
+    private static int recursive(int n, int[] arr) {
         if (n == 0) {
             // Base case: no energy to stand on the first stair
             return 0;

@@ -1,10 +1,47 @@
 package com.questions.strivers.binarytrees.medium;
 
 import com.questions.strivers.binarytrees.TreeNode;
-
 import java.util.*;
 
+/**
+ * =============================================================================================
+ * 🔥 PROBLEM: Zig-Zag / Spiral Level Order Traversal of a Binary Tree
+ * =============================================================================================
+ *
+ * Given the root of a binary tree, return its zig-zag (also called spiral) level order traversal.
+ *
+ * Zig-Zag Traversal Pattern:
+ *     • Level 0 → Left to Right
+ *     • Level 1 → Right to Left
+ *     • Level 2 → Left to Right
+ *     • Level 3 → Right to Left
+ *     … and so on.
+ *
+ * Example:
+ *      Input Binary Tree:
+ *                 1
+ *               /   \
+ *              2     3
+ *             / \   / \
+ *            4   5 6   7
+ *
+ *      Zig-Zag Output:
+ *          [[1], [3, 2], [4, 5, 6, 7]]
+ *
+ * ---------------------------------------------------------------------------------------------
+ * ❗ Why this problem is asked in interviews?
+ * ---------------------------------------------------------------------------------------------
+ * • Tests understanding of BFS traversal
+ * • Tests ability to modify level order to match constraints
+ * • Checks comfort with data structures: Queue, Stack, Deque, LinkedList
+ * • Multiple optimal approaches → candidates must pick the cleanest one
+ *
+ * ---------------------------------------------------------------------------------------------
+ * =============================================================================================
+ */
+
 public class ZigZagLevel {
+
     public static void main(String[] args) {
 
         // Creating a sample binary tree for testing
@@ -21,210 +58,127 @@ public class ZigZagLevel {
         System.out.println(result);
     }
 
+    // ==========================================================================================================
+    // ✅ APPROACH 1 (BEST)
+    // Queue + LinkedList (Deque Behavior)
+    // ==========================================================================================================
 
-    /* ============================================================================================
-       APPROACH 5 (BEST APPROACH)
-       Single Queue + Double-Ended Level List (Deque Behavior Using LinkedList)
-
-       ✔ Uses normal BFS queue
-       ✔ Uses a LinkedList for each level (acts like a deque)
-       ✔ Add elements at front/back depending on direction
-
-       WHY BEST?
-       - No reversing needed
-       - No use of two stacks
-       - O(1) add at front / back using LinkedList
-       - Most clean, efficient, and easy to understand
-
-       TIME COMPLEXITY:
-           O(N) — every node is processed once
-
-       SPACE COMPLEXITY:
-           O(N) — queue + ans list
-
-       DRAWBACKS:
-           None major. This is the optimal balance of simplicity + efficiency.
-     ============================================================================================ */
-    public static List<List<Integer>> zigZagLevelOrder(TreeNode root) {
+    /**
+     * =============================================================================================
+     * ✔ BEST APPROACH — BFS using Queue + LinkedList (Deque behavior per level)
+     * =============================================================================================
+     *
+     * IDEA:
+     * -----
+     * • Perform normal BFS using a Queue.
+     * • For each level, use a LinkedList to insert nodes either:
+     *          → at the end  (left-to-right)
+     *          → at the front (right-to-left)
+     *
+     * WHY LINKEDLIST?
+     * ---------------
+     * • addFirst() and addLast() take O(1)
+     * • Perfect for zig-zag insertion
+     *
+     * WHY THIS IS BEST?
+     * -----------------
+     * • No reversing required
+     * • No two-stacks complexity
+     * • Very easy to follow
+     * • Most optimized & recommended in interviews
+     *
+     * TIME COMPLEXITY:  O(N)   → Every node is processed exactly once
+     * SPACE COMPLEXITY: O(N)   → Queue + output structure
+     * =============================================================================================
+     */
+    private static List<List<Integer>> zigZagLevelOrder(TreeNode root) {
 
         List<List<Integer>> result = new ArrayList<>();
+
+        // Edge case: empty tree
         if (root == null) return result;
 
-        Queue<TreeNode> nodesQueue = new LinkedList<>();
-        nodesQueue.offer(root);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
 
-        boolean leftToRight = true; // toggle direction each level
+        boolean leftToRight = true;  // Direction flag that flips every level
 
-        while (!nodesQueue.isEmpty()) {
+        while (!queue.isEmpty()) {
 
-            int size = nodesQueue.size();
-            // LinkedList allows addFirst() and addLast() in O(1)
-            LinkedList<Integer> row = new LinkedList<>();
+            int size = queue.size();
+            // LinkedList allows O(1) push at both ends → perfect for zig-zag
+            LinkedList<Integer> currentLevel = new LinkedList<>();
 
             for (int i = 0; i < size; i++) {
 
-                TreeNode node = nodesQueue.poll();
+                // Pop from queue (BFS)
+                TreeNode node = queue.poll();
 
-                // Based on direction, add at appropriate end
+                // Insert at correct position based on direction
                 if (leftToRight) {
-                    row.addLast(node.val);
+                    currentLevel.addLast(node.val);   // Normal L → R
                 } else {
-                    row.addFirst(node.val);
+                    currentLevel.addFirst(node.val);  // Reverse R → L
                 }
 
-                // Add children normally
-                if (node.left != null) nodesQueue.offer(node.left);
-                if (node.right != null) nodesQueue.offer(node.right);
+                // Push children normally (BFS order)
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
             }
 
-            result.add(row);
-            leftToRight = !leftToRight; // flip direction
+            result.add(currentLevel);
+
+            // Flip direction for next level
+            leftToRight = !leftToRight;
         }
+
         return result;
     }
 
 
-    /* ============================================================================================
-       APPROACH 4
-       Recursive Spiral Traversal (Height + Direction)
+    // ==========================================================================================================
+    // ✅ APPROACH 2 — Two Stacks (Classic Zig-Zag)
+    // ==========================================================================================================
 
-       ✔ Recursively prints each level
-       ✔ Requires computing height
-       ✔ For each level: perform DFS to visit nodes in proper order
-
-       TIME COMPLEXITY:
-           O(N * H) worst case
-           - Computing height = O(N)
-           - Printing each level = O(N) but repeated H times
-
-           Worst-case (skewed tree):
-               H = N → O(N^2)
-
-       SPACE COMPLEXITY:
-           O(H) recursion stack
-
-       DRAWBACKS:
-           - Very slow on skewed trees
-           - Not preferred in interviews
-           - Lots of repeated work
-     ============================================================================================ */
-    public static List<List<Integer>> spiralRecursive(TreeNode root) {
-        List<List<Integer>> ans = new ArrayList<>();
-        int h = height(root);
-        boolean leftToRight = false;
-
-        for (int level = 1; level <= h; level++) {
-            List<Integer> currentLevel = new ArrayList<>();
-            printLevel(root, level, leftToRight, currentLevel);
-            ans.add(currentLevel);
-            leftToRight = !leftToRight;
-        }
-        return ans;
-    }
-
-    private static void printLevel(TreeNode node, int level, boolean leftToRight, List<Integer> list) {
-        if (node == null) return;
-
-        if (level == 1) {
-            list.add(node.val);
-        } else {
-            if (leftToRight) {
-                printLevel(node.left, level - 1, leftToRight, list);
-                printLevel(node.right, level - 1, leftToRight, list);
-            } else {
-                printLevel(node.right, level - 1, leftToRight, list);
-                printLevel(node.left, level - 1, leftToRight, list);
-            }
-        }
-    }
-
-    private static int height(TreeNode node) {
-        if (node == null) return 0;
-        return 1 + Math.max(height(node.left), height(node.right));
-    }
-
-
-    /* ============================================================================================
-       APPROACH 3
-       Using Double Ended Queue (Deque)
-
-       ✔ Poll from front or back based on direction
-       ✔ Add children also at correct ends
-
-       TIME COMPLEXITY:
-           O(N)
-
-       SPACE COMPLEXITY:
-           O(N)
-
-       DRAWBACKS:
-           - Slightly more complex logic
-           - Need careful handling of adding children at correct ends
-     ============================================================================================ */
-    public static List<List<Integer>> spiralUsingDeque(TreeNode root) {
+    /**
+     * =============================================================================================
+     * ✔ APPROACH 2 — Two Stacks (Classic Zig-Zag Traversal)
+     * =============================================================================================
+     *
+     * IDEA:
+     * -----
+     * • Use two stacks:
+     *      stack1 → left-to-right
+     *      stack2 → right-to-left
+     * • Pop from one stack, push children into the other.
+     * • On next level, pop from the other stack.
+     *
+     * WHY IT WORKS?
+     * -------------
+     * • Stacks naturally reverse order
+     * • Children are pushed in opposite order to maintain zig-zag behavior
+     *
+     * WHEN TO USE?
+     * ------------
+     * • Good approach when interviewer asks “how else can you do it?”
+     * • Classic zig-zag implementation
+     *
+     * TIME COMPLEXITY:  O(N)   (Each node pushed/popped once)
+     * SPACE COMPLEXITY: O(N)
+     *
+     * DRAWBACKS:
+     * ----------
+     * • Slightly harder to understand
+     * • Not as clean as BEST approach
+     * =============================================================================================
+     */
+    private static List<List<Integer>> spiralUsingTwoStacks(TreeNode root) {
 
         List<List<Integer>> ans = new ArrayList<>();
         if (root == null) return ans;
 
-        Deque<TreeNode> dq = new LinkedList<>();
-        dq.offer(root);
-
-        boolean leftToRight = true;
-
-        while (!dq.isEmpty()) {
-
-            int size = dq.size();
-            List<Integer> level = new ArrayList<>();
-
-            for (int i = 0; i < size; i++) {
-
-                if (leftToRight) {
-                    TreeNode node = dq.pollFirst();
-                    level.add(node.val);
-                    if (node.left != null) dq.offerLast(node.left);
-                    if (node.right != null) dq.offerLast(node.right);
-                } else {
-                    TreeNode node = dq.pollLast();
-                    level.add(node.val);
-                    if (node.right != null) dq.offerFirst(node.right);
-                    if (node.left != null) dq.offerFirst(node.left);
-                }
-            }
-
-            ans.add(level);
-            leftToRight = !leftToRight;
-        }
-
-        return ans;
-    }
-
-
-    /* ============================================================================================
-       APPROACH 2
-       Two Stacks Approach (Striver’s recommended alternative)
-
-       ✔ s1 → left to right
-       ✔ s2 → right to left
-       ✔ No reversing required
-       ✔ Classic zig-zag approach
-
-       TIME COMPLEXITY:
-           O(N)
-
-       SPACE COMPLEXITY:
-           O(N)
-
-       DRAWBACKS:
-           - Requires understanding of two-stack flip logic
-           - Slightly more verbose
-     ============================================================================================ */
-    public static List<List<Integer>> spiralUsingTwoStacks(TreeNode root) {
-
-        List<List<Integer>> ans = new ArrayList<>();
-        if (root == null) return ans;
-
-        Stack<TreeNode> s1 = new Stack<>(); // left → right
-        Stack<TreeNode> s2 = new Stack<>(); // right → left
+        Stack<TreeNode> s1 = new Stack<>(); // L → R
+        Stack<TreeNode> s2 = new Stack<>(); // R → L
 
         s1.push(root);
 
@@ -232,24 +186,26 @@ public class ZigZagLevel {
 
             List<Integer> level = new ArrayList<>();
 
-            // Process left → right
+            // Process stack1 → left-to-right
             while (!s1.isEmpty()) {
                 TreeNode node = s1.pop();
                 level.add(node.val);
 
+                // Push in natural BFS order
                 if (node.left != null) s2.push(node.left);
                 if (node.right != null) s2.push(node.right);
             }
-
             if (!level.isEmpty()) ans.add(level);
+
 
             level = new ArrayList<>();
 
-            // Process right → left
+            // Process stack2 → right-to-left
             while (!s2.isEmpty()) {
                 TreeNode node = s2.pop();
                 level.add(node.val);
 
+                // Push in REVERSE order (right first)
                 if (node.right != null) s1.push(node.right);
                 if (node.left != null) s1.push(node.left);
             }
@@ -261,24 +217,37 @@ public class ZigZagLevel {
     }
 
 
-    /* ============================================================================================
-       APPROACH 1
-       BFS + Reverse Alternate Levels
+    // ==========================================================================================================
+    // ✅ APPROACH 3 — BFS + Reverse Alternate Levels
+    // ==========================================================================================================
 
-       ✔ Normal level order traversal
-       ✔ Reverse the list on alternate levels (Collections.reverse)
-
-       TIME COMPLEXITY:
-           O(N) + O(N) reversing = O(N)
-       SPACE COMPLEXITY:
-           O(N)
-
-       DRAWBACKS:
-           - Reversing each alternate level costs extra time
-           - Not as optimal as deque-based method
-           - Uses additional operations
-     ============================================================================================ */
-    public static List<List<Integer>> spiralLevelOrder(TreeNode root) {
+    /**
+     * =============================================================================================
+     * ✔ APPROACH 3 — BFS + Reverse Alternate Levels
+     * =============================================================================================
+     *
+     * IDEA:
+     * -----
+     * • Perform standard BFS (level-order).
+     * • Store the nodes of each level in a list.
+     * • Reverse the list for alternate levels using Collections.reverse().
+     *
+     * WHY USE THIS?
+     * -------------
+     * • Simplest to explain
+     * • Best beginner-friendly approach
+     * • Works well when clarity > performance
+     *
+     * DRAWBACK:
+     * ---------
+     * • Reversing list every alternate level costs extra time (still O(N))
+     * • Not as optimal as Best Approach
+     *
+     * TIME COMPLEXITY:  O(N) + O(N) reversing = O(N)
+     * SPACE COMPLEXITY: O(N)
+     * =============================================================================================
+     */
+    private static List<List<Integer>> spiralLevelOrder(TreeNode root) {
 
         List<List<Integer>> ans = new ArrayList<>();
         if (root == null) return ans;
@@ -294,15 +263,23 @@ public class ZigZagLevel {
             List<Integer> level = new ArrayList<>();
 
             for (int i = 0; i < size; i++) {
+
                 TreeNode node = queue.poll();
                 level.add(node.val);
+
+                // Push children
                 if (node.left != null) queue.offer(node.left);
                 if (node.right != null) queue.offer(node.right);
             }
 
-            if (reverse) Collections.reverse(level);
+            // Reverse alternate levels
+            if (reverse) {
+                Collections.reverse(level);
+            }
 
             ans.add(level);
+
+            // Flip direction
             reverse = !reverse;
         }
 

@@ -7,7 +7,7 @@ public class PalindromeLL {
         System.out.println(checkPalindrome(head));
     }
 
-    public static boolean checkPalindrome(Node head){
+    private static boolean checkPalindrome(Node head){
         if(head == null || head.next == null){
             return true;
         }
@@ -26,7 +26,7 @@ public class PalindromeLL {
         return true;
     }
 
-    public static Node reverse(Node head){
+    private static Node reverse(Node head){
         if(head == null || head.next == null){
             return head;
         }
@@ -38,7 +38,7 @@ public class PalindromeLL {
         return newHead;
     }
 
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -48,7 +48,7 @@ public class PalindromeLL {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

@@ -37,7 +37,7 @@ public class DoubleLinkedList {
     }
 
     // reverse DLL
-    public static NodeDLL reverseDLL(NodeDLL head){
+    private static NodeDLL reverseDLL(NodeDLL head){
         NodeDLL prev = null;
         NodeDLL curr = head;
         NodeDLL next = null;
@@ -52,7 +52,7 @@ public class DoubleLinkedList {
     }
 
     // 4 delete last
-    public static NodeDLL deleteLast(NodeDLL head){
+    private static NodeDLL deleteLast(NodeDLL head){
         while (head == null || head.next == null){
             return null;
         }
@@ -67,7 +67,7 @@ public class DoubleLinkedList {
     }
 
     // 4 delete all value
-    public static NodeDLL deleteValues(NodeDLL head, int value){
+    private static NodeDLL deleteValues(NodeDLL head, int value){
         if(head == null){
             return null;
         }
@@ -97,7 +97,7 @@ public class DoubleLinkedList {
     }
 
     // 3 delete a value
-    public static NodeDLL deleteValue(NodeDLL head, int value){
+    private static NodeDLL deleteValue(NodeDLL head, int value){
         if(head == null){
             return null;
         }
@@ -118,7 +118,7 @@ public class DoubleLinkedList {
     }
 
     // 2 delete index
-    public static NodeDLL deleteIndex(NodeDLL head, int index){
+    private static NodeDLL deleteIndex(NodeDLL head, int index){
         if(head == null){
             System.out.println("Empty DLL");
             return null;
@@ -151,7 +151,7 @@ public class DoubleLinkedList {
     }
 
     // 1 delete head
-    public static NodeDLL deleteHead(NodeDLL head){
+    private static NodeDLL deleteHead(NodeDLL head){
         if(head == null || head.next == null){
             System.out.println("Empty DLL");
             return null;
@@ -164,7 +164,7 @@ public class DoubleLinkedList {
     }
 
     // printDLL
-    public static void printDLL(NodeDLL head){
+    private static void printDLL(NodeDLL head){
         if(head == null){
             System.out.println("Empty DLL");
             return;
@@ -178,7 +178,7 @@ public class DoubleLinkedList {
     }
 
     // create DLL
-    public static NodeDLL createDLL(int arr[]){
+    private static NodeDLL createDLL(int arr[]){
         if(arr.length == 0){
             System.out.println("Empty DLL");
             return null;

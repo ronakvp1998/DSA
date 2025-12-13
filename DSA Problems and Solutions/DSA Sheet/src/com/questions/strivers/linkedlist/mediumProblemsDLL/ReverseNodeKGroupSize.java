@@ -6,7 +6,7 @@
 //
 //    }
 //
-//    public static NodeDLL reverseKthGroup(NodeDLL head, int k){
+//    private static NodeDLL reverseKthGroup(NodeDLL head, int k){
 //        NodeDLL temp = head, nextNode = null, prevNode = null;
 //        while (temp != null){
 //            NodeDLL kthNode = findKNode(temp,k);
@@ -34,9 +34,9 @@
 //        return head;
 //    }
 //
-//    public static Node
+//    private static Node
 //
-//    public static NodeDLL findKNode(NodeDLL temp, int k){
+//    private static NodeDLL findKNode(NodeDLL temp, int k){
 //        k -= 1;
 //        while (temp != null && k >0 ){
 //            k--;

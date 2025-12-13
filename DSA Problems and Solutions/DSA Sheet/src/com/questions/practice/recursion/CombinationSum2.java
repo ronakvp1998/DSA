@@ -20,7 +20,7 @@ public class CombinationSum2 {
 //        System.out.println(ans1);
     }
 
-    public static void combinationSum2(int index, int arr[], List<List<Integer>>ans,
+    private static void combinationSum2(int index, int arr[], List<List<Integer>>ans,
                                        ArrayList<Integer>ds, int target){
         if(target == 0){
             ans.add(new ArrayList<>(ds));
@@ -41,7 +41,7 @@ public class CombinationSum2 {
     }
 
 
-    public static void combinationSum1(int index, int arr[], HashSet<ArrayList<Integer>>ans,
+    private static void combinationSum1(int index, int arr[], HashSet<ArrayList<Integer>>ans,
                                        ArrayList<Integer>ds,int sum, int target){
 
         if(index == arr.length){

@@ -45,7 +45,7 @@ package com.questions.strivers.recursionbacktracking.medium;
 public class TowerOfHanoi {
 
     // Recursive function to solve Tower of Hanoi
-    public static void solveHanoi(int n, char source, char helper, char destination) {
+    private static void solveHanoi(int n, char source, char helper, char destination) {
         // Base case: only 1 disk, move directly
         if (n == 1) {
             System.out.println("Move disk 1 from " + source + " to " + destination);

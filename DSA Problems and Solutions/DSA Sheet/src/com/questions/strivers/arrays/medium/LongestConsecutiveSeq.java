@@ -41,7 +41,7 @@ public class LongestConsecutiveSeq {
      * Time Complexity: O(n^2) → For each element (n), we may scan the array (n) times.
      * Space Complexity: O(1) → No extra space used.
      */
-    public static int longestCongSeqBrute(int arr[]) {
+    private static int longestCongSeqBrute(int arr[]) {
         int n = arr.length;
         if (n == 0) return 0;
 
@@ -80,7 +80,7 @@ public class LongestConsecutiveSeq {
      * Time Complexity: O(n log n) → Sorting takes O(n log n) + O(n) for scanning.
      * Space Complexity: O(1) if in-place sort is allowed.
      */
-    public static int longestCongSeqSort(int arr[]) {
+    private static int longestCongSeqSort(int arr[]) {
         if (arr.length == 0) return 0;
 
         Arrays.sort(arr); // Sort array
@@ -115,7 +115,7 @@ public class LongestConsecutiveSeq {
      * Time Complexity: O(n) → Each number is processed once.
      * Space Complexity: O(n) → Storing all elements in HashSet.
      */
-    public static int longestCongSeqHashSet(int arr[]) {
+    private static int longestCongSeqHashSet(int arr[]) {
         int n = arr.length;
         if (n == 0) return 0;
 

@@ -56,7 +56,7 @@ public class Sum2Problem {
      *
      * ⚠️ Note: Returned indices correspond to the original array, not the sorted one.
      */
-    public static int[] find2Sum2(int arr[], int target) {
+    private static int[] find2Sum2(int arr[], int target) {
         // Step 1: Create a new array of [value, original_index] pairs
         int[][] numsWithIndex = new int[arr.length][2];
         for (int i = 0; i < arr.length; i++) {
@@ -93,7 +93,7 @@ public class Sum2Problem {
      * Time Complexity: O(n)
      * Space Complexity: O(n)
      */
-    public static int[] find2Sum1(int arr[], int target) {
+    private static int[] find2Sum1(int arr[], int target) {
         HashMap<Integer, Integer> map = new HashMap<>(); // value -> index
         int[] res = new int[2];
 
@@ -120,7 +120,7 @@ public class Sum2Problem {
      * Time Complexity: O(n^2)
      * Space Complexity: O(1)
      */
-    public static void find2Sum(int arr[], int target) {
+    private static void find2Sum(int arr[], int target) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = i + 1; j < arr.length; j++) {
                 if (arr[i] + arr[j] == target) {

@@ -11,7 +11,7 @@ public class Add1LL {
     }
 
     // approach 2 using recursion TC->O(N)
-    public static Node add1LL1(Node head){
+    private static Node add1LL1(Node head){
         int carry = helper(head);
         if(carry == 1){
             Node newNode = new Node(1);
@@ -21,7 +21,7 @@ public class Add1LL {
         return head;
     }
 
-    public static int helper(Node temp){
+    private static int helper(Node temp){
         if(temp == null){
             return 1;
         }
@@ -36,7 +36,7 @@ public class Add1LL {
     }
 
     // appraoch 1 TC->O(3N)
-    public static Node add1LL(Node head){
+    private static Node add1LL(Node head){
 
         // step1 reverse LL
         head = reverseLL(head);
@@ -66,7 +66,7 @@ public class Add1LL {
         return reverseLL(head);
     }
 
-    public static Node reverseLL(Node head){
+    private static Node reverseLL(Node head){
         if(head == null || head.next == null){
             return head;
         }
@@ -77,7 +77,7 @@ public class Add1LL {
         return newHead;
     }
 
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -87,7 +87,7 @@ public class Add1LL {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

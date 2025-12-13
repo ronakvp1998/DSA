@@ -9,7 +9,7 @@ public class MiddleLL {
         System.out.println(res.data);
     }
 
-    public static Node findMiddle(Node head){
+    private static Node findMiddle(Node head){
         Node slow = head, fast = head;
         while (fast.next != null && fast.next.next != null){
             slow = slow.next;
@@ -18,7 +18,7 @@ public class MiddleLL {
         return slow;
     }
 
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -28,7 +28,7 @@ public class MiddleLL {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

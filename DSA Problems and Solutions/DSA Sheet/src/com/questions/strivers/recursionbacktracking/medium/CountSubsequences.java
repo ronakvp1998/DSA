@@ -43,7 +43,7 @@ public class CountSubsequences {
         System.out.println(countSubSeq(0, arr, arr.length, sum, 0));
     }
 
-    public static int countSubSeq(int index, int arr[], int n, int sum, int res) {
+    private static int countSubSeq(int index, int arr[], int n, int sum, int res) {
         // Base case: If we have reached the end of the array
         if (index == n) {
             // If current sum matches target, count this subsequence

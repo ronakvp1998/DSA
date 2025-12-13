@@ -28,7 +28,7 @@ public class ForgkDP {
 //        System.out.println("Space Optimized: " + spaceOptimization(n, arr));
     }
 
-//    public static int spaceOptimization(int n,int arr[],int k){
+//    private static int spaceOptimization(int n,int arr[],int k){
 //        int dp[] = new int [k];
 //        dp[0] = 0;
 //        for(int i=1;i<n;i++){
@@ -41,7 +41,7 @@ public class ForgkDP {
 //        }
 //    }
 
-    public static int tabulation(int n, int arr[], int dp[],int k){
+    private static int tabulation(int n, int arr[], int dp[],int k){
         dp[0] = 0;
         for(int i=1;i<n;i++){
             int minCost = Integer.MAX_VALUE;
@@ -70,7 +70,7 @@ public class ForgkDP {
         return minCost;
     }
 
-    public static int memorization(int n,int arr[],int []dp, int k){
+    private static int memorization(int n,int arr[],int []dp, int k){
         if(n == 0){
             return 0;
         }

@@ -9,7 +9,7 @@ public class InfixToPostfix {
         System.out.println(infixToPostfix(str));
     }
 
-    public static String infixToPostfix(String str){
+    private static String infixToPostfix(String str){
         int i=0;
         Stack<Character> stack = new Stack<>();
         StringBuilder ans = new StringBuilder();
@@ -52,7 +52,7 @@ public class InfixToPostfix {
         return ans.toString();
     }
 
-    public static int priority(char c){
+    private static int priority(char c){
         if(c == '^') return 3;
         else if (c == '*' || c == '/') return 2;
         else if (c == '+' || c == '-') return 1;

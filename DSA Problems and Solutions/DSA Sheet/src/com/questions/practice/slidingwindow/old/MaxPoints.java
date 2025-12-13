@@ -8,7 +8,7 @@ public class MaxPoints {
     }
 
     // approch1 brute force
-    public static int maxPoints(int arr[], int k){
+    private static int maxPoints(int arr[], int k){
         int rsum=0,lsum=0,sum=0,maxSum=0,n=arr.length;
         for(int i=0;i<k;i++){
             lsum = lsum + arr[i];

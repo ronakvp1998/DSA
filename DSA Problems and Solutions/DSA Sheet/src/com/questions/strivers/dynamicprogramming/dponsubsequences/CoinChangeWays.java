@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class CoinChangeWays {
 
     // 1. Recursive Approach (Brute Force)
-    public static int countWaysRecursive(int index, int[] arr, int target) {
+    private static int countWaysRecursive(int index, int[] arr, int target) {
         // Base case: when we are at the 0th coin
         // We can only form the target if it's divisible by arr[0]
         if (index == 0) {
@@ -35,7 +35,7 @@ public class CoinChangeWays {
     // Space Complexity: O(target) — max recursion stack depth
 
     // 2. Memoization Approach (Top-Down Dynamic Programming)
-    public static int countWaysMemoization(int index, int[] arr, int target, int[][] dp) {
+    private static int countWaysMemoization(int index, int[] arr, int target, int[][] dp) {
         // Base case: check if target is divisible by arr[0]
         if (index == 0) {
             return (target % arr[0] == 0) ? 1 : 0;
@@ -62,7 +62,7 @@ public class CoinChangeWays {
     // Space Complexity: O(N * Target) + O(Target) recursion stack
 
     // 3. Tabulation Approach (Bottom-Up DP)
-    public static int countWaysTabulation(int[] arr, int target) {
+    private static int countWaysTabulation(int[] arr, int target) {
         int n = arr.length;
 
         // dp[i][t] represents number of ways to make sum 't' using first (i+1) coins
@@ -91,7 +91,7 @@ public class CoinChangeWays {
     // Space Complexity: O(N * Target)
 
     // 4. Space Optimized Approach
-    public static int countWaysSpaceOptimized(int[] arr, int target) {
+    private static int countWaysSpaceOptimized(int[] arr, int target) {
         int n = arr.length;
 
         // prev[t] stores ways to form sum 't' using coins up to previous row

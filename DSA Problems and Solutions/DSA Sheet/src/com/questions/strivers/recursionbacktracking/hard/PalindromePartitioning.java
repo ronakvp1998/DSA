@@ -24,7 +24,7 @@ Output: [ ["a","a","b","b"], ["aa","bb"], ["a","a","bb"], ["aa","b","b"] ]
 public class PalindromePartitioning {
 
     // Main function that initializes recursive partitioning
-    public static List<List<String>> partition(String s) {
+    private static List<List<String>> partition(String s) {
         List<List<String>> res = new ArrayList<>();  // stores final result (all partitions)
         List<String> path = new ArrayList<>();       // stores current partition (path)
         partitionHelper(0, s, path, res);            // start recursion from index 0

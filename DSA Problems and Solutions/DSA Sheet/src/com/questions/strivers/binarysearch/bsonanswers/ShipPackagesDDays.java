@@ -103,7 +103,7 @@ public class ShipPackagesDDays {
      * Helper function for Brute Force approach.
      * Calculates how many days are needed for a given ship capacity.
      */
-    public static int findDays(int[] weights, int cap) {
+    private static int findDays(int[] weights, int cap) {
         int days = 1; // Start from Day 1
         int load = 0; // Current load on the ship
 
@@ -126,7 +126,7 @@ public class ShipPackagesDDays {
      * Time Complexity: O((sum - max) * n)
      * Space Complexity: O(1)
      */
-    public static int leastWeightCapacity(int[] weights, int d) {
+    private static int leastWeightCapacity(int[] weights, int d) {
         // Find max element and sum of weights
         int maxi = Integer.MIN_VALUE, sum = 0;
         for (int i = 0; i < weights.length; i++) {
@@ -147,7 +147,7 @@ public class ShipPackagesDDays {
      * Helper function for Binary Search approach.
      * Same as findDays().
      */
-    public static int findDays2(int[] weights, int cap) {
+    private static int findDays2(int[] weights, int cap) {
         int days = 1;
         int load = 0;
 
@@ -172,7 +172,7 @@ public class ShipPackagesDDays {
      *
      * Space Complexity: O(1)
      */
-    public static int leastWeightCapacity2(int[] weights, int d) {
+    private static int leastWeightCapacity2(int[] weights, int d) {
         int low = Integer.MIN_VALUE, high = 0;
 
         // Determine search space: [max(weights), sum(weights)]

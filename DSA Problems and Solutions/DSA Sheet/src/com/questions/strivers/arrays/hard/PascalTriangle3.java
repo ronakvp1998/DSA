@@ -25,7 +25,7 @@ There are two ways to construct the first `n` rows of Pascal’s Triangle:
 public class PascalTriangle3 {
 
     // Helper method to calculate nCr (Binomial Coefficient)
-    public static int nCr(int n, int r) {
+    private static int nCr(int n, int r) {
         long res = 1;
 
         // Iteratively calculate nCr = n! / (r! * (n-r)!)
@@ -38,7 +38,7 @@ public class PascalTriangle3 {
     }
 
     // Approach 1: Build entire Pascal’s triangle using nCr formula
-    public static List<List<Integer>> pascalTriangle(int n) {
+    private static List<List<Integer>> pascalTriangle(int n) {
         List<List<Integer>> ans = new ArrayList<>(); // Stores final triangle
 
         // Loop through each row (1-based indexing)
@@ -58,7 +58,7 @@ public class PascalTriangle3 {
     }
 
     // Helper function to generate a single row efficiently using iterative approach
-    public static List<Integer> generateRow(int row) {
+    private static List<Integer> generateRow(int row) {
         long ans = 1;
         List<Integer> ansRow = new ArrayList<>();
         ansRow.add(1); // 1st element is always 1
@@ -74,7 +74,7 @@ public class PascalTriangle3 {
     }
 
     // Approach 2: Generate Pascal’s triangle using iterative row building
-    public static List<List<Integer>> pascalTriangle2(int n) {
+    private static List<List<Integer>> pascalTriangle2(int n) {
         List<List<Integer>> ans = new ArrayList<>(); // Stores final triangle
 
         // For each row number, generate row and add to result

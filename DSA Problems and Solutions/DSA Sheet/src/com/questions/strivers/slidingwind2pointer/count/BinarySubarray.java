@@ -8,7 +8,7 @@ public class BinarySubarray {
         System.out.println(binarySub(arr,goal) - binarySub(arr,goal-1));
     }
 
-    public static int binarySub(int arr[], int k){
+    private static int binarySub(int arr[], int k){
         if(k < 0 ){
             return 0;
         }

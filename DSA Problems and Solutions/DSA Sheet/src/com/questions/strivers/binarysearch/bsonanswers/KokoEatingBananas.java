@@ -45,7 +45,7 @@ public class KokoEatingBananas {
     // ----------------------------------------------
 
     // Utility method to find the maximum element in the array
-    public static int findMax(int[] v) {
+    private static int findMax(int[] v) {
         int maxi = Integer.MIN_VALUE;
         int n = v.length;
         for (int i = 0; i < n; i++) {
@@ -55,7 +55,7 @@ public class KokoEatingBananas {
     }
 
     // Calculate total hours required to finish all bananas with a given eating speed
-    public static int calculateTotalHours(int[] v, int hourly) {
+    private static int calculateTotalHours(int[] v, int hourly) {
         int totalH = 0;
         int n = v.length;
         for (int i = 0; i < n; i++) {
@@ -66,7 +66,7 @@ public class KokoEatingBananas {
     }
 
     // Brute-force method to find the minimum bananas per hour
-    public static int minimumRateToEatBananas(int[] v, int h) {
+    private static int minimumRateToEatBananas(int[] v, int h) {
         int maxi = findMax(v);  // The max possible value for k
 
         // Try all possible rates from 1 to max
@@ -94,7 +94,7 @@ public class KokoEatingBananas {
     // ----------------------------------------------
 
     // Duplicate of findMax method for binary search approach
-    public static int findMax2(int[] v) {
+    private static int findMax2(int[] v) {
         int maxi = Integer.MIN_VALUE;
         int n = v.length;
         for (int i = 0; i < n; i++) {
@@ -104,7 +104,7 @@ public class KokoEatingBananas {
     }
 
     // Duplicate of calculateTotalHours method for binary search approach
-    public static int calculateTotalHours2(int[] v, int hourly) {
+    private static int calculateTotalHours2(int[] v, int hourly) {
         int totalH = 0;
         int n = v.length;
         for (int i = 0; i < n; i++) {
@@ -114,7 +114,7 @@ public class KokoEatingBananas {
     }
 
     // Binary search to find minimum valid rate (k)
-    public static int minimumRateToEatBananas2(int[] v, int h) {
+    private static int minimumRateToEatBananas2(int[] v, int h) {
         int low = 1, high = findMax2(v);  // Range of k
 
         while (low <= high) {

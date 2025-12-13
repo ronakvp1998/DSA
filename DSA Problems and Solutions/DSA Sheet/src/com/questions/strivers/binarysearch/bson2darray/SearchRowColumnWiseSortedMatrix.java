@@ -47,7 +47,7 @@ public class SearchRowColumnWiseSortedMatrix {
        Time Complexity: O(N * M)  → Checking all elements
        Space Complexity: O(1)     → No extra space used
     */
-    public static boolean searchElement(ArrayList<ArrayList<Integer>> matrix, int target) {
+    private static boolean searchElement(ArrayList<ArrayList<Integer>> matrix, int target) {
         int n = matrix.size(), m = matrix.get(0).size();
 
         // Traverse every element of the matrix
@@ -67,7 +67,7 @@ public class SearchRowColumnWiseSortedMatrix {
        Time Complexity: O(log M) → Half search space each step
        Space Complexity: O(1)
     */
-    public static boolean binarySearch2(ArrayList<Integer> nums, int target) {
+    private static boolean binarySearch2(ArrayList<Integer> nums, int target) {
         int n = nums.size();
         int low = 0, high = n - 1;
 
@@ -92,7 +92,7 @@ public class SearchRowColumnWiseSortedMatrix {
        Time Complexity: O(N * log M)  → N rows, each binary search takes log(M)
        Space Complexity: O(1)
     */
-    public static boolean searchElement2(ArrayList<ArrayList<Integer>> matrix, int target) {
+    private static boolean searchElement2(ArrayList<ArrayList<Integer>> matrix, int target) {
         int n = matrix.size();
         int m = matrix.get(0).size();
 
@@ -116,7 +116,7 @@ public class SearchRowColumnWiseSortedMatrix {
        Time Complexity: O(N + M) → At most N downward + M leftward moves
        Space Complexity: O(1)
     */
-    public static boolean searchElement3(ArrayList<ArrayList<Integer>> matrix, int target) {
+    private static boolean searchElement3(ArrayList<ArrayList<Integer>> matrix, int target) {
         int n = matrix.size();
         int m = matrix.get(0).size();
         int row = 0, col = m - 1; // Start from top-right corner

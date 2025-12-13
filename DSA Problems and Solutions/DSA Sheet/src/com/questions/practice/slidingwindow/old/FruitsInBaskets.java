@@ -14,7 +14,7 @@ public class FruitsInBaskets {
     }
 
     // approach2
-    public static int fruitBaskets2(int arr[],int k){
+    private static int fruitBaskets2(int arr[],int k){
         int maxLen=0,l=0,r=0,n=arr.length;
         Map<Integer,Integer> map = new HashMap<>();
         while (r < n){
@@ -33,7 +33,7 @@ public class FruitsInBaskets {
     }
 
     // approach1 brute force approach
-    public static int fruitBaskets1(int arr[],int k){
+    private static int fruitBaskets1(int arr[],int k){
         int maxLen=0;
         for(int i=0;i<arr.length;i++){
             Set<Integer> set = new HashSet<>();

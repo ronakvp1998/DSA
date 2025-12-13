@@ -13,7 +13,7 @@ public class Test {
         System.out.println(list);
     }
 
-    public static void combinationSum(int arr[], int index,List<Integer> temp ,
+    private static void combinationSum(int arr[], int index,List<Integer> temp ,
                                       List<List<Integer>> list,int target,int sum){
         if(index == arr.length){
             if(sum == target){

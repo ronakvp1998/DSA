@@ -26,7 +26,7 @@ public class ClimbingStairs {
     // Method 1: Memoization (Top-Down DP)
     // Time Complexity: O(n)
     // Space Complexity: O(n) for dp[] + O(n) recursion stack space
-    public static int memoraization(int n, int[] dp) {
+    private static int memoraization(int n, int[] dp) {
         // Base cases: 1 way to reach stair 0 or stair 1
         if (n == 0 || n == 1) {
             return 1;
@@ -45,7 +45,7 @@ public class ClimbingStairs {
     // Method 2: Tabulation (Bottom-Up DP)
     // Time Complexity: O(n)
     // Space Complexity: O(n) for dp[]
-    public static int tabulation(int n, int[] dp){
+    private static int tabulation(int n, int[] dp){
         dp[0] = 1; // 1 way to reach stair 0
         dp[1] = 1; // 1 way to reach stair 1
 
@@ -59,7 +59,7 @@ public class ClimbingStairs {
     // Method 3: Space Optimized DP
     // Time Complexity: O(n)
     // Space Complexity: O(1)
-    public static int spaceOpt(int n) {
+    private static int spaceOpt(int n) {
         if (n == 0 || n == 1) return 1;
 
         int prev1 = 1; // ways to reach (i - 2)

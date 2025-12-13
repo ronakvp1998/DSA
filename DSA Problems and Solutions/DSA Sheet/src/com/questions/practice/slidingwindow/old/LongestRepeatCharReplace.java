@@ -7,7 +7,7 @@ public class LongestRepeatCharReplace {
         System.out.println(longestRepeatCharReplace2(s,k));
     }
 
-    public static int longestRepeatCharReplace2(String s, int k){
+    private static int longestRepeatCharReplace2(String s, int k){
         int l=0,r=0,maxLen=0,maxFreq=0;
         int hash[] = new int[26];
         while (r < s.length()){
@@ -29,7 +29,7 @@ public class LongestRepeatCharReplace {
         return maxLen;
     }
 
-    public static int longestRepeatCharReplace1(String s, int k){
+    private static int longestRepeatCharReplace1(String s, int k){
         int maxLen = 0,n=s.length();
         for(int i=0;i<n;i++){
             int hash[] = new int[26];

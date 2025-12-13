@@ -27,7 +27,7 @@ public class MissingNumber {
     // Approach 1: Brute Force - Nested Loop Search
     // Time Complexity: O(N^2) -> For each number from 1..N, we scan the array
     // Space Complexity: O(1)  -> No extra space used
-    public static int missingNumber(int []a, int N) {
+    private static int missingNumber(int []a, int N) {
         for (int i = 1; i <= N; i++) {
             int flag = 0;
             for (int j = 0; j < N - 1; j++) {
@@ -44,7 +44,7 @@ public class MissingNumber {
     // Approach 2: Hashing (Frequency Array)
     // Time Complexity: O(N) -> Single pass to fill hash, single pass to find missing number
     // Space Complexity: O(N) -> Extra array to store frequencies
-    public static int missingNumber1(int []a, int N) {
+    private static int missingNumber1(int []a, int N) {
         int hash[] = new int[N + 1];
         for (int i = 0; i < N - 1; i++)
             hash[a[i]]++;
@@ -59,7 +59,7 @@ public class MissingNumber {
     // Approach 3: Sum Formula
     // Time Complexity: O(N) -> One pass to calculate array sum
     // Space Complexity: O(1) -> No extra space used
-    public static int missingNumber2(int []a, int N) {
+    private static int missingNumber2(int []a, int N) {
         int sum = (N * (N + 1)) / 2;
         int s2 = 0;
         for (int i = 0; i < N - 1; i++) {
@@ -71,7 +71,7 @@ public class MissingNumber {
     // Approach 4: XOR Method
     // Time Complexity: O(N) -> Single pass over array
     // Space Complexity: O(1) -> No extra space used
-    public static int missingNumber3(int []a, int N) {
+    private static int missingNumber3(int []a, int N) {
         int xor1 = 0, xor2 = 0;
         for (int i = 0; i < N - 1; i++) {
             xor2 ^= a[i];      // XOR of array elements
@@ -84,7 +84,7 @@ public class MissingNumber {
     // Variation: Using Sum Formula (Zero-indexed array input)
     // Time Complexity: O(N)
     // Space Complexity: O(1)
-    public static int findMissing(int arr[]) {
+    private static int findMissing(int arr[]) {
         int n = arr.length;
         int reqSum = (n) * (n + 1) / 2;
         int sum = 0;

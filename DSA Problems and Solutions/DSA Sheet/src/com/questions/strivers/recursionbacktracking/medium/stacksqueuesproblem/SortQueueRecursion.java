@@ -43,7 +43,7 @@ public class SortQueueRecursion {
      * - Recursively sort the remaining list.
      * - Insert the removed element back into its correct position.
      */
-    public static void sortrecAsc(List<Integer> list) {
+    private static void sortrecAsc(List<Integer> list) {
         if (list.size() == 0) {
             return;
         }
@@ -61,7 +61,7 @@ public class SortQueueRecursion {
      * - If list is empty OR last element <= current element → place element.
      * - Else, remove last element, recurse, then add it back.
      */
-    public static void recInsertAsc(List<Integer> list, int temp) {
+    private static void recInsertAsc(List<Integer> list, int temp) {
         if (list.size() == 0 || list.get(list.size() - 1) <= temp) {
             list.add(temp);
             return;
@@ -79,7 +79,7 @@ public class SortQueueRecursion {
      * Sorts the list in Descending Order using recursion.
      * Steps are the same as ascending, but insertion logic is reversed.
      */
-    public static void sortRecDec(List<Integer> list) {
+    private static void sortRecDec(List<Integer> list) {
         if (list.isEmpty()) {
             return;
         }
@@ -97,7 +97,7 @@ public class SortQueueRecursion {
      * - If list is empty OR last element >= current element → place element.
      * - Else, remove last element, recurse, then add it back.
      */
-    public static void recInsertdesc(List<Integer> list, int temp) {
+    private static void recInsertdesc(List<Integer> list, int temp) {
         if (list.isEmpty() || list.get(list.size() - 1) >= temp) {
             list.add(temp);
             return;

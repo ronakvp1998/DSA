@@ -38,7 +38,7 @@ import java.util.Stack;
 public class DeleteMiddleOfStack {
 
     // Function to delete the middle element using recursion
-    public static void deleteMiddle(Stack<Integer> stack, int current, int size) {
+    private static void deleteMiddle(Stack<Integer> stack, int current, int size) {
         // Base case: if we reached the middle element
         if (current == size / 2) {
             stack.pop();  // remove the middle element

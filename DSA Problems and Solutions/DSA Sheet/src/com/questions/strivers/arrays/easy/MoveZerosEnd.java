@@ -25,7 +25,7 @@ public class MoveZerosEnd {
     - Copy them back to the original array.
     - Fill the rest with zeros.
     */
-    public static int[] moveZerosExtraSpace(int n, int[] a) {
+    private static int[] moveZerosExtraSpace(int n, int[] a) {
         ArrayList<Integer> temp = new ArrayList<>();
 
         // Step 1: Copy all non-zero elements to temp
@@ -64,7 +64,7 @@ public class MoveZerosEnd {
         - If a non-zero is found, swap with position j, then increment j.
     - This shifts non-zero elements forward while maintaining order.
     */
-    public static int[] moveZerosInPlace(int n, int[] a) {
+    private static int[] moveZerosInPlace(int n, int[] a) {
         int j = -1; // index of the first zero
 
         // Step 1: Find the first zero index

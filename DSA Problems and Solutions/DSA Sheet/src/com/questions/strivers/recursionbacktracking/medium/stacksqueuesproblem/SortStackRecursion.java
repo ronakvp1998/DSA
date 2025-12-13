@@ -37,7 +37,7 @@ import java.util.Stack;
 public class SortStackRecursion {
 
     // Function to sort the entire stack
-    public static void sortStack(Stack<Integer> stack) {
+    private static void sortStack(Stack<Integer> stack) {
         // Base case: if stack has 1 or 0 elements, it's already sorted
         if (stack.size() <= 1) {
             return;

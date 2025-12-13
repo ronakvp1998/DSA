@@ -10,7 +10,7 @@ public class NextPermutation {
         System.out.println(nextPermutation(Arrays.asList(arr)));
     }
 
-    public static List<Integer> nextPermutation(List<Integer> list){
+    private static List<Integer> nextPermutation(List<Integer> list){
         int pivot = -1, n = list.size();
         // step1 find pivot
         for(int i=n-2;i>=0;i--){

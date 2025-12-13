@@ -31,7 +31,7 @@ public class IntersectionPoint {
     }
 
     // apporach3 TC->O(n1+n2) SC->O(1)
-    public static Node intersectPoint2(Node head1, Node head2){
+    private static Node intersectPoint2(Node head1, Node head2){
         if(head1 == null || head2 == null){
             return null;
         }
@@ -49,7 +49,7 @@ public class IntersectionPoint {
 
 
     // approach2 optimzed space O(1) TC->O(n1+n1)+O(n1-n2)
-    public static Node intersectPoint1(Node head1, Node head2){
+    private static Node intersectPoint1(Node head1, Node head2){
         // step1 find the length of both LL
         Node temp1 = head1;
         int n1 = 0;
@@ -73,7 +73,7 @@ public class IntersectionPoint {
         }
     }
 
-    public static Node collisionPoint(Node head1, Node head2, int n){
+    private static Node collisionPoint(Node head1, Node head2, int n){
         while (n != 0){
             n--;
             head2 = head2.next;
@@ -87,7 +87,7 @@ public class IntersectionPoint {
     }
 
     // approach1 using hashmap TC->O(N) + O(N + logN) SC->O(N1) or O(N2)
-    public static Node intersectPoint(Node head1, Node head2){
+    private static Node intersectPoint(Node head1, Node head2){
         Map<Node,Integer> map = new HashMap<Node,Integer>();
         Node temp = head1;
         while (temp != null){
@@ -104,7 +104,7 @@ public class IntersectionPoint {
         return null;
     }
 
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -114,7 +114,7 @@ public class IntersectionPoint {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

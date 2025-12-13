@@ -12,7 +12,7 @@ public class PrintLCS {
      * A plain recursive approach to find the LCS string.
      * It explores all combinations and builds the LCS by checking matches.
      */
-    public static String lcsRecursive(String s1, String s2, int i, int j) {
+    private static String lcsRecursive(String s1, String s2, int i, int j) {
         // Base Case: If either string is exhausted, return empty string
         if (i < 0 || j < 0) return "";
 
@@ -36,7 +36,7 @@ public class PrintLCS {
      * A top-down dynamic programming approach using memoization
      * to avoid recomputation of overlapping subproblems.
      */
-    public static String lcsMemoization(String s1, String s2, int i, int j) {
+    private static String lcsMemoization(String s1, String s2, int i, int j) {
         // Base Case: If any index is out of bounds
         if (i < 0 || j < 0) return "";
 
@@ -62,7 +62,7 @@ public class PrintLCS {
      * Builds the LCS string using a bottom-up DP table,
      * then reconstructs the LCS by tracing back from the bottom-right corner.
      */
-    public static String lcsTabulation(String s1, String s2) {
+    private static String lcsTabulation(String s1, String s2) {
         int n = s1.length(), m = s2.length();
         int[][] dp = new int[n + 1][m + 1]; // dp[i][j] = LCS length for s1[0..i-1] & s2[0..j-1]
 
@@ -109,7 +109,7 @@ public class PrintLCS {
      * Optimized space version using two 1D arrays.
      * Only gives LCS length, not the string.
      */
-    public static int lcsLengthSpaceOptimized(String s1, String s2) {
+    private static int lcsLengthSpaceOptimized(String s1, String s2) {
         int n = s1.length(), m = s2.length();
         int[] prev = new int[m + 1]; // Previous row
         int[] curr = new int[m + 1]; // Current row

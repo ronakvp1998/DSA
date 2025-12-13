@@ -27,7 +27,7 @@ Median = 3
 public class MedianOfTwoSortedArraysDiffSize {
 
     // ---------------------- Approach 1: Merge Full Arrays ----------------------
-    public static double median(int[] a, int[] b) {
+    private static double median(int[] a, int[] b) {
         // Get sizes of arrays
         int n1 = a.length;
         int n2 = b.length;
@@ -66,7 +66,7 @@ public class MedianOfTwoSortedArraysDiffSize {
 
 
     // ---------------------- Approach 2: Merge Until Median ----------------------
-    public static double median2(int[] a, int[] b) {
+    private static double median2(int[] a, int[] b) {
         int n1 = a.length, n2 = b.length;
         int n = n1 + n2; // total length
 
@@ -121,7 +121,7 @@ public class MedianOfTwoSortedArraysDiffSize {
 
 
     // ---------------------- Approach 3: Binary Search (Optimized) ----------------------
-    public static double median3(int[] a, int[] b) {
+    private static double median3(int[] a, int[] b) {
         int n1 = a.length, n2 = b.length;
         // Ensure 'a' is the smaller array for binary search
         if (n1 > n2) return median3(b, a);

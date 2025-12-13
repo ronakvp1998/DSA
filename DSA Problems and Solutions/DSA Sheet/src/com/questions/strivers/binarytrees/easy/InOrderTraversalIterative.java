@@ -71,7 +71,7 @@ public class InOrderTraversalIterative {
      * - Stack must be manually managed.
      *
      */
-    public static List<Integer> inOrderTraversalIterative(TreeNode root) {
+    private static List<Integer> inOrderTraversalIterative(TreeNode root) {
 
         // List to store final inorder traversal
         List<Integer> ans = new ArrayList<>();

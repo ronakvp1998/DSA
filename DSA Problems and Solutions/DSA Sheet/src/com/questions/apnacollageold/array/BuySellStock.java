@@ -14,7 +14,7 @@ public class BuySellStock {
         System.out.println(buySellStocks(prices));
     }
 
-    public static int buySellStocks(int prices[]){
+    private static int buySellStocks(int prices[]){
         int buyPrice = Integer.MAX_VALUE;
         int maxProfit = 0;
 

@@ -18,7 +18,7 @@ Return s after removing the outermost parentheses of every primitive string in t
 public class RemoveOutermostParentheses {
 
     // counter approach
-    public static String removeOuterParentheses(String s){
+    private static String removeOuterParentheses(String s){
         StringBuilder result = new StringBuilder();
         int count = 0;
         for(char ch : s.toCharArray()){
@@ -38,7 +38,7 @@ public class RemoveOutermostParentheses {
     }
 
     // stack approach
-    public static String removeOuterParentheses2(String s){
+    private static String removeOuterParentheses2(String s){
         Stack<Character> stack = new Stack<>();
         StringBuilder result = new StringBuilder();
         for(char ch : s.toCharArray()){

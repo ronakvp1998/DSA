@@ -11,7 +11,7 @@ public class Add1ToNumByLL {
     }
 
     // recursive approach
-    public static Node addOne(Node head){
+    private static Node addOne(Node head){
         int carry = helper(head);
         if(carry == 1){
             Node newNode = new Node(1);
@@ -21,7 +21,7 @@ public class Add1ToNumByLL {
         return head;
     }
 
-    public static int helper(Node temp){
+    private static int helper(Node temp){
         if(temp == null)    return 1;
         int carry = helper(temp.next);
         temp.data = temp.data + carry;
@@ -34,7 +34,7 @@ public class Add1ToNumByLL {
     }
 
     // iterative approach
-    public static void traverseDLL(Node head){
+    private static void traverseDLL(Node head){
         Node temp = head;
         while (temp != null){
             System.out.print(temp.data + " ");
@@ -44,7 +44,7 @@ public class Add1ToNumByLL {
 
     }
 
-    public static Node convertArrToDLL(int arr[]){
+    private static Node convertArrToDLL(int arr[]){
         Node head = new Node(arr[0]); // Create the head node with the first element of the array
         Node prev = head; // Initialize 'prev' to the head node
 

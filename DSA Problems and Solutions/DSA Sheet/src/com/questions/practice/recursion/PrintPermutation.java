@@ -12,7 +12,7 @@ public class PrintPermutation {
         System.out.println(ans);
     }
 
-    public static void permutation1(int []arr, List<Integer>ds,
+    private static void permutation1(int []arr, List<Integer>ds,
                                     List<List<Integer>>ans, boolean[] freq){
 
         if(ds.size()==arr.length){

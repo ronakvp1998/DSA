@@ -24,7 +24,7 @@ public class GenerateBinaryStrings {
      */
 
     // Recursive function to generate all binary strings
-    public static void generateBinaryStrings(int n, StringBuilder current) {
+    private static void generateBinaryStrings(int n, StringBuilder current) {
         // Base case: if the current string has length n, print it
         if (current.length() == n) {
             System.out.println(current.toString());

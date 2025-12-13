@@ -10,7 +10,7 @@ public class RainWaterTrapping {
 
     }
 
-    public static int trappedRain(int height[]){
+    private static int trappedRain(int height[]){
 
         // calculate left max Boundary
         int n = height.length;

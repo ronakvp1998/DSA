@@ -29,7 +29,7 @@ Space Complexity: O(1)
 public class PascalTriangle2 {
 
     // Method to compute nCr using a multiplicative formula (avoids large factorials)
-    public static long nCr(int n, int r) {
+    private static long nCr(int n, int r) {
         long res = 1;
 
         // Compute nCr iteratively using:
@@ -43,7 +43,7 @@ public class PascalTriangle2 {
     }
 
     // Approach 1: Prints the nth row using the binomial coefficient method
-    public static void pascalTriangle(int n) {
+    private static void pascalTriangle(int n) {
         // Iterate over each element in the nth row (1-based)
         for (int c = 1; c <= n; c++) {
             // Print the element at column c: C(n-1, c-1)

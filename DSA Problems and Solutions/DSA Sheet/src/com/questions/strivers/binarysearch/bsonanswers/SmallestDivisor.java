@@ -40,7 +40,7 @@ With these observations, we can surely say that our answer will lie in the range
 public class SmallestDivisor {
 
     // Brute-force method to find the smallest divisor
-    public static int smallestDivisor(int[] arr, int limit) {
+    private static int smallestDivisor(int[] arr, int limit) {
         int n = arr.length;
 
         // Step 1: Find the maximum value in the array
@@ -77,7 +77,7 @@ public class SmallestDivisor {
 
 
     // Helper function to compute the sum of ceilings for a given divisor
-    public static int sumByD2(int[] arr, int div) {
+    private static int sumByD2(int[] arr, int div) {
         int n = arr.length;
         int sum = 0;
 
@@ -90,7 +90,7 @@ public class SmallestDivisor {
     }
 
     // Binary search optimized method to find the smallest divisor
-    public static int smallestDivisor2(int[] arr, int limit) {
+    private static int smallestDivisor2(int[] arr, int limit) {
         int n = arr.length;
 
         // Edge case: if number of elements is greater than the limit,

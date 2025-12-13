@@ -9,7 +9,7 @@ package com.questions.strivers.dynamicprogramming.dponsubsequences;
 import java.util.Arrays;
 public class RodCutting {
     // 1️⃣ Recursive Approach (Brute Force)
-    public static int rodCuttingRecursive(int index, int[] price, int length) {
+    private static int rodCuttingRecursive(int index, int[] price, int length) {
         // Base Case: When index is 0, we can only cut rod in pieces of length 1
         // Take as many as we can (length / 1), multiply with price[0]
         if (index == 0) {
@@ -33,7 +33,7 @@ public class RodCutting {
     // Space Complexity: O(N) — recursion stack depth
 
     // 2️⃣ Memoization (Top-Down DP)
-    public static int rodCuttingMemo(int index, int[] price, int length, int[][] dp) {
+    private static int rodCuttingMemo(int index, int[] price, int length, int[][] dp) {
         // Base case
         if (index == 0) {
             return length * price[0];
@@ -55,7 +55,7 @@ public class RodCutting {
     // Space Complexity: O(N * N) + O(N) recursion stack
 
     // 3️⃣ Tabulation (Bottom-Up DP)
-    public static int rodCuttingTabulation(int[] price, int N) {
+    private static int rodCuttingTabulation(int[] price, int N) {
         int[][] dp = new int[N][N + 1]; // dp[i][l] = max value using pieces up to length i+1 and total length l
 
         // Base case: only using first rod (length 1)
@@ -81,7 +81,7 @@ public class RodCutting {
     // Space Complexity: O(N * N)
 
     // 4️⃣ Space Optimization
-    public static int rodCuttingSpaceOptimized(int[] price, int N) {
+    private static int rodCuttingSpaceOptimized(int[] price, int N) {
         int[] prev = new int[N + 1]; // prev[l] = max value for length l using pieces up to previous index
 
         // Initialize with only 1-length rods

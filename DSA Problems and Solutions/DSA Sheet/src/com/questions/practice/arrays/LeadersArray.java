@@ -9,7 +9,7 @@ public class LeadersArray {
         System.out.println(leaderArray(arr));
     }
 
-    public static List<Integer> leaderArray(int arr[]){
+    private static List<Integer> leaderArray(int arr[]){
         int element=arr[arr.length-1], maxElement=arr[arr.length-1];
         List<Integer> leaders = new ArrayList<>();
         leaders.add(element);
