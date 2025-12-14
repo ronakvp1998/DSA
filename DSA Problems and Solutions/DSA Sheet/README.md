@@ -2,7 +2,7 @@ I will provide you Java code.
 Your job is to transform it into a fully documented and well-explained version.
 
 Please perform ALL of the following:
-Add proper detailed problem statement
+Add proper detailed problem statement and also add main method if not present for testing
 1. Add detailed comments inside the code:
     - Explain every important line
     - Describe the logic and flow clearly

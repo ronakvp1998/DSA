@@ -36,7 +36,7 @@ import com.questions.strivers.binarytrees.TreeNode;
  * Searching for k = 6 → returns the TreeNode containing value 6.
  * ============================================================================
  */
-public class SearchInBT {
+public class SearchInBST {
 
     public static void main(String[] args) {
         // --------------------------------------------------------------------
