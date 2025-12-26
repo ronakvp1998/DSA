@@ -1,381 +1,248 @@
 package com.questions.practice.binarytrees;
 
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 public class PracticeProblems {
-
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);
         root.right = new TreeNode(3);
         root.left.left = new TreeNode(4);
         root.left.right = new TreeNode(5);
-        List<Integer> ans = new ArrayList<>();
-//        System.out.println(checkBalance(root));
-//        System.out.println(maxHeightItr(root));
-//        System.out.println(checkBalance1(root) != -1);
-//        int dia[] = new int [1];
-//        diameter1(root,dia);
-//        diameter2(root,dia);
-//        System.out.println(Arrays.toString(dia));
-//        int maxi[] =  {Integer.MIN_VALUE};
-//        maxPathSum1(root,maxi);
-//        System.out.println(Arrays.toString(maxi));
-//        System.out.println(zigZag(root));
-//        List<Integer> res = printBoundary(root);
-//        System.out.println(res);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+        root.right.right.right = new TreeNode(17);
+//        System.out.println(maxWidth(root));
+//        childSum(root);
     }
 
-    public List<List<Integer>> findVertical(TreeNode root){
+    private static void childSum(TreeNode root){
         if(root == null){
-            return new ArrayList<>();
-        }
-        TreeMap<Integer,TreeMap<Integer,PriorityQueue<Integer>>> nodes = new TreeMap<>();
-        Queue<PairTree> todo = new LinkedList<>();
-        todo.offer(new PairTree(root,0,0));
-        while (!todo.isEmpty()){
-            PairTree p = todo.poll();
-            TreeNode temp = p.node;
-            int x = p.vertical;
-            int y = p.level;
-            nodes.putIfAbsent(x,new TreeMap<>());
-            nodes.get(x).putIfAbsent(y,new PriorityQueue<>());
-            nodes.get(x).get(y).offer(temp.data);
-            if(temp.left != null){
-                todo.offer(new PairTree(temp.left,x-1,y+1));
-            }
-            if(temp.right != null){
-                todo.offer(new PairTree(temp.right,x+1,y+1));
-            }
-        }
-        List<List<Integer>> ans = new ArrayList<>();
-        for(TreeMap<Integer,PriorityQueue<Integer>> ys : nodes.values()){
-            List<Integer> col = new ArrayList<>();
-            for(PriorityQueue<Integer> pq : ys.values()){
-                while (!pq.isEmpty()){
-                    col.add(pq.poll());
-                }
-            }
-            ans.add(col);
-        }
-        return ans;
-    }
-
-    private static List<Integer> printBoundary(TreeNode node){
-        List<Integer> res = new ArrayList<>();
-        if(node == null){
-            return res;
-        }
-        if(!isLeaf(node)){
-            res.add(node.data);
-        }
-        addLeftBoundary(node,res);
-        addLeaves(node,res);
-        addRightBoundary(node,res);
-        return res;
-    }
-
-    private static void addLeftBoundary(TreeNode node,List<Integer>res){
-        TreeNode curr = node.left;
-        while (curr != null){
-            if(!isLeaf(curr)){
-                res.add(curr.data);
-            }
-            if(curr.left != null){
-                curr = curr.left;
-            }else{
-                curr = curr.right;
-            }
-        }
-    }
-
-    private static void addRightBoundary(TreeNode node,List<Integer> res){
-        TreeNode curr = node.right;
-        List<Integer> temp = new ArrayList<>();
-        while (curr != null){
-            if(!isLeaf(curr)){
-                temp.add(curr.data);
-            }
-            if(curr.right != null){
-                curr = curr.right;
-            }else{
-                curr = curr.left;
-            }
-        }
-        for(int i=temp.size()-1;i>=0;i--){
-            res.add(temp.get(i));
-        }
-    }
-
-    private static void addLeaves(TreeNode node,List<Integer> res){
-        if(isLeaf(node)){
-            res.add(node.data);
             return;
         }
-        if(node.left != null){
-            addLeaves(node.left,res);
+        int child = 0;
+        if(root.left != null){
+            child += root.left.data;
         }
-        if(node.right != null){
-            addLeaves(node.right,res);
+        if(root.right != null){
+            child += root.right.data;
+        }
+        if(child > root.data){
+            root.data = child;
+        }else{
+            if(root.left != null)root.left.data = root.data;
+            if(root.right != null)root.right.data = root.data;
+        }
+        childSum(root.left);
+        childSum(root.right);
+        int tot = 0;
+        if(root.left != null){
+            tot += root.left.data;
+        }
+        if(root.right != null){
+            tot += root.right.data;
+        }
+        if(root.left != null || root.right != null ){
+            root.data = tot;
         }
     }
 
-    private static boolean isLeaf(TreeNode node){
-        return node.left == null && node.right == null;
+    static class Pair{
+        TreeNode node;
+        int num;
+        Pair(TreeNode node,int num){
+            this.node = node;
+            this.num = num;
+        }
     }
 
-    private static  List<List<Integer>> zigZag(TreeNode node){
-        List<List<Integer>> res = new ArrayList<>();
-        if(node == null){
-            return res;
+    private static int maxWidth(TreeNode root){
+        if(root == null){
+            return 0;
         }
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(node);
-        boolean leToRi = true;
+        Queue<Pair> queue = new LinkedList<>();
+        queue.offer(new Pair(root,0));
+        int maxNum = 0;
         while (!queue.isEmpty()){
             int size = queue.size();
-            LinkedList<Integer> levels = new LinkedList<>();
+            int first=0,last=0;
+            int minNum = queue.peek().num;
             for(int i=0;i<size;i++){
-                TreeNode node1 = queue.poll();
-                if(leToRi){
-                    levels.addLast(node1.data);
-                }else{
-                    levels.addFirst(node1.data);
+                int currNum = queue.peek().num - minNum;
+                TreeNode node = queue.peek().node;
+                queue.poll();
+                if(i == 0){
+                    first = currNum;
                 }
-                if(node1.left != null){
-                    queue.add(node1.left);
+                if(i == size-1){
+                    last = currNum;
                 }
-                if(node1.right != null){
-                    queue.add(node1.right);
+                if(node.left != null){
+                    queue.add(new Pair(node.left,2*currNum+1));
                 }
-
+                if(node.right != null){
+                    queue.add(new Pair(node.right,2*currNum+2));
+                }
             }
-            res.add(levels);
-            leToRi = !leToRi;
+            maxNum = Math.max(maxNum,last-first+1);
         }
-        return res;
+        return maxNum;
     }
 
-    private static boolean isIdentical(TreeNode node1, TreeNode node2){
-        if(node1 == null && node2 == null){
+    private static TreeNode lca(TreeNode root,int p,int q){
+        if(root == null){
+            return root;
+        }
+        if(root.data == p || root.data == q){
+            return root;
+        }
+        TreeNode left = lca(root.left,p,q);
+        TreeNode right = lca(root.right,p,q);
+        if(left == null){
+            return right;
+        }
+        else if(right == null){
+            return left;
+        }
+        else{
+            return root;
+        }
+    }
+
+    private static boolean getPath (TreeNode root,List<Integer> res,int key){
+        if(root == null){
+            return false;
+        }
+        res.add(root.data);
+        if(root.data == key){
             return true;
         }
-        if(node1 == null || node2 == null){
-            return false;
+        if(getPath(root.left,res,key) || getPath(root.right,res,key)){
+            return true;
         }
-        if(node1.data != node2.data){
-            return false;
-        }
-        return isIdentical(node1.left,node2.left) &&
-                isIdentical(node1.right , node2.right);
+        res.remove(res.size()-1);
+        return false;
     }
 
-    private static int maxPathSum1(TreeNode root, int[] maxi){
-        return findMaxSum(root,maxi);
-    }
-
-    private static int findMaxSum(TreeNode node, int []maxi){
-        if(node == null){
+    private static int diameter1(TreeNode root, int dia[]) {
+        if (root == null) {
             return 0;
         }
-        int leftMax = Math.max(0,findMaxSum(node.left,maxi));
-        int rightMax = Math.max(0,findMaxSum(node.right,maxi));
-        maxi[0] = Math.max(maxi[0],leftMax+rightMax+node.data);
-        return node.data + Math.max(leftMax,rightMax);
+        int lefth = diameter1(root.left, dia);
+        int righth = diameter1(root.right, dia);
+        dia[0] = Math.max(dia[0], lefth + righth);
+        return 1 + Math.max(lefth, righth);
     }
 
-    private static int diameter2(TreeNode root,int [] diameter){
-        heightDia(root,diameter);
-        return diameter[0];
-    }
-
-    private static int heightDia(TreeNode root, int[] dia){
-        if(root == null){
-            return 0;
-        }
-        int lh = heightDia(root.left,dia);
-        int rh = heightDia(root.right,dia);
-        dia[0] = Math.max(dia[0],lh+rh);
-        return 1 + Math.max(lh,rh);
-    }
-
-    private static void diameter1(TreeNode root,int [] diameter){
-        if(root == null){
+    private static void diameter(TreeNode root, int dia[]) {
+        if (root == null) {
             return;
         }
-        int lh = height(root.left);
-        int rh = height(root.right);
-        diameter[0] = Math.max(diameter[0], lh+rh);
-        diameter1(root.left, diameter);
-        diameter1(root.right, diameter);
+        int lefth = heightBt(root.left);
+        int righth = heightBt(root.right);
+        dia[0] = Math.max(dia[0], righth + lefth);
+        diameter(root.left, dia);
+        diameter(root.right, dia);
     }
 
-    private static int checkBalance1(TreeNode root){
-        if(root == null){
+    private static int checkBalanceBT2(TreeNode node) {
+        if (node == null) {
             return 0;
         }
-        int leftHeight = checkBalance1(root.left);
-        if(leftHeight == -1){
+        int lefth = checkBalanceBT2(node.left);
+        if (lefth == -1) {
             return -1;
         }
-        int rightHeight = checkBalance1(root.right);
-        if(rightHeight == -1){
+        int righth = checkBalanceBT2(node.right);
+        if (righth == -1) {
             return -1;
         }
-        if(Math.abs(leftHeight - rightHeight) > 1){
+        if (Math.abs(lefth - righth) > 1) {
             return -1;
         }
-        return 1 + Math.max(leftHeight,rightHeight);
+        return 1 + Math.max(lefth, righth);
     }
 
-    private static boolean checkBalance(TreeNode root){
-        if(root == null){
+    private static boolean checkBalanceBT(TreeNode root) {
+        if (root == null) {
             return true;
         }
-
-        int lefth = height(root.left);
-        int righth = height(root.right);
-
-        if(Math.abs(lefth - righth) > 1){
+        int leftH = heightBt(root.left);
+        int rightH = heightBt(root.right);
+        if (Math.abs(rightH - leftH) > 1) {
             return false;
         }
-
-        boolean left = checkBalance(root.left);
-        boolean right = checkBalance(root.right);
-
-        if(!left || !right){
+        if (!checkBalanceBT(root.left)) {
+            return false;
+        }
+        if (!checkBalanceBT(root.right)) {
             return false;
         }
         return true;
-
     }
 
-    private static int height(TreeNode node){
-        if(node == null){
+    private static int heightBt(TreeNode root) {
+        if (root == null) {
             return 0;
         }
-        int left = height(node.left);
-        int right = height(node.right);
-        return 1 + Math.max(left,right);
+        int left = heightBt(root.left);
+        int right = heightBt(root.right);
+        return 1 + Math.max(left, right);
     }
 
-    private static int maxHeightItr(TreeNode node){
-        if(node == null){
-            return 0;
-        }
-
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(node);
-        int level = 0;
-        while (!queue.isEmpty()){
-            int size = queue.size();
-            for(int i=0;i<size;i++){
-                TreeNode tempNode = queue.poll();
-                if(tempNode.left != null){
-                    queue.add(tempNode.left);
-                }
-                if(tempNode.right != null){
-                    queue.add(tempNode.right);
-                }
-            }
-            level++;
-        }
-        return level;
-    }
-
-    private static int maxHeightRec(TreeNode node){
-        if(node == null){
-            return 0;
-        }
-        int left = maxHeightRec(node.left);
-        int right = maxHeightRec(node.right);
-        return 1  + Math.max(left,right);
-    }
-
-    private static void InOrder(TreeNode root,List<Integer> ans){
-        Stack<TreeNode> stack = new Stack<>();
-        TreeNode node = root;
-        while (node != null || !stack.isEmpty()){
-            if(node != null){
-                stack.push(node);
-                node = node.left;
-            }else{
-                node = stack.pop();
-                ans.add(node.data);
-                node = node.right;
-            }
-        }
-    }
-
-    private static List<List<Integer>> levelOrderIterative(TreeNode node,List<List<Integer>> ans){
-        if(node == null){
-            return ans;
+    private static void levelOrder(TreeNode node, List<List<Integer>> ans) {
+        if (node == null) {
+            return;
         }
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(node);
-        while (!queue.isEmpty()){
-            List<Integer> temp = new ArrayList<>();
+        while (!queue.isEmpty()) {
             int size = queue.size();
-            for(int i=0;i<size;i++){
-                TreeNode tempNode = queue.poll();
-                temp.add(tempNode.data);
-                if(tempNode.left != null){
-                    queue.add(tempNode.left);
+            List<Integer> tempList = new ArrayList<>();
+            for (int i = 0; i < size; i++) {
+                TreeNode temp = queue.poll();
+                tempList.add(temp.data);
+                if (temp.left != null) {
+                    queue.add(temp.left);
                 }
-                if(tempNode.right != null){
-                    queue.add(tempNode.right);
+                if (temp.right != null) {
+                    queue.add(temp.right);
                 }
             }
-            ans.add(temp);
+            ans.add(new ArrayList<>(tempList));
         }
-        return ans;
     }
 
-    private static List<List<Integer>> levelOrderRec(TreeNode root,int level, List<List<Integer>> ans){
-        traverseLevel(root,level,ans);
-        return ans;
 
-    }
-
-    private static void traverseLevel(TreeNode root, int level, List<List<Integer>> ans){
-        if(root == null){
+    private static void postOrder(TreeNode node) {
+        if (node == null) {
             return;
         }
-        if(level >= ans.size()){
-            ans.add(new ArrayList<>());
-        }
-        ans.get(level).add(root.data);
-        traverseLevel(root.left,level+1,ans);
-        traverseLevel(root.right,level+1,ans);
+        postOrder(node.left);
+        postOrder(node.right);
+        System.out.print(node.data + " ");
     }
 
-    private static void inOrder(TreeNode root, List<Integer> ans){
-        if(root == null){
+    private static void preOrder(TreeNode node) {
+        if (node == null) {
             return;
         }
-        inOrder(root.left,ans);
-        ans.add(root.data);
-        inOrder(root.right,ans);
+        System.out.print(node.data + " ");
+        preOrder(node.left);
+        preOrder(node.right);
     }
 
-    private static void postOrder(TreeNode root,List<Integer> ans){
-        if(root == null){
+    private static void inOrder(TreeNode node) {
+        if (node == null) {
             return;
         }
-        postOrder(root.left,ans);
-        postOrder(root.right,ans);
-        ans.add(root.data);
+        inOrder(node.left);
+        System.out.print(node.data + " ");
+        inOrder(node.right);
     }
 
-    private static void preOrder(TreeNode root,List<Integer> ans) {
-
-        if(root == null){
-            return;
-        }
-
-        ans.add(root.data);
-        preOrder(root.left,ans);
-        preOrder(root.right,ans);
-    }
 }
