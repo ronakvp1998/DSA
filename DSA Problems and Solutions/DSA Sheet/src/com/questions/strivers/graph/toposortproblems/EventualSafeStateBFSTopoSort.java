@@ -1,4 +1,4 @@
-package com.questions.strivers.graph.problemsbfsdfs;
+package com.questions.strivers.graph.toposortproblems;
 
 import java.util.*;
 

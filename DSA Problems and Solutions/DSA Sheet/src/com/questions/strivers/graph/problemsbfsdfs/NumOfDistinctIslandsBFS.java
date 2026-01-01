@@ -1,197 +1,209 @@
 package com.questions.strivers.graph.problemsbfsdfs;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
- * ================================= NUMBER OF ISLANDS (BFS - 8 Directional) ================================
+ * =================================================================================================
+ *  🔥 LeetCode problem 694: Number of Distinct Islands (BFS Approach)
+ * =================================================================================================
  *
- * Problem Statement:
- * ------------------
- * You are given a grid of size N x M consisting of:
- *   '1' → Land
- *   '0' → Water
+ *  You are given a 2D grid consisting of:
+ *      '1' → LAND
+ *      '0' → WATER
  *
- * An ISLAND is a group of connected land cells. Two land cells are considered
- * connected if they touch in ANY of the following 8 directions:
+ *  An island is formed by connecting adjacent lands horizontally or vertically (4-directional).
  *
- *                  ↖  ↑  ↗
- *                  ←  *  →
- *                  ↙  ↓  ↘
+ *  Two islands are considered the SAME if their SHAPE is identical,
+ *  regardless of their position in the grid.
  *
- * Your task is to return the TOTAL NUMBER OF DISTINCT ISLANDS.
+ *  Your task:
+ *          👉 Return the count of UNIQUE island shapes.
  *
+ * -------------------------------------------------------------------------------------------------
+ *  Key Difficulty
+ * -------------------------------------------------------------------------------------------------
+ *  We must ensure that:
+ *      - Location does NOT matter
+ *      - Only SHAPE matters
  *
- * =========================================================================================================
- * APPROACH → BFS (Breadth First Search)
- * =========================================================================================================
+ *  Example:
+ *           1 1            1 1
+ *           1       and     1
  *
- * 🔹 Step-By-Step Logic:
- * ----------------------
- * 1️⃣ Traverse every cell in the grid
- * 2️⃣ When we find a land cell ('1') that is NOT visited:
- *        → This means we discovered a NEW island
- *        → Increase island count
- *        → Start BFS from this cell
+ *  Although placed differently, they represent the SAME island shape.
  *
- * 3️⃣ BFS explores ALL connected land cells in 8 directions
- *     and marks them visited so the same island is not counted again.
+ * =================================================================================================
+ *  APPROACH (BFS + SHAPE NORMALIZATION)
+ * =================================================================================================
  *
- * 4️⃣ Continue scanning the grid
- *     Any new unvisited '1' found means a completely different island.
+ *  1️⃣ Iterate through each cell of the grid
+ *  2️⃣ Whenever we encounter an unvisited LAND ('1'):
+ *          → Start a BFS traversal
+ *  3️⃣ While performing BFS, store the RELATIVE POSITION of each cell:
  *
+ *          (row - baseRow , col - baseCol)
  *
- * =========================================================================================================
- * WHY BFS WORKS?
- * =========================================================================================================
- * BFS explores level-by-level (or layer-by-layer).
- * Once BFS starts from a land cell, it covers the WHOLE island connected to it.
- * So when BFS ends, we are guaranteed that:
- *    ✔ Every cell belonging to that island is visited
- *    ✔ The island will never be counted twice
+ *      Where baseRow & baseCol are starting coordinates of the island.
  *
+ *      This ensures the island always starts at (0,0)
+ *      so identical shapes from different places look the same.
  *
- * =========================================================================================================
- * TIME & SPACE COMPLEXITY
- * =========================================================================================================
+ *  4️⃣ Store each island's normalized coordinate list into a SET
+ *      → Set automatically handles uniqueness
  *
- * Let N = number of rows, M = number of columns
+ *  5️⃣ Answer = size of the SET
  *
- * Time Complexity  →  O(N × M)
- * --------------------------------
- * Every cell is visited at most once
- * BFS processes each cell only once
+ * =================================================================================================
+ *  TIME COMPLEXITY
+ * =================================================================================================
+ *  ✔ Each cell is visited once → O(N * M)
+ *  ✔ BFS explores neighboring land cells → Still O(N * M)
  *
- * Space Complexity →  O(N × M)
- * --------------------------------
- * ✔ Visited matrix stores N*M states
- * ✔ Queue may store all cells of one large island in worst case
+ *      🔷 Overall Time Complexity = O(N * M)
  *
+ * =================================================================================================
+ *  SPACE COMPLEXITY
+ * =================================================================================================
+ *  ✔ Visited matrix → O(N * M)
+ *  ✔ Queue for BFS worst case → O(N * M)
+ *  ✔ Set storing unique shapes → O(N * M)
  *
- * =========================================================================================================
- * EDGE CASES
- * =========================================================================================================
- * ✔ Grid completely empty or null → answer = 0
- * ✔ All water grid → answer = 0
- * ✔ All land grid → answer = 1
- * ✔ Land cells only diagonally connected → MUST BE SAME island
+ *      🔷 Overall Space = O(N * M)
  *
+ * =================================================================================================
+ *  WHY BFS VERSION?
+ * =================================================================================================
+ *  ✔ Avoids deep recursion stack overflow issues
+ *  ✔ Iterative → safer on large grids
  *
- * =========================================================================================================
- * ALTERNATIVE APPROACHES
- * =========================================================================================================
+ * =================================================================================================
+ *  LIMITATIONS
+ * =================================================================================================
+ *  ❌ Does not treat rotated / mirrored shapes as same (same as DFS version)
  *
- * 1️⃣ DFS (Depth First Search)
- * ----------------------------
- * - Uses recursion instead of queue
- * - Simpler to write
- * - But may cause stack overflow in huge grids
+ * =================================================================================================
+ *  POSSIBLE ALTERNATIVES
+ * =================================================================================================
+ *  - DFS Normalization (already shown previously)
+ *  - Canonical Encoding with Sorting
+ *  - Hash based shape encoding
  *
- * 2️⃣ Disjoint Set Union (Union-Find)
- * ------------------------------------
- * - Treat each land as a node
- * - Union adjacent lands
- * - Count number of unique parents
- * - Useful when:
- *      ✔ Grid updates frequently
- *      ✔ Multiple queries required
- * - Harder to implement
- *
- *
- * =========================================================================================================
- * LIMITATIONS
- * =========================================================================================================
- * BFS needs extra space for queue
- * DFS may cause recursion depth issues
- *
+ * =================================================================================================
  */
+
 public class NumOfDistinctIslandsBFS {
 
     /**
-     * BFS to explore and mark all connected land cells of ONE island
+     * ------------------------------------------------------------------------------------------------
+     * BFS to record SHAPE of an island using RELATIVE COORDINATES
+     * ------------------------------------------------------------------------------------------------
+     *
+     * @param row     -> starting row of island
+     * @param col     -> starting col of island
+     * @param baseRow -> reference row for normalization
+     * @param baseCol -> reference col for normalization
+     * @param vis     -> visited matrix
+     * @param grid    -> input grid
+     * @param shape   -> stores normalized island coordinates
      */
-    private static void bfs(int row, int col, boolean[][] vis, char[][] grid) {
+    private static void bfs(int row, int col,
+                            int baseRow, int baseCol,
+                            boolean[][] vis,
+                            char[][] grid,
+                            ArrayList<String> shape) {
 
-        // Queue to support BFS, storing cell coordinates
+        // Queue for BFS traversal
         Queue<int[]> q = new LinkedList<>();
 
-        // Push starting cell and mark as visited
-        q.add(new int[]{row, col});
+        // Mark starting cell visited and push to queue
         vis[row][col] = true;
+        q.add(new int[]{row, col});
 
-        // Row & Column movement arrays for all 8 directions
-        int[] drow = {-1,-1,-1, 0, 1, 1, 1, 0};
-        int[] dcol = {-1, 0, 1, 1, 1, 0,-1,-1};
+        // Directions for moving UP, RIGHT, DOWN, LEFT
+        int[] dr = {-1, 0, 1, 0};
+        int[] dc = {0, 1, 0, -1};
 
-        // Start BFS traversal
+        // BFS traversal
         while (!q.isEmpty()) {
 
             int[] cell = q.poll();
             int r = cell[0];
             int c = cell[1];
 
-            // Explore all 8 directions
-            for (int i = 0; i < 8; i++) {
-                int nr = r + drow[i];   // target row
-                int nc = c + dcol[i];   // target column
+            // Store RELATIVE POSITION (Normalization)
+            shape.add((r - baseRow) + "_" + (c - baseCol));
 
-                // Conditions to allow visiting:
-                // 1. Must lie inside grid boundaries
-                // 2. Must NOT be visited earlier
-                // 3. Must be land ('1')
+            // Check all 4 direction neighbors
+            for (int i = 0; i < 4; i++) {
+                int nr = r + dr[i];
+                int nc = c + dc[i];
+
+                // Boundary check + unvisited + land check
                 if (nr >= 0 && nr < grid.length &&
                         nc >= 0 && nc < grid[0].length &&
-                        !vis[nr][nc] && grid[nr][nc] == '1') {
+                        !vis[nr][nc] &&
+                        grid[nr][nc] == '1') {
 
-                    // Mark visited and push in queue for BFS
-                    vis[nr][nc] = true;
-                    q.add(new int[]{nr, nc});
+                    vis[nr][nc] = true;     // mark visited
+                    q.add(new int[]{nr, nc}); // push neighbor into queue
                 }
             }
         }
     }
 
     /**
-     * Counts number of islands using BFS
+     * ------------------------------------------------------------------------------------------------
+     * FUNCTION: Count Distinct Islands using BFS
+     * ------------------------------------------------------------------------------------------------
+     *
+     * @param grid -> 2D character matrix
+     * @return number of UNIQUE island shapes
      */
-    private static int numIslands(char[][] grid) {
+    private static int countDistinctIslands(char[][] grid) {
 
-        int n = grid.length;        // total rows
-        int m = grid[0].length;     // total columns
+        int n = grid.length;
+        int m = grid[0].length;
 
-        // visited matrix to prevent reprocessing
         boolean[][] vis = new boolean[n][m];
 
-        int count = 0; // stores number of islands
+        // Set to store UNIQUE shapes
+        Set<ArrayList<String>> shapes = new HashSet<>();
 
-        // Traverse whole grid
+        // Traverse full grid
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
 
-                // New island detected → BFS it!
+                // If unvisited land found → New island
                 if (!vis[i][j] && grid[i][j] == '1') {
-                    count++;                // new island found
-                    bfs(i, j, vis, grid);   // explore complete island
+
+                    ArrayList<String> shape = new ArrayList<>();
+
+                    // Perform BFS to record shape
+                    bfs(i, j, i, j, vis, grid, shape);
+
+                    // Insert shape in set
+                    shapes.add(shape);
                 }
             }
         }
 
-        return count;
+        return shapes.size();
     }
 
     /**
-     * ============================== DRIVER CODE ===============================
+     * =================================================================================================
+     *  DRIVER CODE
+     * =================================================================================================
      */
     public static void main(String[] args) {
 
         char[][] grid = {
-                {'1','1','0','0','0'},
-                {'1','1','0','0','0'},
-                {'0','0','1','0','0'},
-                {'0','0','0','1','1'}
+                {'1','1','0','1'},
+                {'1','0','0','0'},
+                {'0','0','1','1'},
+                {'1','1','0','1'}
         };
 
-        // Expected Output → 3
-        System.out.println("Number of Islands: " + numIslands(grid));
+        System.out.println("Distinct Islands (BFS) = " + countDistinctIslands(grid));
     }
 }

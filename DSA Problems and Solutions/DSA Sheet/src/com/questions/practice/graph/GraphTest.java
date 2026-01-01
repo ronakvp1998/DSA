@@ -1,60 +1,71 @@
 package com.questions.practice.graph;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Stack;
 
-public class GraphTest{
-    static public class Pair{
-        int nRow ;
-        int nCol;
-        int time;
-        public Pair(int nRow,int nCol,int time){
-            this.nRow = nRow;
-            this.nCol = nCol;
-            this.time = time;
+public class GraphTest {
+
+    static class Pair{
+        int node;
+        int weight;
+        Pair(int node, int weight){
+            this.node = node;
+            this.weight = weight;
         }
     }
 
-    private static int rottonOranges(int [][] grid){
-        int n = grid.length;
-        int m = grid[0].length;
-        Queue<Pair> queue = new LinkedList<>();
-        int vis[][] = new int[n][m];
-        int freshCnt = 0,finalTime=0;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(grid[i][j] == 2){
-                    queue.add(new Pair(i,j,0));
-                    vis[i][j] = 2;
-                } else if (grid[i][j] == 1) {
-                    freshCnt++;
-                }
+    private static void topoSort(int node,List<List<Pair>>adj,boolean[]vis,Stack<Integer>stack){
+        vis[node] = true;
+        for(Pair it : adj.get(node)){
+            if(!vis[it.node]){
+                topoSort(it.node,adj,vis,stack);
             }
         }
-        int delRow[] = {-1,0,1,0};
-        int delCol[] = {0,1,0,-1};
-        int cnt = 0;
-        while (!queue.isEmpty()){
-            int row = queue.peek().nRow;
-            int col = queue.peek().nCol;
-            int time = queue.peek().time;
-            queue.poll();
-            for(int i=0;i<4;i++){
-                int nRow = row + delRow[i];
-                int nCol = col + delCol[i];
-                if(nRow>=0 && nRow<n && nCol>=0 && nCol<m && vis[nRow][nCol]==0 && grid[nRow][nCol]==1){
-                    queue.add(new Pair(nRow,nCol,time+1));
-                    vis[nRow][nCol] = 2;
-                    cnt++;
-                }
-            }
-            finalTime = Math.max(finalTime,time);
-        }
-        if(cnt != freshCnt){
-            return -1;
-        }
-
-
-        return finalTime;
+        stack.push(node);
     }
+
+    private static int[] shortestPath(int N, int M, int [][]edges){
+        List<List<Pair>>adj = new ArrayList<>();
+        for(int i=0;i<N;i++){
+            adj.add(new ArrayList<>());
+        }
+        for(int i=0;i<M;i++){
+            int u = edges[i][0];
+            int v = edges[i][1];
+            int wt = edges[i][2];
+            adj.get(u).add(new Pair(v,wt));
+        }
+
+        boolean[] vis = new boolean[N];
+        Stack<Integer>stack = new Stack<>();
+        for(int i=0;i<N;i++){
+            if(!vis[i]){
+                topoSort(i,adj,vis,stack);
+            }
+        }
+        int dist[] = new int[N];
+        Arrays.fill(dist,(int)1e9);
+        dist[0] = 0;
+        while (!stack.isEmpty()){
+            int node = stack.pop();
+            if(dist[node] != (int)1e9){
+                for(Pair it : adj.get(node)){
+                    int v = it.node;
+                    int wt = it.weight;
+                    if(dist[node] + wt < dist[v]){
+                        dist[v] = dist[node] + wt;
+                    }
+                }
+            }
+        }
+        for(int i=0;i<N;i++){
+            if(dist[i] == (int)1e9){
+                dist[i] = -1;
+            }
+        }
+        return dist;
+    }
+
 }

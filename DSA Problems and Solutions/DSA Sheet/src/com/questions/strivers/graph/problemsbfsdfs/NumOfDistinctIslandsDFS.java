@@ -1,183 +1,234 @@
 package com.questions.strivers.graph.problemsbfsdfs;
 
+import java.util.*;
+
 /**
- * ================================= NUMBER OF ISLANDS (DFS - 8 Directional) ================================
+ * =================================================================================================
+ *  🔥 LeetCode problem 694: Number of Distinct Islands (DFS Approach)
+ * =================================================================================================
  *
- * Problem Statement:
- * ------------------
- * You are given a grid of size N x M consisting of:
- *     '1' → Land
- *     '0' → Water
+ *  You are given a 2D grid consisting of characters:
+ *      '1' → represents LAND
+ *      '0' → represents WATER
  *
- * An ISLAND is a group of connected '1's. Two land cells are connected if they
- * touch in ANY of the 8 possible directions:
+ *  An island is a group of continuously connected '1's using ONLY 4 directions:
+ *      ➤ UP
+ *      ➤ DOWN
+ *      ➤ LEFT
+ *      ➤ RIGHT
  *
- *                  ↖  ↑  ↗
- *                  ←  *  →
- *                  ↙  ↓  ↘
+ *  Two islands are considered the SAME if their SHAPE is identical.
+ *  Their actual LOCATION in the grid does NOT matter.
  *
- * Task:
- * ------
- * Return the TOTAL NUMBER of distinct islands.
+ *  Example:
+ *      Shapes like:
+ *         1 1           1 1
+ *         1      and     1
  *
- * Example:
- * --------
- * Input:
- * 1 1 0 0 0
- * 1 1 0 0 0
- * 0 0 1 0 0
- * 0 0 0 1 1
+ *      are considered SAME because their structure is identical.
  *
- * Output: 3
+ *  We must return:
+ *      👉 The COUNT of UNIQUE island shapes present in the grid.
  *
- * =========================================================================================================
- * APPROACH → DFS (Depth First Search)
- * =========================================================================================================
+ * -------------------------------------------------------------------------------------------------
+ *  Why is this problem tricky?
+ * -------------------------------------------------------------------------------------------------
+ *  - Simply counting islands is easy.
+ *  - But identifying UNIQUE SHAPES requires normalization.
+ *  - We need to ensure that the same structured island in different locations
+ *    is recognized as one unique island.
  *
- * 🔹 Key Idea:
- * -----------
- * Traverse the entire grid.
+ * =================================================================================================
+ *  APPROACH (DFS + NORMALIZATION OF SHAPE)
+ * =================================================================================================
  *
- * Whenever we find an unvisited land cell ('1'):
- *     → This is a NEW ISLAND
- *     → Increase island count
- *     → Start DFS from this cell
- *     → DFS will recursively explore ALL connected land cells (8 directions)
- *       and mark them visited
+ *  1️⃣ Traverse every cell in the grid.
+ *  2️⃣ Whenever we find an unvisited LAND ('1'):
+ *          → perform DFS to explore the entire island
+ *  3️⃣ While exploring an island, instead of storing raw coordinates,
+ *      we store RELATIVE COORDINATES:
  *
- * Once DFS finishes, we are sure the entire island is processed.
+ *              (row - baseRow, col - baseCol)
  *
+ *      baseRow, baseCol = starting land cell of the island
  *
- * =========================================================================================================
- * WHY DFS WORKS?
- * =========================================================================================================
- * DFS goes deep along one path before backtracking.
- * Starting DFS from a land cell ensures:
- *     ✔ All connected land cells of the island are marked visited
- *     ✔ The island will never be counted again
+ *      This normalizes the island shape to start from (0,0),
+ *      so location does not matter anymore.
  *
+ *  4️⃣ Store each island shape (list of normalized coordinates) in a SET.
+ *      → SET automatically keeps only UNIQUE shapes
  *
- * =========================================================================================================
- * TIME & SPACE COMPLEXITY
- * =========================================================================================================
+ *  5️⃣ Final Answer = size of the SET
  *
- * Let N = rows, M = columns
+ * =================================================================================================
+ *  TIME COMPLEXITY
+ * =================================================================================================
+ *  ✔ Visiting each cell once → O(N * M)
+ *  ✔ DFS explores neighbors → still bounded by total land cells
  *
- * Time Complexity  →  O(N × M)
- * --------------------------------
- * Every cell is visited at most once
+ *  Overall:
+ *          🔷 Time = O(N * M)
  *
- * Space Complexity →  O(N × M)
- * --------------------------------
- * Recursion stack in worst case (all land)
- * + visited matrix
+ *  Explanation:
+ *      Every land cell is visited only once and inserted into the shape list.
  *
+ * =================================================================================================
+ *  SPACE COMPLEXITY
+ * =================================================================================================
+ *  ✔ Visited matrix = O(N * M)
+ *  ✔ Recursion stack worst case = O(N * M)
+ *  ✔ Set storing shapes (depends on island sizes but upper bounded) = O(N * M)
  *
- * =========================================================================================================
- * EDGE CASES
- * =========================================================================================================
- * ✔ Empty grid → 0
- * ✔ No land → 0
- * ✔ All land → 1
- * ✔ Only diagonal connections count as SAME island (because 8-dir allowed)
+ *          🔷 Space = O(N * M)
  *
+ * =================================================================================================
+ *  WHEN TO USE THIS APPROACH?
+ * =================================================================================================
+ *  ✔ When island shapes must be compared
+ *  ✔ When translation/position should not matter
+ *  ✔ Ideal for interview problems involving:
+ *        - Grid traversal
+ *        - Shape normalization
+ *        - DFS / BFS exploration
  *
- * =========================================================================================================
- * ALTERNATIVE APPROACHES
- * =========================================================================================================
+ * =================================================================================================
+ *  LIMITATIONS
+ * =================================================================================================
+ *  ❌ Does not consider ROTATION or REFLECTION equality
+ *     Example:
+ *         L-shape rotated is considered DIFFERENT here.
  *
- * 1️⃣ BFS
- * -------
- * - Uses queue instead of recursion
- * - More memory safe for very large grids
+ *  ❌ Recursion may cause stack overflow on extremely large grids.
  *
- * 2️⃣ Disjoint Set (Union-Find)
- * -----------------------------
- * - Useful when:
- *     ✔ Multiple queries asked
- *     ✔ Frequent updates on grid
- * - Harder to implement but scalable
+ * =================================================================================================
+ *  POSSIBLE ALTERNATIVE APPROACHES
+ * =================================================================================================
  *
+ *  ✅ BFS instead of DFS
+ *     - Same logic but iterative using queue
+ *     - Avoids recursion stack overflow
  *
- * =========================================================================================================
- * LIMITATIONS OF DFS
- * =========================================================================================================
- * ⚠️ In very large grids, DFS may cause StackOverflow (deep recursion)
- * BFS is safer there.
+ *  ✅ Store shape as a STRING instead of ArrayList
+ *     - Example: "0_0 0_1 1_0"
+ *     - Slightly simpler to hash
  *
+ *  ✅ Canonical Form Encoding
+ *     - Normalize and sort coordinates before storing
+ *     - Useful if you want to support rotations/mirroring in advanced problems
+ *
+ * =================================================================================================
  */
+
 public class NumOfDistinctIslandsDFS {
 
     /**
-     * DFS function to explore full island
-     * Marks all connected (8-directional) land cells as visited
+     * ------------------------------------------------------------------------------------------------
+     * DFS METHOD
+     * ------------------------------------------------------------------------------------------------
+     * This DFS explores an island and RECORDS its shape using RELATIVE coordinates.
+     *
+     * @param row      -> current row index
+     * @param col      -> current column index
+     * @param baseRow  -> starting row of the island (reference for normalization)
+     * @param baseCol  -> starting column of the island
+     * @param vis      -> visited matrix to avoid re-processing cells
+     * @param grid     -> input grid
+     * @param shape    -> list storing the normalized coordinates of current island
      */
-    private static void dfs(int row, int col, boolean[][] vis, char[][] grid) {
+    private static void dfs(int row, int col,
+                            int baseRow, int baseCol,
+                            boolean[][] vis,
+                            char[][] grid,
+                            ArrayList<String> shape) {
 
         // Mark current cell as visited
         vis[row][col] = true;
 
-        // 8 possible direction movements
-        int[] drow = {-1,-1,-1, 0, 1, 1, 1, 0};
-        int[] dcol = {-1, 0, 1, 1, 1, 0,-1,-1};
+        // Store relative position → this NORMALIZES shape
+        // Example: If island starts at (2,3) and this cell is (3,4)
+        // We store (1,1) instead of absolute coordinates
+        shape.add((row - baseRow) + "_" + (col - baseCol));
 
-        // Explore all 8 neighbors
-        for (int i = 0; i < 8; i++) {
-            int nr = row + drow[i];   // next row
-            int nc = col + dcol[i];   // next column
+        // Arrays to move in 4 directions
+        int[] dr = {-1, 0, 1, 0};  // Up, Right, Down, Left row movement
+        int[] dc = {0, 1, 0, -1};  // Corresponding column movement
 
-            // Check:
-            // ✔ inside grid
-            // ✔ land cell
-            // ✔ not visited earlier
+        // Check all 4 neighbors
+        for (int i = 0; i < 4; i++) {
+            int nr = row + dr[i];
+            int nc = col + dc[i];
+
+            // Validate boundaries + land check + not visited
             if (nr >= 0 && nr < grid.length &&
                     nc >= 0 && nc < grid[0].length &&
-                    !vis[nr][nc] && grid[nr][nc] == '1') {
+                    !vis[nr][nc] &&
+                    grid[nr][nc] == '1') {
 
-                dfs(nr, nc, vis, grid);   // recursively visit next cell
+                // Continue DFS to expand island
+                dfs(nr, nc, baseRow, baseCol, vis, grid, shape);
             }
         }
     }
 
     /**
-     * Function to count total number of islands
+     * ------------------------------------------------------------------------------------------------
+     * FUNCTION: Count Distinct Islands
+     * ------------------------------------------------------------------------------------------------
+     *
+     * @param grid -> 2D grid of '1' and '0'
+     * @return number of UNIQUE island shapes
      */
-    private static int numIslands(char[][] grid) {
+    private static int countDistinctIslands(char[][] grid) {
 
         int n = grid.length;
         int m = grid[0].length;
 
-        boolean[][] vis = new boolean[n][m];   // visited matrix
-        int count = 0;                          // island counter
+        // Visited matrix to ensure each land cell is processed once
+        boolean[][] vis = new boolean[n][m];
 
-        // Traverse whole grid
+        // Set to store UNIQUE island shapes
+        // ArrayList<String> stores relative coordinate sequence
+        // HashSet ensures only distinct shapes remain
+        Set<ArrayList<String>> shapes = new HashSet<>();
+
+        // Traverse entire grid
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
 
-                // Found NEW island start point
+                // Found a NEW island starting point
                 if (!vis[i][j] && grid[i][j] == '1') {
-                    count++;                    // island found
-                    dfs(i, j, vis, grid);       // explore whole island
+
+                    // List to store current island shape
+                    ArrayList<String> shape = new ArrayList<>();
+
+                    // Perform DFS and record normalized positions
+                    dfs(i, j, i, j, vis, grid, shape);
+
+                    // Add the island shape to set
+                    shapes.add(shape);
                 }
             }
         }
 
-        return count;
+        // Number of unique shapes
+        return shapes.size();
     }
 
     /**
-     * ============================== DRIVER CODE ===============================
+     * =================================================================================================
+     *  DRIVER CODE (for testing)
+     * =================================================================================================
      */
     public static void main(String[] args) {
 
+        // Test Grid
         char[][] grid = {
-                {'1','1','0','0','0'},
-                {'1','1','0','0','0'},
-                {'0','0','1','0','0'},
-                {'0','0','0','1','1'}
+                {'1','1','0','1'},
+                {'1','0','0','0'},
+                {'0','0','1','1'},
+                {'1','1','0','1'}
         };
 
-        // Expected Output → 3
-        System.out.println("Number of Islands (DFS): " + numIslands(grid));
+        System.out.println("Distinct Islands = " + countDistinctIslands(grid));
     }
 }

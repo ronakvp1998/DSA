@@ -50,7 +50,8 @@ public class DetectCycleDirectedDFS {
      * @param pathVis   Tracks nodes in current DFS recursion path
      * @return true if cycle detected, false otherwise
      */
-    private static boolean dfsCheck(int node, ArrayList<ArrayList<Integer>> adj, int vis[], int pathVis[]) {
+    private static boolean dfsCheck(int node, ArrayList<ArrayList<Integer>> adj,
+                                    int vis[], int pathVis[]) {
         vis[node] = 1;         // mark node as visited
         pathVis[node] = 1;     // add node to current DFS path
 

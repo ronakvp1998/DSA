@@ -104,6 +104,37 @@ import java.util.*;
 
 public class BipartiteGraphBFS {
 
+
+    private static boolean bfs(int start,int color[],List<List<Integer>>graph){
+        // Assign starting color
+        color[start] = 0;
+
+        // Normal BFS Queue
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(start);
+
+        while (!queue.isEmpty()) {
+
+            int node = queue.poll();
+
+            // Traverse all adjacent nodes
+            for (int adjNode : graph.get(node)) {
+
+                // CASE 1: If not colored → give opposite color
+                if (color[adjNode] == -1) {
+                    color[adjNode] = 1 - color[node];
+                    queue.add(adjNode);
+                }
+
+                // CASE 2: Already colored but color matches → Not bipartite
+                else if (color[adjNode] == color[node]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     /**
      * Function to check if the graph is bipartite using BFS
      *
@@ -123,32 +154,8 @@ public class BipartiteGraphBFS {
 
             // If node is not colored → start BFS from it
             if (color[start] == -1) {
-
-                // Assign starting color
-                color[start] = 0;
-
-                // Normal BFS Queue
-                Queue<Integer> queue = new LinkedList<>();
-                queue.add(start);
-
-                while (!queue.isEmpty()) {
-
-                    int node = queue.poll();
-
-                    // Traverse all adjacent nodes
-                    for (int adjNode : graph.get(node)) {
-
-                        // CASE 1: If not colored → give opposite color
-                        if (color[adjNode] == -1) {
-                            color[adjNode] = 1 - color[node];
-                            queue.add(adjNode);
-                        }
-
-                        // CASE 2: Already colored but color matches → Not bipartite
-                        else if (color[adjNode] == color[node]) {
-                            return false;
-                        }
-                    }
+                if(!bfs(start,color,graph)){
+                    return false;
                 }
             }
         }
