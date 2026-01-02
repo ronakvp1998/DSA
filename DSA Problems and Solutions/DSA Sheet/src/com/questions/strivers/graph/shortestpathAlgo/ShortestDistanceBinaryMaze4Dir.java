@@ -35,7 +35,7 @@ import java.util.Queue;
  *
  * --------------------------------------------------------------------------------------------------
  */
-public class ShortestDistanceBinaryMaze {
+public class ShortestDistanceBinaryMaze4Dir {
 
     /**
      * Computes the shortest distance from source to destination in a binary maze

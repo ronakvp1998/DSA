@@ -37,7 +37,6 @@ import java.util.*;
  * --------------------------------------------------------------------------------------------------
  */
 public class ShortestPathUndirectedGraphUnitDist {
-
     /**
      * Function to compute shortest path from source using BFS
      * @param edges Edge list of the graph

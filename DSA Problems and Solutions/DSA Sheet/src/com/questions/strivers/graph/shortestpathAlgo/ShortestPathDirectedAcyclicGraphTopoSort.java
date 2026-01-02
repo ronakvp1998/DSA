@@ -40,6 +40,14 @@ import java.util.*;
  * --------------------------------------------------------------------------------------------------
  */
 public class ShortestPathDirectedAcyclicGraphTopoSort {
+    static class Pair{
+        int node;
+        int wt;
+        Pair(int node, int wt){
+            this.node = node;
+            this.wt = wt;
+        }
+    }
 
     /**
      * Perform DFS to build topological order.
@@ -48,12 +56,13 @@ public class ShortestPathDirectedAcyclicGraphTopoSort {
      * @param visited Array to track visited nodes
      * @param stack Stack to store topological order
      */
-    private static void topoSort(int node, List<List<int[]>> adj, boolean[] visited, Stack<Integer> stack) {
+    private static void topoSortDFS(int node, List<List<Pair>> adj,
+                                 boolean[] visited, Stack<Integer> stack) {
         visited[node] = true;
 
-        for (int[] neighbor : adj.get(node)) {
-            if (!visited[neighbor[0]]) {
-                topoSort(neighbor[0], adj, visited, stack);
+        for (Pair neighbor : adj.get(node)) {
+            if (!visited[neighbor.node]) {
+                topoSortDFS(neighbor.node, adj, visited, stack);
             }
         }
 
@@ -71,7 +80,7 @@ public class ShortestPathDirectedAcyclicGraphTopoSort {
     private static int[] shortestPath(int N, int M, int[][] edges) {
 
         // Create adjacency list with weights
-        List<List<int[]>> adj = new ArrayList<>();
+        List<List<Pair>> adj = new ArrayList<>();
         for (int i = 0; i < N; i++) {
             adj.add(new ArrayList<>());
         }
@@ -79,7 +88,7 @@ public class ShortestPathDirectedAcyclicGraphTopoSort {
             int u = edges[i][0];
             int v = edges[i][1];
             int wt = edges[i][2];
-            adj.get(u).add(new int[]{v, wt});
+            adj.get(u).add(new Pair(v, wt));
         }
 
         // Topological sort
@@ -87,27 +96,28 @@ public class ShortestPathDirectedAcyclicGraphTopoSort {
         Stack<Integer> stack = new Stack<>();
         for (int i = 0; i < N; i++) {
             if (!visited[i]) {
-                topoSort(i, adj, visited, stack);
+                topoSortDFS(i, adj, visited, stack);
             }
         }
 
         // Initialize distances
         int[] dist = new int[N];
         Arrays.fill(dist, (int)1e9);
-        dist[0] = 0; // Distance to source
+        // Distance to source(0) will be 0
+        dist[0] = 0;
 
         // Process nodes in topological order
         while (!stack.isEmpty()) {
-            int node = stack.pop();
-
-            if (dist[node] != (int)1e9) {
-                for (int[] neighbor : adj.get(node)) {
-                    int v = neighbor[0];
-                    int wt = neighbor[1];
-
-                    // Relaxation
-                    if (dist[node] + wt < dist[v]) {
-                        dist[v] = dist[node] + wt;
+            int u = stack.pop();
+            // If the node is reachable
+            if (dist[u] != (int)1e9) {
+                // Traverse all neighbors and update their distances
+                for (Pair neighbor : adj.get(u)) {
+                    int v = neighbor.node;
+                    int wt = neighbor.wt;
+                    // Relax the edge
+                    if (dist[u] + wt < dist[v]) {
+                        dist[v] = dist[u] + wt;
                     }
                 }
             }

@@ -1,5 +1,8 @@
 package com.questions.strivers.graph.problemsbfsdfs;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * ========================= PROBLEM: Number of Provinces (LeetCode 547) =========================
  *
@@ -83,6 +86,47 @@ public class NumberOfProvincesMatrix {
             // 2️⃣ Must not be visited already
             if (isConnected[city][adjCity] == 1 && !visited[adjCity]) {
                 dfs(adjCity, isConnected, visited);    // Recursively explore
+            }
+        }
+    }
+
+    /**
+     * Performs Breadth-First Search (BFS) starting from the given 'city'
+     * to mark all cities that are directly or indirectly connected to it.
+     *
+     * This works on an adjacency matrix `isConnected` where:
+     * isConnected[i][j] = 1  --> city 'i' is connected to city 'j'
+     * isConnected[i][j] = 0  --> no direct connection
+     *
+     * Once a city is visited, it is marked in the 'visited' array to avoid re-processing.
+     */
+    private static void bfs(int city, int[][] isConnected, boolean[] visited){
+
+        // Queue to process cities level by level (BFS traversal)
+        Queue<Integer> queue = new LinkedList<>();
+
+        // Start BFS from the given city
+        queue.add(city);
+        visited[city] = true;   // mark starting city as visited
+
+        // Continue until there are no more cities to explore
+        while (!queue.isEmpty()){
+
+            // Get the current city from queue
+            int i = queue.poll();
+
+            // Traverse all possible neighboring cities (always use index)
+            for(int j = 0; j < isConnected[0].length; j++){
+
+                // If there is a connection AND city 'j' is not yet visited
+                if(isConnected[i][j] == 1 && !visited[j]){
+
+                    // Add city 'j' to BFS queue for further exploration
+                    queue.add(j);
+
+                    // Mark it visited so it's not processed again
+                    visited[j] = true;
+                }
             }
         }
     }

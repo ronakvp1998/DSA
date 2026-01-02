@@ -7,6 +7,7 @@ import java.util.PriorityQueue;
 /**
  * ==================================================================================================
  *  Dijkstra's Algorithm for Shortest Path in Weighted Graph
+ *  Works for both directed and undirected graph only the adj list changes
  * ==================================================================================================
  *
  * ------------------------------- PROBLEM STATEMENT -----------------------------------------------
@@ -42,41 +43,45 @@ import java.util.PriorityQueue;
  * --------------------------------------------------------------------------------------------------
  */
 public class DijkstrasAlgorithmPriorityQueue {
+    static class Pair {
+        int v;
+        int weight;
 
+        Pair(int v, int weight){
+            this.v = v;
+            this.weight = weight;
+        }
+    }
     /**
+     * dijkstra() function will work for both directed and undirected graphs without any change.
      * Compute shortest distances from source vertex S using Dijkstra's algorithm.
      * @param V Number of vertices
      * @param adj Weighted adjacency list
      * @param S Source vertex
      * @return Array of shortest distances from S
      */
-    private static int[] dijkstra(int V, ArrayList<int[]>[] adj, int S) {
-        // Priority queue to select the node with minimum distance
-        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+    private static int[] dijkstra(int V, ArrayList<ArrayList<Pair>> adj, int S) {
 
-        // Initialize distances with infinity
+        PriorityQueue<Pair> pq = new PriorityQueue<>((a, b) -> a.weight - b.weight);
+
         int[] dist = new int[V];
         Arrays.fill(dist, Integer.MAX_VALUE);
 
-        // Distance to source = 0
         dist[S] = 0;
-        pq.offer(new int[]{0, S}); // {distance, node}
+        pq.offer(new Pair(S, 0));   // (node, distance)
 
-        // Process the queue
-        while (!pq.isEmpty()) {
-            int[] curr = pq.poll();
-            int dis = curr[0];  // Distance of current node
-            int node = curr[1]; // Current node
+        while(!pq.isEmpty()){
+            Pair curr = pq.poll();
+            int v = curr.v;
+            int dis = curr.weight;
 
-            // Check all neighbors
-            for (int[] edge : adj[node]) {
-                int adjNode = edge[0];  // Neighbor vertex
-                int weight = edge[1];   // Edge weight
+            for(Pair edge : adj.get(v)){
+                int adjNode = edge.v;
+                int weight = edge.weight;
 
-                // Relax edge if new distance is smaller
-                if (dis + weight < dist[adjNode]) {
+                if(dis + weight < dist[adjNode]){
                     dist[adjNode] = dis + weight;
-                    pq.offer(new int[]{dist[adjNode], adjNode});
+                    pq.offer(new Pair(adjNode, dist[adjNode]));
                 }
             }
         }
@@ -91,18 +96,18 @@ public class DijkstrasAlgorithmPriorityQueue {
         int V = 3, E = 3, S = 2;
 
         // Create adjacency list
-        ArrayList<int[]>[] adj = new ArrayList[V];
+        ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
         for (int i = 0; i < V; i++) {
-            adj[i] = new ArrayList<>();
+            adj.add( new ArrayList<>());
         }
 
         // Add edges {node, weight} (undirected graph)
-        adj[0].add(new int[]{1, 1});
-        adj[0].add(new int[]{2, 6});
-        adj[1].add(new int[]{2, 3});
-        adj[1].add(new int[]{0, 1});
-        adj[2].add(new int[]{1, 3});
-        adj[2].add(new int[]{0, 6});
+        adj.get(0).add(new Pair(1, 1));
+        adj.get(0).add(new Pair(2, 6));
+        adj.get(1).add(new Pair(2, 3));
+        adj.get(1).add(new Pair(0, 1));
+        adj.get(2).add(new Pair(1, 3));
+        adj.get(2).add(new Pair(0, 6));
 
         // Compute shortest distances
         int[] res = dijkstra(V, adj, S);

@@ -114,7 +114,7 @@ public class BFSGraphs {
         // Queue is used because BFS follows FIFO principle
         Queue<Integer> queue = new LinkedList<>();
 
-        // Start BFS from node 0 (as per requirement)
+        // Start BFS from node 0 source node (as per requirement)
         queue.add(0);
         vis[0] = true;   // mark source node as visited
 
