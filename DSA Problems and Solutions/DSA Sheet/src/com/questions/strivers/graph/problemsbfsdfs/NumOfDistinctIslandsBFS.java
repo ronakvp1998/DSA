@@ -92,7 +92,14 @@ import java.util.*;
  */
 
 public class NumOfDistinctIslandsBFS {
-
+    static class Pair{
+        int row;
+        int col;
+        Pair(int row,int col){
+            this.row = row;
+            this.col = col;
+        }
+    }
     /**
      * ------------------------------------------------------------------------------------------------
      * BFS to record SHAPE of an island using RELATIVE COORDINATES
@@ -113,11 +120,11 @@ public class NumOfDistinctIslandsBFS {
                             ArrayList<String> shape) {
 
         // Queue for BFS traversal
-        Queue<int[]> q = new LinkedList<>();
+        Queue<Pair> q = new LinkedList<>();
 
         // Mark starting cell visited and push to queue
         vis[row][col] = true;
-        q.add(new int[]{row, col});
+        q.add(new Pair(row, col));
 
         // Directions for moving UP, RIGHT, DOWN, LEFT
         int[] dr = {-1, 0, 1, 0};
@@ -126,9 +133,9 @@ public class NumOfDistinctIslandsBFS {
         // BFS traversal
         while (!q.isEmpty()) {
 
-            int[] cell = q.poll();
-            int r = cell[0];
-            int c = cell[1];
+            Pair cell = q.poll();
+            int r = cell.row;
+            int c = cell.col;
 
             // Store RELATIVE POSITION (Normalization)
             shape.add((r - baseRow) + "_" + (c - baseCol));
@@ -145,7 +152,7 @@ public class NumOfDistinctIslandsBFS {
                         grid[nr][nc] == '1') {
 
                     vis[nr][nc] = true;     // mark visited
-                    q.add(new int[]{nr, nc}); // push neighbor into queue
+                    q.add(new Pair(nr, nc)); // push neighbor into queue
                 }
             }
         }
@@ -207,3 +214,111 @@ public class NumOfDistinctIslandsBFS {
         System.out.println("Distinct Islands (BFS) = " + countDistinctIslands(grid));
     }
 }
+
+/*
+package com.questions.strivers.graph.problemsbfsdfs;
+
+        import java.util.*;
+
+public class NumOfDistinctIslandsBFS {
+
+    // ===================== PAIR CLASS =====================
+    static class Pair {
+        int row;
+        int col;
+
+        Pair(int row, int col) {
+            this.row = row;
+            this.col = col;
+        }
+
+        // REQUIRED for HashSet comparison
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Pair pair = (Pair) o;
+            return row == pair.row && col == pair.col;
+        }
+
+        // REQUIRED for HashSet hashing
+        @Override
+        public int hashCode() {
+            return Objects.hash(row, col);
+        }
+    }
+
+    // ===================== BFS TO CAPTURE SHAPE =====================
+    private static void bfs(int row, int col,
+                            int baseRow, int baseCol,
+                            char[][] grid,
+                            boolean[][] vis,
+                            ArrayList<Pair> shape) {
+
+        Queue<Pair> queue = new LinkedList<>();
+        queue.add(new Pair(row, col));
+        vis[row][col] = true;
+
+        int[] dr = {-1, 0, 1, 0};
+        int[] dc = {0, 1, 0, -1};
+
+        while (!queue.isEmpty()) {
+            Pair cur = queue.poll();
+            int r = cur.row;
+            int c = cur.col;
+
+            // Store RELATIVE position
+            shape.add(new Pair(r - baseRow, c - baseCol));
+
+            for (int i = 0; i < 4; i++) {
+                int nr = r + dr[i];
+                int nc = c + dc[i];
+
+                if (nr >= 0 && nr < grid.length &&
+                        nc >= 0 && nc < grid[0].length &&
+                        !vis[nr][nc] &&
+                        grid[nr][nc] == '1') {
+
+                    vis[nr][nc] = true;
+                    queue.add(new Pair(nr, nc));
+                }
+            }
+        }
+    }
+
+    // ===================== MAIN FUNCTION =====================
+    public static int countDistinctIslands(char[][] grid) {
+
+        int n = grid.length;
+        int m = grid[0].length;
+
+        boolean[][] vis = new boolean[n][m];
+        Set<ArrayList<Pair>> uniqueIslands = new HashSet<>();
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+
+                if (!vis[i][j] && grid[i][j] == '1') {
+                    ArrayList<Pair> shape = new ArrayList<>();
+                    bfs(i, j, i, j, grid, vis, shape);
+                    uniqueIslands.add(shape);
+                }
+            }
+        }
+        return uniqueIslands.size();
+    }
+
+    // ===================== DRIVER =====================
+    public static void main(String[] args) {
+
+        char[][] grid = {
+                {'1','1','0','1'},
+                {'1','0','0','0'},
+                {'0','0','1','1'},
+                {'1','1','0','1'}
+        };
+
+        System.out.println("Distinct Islands = " + countDistinctIslands(grid));
+    }
+}
+*/
