@@ -51,20 +51,21 @@ public class EventualSafeStateBFSTopoSort {
      * @param adj Original adjacency list of the graph
      * @return Sorted list of safe nodes
      */
-    private static List<Integer> eventualSafeNodes(int V, List<Integer>[] adj) {
+    private static List<Integer> eventualSafeNodes(int V, List<List<Integer>> adj) {
 
-        List<Integer>[] adjRev = new List[V];  // Reverse adjacency list
+
+        List<List<Integer>> adjRev = new ArrayList<>();  // Reverse adjacency list
         int[] indegree = new int[V];           // Track outgoing edges for original graph
 
         // Initialize reverse adjacency list
         for (int i = 0; i < V; i++) {
-            adjRev[i] = new ArrayList<>();
+            adjRev.add( new ArrayList<>());
         }
 
         // Build reverse graph and calculate indegree
         for (int i = 0; i < V; i++) {
-            for (int neighbor : adj[i]) {
-                adjRev[neighbor].add(i);  // Reverse edge
+            for (int neighbor : adj.get(i)) {
+                adjRev.get(neighbor).add(i);  // Reverse edge
                 indegree[i]++;             // Count outgoing edges in original graph
             }
         }
@@ -84,7 +85,7 @@ public class EventualSafeStateBFSTopoSort {
             int node = q.poll();
             safeNodes.add(node);  // Node is safe
 
-            for (int parent : adjRev[node]) {
+            for (int parent : adjRev.get(node)) {
                 indegree[parent]--;       // Reduce indegree (simulate removing outgoing edge)
                 if (indegree[parent] == 0) {
                     q.offer(parent);      // Parent becomes safe
@@ -105,25 +106,25 @@ public class EventualSafeStateBFSTopoSort {
         int V = 12;  // Number of vertices
 
         // Adjacency list for the graph
-        List<Integer>[] adj = new ArrayList[V];
+        List<List<Integer>> adj = new ArrayList<>();
         for (int i = 0; i < V; i++) {
-            adj[i] = new ArrayList<>();
+            adj.add(new ArrayList<>());
         }
 
         // Adding edges to the graph
-        adj[0].add(1);
-        adj[1].add(2);
-        adj[2].add(3);
-        adj[2].add(4);
-        adj[3].add(4);
-        adj[4].add(5);
-        adj[5].add(6);
-        adj[6].add(7);
-        adj[8].add(1);
-        adj[8].add(9);
-        adj[9].add(10);
-        adj[10].add(8);   // Cycle
-        adj[11].add(9);
+        adj.get(0).add(1);
+        adj.get(1).add(2);
+        adj.get(2).add(3);
+        adj.get(2).add(4);
+        adj.get(3).add(4);
+        adj.get(4).add(5);
+        adj.get(5).add(6);
+        adj.get(6).add(7);
+        adj.get(8).add(1);
+        adj.get(8).add(9);
+        adj.get(9).add(10);
+        adj.get(10).add(8);   // Cycle
+        adj.get(111).add(9);
 
         // Compute safe nodes
         List<Integer> safeNodes = eventualSafeNodes(V, adj);
@@ -144,16 +145,16 @@ public class EventualSafeStateBFSTopoSort {
         int V = graph.length;
 
         // Step 1: Build the reverse graph
-        List<Integer>[] revGraph = new ArrayList[V];
+        List<List<Integer>> revGraph = new ArrayList<>();
         int[] indegree = new int[V]; // Count of outgoing edges in original graph
 
         for (int i = 0; i < V; i++) {
-            revGraph[i] = new ArrayList<>();
+            revGraph.add(new ArrayList<>());
         }
 
         for (int i = 0; i < V; i++) {
             for (int nei : graph[i]) {
-                revGraph[nei].add(i); // Reverse edge: neighbor -> i
+                revGraph.get(nei).add(i); // Reverse edge: neighbor -> i
             }
             indegree[i] = graph[i].length; // Original outdegree
         }
@@ -171,7 +172,7 @@ public class EventualSafeStateBFSTopoSort {
         while (!q.isEmpty()) {
             int node = q.poll();
             safe[node] = true; // Node is safe
-            for (int parent : revGraph[node]) {
+            for (int parent : revGraph.get(node)) {
                 indegree[parent]--; // Reduce outdegree
                 if (indegree[parent] == 0) {
                     q.offer(parent); // Node becomes safe

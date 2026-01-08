@@ -38,6 +38,16 @@ import java.util.PriorityQueue;
  */
 public class PathMinEffort {
 
+    static class Pair{
+        int effort;
+        int row;
+        int col;
+        Pair(int effort,int row,int col){
+            this.effort = effort;
+            this.row = row;
+            this.col = col;
+        }
+    }
     /**
      * Method to compute the minimum effort required to travel from (0,0) to (n-1,m-1)
      * using a modified Dijkstra's algorithm.
@@ -58,8 +68,8 @@ public class PathMinEffort {
         dist[0][0] = 0;
 
         // Priority queue: stores {current effort, row, col}
-        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
-        pq.add(new int[]{0, 0, 0});  // Start from source cell (0,0)
+        PriorityQueue<Pair> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a.effort));
+        pq.add(new Pair(0, 0, 0));  // Start from source cell (0,0)
 
         // Define possible directions (up, right, down, left)
         int[] dr = {-1, 0, 1, 0};
@@ -67,10 +77,10 @@ public class PathMinEffort {
 
         // Start processing cells
         while (!pq.isEmpty()) {
-            int[] current = pq.poll();
-            int diff = current[0];  // Current effort
-            int row = current[1];
-            int col = current[2];
+            Pair current = pq.poll();
+            int diff = current.effort;  // Current effort
+            int row = current.row;
+            int col = current.col;
 
             // Destination reached
             if (row == n - 1 && col == m - 1)
@@ -89,7 +99,7 @@ public class PathMinEffort {
                     // Update if this path gives a smaller effort
                     if (newEffort < dist[newr][newc]) {
                         dist[newr][newc] = newEffort;
-                        pq.add(new int[]{newEffort, newr, newc});
+                        pq.add(new Pair(newEffort, newr, newc));
                     }
                 }
             }
