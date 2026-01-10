@@ -100,6 +100,17 @@ import java.util.Queue;
  */
 public class ShortestDistanceBinaryMaze8Dir {
 
+    static class Pair{
+        int r;
+        int c;
+        int dist;
+        Pair(int r,int c,int dist){
+            this.r = r;
+            this.c = c;
+            this.dist = dist;
+        }
+    }
+
     /**
      * Returns the shortest path length from (0,0) to (n-1,n-1)
      * using BFS with 8-direction movement.
@@ -123,8 +134,8 @@ public class ShortestDistanceBinaryMaze8Dir {
         int[] dc = {-1, 0, 1,-1,1,-1,0,1};
 
         // Queue for BFS → each entry holds {row, col, pathLength}
-        Queue<int[]> q = new LinkedList<>();
-        q.offer(new int[]{0, 0, 1});   // Start from cell (0,0) with path length 1
+        Queue<Pair> q = new LinkedList<>();
+        q.offer(new Pair(0, 0, 1));   // Start from cell (0,0) with path length 1
 
         // Visited matrix to ensure each cell is processed only once
         boolean[][] vis = new boolean[n][n];
@@ -133,10 +144,10 @@ public class ShortestDistanceBinaryMaze8Dir {
         // Standard BFS Loop
         while (!q.isEmpty()) {
 
-            int[] cur = q.poll();
-            int r = cur[0];
-            int c = cur[1];
-            int dist = cur[2];  // Current path length
+            Pair cur = q.poll();
+            int r = cur.r;
+            int c = cur.c;
+            int dist = cur.dist;  // Current path length
 
             // If we reached bottom-right → shortest path found!
             if (r == n - 1 && c == n - 1)
@@ -158,7 +169,7 @@ public class ShortestDistanceBinaryMaze8Dir {
                         !vis[nr][nc]) {
 
                     vis[nr][nc] = true;             // Mark visited
-                    q.offer(new int[]{nr, nc, dist + 1});  // Push next cell with incremented path length
+                    q.offer(new Pair(nr, nc, dist + 1));  // Push next cell with incremented path length
                 }
             }
         }

@@ -2,120 +2,176 @@ package com.questions.strivers.graph.shortestpathAlgo;
 
 import java.util.*;
 
-// Problem Statement:
-// You are in a city with n intersections (0 to n-1) connected by bidirectional roads.
-// Each road takes certain time to travel. You need to find in how many different
-// ways you can travel from node 0 to node n-1 *in the minimum possible time*.
-// Return number of shortest paths modulo 1e9+7.
+/**
+ * =====================================================================================
+ *  LeetCode 1976 - Number of Ways to Arrive at Destination
+ * =====================================================================================
+ *
+ * PROBLEM STATEMENT:
+ * ------------------
+ * You are given a weighted, undirected graph with n nodes (0 to n-1).
+ * Each road connects two nodes and takes a certain amount of time.
+ *
+ * Your task is to find:
+ *  1) The shortest time required to travel from node 0 to node n-1
+ *  2) The number of distinct paths that achieve this shortest time
+ *
+ * Return the count modulo (1e9 + 7).
+ *
+ * CONSTRAINTS:
+ *  - 1 <= n <= 200
+ *  - Graph is connected
+ *  - All edge weights are positive
+ *
+ * =====================================================================================
+ *  APPROACH:
+ * =====================================================================================
+ *  We use Dijkstra's Algorithm with a small modification:
+ *
+ *  Along with the shortest distance array (dist[]),
+ *  we also maintain a ways[] array:
+ *
+ *   - dist[i]  -> shortest distance to node i
+ *   - ways[i]  -> number of shortest paths to node i
+ *
+ *  RULES DURING DIJKSTRA:
+ *  ---------------------
+ *  If we find a strictly shorter path:
+ *      - Update dist[]
+ *      - Reset ways[] to ways of previous node
+ *
+ *  If we find another path with the same shortest distance:
+ *      - Add ways from previous node
+ *
+ * =====================================================================================
+ *  WHY THIS WORKS:
+ * =====================================================================================
+ *  Dijkstra ensures we process nodes in increasing distance order.
+ *  Hence, when we relax edges, we are guaranteed correctness.
+ *
+ * =====================================================================================
+ *  TIME & SPACE COMPLEXITY:
+ * =====================================================================================
+ *  Time Complexity:  O(E log V)
+ *      - Priority Queue operations dominate
+ *
+ *  Space Complexity: O(V + E)
+ *      - Graph + distance + ways + PQ
+ *
+ * =====================================================================================
+ */
 
 public class NumOfWaysToArriveAtDest {
 
+    // Pair class to store (node, distance) for adjacency list and priority queue
+    static class Pair {
+        int node;
+        long dist;
+
+        Pair(int node, long dist) {
+            this.node = node;
+            this.dist = dist;
+        }
+    }
+
+    private static final int MOD = (int) 1e9 + 7;
+
     /**
-     * Method to calculate number of distinct shortest paths from src to dst
-     * using Dijkstra's Algorithm + Path Counting.
-     *
-     * @param n     Total number of intersections (nodes)
-     * @param roads Each entry = [u, v, time] means bidirectional road between u & v with cost time
-     * @param src   Starting intersection
-     * @param dst   Destination intersection
-     * @param K     (Not used here, present only because of template name)
-     *
-     * Algorithm Used:
-     * ----------------
-     * We use a modified Dijkstra algorithm.
-     * Along with maintaining shortest distance, we also maintain:
-     * ways[i] → number of shortest paths to reach node i.
-     *
-     * For every edge (u → v):
-     * Case 1: Found a strictly shorter path
-     *      dist[v] = dist[u] + weight
-     *      ways[v] = ways[u]
-     *
-     * Case 2: Found another path with same shortest distance
-     *      ways[v] += ways[u]
-     *
-     * Finally, return ways[dst].
-     *
-     * Time Complexity  : O(E log V)
-     * Space Complexity : O(V + E)
+     * Finds the number of shortest paths from node 0 to node n-1
      */
-    private static int CheapestFLight(int n, int[][] roads, int src, int dst, int K) {
+    public static int countPaths(int n, int[][] roads) {
 
-        // Step 1: Create adjacency list
-        // Each list entry stores {neighborNode, travelTime}
-        List<List<int[]>> adj = new ArrayList<>();
-        for (int i = 0; i < n; i++) adj.add(new ArrayList<>());
-
-        for (int[] road : roads) {
-            adj.get(road[0]).add(new int[]{road[1], road[2]});
-            adj.get(road[1]).add(new int[]{road[0], road[2]});  // because roads are bidirectional
+        // -----------------------------
+        // Step 1: Build adjacency list
+        // -----------------------------
+        List<List<Pair>> adj = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            adj.add(new ArrayList<>());
         }
 
-        // Step 2: Priority Queue (Min Heap)
-        // Stores {timeTaken, node}
-        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+        // Since roads are bi-directional, add edges both ways
+        for (int[] road : roads) {
+            int u = road[0];
+            int v = road[1];
+            int time = road[2];
 
-        // Step 3: Distance array stores shortest time to reach each node
-        int[] dist = new int[n];
-        Arrays.fill(dist, Integer.MAX_VALUE);
+            adj.get(u).add(new Pair(v, time));
+            adj.get(v).add(new Pair(u, time));
+        }
 
-        // Step 4: Ways array stores number of shortest paths to each node
-        int[] ways = new int[n];
+        // --------------------------------
+        // Step 2: Distance & Ways arrays
+        // --------------------------------
+        long[] dist = new long[n];
+        long[] ways = new long[n];
 
-        dist[src] = 0;     // distance to source is 0
-        ways[src] = 1;     // one way to reach source
-        pq.add(new int[]{0, src});
+        Arrays.fill(dist, Long.MAX_VALUE);
 
-        int mod = (int) (1e9 + 7);
+        dist[0] = 0;   // Distance to source is 0
+        ways[0] = 1;   // One way to start at source
 
-        // Step 5: Run Dijkstra
+        // --------------------------------
+        // Step 3: Dijkstra using Min-Heap
+        // --------------------------------
+        PriorityQueue<Pair> pq =
+                new PriorityQueue<>(Comparator.comparingLong(a -> a.dist));
+
+        pq.offer(new Pair(0, 0));
+
         while (!pq.isEmpty()) {
 
-            int[] current = pq.poll();
-            int dis = current[0];
-            int node = current[1];
+            Pair curr = pq.poll();
+            int node = curr.node;
+            long currDist = curr.dist;
 
-            // Traverse all neighbors
-            for (int[] neighbor : adj.get(node)) {
-                int adjNode = neighbor[0]; // neighbor node
-                int edW = neighbor[1];     // edge weight
+            // Skip outdated entries
+            if (currDist > dist[node]) continue;
 
-                // Case 1 → Found a shorter path
-                if (dis + edW < dist[adjNode]) {
-                    dist[adjNode] = dis + edW;
+            // Relax edges
+            for (Pair neighbor : adj.get(node)) {
 
-                    pq.add(new int[]{dis + edW, adjNode});
+                int nextNode = neighbor.node;
+                long edgeWeight = neighbor.dist;
 
-                    // Copy ways count from current node
-                    ways[adjNode] = ways[node];
+                long newDist = currDist + edgeWeight;
+
+                // Case 1: Found a shorter path
+                if (newDist < dist[nextNode]) {
+                    dist[nextNode] = newDist;
+                    ways[nextNode] = ways[node];
+                    pq.offer(new Pair(nextNode, newDist));
                 }
-
-                // Case 2 → Found another shortest path
-                else if (dis + edW == dist[adjNode]) {
-                    ways[adjNode] = (ways[adjNode] + ways[node]) % mod;
+                // Case 2: Found another shortest path
+                else if (newDist == dist[nextNode]) {
+                    ways[nextNode] = (ways[nextNode] + ways[node]) % MOD;
                 }
             }
         }
 
-        // Return total number of shortest ways to reach destination
-        return ways[dst] % mod;
+        // Final answer: number of shortest paths to destination
+        return (int) (ways[n - 1] % MOD);
     }
 
+    /**
+     * Driver code for testing
+     */
     public static void main(String[] args) {
 
         int n = 7;
-
-        // road[i] = {u, v, travelTime}
         int[][] roads = {
-                {0, 6, 7}, {0, 1, 2}, {1, 2, 3},
-                {1, 3, 3}, {6, 3, 3}, {3, 5, 1},
-                {6, 5, 1}, {2, 5, 1}, {0, 4, 5},
+                {0, 6, 7},
+                {0, 1, 2},
+                {1, 2, 3},
+                {1, 3, 3},
+                {6, 3, 3},
+                {3, 5, 1},
+                {6, 5, 1},
+                {2, 5, 1},
+                {0, 4, 5},
                 {4, 6, 2}
         };
 
-        // Find number of shortest paths from 0 to 3
-        int ans = CheapestFLight(n, roads, 0, 3, 1);
-
-        System.out.println(ans);
+        System.out.println("Number of shortest paths: " + countPaths(n, roads));
+        // Expected Output: 4
     }
 }

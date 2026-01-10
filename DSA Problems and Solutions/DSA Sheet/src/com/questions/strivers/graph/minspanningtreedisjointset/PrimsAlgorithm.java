@@ -3,34 +3,6 @@ package com.questions.strivers.graph.minspanningtreedisjointset;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
-/**
- * ================================================================================================
- *  Prim's Algorithm - Minimum Spanning Tree (MST)
- * ================================================================================================
- *
- * ------------------------------ PROBLEM STATEMENT -----------------------------------------------
- *
- * Given a connected, undirected, weighted graph with V vertices,
- * find the sum of weights of the edges in its Minimum Spanning Tree (MST).
- *
- * A Minimum Spanning Tree:
- * - Connects all vertices
- * - Has exactly (V - 1) edges
- * - Has minimum possible total edge weight
- *
- * -----------------------------------------------------------------------------------------------
- *  APPROACH:
- *  - Use Greedy Algorithm (Prim's)
- *  - Use Min Heap (Priority Queue)
- *  - Start from any node (here: node 0)
- *
- * -----------------------------------------------------------------------------------------------
- *  DATA STRUCTURE USED:
- *  - PriorityQueue<Pair> → always gives minimum weight edge
- *  - visited[] → ensures no cycles
- *
- * ================================================================================================
- */
 
 public class PrimsAlgorithm {
 
