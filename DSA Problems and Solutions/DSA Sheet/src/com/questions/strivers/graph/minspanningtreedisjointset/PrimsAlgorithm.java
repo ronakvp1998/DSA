@@ -1,140 +1,180 @@
 package com.questions.strivers.graph.minspanningtreedisjointset;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.PriorityQueue;
 
 /**
  * =====================================================================================
- *  Prim's Algorithm - Minimum Spanning Tree (MST)
+ *  PROBLEM STATEMENT (Minimum Spanning Tree using Prim’s Algorithm)
  * =====================================================================================
  *
- * PROBLEM:
- * --------
- * Given an undirected, weighted, connected graph with V vertices,
- * find the Minimum Spanning Tree (MST) and return the sum of its edge weights.
+ * Given a connected, undirected, weighted graph with V vertices,
+ * find the Minimum Spanning Tree (MST).
  *
- * A Minimum Spanning Tree:
- * - Connects all vertices
- * - Has exactly (V - 1) edges
- * - Has minimum possible total edge weight
+ * A Minimum Spanning Tree is a subset of edges such that:
+ * - All vertices are connected
+ * - No cycles are formed
+ * - The total edge weight is minimized
  *
  * -------------------------------------------------------------------------------------
- * APPROACH (Greedy + Min Heap):
- * -------------------------------------------------------------------------------------
- * 1. Start from any node (here, node 0).
- * 2. Always pick the edge with the minimum weight that connects:
- *      - a visited node
- *      - to an unvisited node
- * 3. Use a Min Priority Queue to efficiently get the smallest edge.
- * 4. Maintain a visited[] array to avoid cycles.
- * 5. Continue until all vertices are included in the MST.
  *
- * -------------------------------------------------------------------------------------
- * DATA STRUCTURE USED:
- * -------------------------------------------------------------------------------------
- * - PriorityQueue<Pair> → Min Heap based on edge weight
- * - visited[]           → Marks nodes already included in MST
+ * COMMON APPLICATIONS:
+ * - Network design (LAN, roads, pipelines)
+ * - Minimum cost connectivity
+ * - Graph optimization problems
  *
- * -------------------------------------------------------------------------------------
- * TIME COMPLEXITY:
- * -------------------------------------------------------------------------------------
- * O(E log V)
- * - Each edge can be inserted into the priority queue
- * - Heap operations take O(log V)
+ * =====================================================================================
  *
+ * APPROACH: PRIM'S ALGORITHM (Greedy)
  * -------------------------------------------------------------------------------------
- * SPACE COMPLEXITY:
+ *
+ * 1️⃣ Start from any node (here node 0).
+ * 2️⃣ Use a Min Heap (PriorityQueue) to always pick the edge
+ *    with the smallest weight.
+ * 3️⃣ Add the selected edge to the MST if it connects a new vertex.
+ * 4️⃣ Repeat until all vertices are included.
+ *
+ * OPTIMIZATIONS USED:
+ * - Priority Queue (Min Heap)
+ * - Visited array to avoid cycles
+ *
+ * IMPORTANT:
+ * - Multiple entries of the same node can exist in the PQ.
+ * - Only the first time a node is visited, its edge is accepted.
+ *
+ * =====================================================================================
+ *
+ * TIME & SPACE COMPLEXITY
  * -------------------------------------------------------------------------------------
- * O(V + E)
- * - Adjacency list storage
- * - Priority Queue
- * - Visited array
+ *
+ * Time Complexity:
+ * - O(E log E)
+ *   Each edge is pushed into the priority queue at most once.
+ *
+ * Space Complexity:
+ * - O(V + E)
+ *   Adjacency list + visited array + priority queue
  *
  * =====================================================================================
  */
 public class PrimsAlgorithm {
 
     /**
-     * Computes the sum of edge weights of the Minimum Spanning Tree.
+     * Computes the Minimum Spanning Tree using Prim’s Algorithm
+     * and prints all edges in the MST.
      *
      * @param V   Number of vertices
-     * @param adj Adjacency list representation where:
-     *            adj.get(u) -> list of [v, weight]
-     * @return Sum of MST edge weights
+     * @param adj Adjacency list where:
+     *            adj.get(u) contains [v, weight]
+     *
+     * @return Total weight of the MST
      */
     static int spanningTree(int V,
                             ArrayList<ArrayList<ArrayList<Integer>>> adj) {
 
-        // Min Heap storing (edgeWeight, node)
+        /**
+         * Min Heap storing:
+         * - edge weight
+         * - current node
+         * - parent node (from where it was reached)
+         */
         PriorityQueue<Pair> pq =
-                new PriorityQueue<>((a, b) -> a.distance - b.distance);
+                new PriorityQueue<>((a, b) -> a.weight - b.weight);
 
-        // visited[i] = 1 → node i is already included in MST
-        int[] visited = new int[V];
+        // Marks whether a vertex is already included in MST
+        boolean[] visited = new boolean[V];
 
-        // Start from node 0 with edge weight 0
-        pq.add(new Pair(0, 0));
+        // Stores MST edges explicitly for printing later
+        List<int[]> mstEdges = new ArrayList<>();
+
+        // Start from node 0 with weight 0
+        pq.add(new Pair(0, 0, -1));
 
         int mstSum = 0;
 
-        // Process until heap is empty
+        /**
+         * Main loop:
+         * - Extract minimum edge
+         * - If node is already visited, skip
+         * - Otherwise include it in MST
+         */
         while (!pq.isEmpty()) {
 
-            Pair current = pq.poll();
-            int weight = current.distance;
-            int node = current.node;
+            Pair cur = pq.poll();
+            int node = cur.node;
+            int weight = cur.weight;
+            int parent = cur.parent;
 
-            // Skip if already included in MST
-            if (visited[node] == 1) continue;
+            // Ignore already processed nodes
+            if (visited[node]) continue;
 
-            // Include node in MST
-            visited[node] = 1;
+            // Mark node as part of MST
+            visited[node] = true;
             mstSum += weight;
 
-            // Traverse adjacent nodes
-            for (ArrayList<Integer> edge : adj.get(node)) {
+            // Store MST edge (ignore starting node)
+            if (parent != -1) {
+                mstEdges.add(new int[]{parent, node, weight});
+            }
 
+            // Traverse adjacency list
+            for (ArrayList<Integer> edge : adj.get(node)) {
                 int adjNode = edge.get(0);
                 int edgeWeight = edge.get(1);
 
-                // Add only if adjacent node is not yet visited
-                if (visited[adjNode] == 0) {
-                    pq.add(new Pair(edgeWeight, adjNode));
+                // Push only if not yet visited
+                if (!visited[adjNode]) {
+                    pq.add(new Pair(edgeWeight, adjNode, node));
                 }
             }
+        }
+
+        /**
+         * Print MST edges AFTER algorithm completes
+         * (Best practice – avoids duplicate or missed edges)
+         */
+        System.out.println("Edges in the Minimum Spanning Tree:");
+        for (int[] e : mstEdges) {
+            System.out.println(e[0] + " -- " + e[1] + " (weight = " + e[2] + ")");
         }
 
         return mstSum;
     }
 
     /**
-     * Helper Pair class for Priority Queue
-     * Stores:
-     * - node      → current node
-     * - distance  → edge weight to reach this node
+     * Helper class used in Priority Queue
      */
     static class Pair {
+        int weight;
         int node;
-        int distance;
+        int parent;
 
-        Pair(int distance, int node) {
+        Pair(int weight, int node, int parent) {
+            this.weight = weight;
             this.node = node;
-            this.distance = distance;
+            this.parent = parent;
         }
     }
 
     /**
-     * -------------------------------- MAIN METHOD --------------------------------
-     * Sample graph construction and MST execution
+     * =====================================================================================
+     *  MAIN METHOD (TESTING)
+     * =====================================================================================
+     *
+     * Graph:
+     * 0 --1(2)
+     * |  /
+     * 2(1)
+     * |
+     * 3 --4
      */
     public static void main(String[] args) {
 
         int V = 5;
 
-        // Adjacency List
         ArrayList<ArrayList<ArrayList<Integer>>> adj = new ArrayList<>();
 
-        // Edge list: {u, v, weight}
         int[][] edges = {
                 {0, 1, 2},
                 {0, 2, 1},
@@ -149,11 +189,11 @@ public class PrimsAlgorithm {
             adj.add(new ArrayList<>());
         }
 
-        // Undirected graph → add edges both ways
-        for (int[] edge : edges) {
-            int u = edge[0];
-            int v = edge[1];
-            int w = edge[2];
+        // Undirected graph representation
+        for (int[] e : edges) {
+            int u = e[0];
+            int v = e[1];
+            int w = e[2];
 
             ArrayList<Integer> uv = new ArrayList<>();
             uv.add(v);
@@ -167,7 +207,7 @@ public class PrimsAlgorithm {
             adj.get(v).add(vu);
         }
 
-        int result = spanningTree(V, adj);
-        System.out.println("Sum of MST edge weights: " + result);
+        int totalWeight = spanningTree(V, adj);
+        System.out.println("Total weight of MST: " + totalWeight);
     }
 }

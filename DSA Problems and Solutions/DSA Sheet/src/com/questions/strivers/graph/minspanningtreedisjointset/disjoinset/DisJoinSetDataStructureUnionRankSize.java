@@ -154,12 +154,15 @@ public class DisJoinSetDataStructureUnionRankSize {
         if (ulp_u == ulp_v) return;
 
         // Attach smaller height tree under larger height tree
+        // rank of pu < rank of pv
         if (rank.get(ulp_u) < rank.get(ulp_v)) {
             parent.set(ulp_u, ulp_v);
         }
+        // rank of pv < rank of pu
         else if (rank.get(ulp_v) < rank.get(ulp_u)) {
             parent.set(ulp_v, ulp_u);
         }
+        // rank of pu == rank of pv
         else {
             // Same rank: choose one root and increase its rank
             parent.set(ulp_v, ulp_u);
@@ -189,10 +192,12 @@ public class DisJoinSetDataStructureUnionRankSize {
         if (ulp_u == ulp_v) return;
 
         // Attach smaller component under larger component
+        // size of pu < size of pv
         if (size.get(ulp_u) < size.get(ulp_v)) {
             parent.set(ulp_u, ulp_v);
             size.set(ulp_v, size.get(ulp_v) + size.get(ulp_u));
         }
+        // size of pv < size of pu
         else {
             parent.set(ulp_v, ulp_u);
             size.set(ulp_u, size.get(ulp_u) + size.get(ulp_v));
