@@ -3,70 +3,96 @@ package com.questions.strivers.graph.shortestpathAlgo;
 import java.util.*;
 
 /**
- * =================================================================================================
+ * =====================================================================================
  *  LeetCode 787 - Cheapest Flights Within K Stops
- * =================================================================================================
+ * =====================================================================================
  *
- * -------------------------------- PROBLEM STATEMENT (LEETCODE) ----------------------------------
+ * ---------------------------------- PROBLEM STATEMENT ----------------------------------
  *
  * You are given:
- *  - n cities labeled from 0 to n-1
- *  - an array flights where flights[i] = [from, to, price]
- *    represents a directed flight from city `from` to city `to` with cost `price`
- *  - a source city `src`
- *  - a destination city `dst`
- *  - an integer `K` representing the maximum number of allowed stops
+ *  - `n` cities numbered from 0 to n - 1
+ *  - An array `flights`, where flights[i] = [from, to, price]
+ *    represents a directed flight from city `from` to city `to`
+ *    with cost `price`
+ *  - A source city `src`
+ *  - A destination city `dst`
+ *  - An integer `K` representing the maximum number of allowed stops
  *
- * A stop means an intermediate city between src and dst.
- * NOTE:
- *   - If you travel from src → dst directly, number of stops = 0
- *   - If you travel src → A → dst, number of stops = 1
+ * A stop means an intermediate city, so:
+ *  - 0 stops  -> direct flight
+ *  - 1 stop   -> src -> x -> dst
  *
- * TASK:
- * Return the cheapest price to travel from src to dst with at most K stops.
- * If no such route exists, return -1.
+ * ---------------------------------- TASK ----------------------------------
  *
- * -------------------------------------------------------------------------------------------------
- * EXAMPLE:
+ * Return the **cheapest price** to travel from `src` to `dst`
+ * using **at most K stops**.
+ *
+ * If there is no such route, return -1.
+ *
+ * ---------------------------------- EXAMPLES ----------------------------------
  *
  * Input:
- *   n = 4
- *   flights = [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]]
- *   src = 0
- *   dst = 3
- *   K = 1
+ * n = 4
+ * flights = [[0,1,100],[1,2,100],[2,0,100],[1,3,600],[2,3,200]]
+ * src = 0, dst = 3, K = 1
  *
  * Output:
- *   700
+ * 700
  *
  * Explanation:
- *   The cheapest path with at most 1 stop is:
- *   0 → 1 → 3 with cost = 100 + 600 = 700
+ * 0 -> 1 -> 3 costs 100 + 600 = 700
  *
- * =================================================================================================
+ * ---------------------------------------------------------------------------------------
  *
- * INTERVIEW CONTEXT:
- * This problem is a variation of shortest path algorithms with an added constraint
- * on the number of stops. Classic Dijkstra cannot be applied directly without modification.
+ * ---------------------------------- APPROACH ----------------------------------
  *
- * =================================================================================================
+ * We use a **BFS-based graph traversal with state tracking**.
+ *
+ * Key idea:
+ * - Normal Dijkstra does NOT work directly because:
+ *   -> A cheaper path with more stops may be invalid
+ *   -> A costlier path with fewer stops may be valid
+ *
+ * Therefore, we track:
+ *  - Current city
+ *  - Number of stops used
+ *  - Cost so far
+ *
+ * We maintain a 2D distance array:
+ *  dist[city][stops] = minimum cost to reach `city` using exactly `stops`
+ *
+ * BFS is used because:
+ * - Stops are bounded (K is small)
+ * - We explore layer-by-layer by number of stops
+ *
+ * ---------------------------------------------------------------------------------------
+ *
+ * ---------------------------------- WHY THIS WORKS ----------------------------------
+ *
+ * - We never exceed K stops
+ * - We only relax edges if the new cost is cheaper for the same stop count
+ * - This avoids unnecessary recomputation
+ * - Ensures correctness under stop constraints
+ *
+ * ---------------------------------------------------------------------------------------
+ *
+ * ---------------------------------- EDGE CASES HANDLED ----------------------------------
+ *
+ * - No possible route → return -1
+ * - src == dst → cost is 0
+ * - Multiple paths with different stop counts
+ * - Cycles in graph
+ *
+ * =====================================================================================
  */
 public class CheapestFlightsWithinKStops {
 
     /**
-     * =============================================================================================
-     * EDGE CLASS
-     * =============================================================================================
+     * ---------------- EDGE CLASS ----------------
      *
-     * Represents a directed edge in the graph.
-     *
-     * Why this class?
-     * - Improves readability compared to using int[] arrays
-     * - Clearly represents a flight from current city → destination city with a cost
-     *
-     * Fields:
-     *  - to   : destination city
-     *  - cost : flight price
+     * Represents a directed flight:
+     *  - `to`   → destination city
+     *  - `cost` → flight price
      */
     static class Edge {
         int to;
@@ -79,173 +105,112 @@ public class CheapestFlightsWithinKStops {
     }
 
     /**
-     * =============================================================================================
-     * STATE CLASS (USED IN BFS QUEUE)
-     * =============================================================================================
+     * ---------------- STATE CLASS ----------------
      *
-     * Represents a traversal state during BFS.
-     *
-     * Why this class?
-     * - BFS needs to track BOTH:
-     *     1. Current city
-     *     2. Number of stops used so far
-     *
-     * Fields:
-     *  - city  : current city in traversal
-     *  - stops : number of stops used to reach this city
+     * Represents a BFS traversal state:
+     *  - `city`  → current city
+     *  - `stops` → number of stops used so far
+     *  - `cost`  → total cost to reach this city
      */
     static class State {
         int city;
         int stops;
+        int cost;
 
-        State(int city, int stops) {
+        State(int city, int stops, int cost) {
             this.city = city;
             this.stops = stops;
+            this.cost = cost;
         }
     }
 
     /**
-     * =============================================================================================
-     * MAIN LOGIC: BFS WITH COST PRUNING
-     * =============================================================================================
-     *
-     * APPROACH OVERVIEW:
-     * ------------------
-     * 1. Convert flights into an adjacency list graph.
-     * 2. Use BFS traversal (level-order style) where:
-     *      - Each level represents one additional stop.
-     * 3. Maintain a distance array to store the minimum cost found so far to each city.
-     * 4. Prune paths that:
-     *      - Exceed K stops
-     *      - Are more expensive than an already known cheaper path
-     *
-     * WHY BFS?
-     * --------
-     * - The number of stops is limited (K), which naturally fits BFS (level-based traversal).
-     * - BFS ensures we explore paths with fewer stops first.
-     *
-     * IMPORTANT NOTE (INTERVIEW POINT):
-     * --------------------------------
-     * This solution uses a SINGLE distance array.
-     * This works in many cases but has a limitation:
-     *   - A city reached with fewer stops but higher cost might block
-     *     a cheaper path that uses more stops later.
-     *
-     * A more robust solution would track (city, stops) as state in distance,
-     * but we are intentionally NOT changing the logic as per requirement.
+     * Finds the cheapest price from src to dst with at most K stops
      */
-    private static int cheapestFlight(int n, int[][] flights, int src, int dst, int K) {
+    public static int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
 
-        /**
-         * ------------------------------- GRAPH CONSTRUCTION ----------------------------------------
+        /* ---------------- GRAPH CONSTRUCTION ----------------
          *
-         * Graph is represented using an adjacency list:
-         *
-         * graph[u] = list of all flights going out from city u
-         *
-         * Time Complexity:
-         *   O(n + m), where m = number of flights
+         * Using adjacency list:
+         * graph[u] contains all outgoing flights from city u
          */
         List<List<Edge>> graph = new ArrayList<>();
-
-        // Initialize adjacency list for each city
         for (int i = 0; i < n; i++) {
             graph.add(new ArrayList<>());
         }
 
-        // Populate graph using flight data
-        for (int[] flight : flights) {
-            int from = flight[0];
-            int to = flight[1];
-            int price = flight[2];
-
-            graph.get(from).add(new Edge(to, price));
+        // Populate adjacency list
+        for (int[] f : flights) {
+            graph.get(f[0]).add(new Edge(f[1], f[2]));
         }
 
-        /**
-         * ------------------------------- DISTANCE ARRAY --------------------------------------------
+        /* ---------------- DISTANCE MATRIX ----------------
          *
-         * dist[i] = minimum cost found so far to reach city i
+         * dist[city][stops] = minimum cost to reach `city`
+         *                    using exactly `stops` stops
          *
-         * Why initialize with MAX_VALUE?
-         * - Represents that initially all cities are unreachable.
-         *
-         * dist[src] = 0 because:
-         * - Cost to reach source from itself is zero.
+         * Size = n x (K + 2)
+         * Why K + 2?
+         * - K stops means K+1 edges
          */
-        int[] dist = new int[n];
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[src] = 0;
+        int[][] dist = new int[n][K + 2];
+        for (int i = 0; i < n; i++) {
+            Arrays.fill(dist[i], Integer.MAX_VALUE);
+        }
 
-        /**
-         * ------------------------------- BFS QUEUE -------------------------------------------------
-         *
-         * Queue stores State objects:
-         *   (currentCity, stopsUsed)
-         *
-         * BFS guarantees that we process states in increasing order of stops.
-         */
+        // Cost to reach src with 0 stops is 0
+        dist[src][0] = 0;
+
+        /* ---------------- BFS QUEUE ---------------- */
         Queue<State> queue = new LinkedList<>();
-        queue.offer(new State(src, 0));
+        queue.offer(new State(src, 0, 0));
 
-        /**
-         * ------------------------------- BFS TRAVERSAL ---------------------------------------------
-         *
-         * We continue BFS until:
-         * - Queue becomes empty
-         * - OR all valid paths up to K stops are explored
-         */
+        /* ---------------- BFS TRAVERSAL ---------------- */
         while (!queue.isEmpty()) {
 
-            // Dequeue the current state
-            State current = queue.poll();
-            int city = current.city;
-            int stopsUsed = current.stops;
+            State curr = queue.poll();
 
-            /**
-             * EDGE CASE:
-             * If number of stops already exceeds K,
-             * we cannot explore further from this state.
-             */
-            if (stopsUsed > K) {
-                continue;
-            }
+            int city = curr.city;
+            int stops = curr.stops;
+            int cost = curr.cost;
 
-            /**
-             * Explore all outgoing flights from current city
-             */
+            // If stops exceed K, this path is invalid
+            if (stops > K) continue;
+
+            // Explore all outgoing flights
             for (Edge edge : graph.get(city)) {
+
                 int nextCity = edge.to;
+                int newCost = cost + edge.cost;
+
                 /**
-                 * Calculate new cost to reach nextCity via current city
+                 * Relaxation condition:
+                 * Update only if we find a cheaper cost
+                 * for the same number of stops
                  */
-                int newCost = dist[city] + edge.cost;
-                /**
-                 * RELAXATION STEP:
-                 * ----------------
-                 * Update distance only if:
-                 *   - This path gives a cheaper cost to reach nextCity
-                 *
-                 * Why this check?
-                 * - Prevents unnecessary exploration of more expensive paths
-                 * - Acts as pruning to improve performance
-                 */
-                if (newCost < dist[nextCity]) {
-                    dist[nextCity] = newCost;
-                    /**
-                     * Push next state into queue with incremented stop count
-                     */
-                    queue.offer(new State(nextCity, stopsUsed + 1));
+                if (newCost < dist[nextCity][stops + 1]) {
+                    dist[nextCity][stops + 1] = newCost;
+                    queue.offer(new State(nextCity, stops + 1, newCost));
                 }
             }
         }
-        /**
-         * FINAL RESULT:
-         * -------------
-         * If destination was never reached, dist[dst] will still be MAX_VALUE.
+
+        /* ---------------- FIND FINAL ANSWER ----------------
+         *
+         * Destination can be reached with:
+         * 0 to K+1 edges
          */
-        return dist[dst] == Integer.MAX_VALUE ? -1 : dist[dst];
+        int ans = Integer.MAX_VALUE;
+        for (int i = 0; i <= K + 1; i++) {
+            ans = Math.min(ans, dist[dst][i]);
+        }
+
+        return ans == Integer.MAX_VALUE ? -1 : ans;
     }
+
+    /**
+     * ---------------- TESTING ----------------
+     */
     public static void main(String[] args) {
 
         int n = 4;
@@ -261,76 +226,43 @@ public class CheapestFlightsWithinKStops {
                 {2, 3, 200}
         };
 
-        int result = cheapestFlight(n, flights, src, dst, K);
-
-        System.out.println("Cheapest Price: " + result); // Expected Output: 700
+        int result = findCheapestPrice(n, flights, src, dst, K);
+        System.out.println("Cheapest Price: " + result); // Expected: 700
     }
 }
 
 /**
- * =================================================================================================
- * TIME AND SPACE COMPLEXITY ANALYSIS
- * =================================================================================================
+ * =====================================================================================
+ *  TIME & SPACE COMPLEXITY
+ * =====================================================================================
  *
- * Let:
- *  - n = number of cities
- *  - m = number of flights
- *  - K = maximum allowed stops
+ * Time Complexity:
+ * O(E * K)
+ * - Each edge can be relaxed at most K+1 times
  *
- * TIME COMPLEXITY:
- * ----------------
- * O(K * m)
+ * Space Complexity:
+ * O(N * K + E)
+ * - Distance matrix + adjacency list + BFS queue
  *
- * Explanation:
- * - BFS can process each edge at most K times (once per stop level).
- * - In worst case, all edges are explored for each stop.
+ * =====================================================================================
  *
- * SPACE COMPLEXITY:
- * -----------------
- * O(n + m)
+ * ---------------------------------- ALTERNATIVE APPROACHES ----------------------------------
  *
- * Explanation:
- * - Adjacency list uses O(n + m)
- * - Distance array uses O(n)
- * - BFS queue can hold up to O(n) states
+ * 1️⃣ Modified Dijkstra (Min-Heap)
+ * - State = (cost, city, stops)
+ * - Works well when graph is large
+ * - Slightly more complex
  *
- * =================================================================================================
- * ALTERNATIVE RECOMMENDED APPROACHES (INTERVIEW DISCUSSION)
- * =================================================================================================
+ * 2️⃣ Bellman-Ford (K+1 iterations)
+ * - Relax all edges K+1 times
+ * - Simpler but slower for large graphs
  *
- * 1. Bellman-Ford Algorithm (MOST RECOMMENDED)
- * --------------------------------------------
- * - Run relaxation for K+1 iterations.
- * - Guarantees correctness for this problem.
+ * ---------------------------------- TRADE-OFFS ----------------------------------
  *
- * Time:  O(K * m)
- * Space: O(n)
+ * BFS with state tracking:
+ * ✅ Easy to understand
+ * ✅ Works well for bounded K
+ * ❌ Less optimal for very large graphs
  *
- * PROS:
- * - Simple
- * - Always correct
- *
- * CONS:
- * - Slightly slower in practice
- *
- * 2. Modified Dijkstra (with (city, stops) state)
- * -----------------------------------------------
- * - Use priority queue
- * - Track cost per (city, stops)
- *
- * PROS:
- * - Faster for sparse graphs
- *
- * CONS:
- * - More complex implementation
- *
- * =================================================================================================
- * FINAL INTERVIEW TIP:
- * --------------------
- * Always mention:
- * - Why simple Dijkstra fails
- * - Why stop constraint changes the problem
- * - Trade-offs between BFS, Bellman-Ford, and Dijkstra
- *
- * =================================================================================================
+ * =====================================================================================
  */
