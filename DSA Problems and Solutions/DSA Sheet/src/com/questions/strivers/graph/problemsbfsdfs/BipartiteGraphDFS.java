@@ -132,8 +132,17 @@ public class BipartiteGraphDFS {
     /**
      * Function to check whether graph is bipartite
      */
-    public static boolean isBipartite(int V, List<List<Integer>> graph) {
+    public static boolean isBipartite(int V, int[][] graph) {
 
+        List<List<Integer>>adj = new ArrayList<>();
+        for(int i=0;i<V;i++){
+            adj.add(new ArrayList<>());
+        }
+        for(int i=0;i<V;i++){
+            for(int j : graph[i]){
+                adj.get(i).add(j);
+            }
+        }
         int[] color = new int[V];
 
         // Initially mark all vertices uncolored
@@ -146,7 +155,7 @@ public class BipartiteGraphDFS {
             if (color[i] == -1) {
                 color[i] = 0;   // assign first color
 
-                if (!dfs(i, color, graph)) {
+                if (!dfs(i, color, adj)) {
                     return false;
                 }
             }

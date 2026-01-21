@@ -1,6 +1,8 @@
 package com.questions.practice.graph;
 
-public class GraphTest{
+import java.util.*;
+
+public class GraphTest {
 
 
 

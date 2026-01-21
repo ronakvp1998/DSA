@@ -70,10 +70,10 @@ public class WordLadderI {
          *  - current word
          *  - number of transformation steps taken so far
          */
-        Queue<Pair<String, Integer>> q = new LinkedList<>();
+        Queue<Pair> q = new LinkedList<>();
 
         // Start BFS with startWord, step count = 1
-        q.add(new Pair<>(startWord, 1));
+        q.add(new Pair(startWord, 1));
 
         // ----------------------------
         // STEP 2: Store Words in a Set
@@ -95,8 +95,8 @@ public class WordLadderI {
         while (!q.isEmpty()) {
 
             // Extract front element
-            String word = q.peek().getKey();
-            int steps = q.peek().getValue();
+            String word = q.peek().word;
+            int steps = q.peek().steps;
             q.poll();
 
             // If target word is reached, return steps immediately
@@ -134,7 +134,7 @@ public class WordLadderI {
                      */
                     if (st.contains(newWord)) {
                         st.remove(newWord);
-                        q.add(new Pair<>(newWord, steps + 1));
+                        q.add(new Pair(newWord, steps + 1));
                     }
                 }
 
@@ -150,21 +150,13 @@ public class WordLadderI {
     /**
      * Utility Pair class (since Java doesn't have built-in Pair)
      */
-    static class Pair<K, V> {
-        private K key;
-        private V value;
+    static class Pair {
+        public String word;
+        public Integer steps;
 
-        public Pair(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        public K getKey() {
-            return key;
-        }
-
-        public V getValue() {
-            return value;
+        public Pair(String word, Integer steps) {
+            this.word = word;
+            this.steps = steps;
         }
     }
 
