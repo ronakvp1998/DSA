@@ -1,35 +1,31 @@
 package com.questions.practice.dynamicprogramming;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class DpTest {
-    private static int recursion(int arr[][],int day,int lastTask){
-        if(day == 0){
-            int max = 0;
-            for(int task = 0;task < 3;task++){
-                if(task != lastTask){
-                    max = Math.max(max,arr[0][task]);
-                }
-            }
-            return max;
+    public int minimumTotal(List<List<Integer>> matrix) {
+        int n = matrix.size();
+        int m = matrix.get(0).size();
+        Integer dp[][] = new Integer[n][m];
+        int minPath = Integer.MAX_VALUE;
+        for(int j=0;j<m;j++){
+            minPath = Math.min(minPath,recursion(matrix,n-1,j,dp));
         }
-        int maxPoints = 0;
-        for(int task=0;task<3;task++){
-            if(task != lastTask){
-                int currentPoints = arr[day][task] +
-                        recursion(arr,day-1,task);
-                maxPoints = Math.max(maxPoints,currentPoints);
-            }
-        }
-        return maxPoints;
+        return minPath;
     }
 
-
-    public static void main(String[] args) {
-        int n = 2;
-        int dp[] = new int[n+1];
-        Arrays.fill(dp,-1);
-        int arr[][] = new int[n][n];
-
+    private static int recursion(List<List<Integer>> matrix,int i,int j,Integer dp[][]){
+        if(j < 0 || j >= matrix.get(0).size()){
+            return (int)1e9;
+        }
+        if(i == 0){
+            return matrix.get(0).get(j);
+        }
+        int down = recursion(matrix,i-1,j,dp);
+        int downRight = recursion(matrix,i-1,j+1,dp);
+        int downLeft = recursion(matrix,i-1,j-1,dp);
+        return dp[i][j] =
+                matrix.get(i).get(j) + Math.min(downLeft,Math.min(down,downRight));
     }
+
 }
