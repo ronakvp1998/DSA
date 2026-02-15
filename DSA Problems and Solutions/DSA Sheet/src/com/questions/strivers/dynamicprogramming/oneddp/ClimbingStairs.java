@@ -2,95 +2,179 @@ package com.questions.strivers.dynamicprogramming.oneddp;
 
 import java.util.Arrays;
 
-// Problem: Given a number of stairs 'n', starting from 0th stair,
-// we need to reach the 'nth' stair. We can climb either 1 or 2 stairs at a time.
-// Goal: Count the number of distinct ways to reach the nth stair.
-
-// Reference: https://takeuforward.org/data-structure/dynamic-programming-climbing-stairs/
+/**
+ * ==================================================================================================
+ * PROBLEM: CLIMBING STAIRS
+ *
+ * You are climbing a staircase. It takes n steps to reach the top.
+ * Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+ *
+ * Example 1:
+ * Input: n = 2
+ * Output: 2
+ * Explanation: There are two ways to climb to the top.
+ * 1. 1 step + 1 step
+ * 2. 2 steps
+ *
+ * Example 2:
+ * Input: n = 3
+ * Output: 3
+ * Explanation: There are three ways to climb to the top.
+ * 1. 1 step + 1 step + 1 step
+ * 2. 1 step + 2 steps
+ * 3. 2 steps + 1 step
+ *
+ * Constraints:
+ *
+ * 1 <= n <= 45
+ * ==================================================================================================
+ * APPROACH:
+ * The problem follows the Fibonacci pattern. To reach step 'i', you must have come from:
+ * 1. Step 'i-1' (by taking 1 step)
+ * 2. Step 'i-2' (by taking 2 steps)
+ *
+ * Therefore: Ways(i) = Ways(i-1) + Ways(i-2)
+ *
+ * This file demonstrates the evolution of the solution:
+ * Recursion -> Memoization -> Tabulation -> Space Optimization
+ * ==================================================================================================
+ */
 public class ClimbingStairs {
+
     public static void main(String[] args) {
-        int n = 3; // Target stair
+        int n = 5; // Target stair (Try n=5. Expected Output: 8)
+        System.out.println("Calculating distinct ways to climb " + n + " stairs...");
+        System.out.println("--------------------------------------------------");
 
-        // ----------------- Memoization (Top-Down DP) -----------------
-        int dp[] = new int[n + 1]; // Array to store intermediate results
-        Arrays.fill(dp, -1); // Initialize all elements to -1
-        System.out.println(memoraization(n, dp)); // Output: 3
+        // 1. Recursive Approach (Brute Force)
+        long start = System.nanoTime();
+        System.out.println("1. Recursion       : " + recursion(n));
+        System.out.println("   Time Taken      : " + (System.nanoTime() - start) + " ns");
 
-        // ----------------- Tabulation (Bottom-Up DP) -----------------
-        System.out.println(tabulation(n, dp)); // Output: 3
+        // 2. Memoization (Top-Down DP)
+        // We initialize a DP array with -1 to represent "unsolved" states.
+        int[] dpMemo = new int[n + 1];
+        Arrays.fill(dpMemo, -1);
 
-        // ----------------- Space Optimization ------------------------
-        System.out.println(spaceOpt(n)); // Output: 3
+        start = System.nanoTime();
+        System.out.println("2. Memoization     : " + memoization(n, dpMemo));
+        System.out.println("   Time Taken      : " + (System.nanoTime() - start) + " ns");
+
+        // 3. Tabulation (Bottom-Up DP)
+        int[] dpTab = new int[n + 1]; // Clean array for tabulation
+        start = System.nanoTime();
+        System.out.println("3. Tabulation      : " + tabulation(n, dpTab));
+        System.out.println("   Time Taken      : " + (System.nanoTime() - start) + " ns");
+
+        // 4. Space Optimization (Best Solution)
+        start = System.nanoTime();
+        System.out.println("4. Space Optimized : " + spaceOpt(n));
+        System.out.println("   Time Taken      : " + (System.nanoTime() - start) + " ns");
     }
 
-    // Method 1: Memoization (Top-Down DP)
-    // Time Complexity: O(n)
-    // Space Complexity: O(n) for dp[] + O(n) recursion stack space
-    private static int memoraization(int n, int[] dp) {
-        // Base cases: 1 way to reach stair 0 or stair 1
-        if (n == 0 || n == 1) {
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 1: BASIC RECURSION (BRUTE FORCE)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * Directly implements the recurrence relation: f(n) = f(n-1) + f(n-2).
+     *
+     * COMPLEXITY:
+     * - Time: O(2^n) -> Exponential. We re-calculate the same subproblems repeatedly.
+     * - Space: O(n) -> Recursion stack depth.
+     */
+    private static int recursion(int n) {
+        // Base Case: If we are at step 0 or 1, there is only 1 way (stand there or take 1 step).
+        // both becomes valid count so for n=0 & n=1 return 1
+        if (n <= 1) {
             return 1;
         }
 
-        // If result already computed, return it (Avoid recomputation)
+        // Recursive Step: Sum of ways from the previous two steps
+        return recursion(n - 1) + recursion(n - 2);
+    }
+
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 2: MEMOIZATION (TOP-DOWN DP)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * We use an array 'dp' to store the result of each step 'n' once we compute it.
+     * Before computing, we check if dp[n] != -1. If true, we return the stored value.
+     *
+     * COMPLEXITY:
+     * - Time: O(n) -> Each state (0 to n) is computed exactly once.
+     * - Space: O(n) + O(n) -> DP Array + Recursion Stack.
+     */
+    private static int memoization(int n, int[] dp) {
+        // Base Case
+        if (n <= 1) return 1;
+
+        // Step 1: Check Cache (Memoization)
         if (dp[n] != -1) {
             return dp[n];
         }
 
-        // Recursively calculate ways to reach (n-1) and (n-2)
-        dp[n] = memoraization(n - 1, dp) + memoraization(n - 2, dp);
+        // Step 2: Compute and Store
+        // We compute the result and save it to the array before returning.
+        dp[n] = memoization(n - 1, dp) + memoization(n - 2, dp);
+
         return dp[n];
     }
 
-    // Method 2: Tabulation (Bottom-Up DP)
-    // Time Complexity: O(n)
-    // Space Complexity: O(n) for dp[]
-    private static int tabulation(int n, int[] dp){
-        dp[0] = 1; // 1 way to reach stair 0
-        dp[1] = 1; // 1 way to reach stair 1
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 3: TABULATION (BOTTOM-UP DP)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * Instead of recursion, we use a loop. We start from the base cases (0 and 1)
+     * and fill the table upwards to 'n'.
+     *
+     * COMPLEXITY:
+     * - Time: O(n) -> Simple loop from 2 to n.
+     * - Space: O(n) -> DP Array to store intermediate values.
+     */
+    private static int tabulation(int n, int[] dp) {
+        // Base Cases Initialization
+        dp[0] = 1; // 1 way to be at start (do nothing)
+        dp[1] = 1; // 1 way to reach step 1
 
-        // Fill the dp[] array from bottom to top
-        for(int i = 2; i <= n; i++){
-            dp[i] = dp[i - 1] + dp[i - 2]; // Sum of ways to reach previous 2 stairs
-        }
-        return dp[n]; // Final answer at dp[n]
-    }
-
-    // Method 3: Space Optimized DP
-    // Time Complexity: O(n)
-    // Space Complexity: O(1)
-    private static int spaceOpt(int n) {
-        if (n == 0 || n == 1) return 1;
-
-        int prev1 = 1; // ways to reach (i - 2)
-        int prev2 = 1; // ways to reach (i - 1)
-
-        // Compute ways iteratively using only two variables
+        // Iteratively fill the table
         for (int i = 2; i <= n; i++) {
-            int curr = prev1 + prev2; // Current ways = prev1 + prev2
-            prev1 = prev2; // Update prev1 to prev2
-            prev2 = curr;  // Update prev2 to current
+            // The value at current step is sum of previous two steps
+            dp[i] = dp[i - 1] + dp[i - 2];
         }
 
-        return prev2; // Final result is in prev2
+        // The answer for 'n' is now stored at the last index
+        return dp[n];
     }
-//             | N  | ways(N) |
-//            | -- | ------- |
-//            | 0  | 1       |
-//            | 1  | 1       |
-//            | 2  | 2       |
-//            | 3  | 3       |
-//            | 4  | 5       |
-//            | 5  | 8       |
-//            | 6  | 13      |
-//            | 7  | 21      |
-//            | 8  | 34      |
-//            | 9  | 55      |
-//            | 10 | 89      |
-//            | 11 | 144     |
-//            | 12 | 233     |
-//            | 13 | 377     |
-//            | 14 | 610     |
-//            | 15 | 987     |
 
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 4: SPACE OPTIMIZED (INTERVIEW STANDARD)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * We observed in Tabulation that to find dp[i], we ONLY need dp[i-1] and dp[i-2].
+     * We do not need the entire array. We can just maintain two variables.
+     *
+     * COMPLEXITY:
+     * - Time: O(n) -> Single loop.
+     * - Space: O(1) -> Constant space (only 3 integer variables).
+     */
+    private static int spaceOpt(int n) {
+        if (n <= 1) return 1;
+
+        int prev2 = 1; // Initially represents ways(0)
+        int prev1 = 1; // Initially represents ways(1)
+
+        for (int i = 2; i <= n; i++) {
+            int current = prev1 + prev2; // ways(i) = ways(i-1) + ways(i-2)
+
+            // Shift the window for the next iteration
+            prev2 = prev1;   // The old 'i-1' becomes 'i-2' for the next step
+            prev1 = current; // The old 'current' becomes 'i-1' for the next step
+        }
+
+        return prev1; // prev1 holds the result for step n
+    }
 }

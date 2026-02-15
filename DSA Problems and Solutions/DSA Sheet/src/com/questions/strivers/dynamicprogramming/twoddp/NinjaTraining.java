@@ -1,169 +1,242 @@
 package com.questions.strivers.dynamicprogramming.twoddp;
 
 import java.util.Arrays;
-//https://takeuforward.org/data-structure/dynamic-programming-ninjas-training-dp-7/
-/*Problem Statement: A Ninja has an ‘N’ Day training schedule. He has to perform one of these three activities
-(Running, Fighting Practice, or Learning New Moves) each day.
-There are merit points associated with performing an activity each day.
-The same activity can’t be performed on two consecutive days.
-We need to find the maximum merit points the ninja can attain in N Days.
-We are given a 2D Array POINTS of size ‘N*3’ which tells us the merit point of specific activity on that particular day.
-Our task is to calculate the maximum number of merit points that the ninja can earn.
-Days = 3
-Points = 10, 40, 70 // Day0
-         20, 50, 80 // Day1
-         30, 60, 90 // Day2
-         Output: 210 // 70(Day0) + 50(Day2) + 90(Day3) */
+
+/**
+ * ==================================================================================================
+ * PROBLEM: NINJA'S TRAINING (2D Dynamic Programming)
+ * ==================================================================================================
+ * PROBLEM STATEMENT:
+ * A Ninja has an 'N' day training schedule. Each day, he can perform one of three activities:
+ * 0: Running
+ * 1: Fighting Practice
+ * 2: Learning New Moves
+ *
+ * Each activity has specific merit points for that day.
+ * CONSTRAINT: The Ninja cannot perform the same activity on two consecutive days.
+ *
+ * GOAL:
+ * Find the maximum total merit points the Ninja can attain in N days.
+ *
+ * EXAMPLE:
+ * Input:
+ * Day 0: [10, 40, 70]
+ * Day 1: [20, 50, 80]
+ * Day 2: [30, 60, 90]
+ *
+ * Output: 210
+ * Explanation:
+ * Day 0: 70 (Task 2)
+ * Day 1: 50 (Task 1) - Cannot do Task 2 again
+ * Day 2: 90 (Task 2) - Cannot do Task 1 again
+ * Total = 70 + 50 + 90 = 210.
+ * ==================================================================================================
+ */
 public class NinjaTraining {
 
     public static void main(String[] args) {
-        // Input: Merit points for each task on each day
+        // Input: Merit points for [Day][Activity]
         int[][] meritPoints = {
                 {10, 40, 70},
                 {20, 50, 80},
                 {30, 60, 90}
         };
 
-        // Solve using different approaches
-        System.out.println("Recursive: " + ninjaTrainingRecursive(meritPoints));
-        System.out.println("Memoization: " + ninjaTrainingMemoization(meritPoints));
-        System.out.println("Tabulation: " + ninjaTrainingTabulation(meritPoints));
-        System.out.println("Space Optimized: " + ninjaTrainingSpaceOptimized(meritPoints));
+        int n = meritPoints.length;
+        System.out.println("Days: " + n);
+        System.out.println("--------------------------------------------------");
+
+        // 1. Recursive Approach
+        // Note: We pass '3' as the initial lastTask because 0,1,2 are valid tasks.
+        // 3 represents "No task performed previously".
+        System.out.println("1. Recursion       : " + recursive(n - 1, 3, meritPoints));
+
+        // 2. Memoization Approach
+        // DP Array Size: [N][4]
+        // N rows for days.
+        // 4 columns for lastTask (0, 1, 2, and 3 for 'none').
+        int[][] dp = new int[n][4];
+        for (int[] row : dp) Arrays.fill(row, -1);
+        System.out.println("2. Memoization     : " + memoization(n - 1, 3, meritPoints, dp));
+
+        // 3. Tabulation Approach
+        System.out.println("3. Tabulation      : " + tabulation(meritPoints));
+
+        // 4. Space Optimized Approach
+        System.out.println("4. Space Optimized : " + spaceOptimized(meritPoints));
     }
 
-    // Recursive approach to solve the problem
-    // Time Complexity: O(3^N) - Each day has 3 tasks, and recursion explores all combinations
-    // Space Complexity: O(N) - Recursion stack depth is equal to the number of days
-    private static int recursive(int day, int lastTask, int[][] meritPoints) {
-        // Base case: If it's the first day, return the maximum points for tasks not performed on the last day
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 1: RECURSION (BRUTE FORCE)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * We define a function f(day, lastTask) which returns the max points possible
+     * from index 0 to 'day', given that the activity performed on 'day + 1' was 'lastTask'.
+     *
+     * - On 'day', we can pick any task 'i' (0, 1, 2) as long as i != lastTask.
+     * - We recursively calculate the best path for 'day - 1'.
+     * recursion is happening for days and for loop for the task
+     *
+     * COMPLEXITY:
+     * - Time: O(3^N) -> At every step, we try 2 branches (since 1 task is blocked).
+     * - Space: O(N) -> Recursion stack depth.
+     */
+    private static int recursive(int day, int lastTask, int[][] points) {
+        // Base Case: Day 0
+        // We must pick the maximum points from the tasks that are NOT 'lastTask'.
         if (day == 0) {
-            int maxPoints = 0;
+            int max = 0;
             for (int task = 0; task < 3; task++) {
-                if (task != lastTask) { // Ensure the task is not the same as the last task
-                    maxPoints = Math.max(maxPoints, meritPoints[0][task]);
+                if (task != lastTask) {
+                    max = Math.max(max, points[0][task]);
                 }
             }
-            return maxPoints;
+            return max;
         }
 
-        // Recursive case: Try all tasks except the one performed on the last day
         int maxPoints = 0;
+        // Try all 3 activities for the current day
         for (int task = 0; task < 3; task++) {
-            if (task != lastTask) { // Ensure the task is not the same as the last task
-                int taskPoints = meritPoints[day][task] + recursive(day - 1, task, meritPoints); // Add points for the current task
-                maxPoints = Math.max(maxPoints, taskPoints); // Update the maximum points
+            if (task != lastTask) {
+                // Calculate points for current task + max points from previous days
+                // Pass current 'task' as 'lastTask' for the next recursive call
+                int currentPoints = points[day][task] + recursive(day - 1, task, points);
+                maxPoints = Math.max(maxPoints, currentPoints);
             }
         }
         return maxPoints;
     }
 
-    // Wrapper function for the recursive approach
-    private static int ninjaTrainingRecursive(int[][] meritPoints) {
-        int days = meritPoints.length;
-        // Start with no task performed on the last day (represented by 3)
-        return recursive(days - 1, 3, meritPoints);
-    }
-
-    // Memoization approach to solve the problem
-    // Time Complexity: O(N * 4) - Each state (day, lastTask) is computed once
-    // Space Complexity: O(N * 4 + N) - Space for dp array and recursion stack
-    private static int memoization(int day, int lastTask, int[][] meritPoints, int[][] dp) {
-        // Base case: If it's the first day, return the maximum points for tasks not performed on the last day
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 2: MEMOIZATION (TOP-DOWN DP)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * Same logic as recursion, but we store the result of f(day, lastTask) in a DP table.
+     * State: dp[day][lastTask]
+     *
+     * COMPLEXITY:
+     * - Time: O(N * 4 * 3) -> O(N). There are N*4 states, and each state loops 3 times.
+     * - Space: O(N * 4) + O(N) Stack -> O(N).
+     */
+    private static int memoization(int day, int lastTask, int[][] points, int[][] dp) {
+        // Base Case
         if (day == 0) {
-            int maxPoints = 0;
+            int max = 0;
             for (int task = 0; task < 3; task++) {
-                if (task != lastTask) { // Ensure the task is not the same as the last task
-                    maxPoints = Math.max(maxPoints, meritPoints[0][task]);
+                if (task != lastTask) {
+                    max = Math.max(max, points[0][task]);
                 }
             }
-            return maxPoints;
+            return max;
         }
 
-        // If the result is already computed, return it
+        // Step 1: Check Cache
         if (dp[day][lastTask] != -1) {
             return dp[day][lastTask];
         }
 
-        // Recursive case: Try all tasks except the one performed on the last day
         int maxPoints = 0;
+        // Step 2: Iterate options
         for (int task = 0; task < 3; task++) {
-            if (task != lastTask) { // Ensure the task is not the same as the last task
-                int taskPoints = meritPoints[day][task] + memoization(day - 1, task, meritPoints, dp); // Add points for the current task
-                maxPoints = Math.max(maxPoints, taskPoints); // Update the maximum points
+            if (task != lastTask) {
+                int currentPoints = points[day][task] + memoization(day - 1, task, points, dp);
+                maxPoints = Math.max(maxPoints, currentPoints);
             }
         }
-        return dp[day][lastTask] = maxPoints; // Store the result in dp array
+
+        // Step 3: Store and Return
+        return dp[day][lastTask] = maxPoints;
     }
 
-    // Wrapper function for the memoization approach
-    private static int ninjaTrainingMemoization(int[][] meritPoints) {
-        int days = meritPoints.length;
-        int[][] dp = new int[days][4]; // dp array to store results
-        for (int[] row : dp) {
-            Arrays.fill(row, -1); // Initialize dp array with -1
-        }
-        // Start with no task performed on the last day (represented by 3)
-        return memoization(days - 1, 3, meritPoints, dp);
-    }
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 3: TABULATION (BOTTOM-UP DP)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * dp[day][lastTask] represents the max score from day 0 to 'day', considering
+     * that on the NEXT day (day+1), 'lastTask' is performed.
+     *
+     * 1. Initialize Day 0: For each possible next task (0,1,2,3), calculate best choice for Day 0.
+     * 2. Loop Days 1 to N-1: Compute best scores based on previous day's results.
+     *
+     * COMPLEXITY:
+     * - Time: O(N * 4 * 3) -> O(N).
+     * - Space: O(N * 4) -> O(N).
+     */
+    private static int tabulation(int[][] points) {
+        int n = points.length;
+        int[][] dp = new int[n][4];
 
-    // Tabulation approach to solve the problem
-    // Time Complexity: O(N * 4 * 3) - For each day, compute results for 4 possible lastTask values, iterating over 3 tasks
-    // Space Complexity: O(N * 4) - Space for dp array
-    private static int ninjaTrainingTabulation(int[][] meritPoints) {
-        int days = meritPoints.length;
-        int[][] dp = new int[days][4]; // dp array to store results
+        // 1. Initialize Base Case (Day 0)
+        // If the restriction from Day 1 is 'lastTask', we pick max of others.
+        dp[0][0] = Math.max(points[0][1], points[0][2]); // If next is 0, pick max(1,2)
+        dp[0][1] = Math.max(points[0][0], points[0][2]); // If next is 1, pick max(0,2)
+        dp[0][2] = Math.max(points[0][0], points[0][1]); // If next is 2, pick max(0,1)
+        dp[0][3] = Math.max(points[0][0], Math.max(points[0][1], points[0][2])); // No restriction
 
-        // Base case: Day 0
-        dp[0][0] = Math.max(meritPoints[0][1], meritPoints[0][2]); // Max points if last task was 0
-        dp[0][1] = Math.max(meritPoints[0][0], meritPoints[0][2]); // Max points if last task was 1
-        dp[0][2] = Math.max(meritPoints[0][0], meritPoints[0][1]); // Max points if last task was 2
-        dp[0][3] = Math.max(meritPoints[0][0], Math.max(meritPoints[0][1], meritPoints[0][2])); // Max points if no restriction
-
-        // Fill the dp table for subsequent days
-        for (int day = 1; day < days; day++) {
+        // 2. Fill table for Day 1 to N-1
+        for (int day = 1; day < n; day++) {
+            // Calculate for every possible restriction (0, 1, 2, 3) passed from next day
             for (int lastTask = 0; lastTask < 4; lastTask++) {
-                dp[day][lastTask] = 0; // Initialize current cell
+                dp[day][lastTask] = 0; // Reset max
+
+                // Try performing every task 'task' on current 'day'
                 for (int task = 0; task < 3; task++) {
-                    if (task != lastTask) { // Ensure the task is not the same as the last task
-                        int taskPoints = meritPoints[day][task] + dp[day - 1][task]; // Add points for the current task
-                        dp[day][lastTask] = Math.max(dp[day][lastTask], taskPoints); // Update the maximum points
+                    if (task != lastTask) {
+                        // Current points + Max points from previous day (where today's task becomes restriction)
+                        int point = points[day][task] + dp[day - 1][task];
+                        dp[day][lastTask] = Math.max(dp[day][lastTask], point);
                     }
                 }
             }
         }
 
-        return dp[days - 1][3]; // Maximum points on the last day with no restriction
+        // Return the answer for Day N-1 with NO restriction (lastTask = 3)
+        return dp[n - 1][3];
     }
 
-    // Space-optimized approach to solve the problem
-    // Time Complexity: O(N * 4 * 3) - Similar to tabulation, but uses reduced space
-    // Space Complexity: O(4) - Only stores results for the current and previous day
-    private static int ninjaTrainingSpaceOptimized(int[][] meritPoints) {
-        int days = meritPoints.length;
-        int[] prevDay = new int[4]; // Array to store results for the previous day
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 4: SPACE OPTIMIZED (BEST SOLUTION)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * In Tabulation, to calculate `dp[day]`, we only need `dp[day-1]`.
+     * We can replace the 2D array with two 1D arrays: `prev` and `curr` of size 4.
+     *
+     * COMPLEXITY:
+     * - Time: O(N * 4 * 3) -> O(N).
+     * - Space: O(4) -> O(1). Constant space.
+     */
+    private static int spaceOptimized(int[][] points) {
+        int n = points.length;
+        int[] prev = new int[4];
 
-        // Base case: Day 0
-        prevDay[0] = Math.max(meritPoints[0][1], meritPoints[0][2]); // Max points if last task was 0
-        prevDay[1] = Math.max(meritPoints[0][0], meritPoints[0][2]); // Max points if last task was 1
-        prevDay[2] = Math.max(meritPoints[0][0], meritPoints[0][1]); // Max points if last task was 2
-        prevDay[3] = Math.max(meritPoints[0][0], Math.max(meritPoints[0][1], meritPoints[0][2])); // Max points if no restriction
+        // 1. Initialize Base Case (Day 0)
+        prev[0] = Math.max(points[0][1], points[0][2]);
+        prev[1] = Math.max(points[0][0], points[0][2]);
+        prev[2] = Math.max(points[0][0], points[0][1]);
+        prev[3] = Math.max(points[0][0], Math.max(points[0][1], points[0][2]));
 
-        // Update for subsequent days
-        for (int day = 1; day < days; day++) {
-            int[] currDay = new int[4]; // Array to store results for the current day
+        // 2. Loop Days 1 to N-1
+        for (int day = 1; day < n; day++) {
+            int[] curr = new int[4]; // Temporary array for current day
+
             for (int lastTask = 0; lastTask < 4; lastTask++) {
-                currDay[lastTask] = 0; // Initialize current cell
+                curr[lastTask] = 0;
                 for (int task = 0; task < 3; task++) {
-                    if (task != lastTask) { // Ensure the task is not the same as the last task
-                        int taskPoints = meritPoints[day][task] + prevDay[task]; // Add points for the current task
-                        currDay[lastTask] = Math.max(currDay[lastTask], taskPoints); // Update the maximum points
+                    if (task != lastTask) {
+                        // Current points + Previous result where restriction was 'task'
+                        int point = points[day][task] + prev[task];
+                        curr[lastTask] = Math.max(curr[lastTask], point);
                     }
                 }
             }
-            prevDay = currDay; // Update previous day results
+            // Update prev to be the current day's result for the next iteration
+            prev = curr;
         }
 
-        return prevDay[3]; // Maximum points on the last day with no restriction
+        return prev[3];
     }
 }
-

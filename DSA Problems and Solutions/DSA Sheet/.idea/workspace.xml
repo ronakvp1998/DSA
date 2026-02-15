@@ -38,6 +38,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.CombinationSum2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DPTest.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Application.PrintPermutations.executor&quot;: &quot;Run&quot;,
     &quot;Application.ReverseQueueRecursion.executor&quot;: &quot;Run&quot;,
@@ -69,7 +70,7 @@
       <recent name="com.questions.strivers.dynamicprogramming.twoddp" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.GraphTest">
+  <component name="RunManager" selected="Application.DPTest">
     <configuration name="CountTotalNodes" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.questions.strivers.binarytrees.hard.CountTotalNodes" />
       <module name="DSA Sheet" />
@@ -83,8 +84,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GraphTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.graph.GraphTest" />
+    <configuration name="DPTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.graph.DPTest" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
@@ -137,7 +138,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.GraphTest" />
+        <item itemvalue="Application.DPTest" />
         <item itemvalue="Application.CountTotalNodes" />
         <item itemvalue="Application.PracticeProblems" />
         <item itemvalue="Application.PracticeProblems (1)" />
@@ -156,6 +157,17 @@
     </task>
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
@@ -171,11 +183,6 @@
           <url>file://$PROJECT_DIR$/src/com/questions/practice2/Test.java</url>
           <line>6</line>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/questions/practice/dynamicprogramming/DPOnGrid.java</url>
-          <line>32</line>
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

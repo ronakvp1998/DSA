@@ -2,150 +2,202 @@ package com.questions.strivers.dynamicprogramming.oneddp;
 
 import java.util.Arrays;
 
-// Problem Link: https://takeuforward.org/data-structure/dynamic-programming-frog-jump-with-k-distances-dp-4/
-
-/*
-🔵 Problem Summary:
-- A frog starts at stair 0 and wants to reach stair n-1.
-- From any stair i, the frog can jump to i+1, i+2, ..., up to i+k.
-- Jump cost = abs(arr[i] - arr[j]).
-- Goal: Minimize total jump cost to reach the last stair.
-*/
-
+/**
+ * ==================================================================================================
+ * PROBLEM: FROG JUMP WITH K DISTANCES (Min Cost to Reach End)
+ * Problem Statement:
+ * A frog wants to climb a staircase with n steps. Given an integer array heights,
+ * where heights[i] contains the height of the ith step, and an integer k.
+ * To jump from the ith step to the jth step,
+ * the frog requires abs(heights[i] - heights[j]) energy, where abs() denotes the absolute difference.
+ * The frog can jump from the ith step to any step in the range [i + 1, i + k], provided it exists.
+ * Return the minimum amount of energy required by the frog to go from the 0th step to the (n-1)th step.
+ *
+ * Examples
+ * Example 1:
+ * Input: heights = [10, 5, 20, 0, 15], k = 2
+ * Output: 15
+ * Explanation:
+ * 0th step -> 2nd step, cost = abs(10 - 20) = 10
+ * 2nd step -> 4th step, cost = abs(20 - 15) = 5
+ * Total cost = 10 + 5 = 15.
+ *
+ * Example 2:
+ * Input: heights = [15, 4, 1, 14, 15], k = 3
+ * Output: 2
+ * Explanation:
+ * 0th step -> 3rd step, cost = abs(15 - 14) = 1
+ * 3rd step -> 4th step, cost = abs(14 - 15) = 1
+ * Total cost = 1 + 1 = 2.
+ * ==================================================================================================
+ * APPROACH:
+ * This is a generalization of the simple "Frog Jump" problem (where K=2).
+ * Instead of checking just (i-1) and (i-2), we check all previous stones
+ * from (i-1) to (i-K).
+ *
+ * RECURRENCE RELATION:
+ * dp[i] = min( dp[i-j] + abs(height[i] - height[i-j]) )
+ * for all j where 1 <= j <= K and (i-j) >= 0
+ *
+ * ==================================================================================================
+ */
 public class FrogJumpKDP {
+
     public static void main(String[] args) {
-        // Heights of each stair
-        int arr[] = {30, 10, 60, 10, 60, 50};
+        int[] heights = {30, 10, 60, 10, 60, 50};
+        int n = heights.length;
+        int k = 4; // Max jump length
 
-        int n = 6;   // Total number of stairs
-        int k = 4;   // Maximum number of stairs the frog can jump in one move
+        System.out.println("Target: Reach stair " + (n - 1) + " with max jump K=" + k);
+        System.out.println("--------------------------------------------------");
 
-        // 1️⃣ Simple recursive approach (inefficient for large inputs)
-        System.out.println(recursive(n - 1, arr, k));
+        // 1. Recursive Approach (Brute Force)
+        long start = System.nanoTime();
+        System.out.println("1. Recursion       : " + recursive(n - 1, heights, k));
+        System.out.println("   Time Taken      : " + (System.nanoTime() - start) + " ns");
 
-        // 2️⃣ Top-down dynamic programming (memoization)
-        int dp[] = new int[n];
-        Arrays.fill(dp, -1);  // Fill dp with -1 to indicate values not yet computed
-        System.out.println(memorization(n - 1, arr, dp, k));
+        // 2. Memoization (Top-Down DP)
+        int[] dp = new int[n];
+        Arrays.fill(dp, -1);
+        start = System.nanoTime();
+        System.out.println("2. Memoization     : " + memoization(n - 1, heights, dp, k));
+        System.out.println("   Time Taken      : " + (System.nanoTime() - start) + " ns");
 
-        // 3️⃣ Bottom-up dynamic programming (tabulation)
-        Arrays.fill(dp, -1);  // Reset dp array to avoid confusion
-        System.out.println(tabulation(n, arr, k));
+        // 3. Tabulation (Bottom-Up DP)
+        start = System.nanoTime();
+        System.out.println("3. Tabulation      : " + tabulation(n, heights, k));
+        System.out.println("   Time Taken      : " + (System.nanoTime() - start) + " ns");
 
-        // 4️⃣ Space-optimized DP approach
-        System.out.println(spaceOptimized(n, arr, k));
+        // 4. Space Optimization (Circular Buffer)
+        start = System.nanoTime();
+        System.out.println("4. Space Optimized : " + spaceOptimized(n, heights, k));
+        System.out.println("   Time Taken      : " + (System.nanoTime() - start) + " ns");
     }
 
-    // -------------------- 1️⃣ Recursive (Brute-force) --------------------
-    private static int recursive(int n, int[] arr, int k) {
-        // ✅ Base condition: No cost to stay at the starting stair
-        if (n == 0) {
-            return 0;
-        }
-
-        int minCost = Integer.MAX_VALUE; // Initialize min cost to a large value
-
-        // 🔁 Try all possible jumps from (n-1), (n-2), ..., (n-k)
-        for (int j = 1; j <= k; j++) {
-            // 🛑 Condition: Make sure (n-j) is a valid stair index
-            if (n - j >= 0) {
-                // 📞 Recursive call to compute cost from (n-j) to n
-                int jumpCost = recursive(n - j, arr, k) + Math.abs(arr[n] - arr[n - j]);
-
-                // ✅ Choose the minimum of all valid jump costs
-                minCost = Math.min(minCost, jumpCost);
-            }
-            // ❌ If n - j < 0, skip that jump (not a valid stair)
-        }
-
-        return minCost; // Return the optimal cost to reach stair 'n'
-    }
-
-    // -------------------- 2️⃣ Memoization (Top-down DP) --------------------
-    private static int memorization(int n, int[] arr, int[] dp, int k) {
-        // ✅ Base condition: cost to reach first stair is 0
-        if (n == 0) {
-            return 0;
-        }
-
-        // 🛑 Condition: If we have already calculated dp[n], return it
-        if (dp[n] != -1) {
-            return dp[n];  // Avoid recomputation
-        }
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 1: RECURSION (BRUTE FORCE)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * Try every possible jump size from 1 to K.
+     * Calculate cost for each valid jump and take the minimum.
+     *
+     * COMPLEXITY:
+     * - Time: O(K^N) -> Exponential. Extremely slow.
+     * - Space: O(N) -> Stack depth.
+     */
+    private static int recursive(int index, int[] arr, int k) {
+        // Base Case: Start of the array has 0 cost
+        if (index == 0) return 0;
 
         int minCost = Integer.MAX_VALUE;
 
-        // 🔁 Try all jumps from (n-1), (n-2), ..., (n-k)
+        // Try all jumps from 1 to K
         for (int j = 1; j <= k; j++) {
-            // ✅ Only jump if (n-j) is within bounds
-            if (n - j >= 0) {
-                // 🔄 Recursive call for subproblem + cost to jump to n
-                int jumpCost = memorization(n - j, arr, dp, k) + Math.abs(arr[n] - arr[n - j]);
-
-                // 📉 Update minimum cost
+            if (index - j >= 0) {
+                int jumpCost = recursive(index - j, arr, k) + Math.abs(arr[index] - arr[index - j]);
                 minCost = Math.min(minCost, jumpCost);
             }
-            // ❌ Skip if n-j < 0 (invalid stair)
         }
-
-        dp[n] = minCost; // 💾 Store result in dp array to reuse later
-        return dp[n];
+        return minCost;
     }
 
-    // -------------------- 3️⃣ Tabulation (Bottom-up DP) --------------------
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 2: MEMOIZATION (TOP-DOWN DP)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * Store the result of each index in 'dp' array.
+     * If we visit the index again, return the stored value.
+     *
+     * COMPLEXITY:
+     * - Time: O(N * K) -> Each state computed once, loop runs K times.
+     * - Space: O(N) + O(N) -> DP Array + Stack.
+     */
+    private static int memoization(int index, int[] arr, int[] dp, int k) {
+        if (index == 0) return 0;
+
+        if (dp[index] != -1) return dp[index];
+
+        int minCost = Integer.MAX_VALUE;
+
+        for (int j = 1; j <= k; j++) {
+            if (index - j >= 0) {
+                int jumpCost = memoization(index - j, arr, dp, k) + Math.abs(arr[index] - arr[index - j]);
+                minCost = Math.min(minCost, jumpCost);
+            }
+        }
+        return dp[index] = minCost;
+    }
+
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 3: TABULATION (BOTTOM-UP DP)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * Iterate from index 1 to N-1.
+     * For each index 'i', look back at 'i-1' through 'i-K' to find the best previous step.
+     *
+     * COMPLEXITY:
+     * - Time: O(N * K)
+     * - Space: O(N) -> DP Array.
+     */
     private static int tabulation(int n, int[] arr, int k) {
-        int dp[] = new int[n]; // dp[i] = min cost to reach i-th stair
-        dp[0] = 0;             // 🟢 Base case: no cost to start at stair 0
+        int[] dp = new int[n];
+        dp[0] = 0; // Base case
 
-        // 🔁 Loop through all stairs from 1 to n-1
         for (int i = 1; i < n; i++) {
-            int minCost = Integer.MAX_VALUE; // Track the best option for stair i
+            int minCost = Integer.MAX_VALUE;
 
-            // 🔁 Try all jumps from previous k stairs
+            // Check previous K steps
             for (int j = 1; j <= k; j++) {
-                // ✅ Only proceed if jump from (i-j) is valid
                 if (i - j >= 0) {
-                    // 🧮 Cost = cost to reach (i-j) + cost to jump from (i-j) to i
-                    int cost = dp[i - j] + Math.abs(arr[i] - arr[i - j]);
-
-                    // 📉 Keep track of minimum cost
-                    minCost = Math.min(minCost, cost);
+                    int jumpCost = dp[i - j] + Math.abs(arr[i] - arr[i - j]);
+                    minCost = Math.min(minCost, jumpCost);
                 }
-                // ❌ Skip if i-j < 0 (invalid jump)
             }
-
-            dp[i] = minCost; // 💾 Save the best cost to reach stair i
+            dp[i] = minCost;
         }
-
-        return dp[n - 1]; // 🏁 Return the cost to reach the last stair
+        return dp[n - 1];
     }
 
-    // -------------------- 4️⃣ Space Optimized DP --------------------
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 4: SPACE OPTIMIZED (CIRCULAR BUFFER)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * To calculate dp[i], we only need the previous K values: dp[i-1]...dp[i-K].
+     * We don't need the full array of size N.
+     * We can use an array of size K (or K+1) as a "Rolling Window" or "Circular Buffer".
+     *
+     * How it works:
+     * - `dp[i % k]` stores the cost for index `i`.
+     * - When we move to `i`, we overwrite `dp[i-K]` because it is no longer needed.
+     *
+     * COMPLEXITY:
+     * - Time: O(N * K)
+     * - Space: O(K) -> Significantly smaller than O(N) if K << N.
+     */
     private static int spaceOptimized(int n, int[] arr, int k) {
-        int[] dp = new int[k];  // Circular buffer of size k to store recent results
-        dp[0] = 0;              // 🟢 Cost to reach stair 0 is 0
+        int[] dp = new int[k];
+        dp[0] = 0; // Cost for index 0
 
-        // 🔁 Iterate through all stairs from 1 to n-1
         for (int i = 1; i < n; i++) {
-            int minCost = Integer.MAX_VALUE; // Track best cost for current stair
+            int minCost = Integer.MAX_VALUE;
 
-            // 🔁 Try all jump sizes 1 to k
             for (int j = 1; j <= k; j++) {
-                // ✅ Check if i-j is valid
                 if (i - j >= 0) {
-                    // 🧮 Use circular index to access previous result
-                    int cost = dp[(i - j) % k] + Math.abs(arr[i] - arr[i - j]);
-
-                    // 📉 Update minimum cost
-                    minCost = Math.min(minCost, cost);
+                    // Retrieve from circular buffer
+                    int prevCost = dp[(i - j) % k];
+                    int jumpCost = prevCost + Math.abs(arr[i] - arr[i - j]);
+                    minCost = Math.min(minCost, jumpCost);
                 }
-                // ❌ Skip invalid stairs (i-j < 0)
             }
-
-            // 🔄 Update current index in circular buffer
+            // Store result in circular buffer
             dp[i % k] = minCost;
         }
 
-        return dp[(n - 1) % k]; // 🏁 Final answer is at index (n-1)%k
+        // Final answer is at the circular index of the last element
+        return dp[(n - 1) % k];
     }
 }

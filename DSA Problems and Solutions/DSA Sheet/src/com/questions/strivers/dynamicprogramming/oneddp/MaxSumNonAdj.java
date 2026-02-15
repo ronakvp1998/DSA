@@ -2,127 +2,225 @@ package com.questions.strivers.dynamicprogramming.oneddp;
 
 import java.util.Arrays;
 
-// 🔗 Problem Link: https://takeuforward.org/data-structure/maximum-sum-of-non-adjacent-elements-dp-5/
-
-/*
-🎯 Problem Statement:
-Given an array of integers, return the **maximum sum** of non-adjacent elements.
-You are not allowed to pick two adjacent elements.
-This is a variation of the "House Robber Problem".
-*/
-
+/**
+ * ==================================================================================================
+ * PROBLEM: MAXIMUM SUM OF NON-ADJACENT ELEMENTS (HOUSE ROBBER)
+ * Problem Statement: Given an array of N positive integers,
+ * we need to return the maximum sum of the subsequence such that no two elements of the subsequence are adjacent elements in the array.
+ *
+ * Note: A subsequence of an array is a list with elements of the array where some elements are deleted
+ * (or not deleted at all) and the elements should be in the same order in the subsequence as in the array.
+ *
+ * Examples
+ * Input: nums = [1, 2, 4]
+ * Output: 5
+ * Explanation:
+ * Subsequence {1,4} gives maximum sum.
+ *
+ * Input:  [2, 1, 4, 9]
+ * Output: 11
+ * Explanation:
+ * Subsequence {2,9} gives maximum sum
+ *
+ * 198. House Robber
+ * You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed,
+ * the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected
+ * and it will automatically contact the police if two adjacent houses were broken into on the same night.
+ *
+ * Given an integer array nums representing the amount of money of each house,
+ * return the maximum amount of money you can rob tonight without alerting the police.
+ *
+ * Example 1:
+ * Input: nums = [1,2,3,1]
+ * Output: 4
+ * Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
+ * Total amount you can rob = 1 + 3 = 4.
+ *
+ * Example 2:
+ * Input: nums = [2,7,9,3,1]
+ * Output: 12
+ * Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).
+ * Total amount you can rob = 2 + 9 + 1 = 12.
+ * ==================================================================================================
+ * APPROACH:
+ * At every house (index 'i'), we have two choices:
+ * 1. PICK: Rob this house. We gain 'arr[i]' money, but we cannot rob 'i-1'.
+ * We must move to 'i-2'.
+ * Sum = arr[i] + solve(i-2)
+ *
+ * 2. NOT PICK: Skip this house. We gain 0 money from this house.
+ * We can rob 'i-1'.
+ * Sum = 0 + solve(i-1)
+ *
+ * RECURRENCE RELATION:
+ * dp[i] = max( arr[i] + dp[i-2],  dp[i-1] )
+ * ==================================================================================================
+ */
 public class MaxSumNonAdj {
+
     public static void main(String[] args) {
-        int arr[] = {2, 4, 6, 2, 5};
+        int[] arr = {2, 1, 4, 9}; // Example Input. Expected Output: 11 (2 + 9)
         int n = arr.length;
 
-        // 1️⃣ Recursive Approach - No memoization (pure brute force)
-        // Time: O(2^n), Space: O(n) (recursion stack)
-        System.out.println("Recursive: " + recursive(n - 1, arr));
+        System.out.println("House Values: " + Arrays.toString(arr));
+        System.out.println("--------------------------------------------------");
 
-        // 2️⃣ Memoization (Top-down DP)
-        // Time: O(n), Space: O(n) (dp[] + recursion stack)
-        int dp[] = new int[n];
-        Arrays.fill(dp, -1); // Initialize dp[] with -1 (indicates not computed)
-        System.out.println("Memoization: " + memorization(n - 1, arr, dp));
+        // 1. Recursive Approach
+        long start = System.nanoTime();
+        // We pass 'n-1' because we start deciding from the last index down to 0
+        System.out.println("1. Recursion       : " + recursive(n - 1, arr));
+        System.out.println("   Time Taken      : " + (System.nanoTime() - start) + " ns");
 
-        // 3️⃣ Tabulation (Bottom-up DP)
-        // Time: O(n), Space: O(n)
-        System.out.println("Tabulation: " + tabulation(n, arr, dp));
+        // 2. Memoization (Top-Down DP)
+        int[] dp = new int[n];
+        Arrays.fill(dp, -1); // Initialize cache with -1
+        start = System.nanoTime();
+        System.out.println("2. Memoization     : " + memoization(n - 1, arr, dp));
+        System.out.println("   Time Taken      : " + (System.nanoTime() - start) + " ns");
 
-        // 4️⃣ Space Optimized DP
-        // Time: O(n), Space: O(1)
-        System.out.println("Space Optimized: " + spaceOptimized(n, arr));
+        // 3. Tabulation (Bottom-Up DP)
+        int[] dpTab = new int[n];
+        start = System.nanoTime();
+        System.out.println("3. Tabulation      : " + tabulation(n, arr, dpTab));
+        System.out.println("   Time Taken      : " + (System.nanoTime() - start) + " ns");
+
+        // 4. Space Optimization (Best Solution)
+        start = System.nanoTime();
+        System.out.println("4. Space Optimized : " + spaceOptimized(n, arr));
+        System.out.println("   Time Taken      : " + (System.nanoTime() - start) + " ns");
     }
 
-    // ✅ 1. Recursive solution (without memoization)
-    private static int recursive(int n, int[] arr) {
-        // 🔁 Base case 1: index goes below 0 — no elements to pick
-        if (n < 0) return 0;
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 1: RECURSION (BRUTE FORCE)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * Try both choices (Pick vs Not Pick) at every step and take the maximum.
+     *
+     * COMPLEXITY:
+     * - Time: O(2^N) -> Exponential. We explore two branches for every element.
+     * - Space: O(N) -> Recursion stack depth.
+     */
+    private static int recursive(int index, int[] arr) {
+        // Base Case 1: If index < 0, we can't rob any money.
+        if (index < 0) return 0;
 
-        // 🛑 Base case 2: only one element — max sum is the first element itself
-        if (n == 0) return arr[0];
+        // Base Case 2: If we are at index 0, we simply rob it.
+        if (index == 0) return arr[0];
 
-        // ✔ Option 1: Pick current element → move 2 steps back (non-adjacent)
-        int include = arr[n] + recursive(n - 2, arr);
+        // Option 1: PICK the current element.
+        // If we pick 'index', we cannot pick 'index-1', so we recurse for 'index-2'.
+        int pick = arr[index] + recursive(index - 2, arr);
 
-        // ❌ Option 2: Do not pick → move 1 step back (try next)
-        int exclude = recursive(n - 1, arr);
+        // Option 2: DO NOT PICK the current element.
+        // If we skip 'index', we are free to rob 'index-1', so we recurse for 'index-1'.
+        int notPick = 0 + recursive(index - 1, arr);
 
-        // 🔎 Return the max of both choices
-        return Math.max(include, exclude);
+        return Math.max(pick, notPick);
     }
 
-    // ✅ 2. Memoization (Top-down DP)
-    private static int memorization(int n, int[] arr, int[] dp) {
-        // 🔁 Base case 1
-        if (n < 0) return 0;
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 2: MEMOIZATION (TOP-DOWN DP)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * Store the result of each index in 'dp' array to avoid re-calculating.
+     *
+     * COMPLEXITY:
+     * - Time: O(N) -> Each state is computed once.
+     * - Space: O(N) + O(N) -> DP Array + Recursion Stack.
+     */
+    private static int memoization(int index, int[] arr, int[] dp) {
+        if (index < 0) return 0;
+        if (index == 0) return arr[0];
 
-        // 🔁 Base case 2
-        if (n == 0) return arr[0];
+        // Step 1: Check Cache
+        if (dp[index] != -1) return dp[index];
 
-        // 📦 If already computed, return stored result
-        if (dp[n] != -1) return dp[n];
+        // Step 2: Compute
+        int pick = arr[index] + memoization(index - 2, arr, dp);
+        int notPick = 0 + memoization(index - 1, arr, dp);
 
-        // ✔ Option 1: Pick current and add value from n-2
-        int include = arr[n] + memorization(n - 2, arr, dp);
-
-        // ❌ Option 2: Skip current, check value at n-1
-        int exclude = memorization(n - 1, arr, dp);
-
-        // 💾 Store result in dp[] and return
-        return dp[n] = Math.max(include, exclude);
+        // Step 3: Store and Return
+        return dp[index] = Math.max(pick, notPick);
     }
 
-    // ✅ 3. Tabulation (Bottom-up DP)
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 3: TABULATION (BOTTOM-UP DP)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * Build the solution from index 0 up to N-1 using a loop.
+     * dp[i] stores the max money we can rob up to house 'i'.
+     *
+     * COMPLEXITY:
+     * - Time: O(N) -> Single loop.
+     * - Space: O(N) -> DP Array.
+     */
     private static int tabulation(int n, int[] arr, int[] dp) {
-        dp[0] = arr[0]; // 🟢 Base case: max sum at index 0 is arr[0]
+        // Handle edge case for empty array
+        if (n == 0) return 0;
 
+        // Base Case: Max money at index 0 is just the value of house 0
+        dp[0] = arr[0];
+
+        // Loop from the second element (index 1) to the end
         for (int i = 1; i < n; i++) {
-            // ✔ Option 1: include current element
-            int include = arr[i];
+            // Pick: Current value + best value from index i-2 (if it exists)
+            int pick = arr[i];
             if (i > 1) {
-                // Only valid if i-2 >= 0
-                include += dp[i - 2];
+                pick += dp[i - 2];
             }
 
-            // ❌ Option 2: exclude current element (take previous value)
-            int exclude = dp[i - 1];
+            // Not Pick: Just take the best value from index i-1
+            int notPick = dp[i - 1];
 
-            // 📦 Store the best of include/exclude at dp[i]
-            dp[i] = Math.max(include, exclude);
+            // Store the max of both choices
+            dp[i] = Math.max(pick, notPick);
         }
 
-        return dp[n - 1]; // ✅ Final result stored in dp[n-1]
+        // The answer is the best we can do ending at the last index
+        return dp[n - 1];
     }
 
-    // ✅ 4. Space Optimized Version (Using two variables)
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 4: SPACE OPTIMIZED (INTERVIEW STANDARD)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * To calculate current state, we only need the Previous (i-1) and
+     * the Second Previous (i-2) values. We don't need the full array.
+     *
+     * - prev1: represents dp[i-1]
+     * - prev2: represents dp[i-2]
+     *
+     * COMPLEXITY:
+     * - Time: O(N)
+     * - Space: O(1) -> Constant space.
+     */
     private static int spaceOptimized(int n, int[] arr) {
-        if (n == 0) return arr[0];
+        if (n == 0) return 0;
 
-        // 🧠 prev1: max sum till i-1 (initially arr[0])
-        // 🧠 prev2: max sum till i-2 (initially 0, since no element before 0)
-        int prev1 = arr[0];
-        int prev2 = 0;
+        int prev1 = arr[0]; // Represents dp[i-1] (Initially dp[0])
+        int prev2 = 0;      // Represents dp[i-2] (Initially 0/dummy)
 
         for (int i = 1; i < n; i++) {
-            // ✔ Option 1: Pick current element
-            int include = arr[i];
+            // Pick
+            int pick = arr[i];
             if (i > 1) {
-                include += prev2; // add sum from non-adjacent (i-2)
+                pick += prev2; // Add value from 2 steps back
             }
 
-            // ❌ Option 2: Exclude current element
-            int exclude = prev1; // take the previous max
+            // Not Pick
+            int notPick = prev1; // Take value from 1 step back
 
-            // 🧮 Current max sum is the better of include/exclude
-            int curr = Math.max(include, exclude);
+            int current = Math.max(pick, notPick);
 
-            // 🔄 Update prev2 and prev1 for next iteration
+            // Shift pointers for next iteration
             prev2 = prev1;
-            prev1 = curr;
+            prev1 = current;
         }
 
-        return prev1; // 🔚 Final answer after loop completes
+        return prev1; // prev1 holds the max value for the full array
     }
 }

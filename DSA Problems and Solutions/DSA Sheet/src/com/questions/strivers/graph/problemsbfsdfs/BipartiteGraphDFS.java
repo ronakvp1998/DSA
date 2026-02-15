@@ -199,9 +199,9 @@ public class BipartiteGraphDFS {
 
         // Node 4 → isolated
 
-        boolean result = isBipartite(V, graph);
+//        boolean result = isBipartite(V, graph);
 
-        System.out.println("Is Graph Bipartite? → " + result);
+//        System.out.println("Is Graph Bipartite? → " + result);
         // Expected Output → true
     }
 }
