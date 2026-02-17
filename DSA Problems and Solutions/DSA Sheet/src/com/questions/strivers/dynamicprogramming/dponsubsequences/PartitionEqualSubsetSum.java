@@ -1,195 +1,241 @@
 package com.questions.strivers.dynamicprogramming.dponsubsequences;
-//https://takeuforward.org/data-structure/partition-equal-subset-sum-dp-15/
-// Partition Equal Subset Sum
-// We are given an array ‘ARR’ with N positive integers.
-// We need to find if we can partition the array into two subsets such that
-// the sum of elements of each subset is equal to the other.
-// If we can partition, return true else return false.
-// arr[] = {2,3,3,3,4,5} o/p {2,3,5} & {3,3,4} => true
+
 import java.util.Arrays;
 
+/**
+ * ==================================================================================================
+ * PROBLEM: PARTITION EQUAL SUBSET SUM (LeetCode 416)
+ * ==================================================================================================
+ * PROBLEM STATEMENT:
+ * Given an integer array nums, return true if you can partition the array into two subsets
+ * such that the sum of the elements in both subsets is equal or false otherwise.
+ *
+ * EXAMPLE 1:
+ * Input: nums = [1,5,11,5]
+ * Output: true
+ * Explanation: The array can be partitioned as [1, 5, 5] and [11]. Both sum to 11.
+ *
+ * EXAMPLE 2:
+ * Input: nums = [1,2,3,5]
+ * Output: false
+ * Explanation: Total sum is 11. We cannot divide 11 into two equal integers.
+ *
+ * KEY INSIGHT:
+ * 1. Calculate the `TotalSum` of the array.
+ * 2. If `TotalSum` is ODD, we cannot split it into two equal integers. Return False.
+ * 3. If `TotalSum` is EVEN, the problem reduces to:
+ * "Does there exist a subset with sum equal to TotalSum / 2?"
+ * 4. This is exactly the "Subset Sum Problem".
+ * ==================================================================================================
+ */
 public class PartitionEqualSubsetSum {
 
-    // ------------------------------------------------------------------------------------------
-    // 1️⃣ RECURSION
-    // ------------------------------------------------------------------------------------------
-    // Time Complexity: O(2^N) — Each element has 2 choices (pick/not pick)
-    // Space Complexity: O(N) — Maximum depth of recursion stack
-    private static boolean canPartitionRecursive(int index, int target, int[] arr) {
-        // Base Case 1: if target is 0, we found a valid subset
-        if (target == 0) return true;
-
-        // Base Case 2: only one element left, check if it equals target
-        if (index == 0) return arr[0] == target;
-
-        // Choice 1: Do NOT include current element in subset
-        boolean notPick = canPartitionRecursive(index - 1, target, arr);
-
-        // Choice 2: Include current element (only if it's <= remaining target)
-        boolean pick = false;
-        if (arr[index] <= target)
-            pick = canPartitionRecursive(index - 1, target - arr[index], arr);
-
-        // Return true if any choice leads to target
-        return pick || notPick;
-    }
-
-    // ------------------------------------------------------------------------------------------
-    // 2️⃣ MEMOIZATION (Top-down DP)
-    // ------------------------------------------------------------------------------------------
-    // Time Complexity: O(N * Target) — Each state (index, target) is visited once
-    // Space Complexity: O(N * Target) for DP array + O(N) recursion stack
-    private static boolean canPartitionMemo(int index, int target, int[] arr, int[][] dp) {
-        // Base Case 1: Subset with sum 0 always possible (empty set)
-        if (target == 0) return true;
-
-        // Base Case 2: Check if only 1 element matches target
-        if (index == 0) return arr[0] == target;
-
-        // Return cached value if already computed
-        if (dp[index][target] != -1)
-            return dp[index][target] == 1;
-
-        // Option 1: Exclude current element
-        boolean notPick = canPartitionMemo(index - 1, target, arr, dp);
-
-        // Option 2: Include current element (only if valid)
-        boolean pick = false;
-        if (arr[index] <= target)
-            pick = canPartitionMemo(index - 1, target - arr[index], arr, dp);
-
-        // Store result in memo table (1 for true, 0 for false)
-        dp[index][target] = (pick || notPick) ? 1 : 0;
-
-        return pick || notPick;
-    }
-
-    // ------------------------------------------------------------------------------------------
-    // 3️⃣ TABULATION (Bottom-up DP)
-    // ------------------------------------------------------------------------------------------
-    // Time Complexity: O(N * Target) — Loop through elements and all targets
-    // Space Complexity: O(N * Target) — 2D DP table
-    private static boolean canPartitionTabulation(int[] arr) {
-        int n = arr.length;
-        int totalSum = 0;
-
-        // Step 1: Calculate total sum of array
-        for (int num : arr) totalSum += num;
-
-        // Step 2: If total sum is odd, can't partition into 2 equal subsets
-        if (totalSum % 2 != 0) return false;
-
-        int target = totalSum / 2;
-
-        // Step 3: Create DP table [n][target+1]
-        boolean[][] dp = new boolean[n][target + 1];
-
-        // Step 4: Every element can make sum 0 (by empty subset)
-        for (int i = 0; i < n; i++) dp[i][0] = true;
-
-        // Step 5: First element can make its own value
-        if (arr[0] <= target) dp[0][arr[0]] = true;
-
-        // Step 6: Fill table for remaining elements
-        for (int i = 1; i < n; i++) {
-            for (int t = 1; t <= target; t++) {
-                // Do not pick current element
-                boolean notPick = dp[i - 1][t];
-
-                // Pick current element if valid
-                boolean pick = false;
-                if (arr[i] <= t)
-                    pick = dp[i - 1][t - arr[i]];
-
-                // Store result
-                dp[i][t] = pick || notPick;
-            }
-        }
-
-        // Final answer: Can we achieve target sum using all elements?
-        return dp[n - 1][target];
-    }
-
-    // ------------------------------------------------------------------------------------------
-    // 4️⃣ SPACE OPTIMIZED DP
-    // ------------------------------------------------------------------------------------------
-    // Time Complexity: O(N * Target)
-    // Space Complexity: O(Target) — We only need 2 rows at a time
-    private static boolean canPartitionSpaceOptimized(int[] arr) {
-        int n = arr.length;
-        int totalSum = 0;
-
-        // Step 1: Sum all elements
-        for (int num : arr) totalSum += num;
-
-        // Step 2: If total is odd, partition not possible
-        if (totalSum % 2 != 0) return false;
-
-        int target = totalSum / 2;
-
-        // Step 3: Initialize DP array for 0th element
-        boolean[] prev = new boolean[target + 1];
-        prev[0] = true; // Empty subset always possible
-
-        if (arr[0] <= target)
-            prev[arr[0]] = true;
-
-        // Step 4: Loop through remaining elements
-        for (int i = 1; i < n; i++) {
-            boolean[] curr = new boolean[target + 1];
-            curr[0] = true;
-
-            for (int t = 1; t <= target; t++) {
-                boolean notPick = prev[t];
-                boolean pick = false;
-                if (arr[i] <= t)
-                    pick = prev[t - arr[i]];
-
-                curr[t] = pick || notPick;
-            }
-
-            // Move current row to previous for next iteration
-            prev = curr;
-        }
-
-        // Final answer
-        return prev[target];
-    }
-
-    // ------------------------------------------------------------------------------------------
-    // 🚀 MAIN METHOD TO TEST ALL APPROACHES
-    // ------------------------------------------------------------------------------------------
     public static void main(String[] args) {
-        int[] arr = {2,3,3,3,4,5}; // Example input
-
-        // Step 1: Calculate total sum
+        int[] arr = {2, 3, 3, 3, 4, 5};
+        int n = arr.length;
         int totalSum = Arrays.stream(arr).sum();
 
-        // Step 2: If total is odd, directly return false
+        System.out.println("Input Array: " + Arrays.toString(arr));
+        System.out.println("Total Sum: " + totalSum);
+
+        // Pre-check: Odd sum cannot be partitioned
+        //
         if (totalSum % 2 != 0) {
-            System.out.println("Array cannot be partitioned (sum is odd)");
+            System.out.println("Result: False (Odd Sum)");
             return;
         }
 
         int target = totalSum / 2;
-        int n = arr.length;
+        System.out.println("Target for each subset: " + target);
+        System.out.println("--------------------------------------------------");
 
-        // 1. Recursive
-        System.out.println("1️⃣ Recursion: " +
-                canPartitionRecursive(n - 1, target, arr));
+        // 1. Recursive Approach
+        System.out.println("1. Recursion       : " + canPartitionRecursive(n - 1, target, arr));
 
-        // 2. Memoization
+        // 2. Memoization Approach
+        // DP table size: [N][Target + 1]
+        // -1 represents unvisited state
         int[][] dp = new int[n][target + 1];
         for (int[] row : dp) Arrays.fill(row, -1);
-        System.out.println("2️⃣ Memoization: " +
-                canPartitionMemo(n - 1, target, arr, dp));
 
-        // 3. Tabulation
-        System.out.println("3️⃣ Tabulation: " +
-                canPartitionTabulation(arr));
+        // Helper function maps int result (1/0) to boolean
+        boolean memoResult = canPartitionMemo(n - 1, target, arr, dp) == 1;
+        System.out.println("2. Memoization     : " + memoResult);
 
-        // 4. Space Optimized
-        System.out.println("4️⃣ Space Optimized: " +
-                canPartitionSpaceOptimized(arr));
+        // 3. Tabulation Approach
+        System.out.println("3. Tabulation      : " + canPartitionTabulation(arr));
+
+        // 4. Space Optimized Approach
+        System.out.println("4. Space Optimized : " + canPartitionSpaceOptimized(arr));
+    }
+
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 1: RECURSION (BRUTE FORCE)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * Standard "Pick / Not Pick" pattern.
+     * At each index, we either:
+     * 1. Pick the element (subtract from target).
+     * 2. Not Pick the element (target stays same).
+     *
+     * COMPLEXITY:
+     * - Time: O(2^N) -> Binary recursion tree.
+     * - Space: O(N) -> Recursion stack.
+     */
+    private static boolean canPartitionRecursive(int index, int target, int[] arr) {
+        // Base Case 1: Target reached
+        if (target == 0) return true;
+
+        // Base Case 2: Reached the first element
+        // If we are at index 0, we can only form the target if arr[0] IS the target
+        if (index == 0) return arr[0] == target;
+
+        // Choice 1: Do NOT include current element
+        boolean notPick = canPartitionRecursive(index - 1, target, arr);
+
+        // Choice 2: Include current element (only if it fits)
+        boolean pick = false;
+        if (arr[index] <= target) {
+            pick = canPartitionRecursive(index - 1, target - arr[index], arr);
+        }
+
+        return pick || notPick;
+    }
+
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 2: MEMOIZATION (TOP-DOWN DP)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * Same as recursion, but we cache the result in `dp[index][target]`.
+     * We use int[][] instead of boolean[][] because 'null' (unvisited) is harder
+     * to represent in primitive boolean arrays without a wrapper class.
+     * 1 = True, 0 = False, -1 = Unvisited.
+     *
+     * COMPLEXITY:
+     * - Time: O(N * Target) -> Total unique states.
+     * - Space: O(N * Target) + O(N) Stack.
+     */
+    private static int canPartitionMemo(int index, int target, int[] arr, int[][] dp) {
+        if (target == 0) return 1;
+        if (index == 0) return (arr[0] == target) ? 1 : 0;
+
+        // Step 1: Check Cache
+        if (dp[index][target] != -1) {
+            return dp[index][target];
+        }
+
+        // Step 2: Compute
+        // Not Pick
+        boolean notPick = (canPartitionMemo(index - 1, target, arr, dp) == 1);
+
+        // Pick
+        boolean pick = false;
+        if (arr[index] <= target) {
+            pick = (canPartitionMemo(index - 1, target - arr[index], arr, dp) == 1);
+        }
+
+        // Step 3: Store and Return
+        return dp[index][target] = (pick || notPick) ? 1 : 0;
+    }
+
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 3: TABULATION (BOTTOM-UP DP)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * Iteratively build the table `dp[index][target]`.
+     * dp[i][t] means: "Can we form sum 't' using the first 'i' items?"
+     * * Base Cases:
+     * 1. Target 0 is always True (empty subset).
+     * 2. Index 0 can only form sum == arr[0].
+     *
+     * COMPLEXITY:
+     * - Time: O(N * Target)
+     * - Space: O(N * Target)
+     */
+    private static boolean canPartitionTabulation(int[] arr) {
+        int n = arr.length;
+        int totalSum = 0;
+        for (int num : arr) totalSum += num;
+
+        // Odd sum check (already done in main, but good practice to have in method)
+        if (totalSum % 2 != 0) return false;
+        int target = totalSum / 2;
+
+        boolean[][] dp = new boolean[n][target + 1];
+
+        // Base Case 1: Target 0 is always possible
+        for (int i = 0; i < n; i++) dp[i][0] = true;
+
+        // Base Case 2: First element
+        if (arr[0] <= target) dp[0][arr[0]] = true;
+
+        // Fill DP table
+        for (int i = 1; i < n; i++) {
+            for (int t = 1; t <= target; t++) {
+
+                // Option 1: Not Pick (Inherit from previous row)
+                boolean notPick = dp[i - 1][t];
+
+                // Option 2: Pick (Check previous row with reduced target)
+                boolean pick = false;
+                if (arr[i] <= t) {
+                    pick = dp[i - 1][t - arr[i]];
+                }
+
+                dp[i][t] = pick || notPick;
+            }
+        }
+
+        return dp[n - 1][target];
+    }
+
+    /**
+     * ----------------------------------------------------------------------
+     * APPROACH 4: SPACE OPTIMIZED DP (BEST SOLUTION)
+     * ----------------------------------------------------------------------
+     * LOGIC:
+     * We only need the previous row `prev` to compute the current row `curr`.
+     * Reduces space complexity from O(N*Target) to O(Target).
+     *
+     * COMPLEXITY:
+     * - Time: O(N * Target)
+     * - Space: O(Target)
+     */
+    private static boolean canPartitionSpaceOptimized(int[] arr) {
+        int n = arr.length;
+        int totalSum = 0;
+        for (int num : arr) totalSum += num;
+
+        if (totalSum % 2 != 0) return false;
+        int target = totalSum / 2;
+
+        boolean[] prev = new boolean[target + 1];
+
+        // Base Case 1: Target 0 is always possible
+        prev[0] = true;
+
+        // Base Case 2: First element
+        if (arr[0] <= target) prev[arr[0]] = true;
+
+        // Iterate
+        for (int i = 1; i < n; i++) {
+            boolean[] curr = new boolean[target + 1];
+            curr[0] = true; // Target 0 is always true
+
+            for (int t = 1; t <= target; t++) {
+                boolean notPick = prev[t];
+                boolean pick = false;
+                if (arr[i] <= t) {
+                    pick = prev[t - arr[i]];
+                }
+                curr[t] = pick || notPick;
+            }
+            prev = curr;
+        }
+
+        return prev[target];
     }
 }
