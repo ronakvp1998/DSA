@@ -3,29 +3,34 @@ package com.questions.practice.dynamicprogramming;
 import java.util.Arrays;
 
 public class DpTest {
-    private static int minsDistance(String s1,String s2){
-        int n = s1.length();
-        int m = s2.length();
-        int [][]dp = new int[n][m];
-        for(int [] i : dp){
-            Arrays.fill(i,-1);
+
+    private static int houseRobber(int arr[]){
+        int n = arr.length;
+        if(n == 1){
+            return arr[0];
         }
-        int lcsLength = lcsHelper(s1,s2,n-1,m-1,dp);
-        return n+m-2*lcsLength;
+        int dp1[] = new int[n];
+        int dp2[] = new int[n];
+        Arrays.fill(dp1,-1);
+        Arrays.fill(dp2,-1);
+
+        int case1 = memo(0,n-2,arr,dp1);
+        int case2 = memo(1,n-1,arr,dp2);
+        return Math.max(case1,case2);
     }
-    private static int lcsHelper(String s1,String s2,int i,int j,int [][]dp){
-        if(i<0 || j<0){
+
+    private static int memo(int start,int end,int arr[],int dp[]){
+        if(end < start){
             return 0;
         }
-        if(dp[i][j] != -1){
-            return dp[i][j];
+        if(end == start){
+            return arr[start];
         }
-        if(s1.charAt(i) == s2.charAt(j)){
-            return dp[i][j] = 1 + lcsHelper(s1,s2,i-1,j-1,dp);
+        if(dp[end] != -1){
+            return dp[end];
         }
-        return dp[i][j] = Math.max(
-                lcsHelper(s1,s2,i-1,j,dp),
-                lcsHelper(s1,s2,i,j-1,dp)
-        );
+        int notPick = 0 + memo(start,end-1,arr,dp);
+        int pick = arr[end] + memo(start,end-2,arr,dp);
+        return dp[end] = Math.max(notPick,pick);
     }
 }

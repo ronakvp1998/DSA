@@ -1,4 +1,4 @@
-package com.questions.strivers.dynamicprogramming.stocks;
+package com.questions.strivers.dynamicprogramming.dponstocks;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package com.questions.strivers.dynamicprogramming.stocks;
+package com.questions.strivers.dynamicprogramming.dponstocks;
 
 import java.util.Arrays;
 
@@ -90,6 +90,7 @@ public class BestTimeStockII {
      * APPROACH 2: MEMOIZATION (TOP-DOWN DP)
      * ----------------------------------------------------------------------
      * Cache the state dp[index][canBuy]
+     * canBuy = 1 (Allowed to buy), canBuy = 0 (Must sell or rest)
      */
     private static int maxProfitMemo(int i, int canBuy, int[] prices, int[][] dp) {
         if (i == prices.length) return 0;
