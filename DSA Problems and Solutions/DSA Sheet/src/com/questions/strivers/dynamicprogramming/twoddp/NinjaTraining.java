@@ -240,3 +240,55 @@ public class NinjaTraining {
         return prev[3];
     }
 }
+
+/*
+1. Where will be your final answer?Your final answer is located at dp[n-1][3] (which in this specific example is dp[2][3]).
+Why?Look at your initial method call in the main method:recursive(n - 1, 3, meritPoints, dp)
+Because the last line of your recursive method is return dp[day][lastTask] = maxPoint;,
+the very last thing the recursion does before finishing completely is save the ultimate maximum value into dp[n-1][3].
+
+2. How and What is getting cached in the dp array?
+To understand the caching, we need to define what the dimensions of dp[day][lastTask] actually mean.
+Row (day): Represents the current day you are calculating points for (from Day 0 to Day 2).
+Column (lastTask): Represents the task that was performed on the day after this one.
+It ranges from 0 to 3:0, 1, 2: The actual tasks.
+
+3: A "dummy" task representing that no task has been performed yet (used only for the very last day to allow picking any task).
+The Value (dp[day][lastTask]): This stores the maximum points you can achieve from Day 0 up to day,
+GIVEN that lastTask was performed on day + 1.Step-by-Step Caching (The Recursion Unwinding)Because this is Top-Down (Memoization),
+the code dives all the way down to Day 0 before it starts caching anything.
+It works its way backward up the days.Day 0
+
+(The Base Case):The recursion hits day == 0.
+It calculates the max points for Day 0 based on whatever lastTask was passed to it.
+Note a quirk in your code: In your if (day == 0) block, you simply return max;.
+You do not save it to the dp array! Because of this,
+Row 0 of your dp array will remain completely full of -1s. (This is perfectly fine logically, but it means Day 0 isn't cached).
+
+Day 1 (Caching begins):Now the recursion steps back up to day = 1.Suppose the recursion is evaluating dp[1][0]
+(meaning: "What are the max points from Day 0 to Day 1, if Task 0 is performed on Day 2?").
+It tries Task 1: points[1][1] + recursive(0, 1) $\rightarrow$ $50 + 70 = 120$.
+It tries Task 2: points[1][2] + recursive(0, 2) $\rightarrow$ $80 + 40 = 120$.
+It takes the max (120) and executes dp[1][0] = 120.Boom. Data is cached.
+If any other branch of the recursion ever asks for dp[1][0] again,
+it returns 120 instantly instead of recalculating.
+
+Day 2 (Final Answer):The recursion steps back up to day = 2 with lastTask = 3.
+It checks Task 0, Task 1, and Task 2. I
+t fetches the heavily cached results from Day 1 to calculate the totals.
+It finds the absolute maximum (which is 210) and caches it in dp[2][3].
+What your printed dp array will actually look like:If you run your main method with that exact matrix,
+here is what prints out at the end, and why:Plaintext
+
+2.Memoization     : 210
+-1 -1 -1 -1
+120 120 120 -1
+-1 -1 -1 210
+
+Decoding the output
+Row 0 (-1 -1 -1 -1): As mentioned, your base case returns early without writing to dp[0][lastTask].
+Row 1 (120 120 120 -1): The code calculated the max points up to Day 1 if the next task was 0, 1, or 2.
+(It never calculated dp[1][3] because a dummy task is only used on the final day).
+Row 2 (-1 -1 -1 210): The code only ever evaluated Day 2 with lastTask = 3.
+The final answer is sitting right there at the end!
+ */
