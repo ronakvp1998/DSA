@@ -72,7 +72,7 @@ public class MinimumPlatforms {
         int maxPlatforms = 1;
 
         // Two Pointers:
-        // 'i' points to the next arrival to process. We start at 1 since we handled arr[0].
+        // 'i' points to the next arrival to process. We start at 1 since we handled arr[0] by making platforms as default 1.
         // 'j' points to the next departure to process. We start at 0.
         int i = 1;
         int j = 0;

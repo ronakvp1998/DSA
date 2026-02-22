@@ -11,78 +11,108 @@ package com.questions.strivers.greedyalgorithm.medium;
  * Example 1:
  * Input: nums = [2,3,1,1,4]
  * Output: true
- * Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
  *
  * Example 2:
  * Input: nums = [3,2,1,0,4]
  * Output: false
- * Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0,
- * which makes it impossible to reach the last index.
- * * ==================================================================================================
- * APPROACH: GREEDY ALGORITHM (Tracking Maximum Reach)
  * ==================================================================================================
- * Instead of simulating every possible jump combination (which is too slow), we can simply
- * keep track of the "farthest index" we can reach at any given point.
- * * As we iterate through the array:
- * 1. If we arrive at an index 'i' that is GREATER than our current 'maxReach', it means
- * we are stuck and cannot even reach this current spot. We immediately return false.
- * 2. Otherwise, we update our 'maxReach' to be the maximum of what it already is, OR the
- * farthest we can jump from our current spot (i + nums[i]).
- * 3. If 'maxReach' ever becomes greater than or equal to the last index, we know for sure
- * we can finish the game, so we return true.
+ * APPROACH 1: GREEDY ALGORITHM (Optimal - Tracking Maximum Reach)
+ * ==================================================================================================
+ * Instead of simulating every possible jump combination, keep track of the "farthest index"
+ * we can reach at any given point.
+ * Time Complexity: O(N)
+ * Space Complexity: O(1)
+ * * ==================================================================================================
+ * APPROACH 2: BRUTE FORCE RECURSIVE (Explores all paths)
+ * ==================================================================================================
+ * This approach simulates the game exactly as a player might play it by trying every possible jump.
+ * From position 'i', if we can jump up to 'k' steps, we recursively try jumping 1 step, then
+ * 2 steps, all the way up to 'k' steps. If ANY of those paths reach the end, we return true.
+ * * * Drawback: Because it branches out for every possible jump, it recalculates the same paths
+ * over and over. This leads to an exponential Time Complexity of O(2^N), which will trigger a
+ * Time Limit Exceeded (TLE) error on LeetCode for large arrays.
+ * Space Complexity: O(N) due to the recursion stack.
  * ==================================================================================================
  */
 public class JumpGame {
 
     public static void main(String[] args) {
-        // Test Case 1: Expected true
         int[] nums1 = {2, 3, 1, 1, 4};
-        System.out.println("Test Case 1 (Expected: true)  -> Result: " + canJump(nums1));
-
-        // Test Case 2: Expected false (Stuck at the 0)
         int[] nums2 = {3, 2, 1, 0, 4};
-        System.out.println("Test Case 2 (Expected: false) -> Result: " + canJump(nums2));
-
-        // Test Case 3: Expected true (Only one element, already at the end)
         int[] nums3 = {0};
+
+        System.out.println("--- TESTING OPTIMAL GREEDY APPROACH ---");
+        System.out.println("Test Case 1 (Expected: true)  -> Result: " + canJump(nums1));
+        System.out.println("Test Case 2 (Expected: false) -> Result: " + canJump(nums2));
         System.out.println("Test Case 3 (Expected: true)  -> Result: " + canJump(nums3));
+
+        System.out.println("\n--- TESTING BRUTE FORCE RECURSIVE APPROACH ---");
+        System.out.println("Test Case 1 (Expected: true)  -> Result: " + canJumpRecursive(nums1));
+        System.out.println("Test Case 2 (Expected: false) -> Result: " + canJumpRecursive(nums2));
+        System.out.println("Test Case 3 (Expected: true)  -> Result: " + canJumpRecursive(nums3));
     }
 
     /**
-     * Determines if you can reach the last index of the array.
-     * * @param nums Array of maximum jump lengths
-     * @return true if the last index is reachable, false otherwise
+     * APPROACH 1: OPTIMAL GREEDY
+     * Determines if you can reach the last index of the array in O(N) time.
      */
     public static boolean canJump(int[] nums) {
-        // This variable keeps track of the farthest index we can currently reach.
-        // Initially, standing at index 0, our reach is at least 0.
         int maxReach = 0;
 
-        // Iterate through each index of the array
         for (int i = 0; i < nums.length; i++) {
-
-            // EDGE CASE / FAILURE CONDITION:
-            // If our current index 'i' is beyond our 'maxReach', it means we don't have
-            // enough jump power from any previous steps to even get to this current square.
-            // Therefore, reaching the end is impossible.
             if (i > maxReach) {
                 return false;
             }
-
-            // GREEDY CHOICE: Update the farthest we can reach.
-            // i + nums[i] represents the farthest index we can jump to FROM our current position.
-            // We take the max of our existing maxReach and this new potential reach.
             maxReach = Math.max(maxReach, i + nums[i]);
 
-            // EARLY EXIT (Optimization):
-            // If at any point our maxReach is able to hit or pass the last index,
-            // we don't need to check the rest of the array. We already won.
             if (maxReach >= nums.length - 1) {
                 return true;
             }
         }
-
-        // If we successfully iterated through without getting stuck, return true.
         return true;
+    }
+
+    /**
+     * APPROACH 2: BRUTE FORCE RECURSIVE (Wrapper Method)
+     * Kicks off the recursive helper from the starting index (0).
+     */
+    public static boolean canJumpRecursive(int[] nums) {
+        // Start the recursive check from index 0
+        return canJumpFromPosition(0, nums);
+    }
+
+    /**
+     * Helper method for the recursive approach.
+     * @param position The current index we are standing on.
+     * @param nums The original array of maximum jump lengths.
+     * @return true if we can reach the end from this position, false otherwise.
+     */
+    private static boolean canJumpFromPosition(int position, int[] nums) {
+        // BASE CASE:
+        // If our current position is at or beyond the last index, we've successfully finished the game!
+        if (position >= nums.length - 1) {
+            return true;
+        }
+
+        // Determine the furthest we can jump from this current position.
+        // We use Math.min to ensure we don't try to jump completely out of the array bounds.
+        int furthestJump = Math.min(position + nums[position], nums.length - 1);
+
+        // RECURSIVE STEP:
+        // Try every single possible jump length from our current position, starting from 1 step
+        // all the way up to our maximum allowed steps (nums[position]).
+        // We iterate from 'nextPosition = position + 1' up to 'furthestJump'.
+        for (int nextPosition = position + 1; nextPosition <= furthestJump; nextPosition++) {
+
+            // Recursively check if jumping to 'nextPosition' leads to the end of the array.
+            if (canJumpFromPosition(nextPosition, nums)) {
+                return true; // If any branch reaches the end, this path is a winner!
+            }
+        }
+
+        // FAILURE CONDITION:
+        // If we tried every possible jump from this position and NONE of them returned true,
+        // it means this path is a dead end. We return false to backtrack.
+        return false;
     }
 }

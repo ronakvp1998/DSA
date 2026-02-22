@@ -37,6 +37,18 @@ package com.questions.strivers.greedyalgorithm.easy;
  * an open '(' to match it with. We just reset `minOpen` to 0 because we can choose to treat
  * that '*' as an empty string instead.
  * ==================================================================================================
+ * COMPLEXITY ANALYSIS (GREEDY APPROACH)
+ * ==================================================================================================
+ * * Time Complexity: O(N)
+ * Reasoning: We iterate through the string of length N exactly once. All operations inside the
+ * loop (increments, decrements, and if-checks) are performed in O(1) constant time.
+ * * * Space Complexity: O(1) (Optimal) / O(N) (Current)
+ * Reasoning:
+ * - Currently, using `s.toCharArray()` creates a new array in memory, resulting in O(N) space.
+ * - OPTIMIZATION: If we change the loop to `for(int i=0; i<s.length(); i++)` and use `s.charAt(i)`,
+ * we completely avoid creating a new array. This reduces the space complexity to a perfect O(1)
+ * since we are only tracking two integer variables (minOpen and maxOpen).
+ * ==================================================================================================
  */
 public class ValidParenthesisString {
 

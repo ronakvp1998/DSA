@@ -2,7 +2,6 @@ package com.questions.strivers.greedyalgorithm.easy;
 
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 /**
  * ==================================================================================================
@@ -70,6 +69,11 @@ public class FractionalKnapsack {
 
         // 1. Sort the items based on their value/weight ratio in descending order.
         // We use Double.compare to safely handle floating-point comparisons.
+        Arrays.sort(arr, (a, b) -> Double.compare(
+                (double) b.value / b.weight,
+                (double) a.value / a.weight
+        ));
+/*
         Arrays.sort(arr, new Comparator<Item>() {
             @Override
             public int compare(Item a, Item b) {
@@ -80,7 +84,7 @@ public class FractionalKnapsack {
                 return Double.compare(ratioB, ratioA);
             }
         });
-
+*/
         double totalValue = 0.0;
         int currentWeight = 0;
 
