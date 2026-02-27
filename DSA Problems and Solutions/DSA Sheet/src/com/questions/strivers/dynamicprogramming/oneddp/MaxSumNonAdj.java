@@ -21,8 +21,25 @@ import java.util.Arrays;
  * Output: 11
  * Explanation:
  * Subsequence {2,9} gives maximum sum
+ *                                  f(3)
+ *                               /      \
+ *                (Pick 9)     /          \     (Skip 9)
+ *                           /              \
+ *                    9 + f(1)                 f(2)
+ *                       / \                   / \
+ *       (Pick 1)      /     \ (Skip 1)      /     \
+ *                   /         \           /         \
+ *            1 + f(-1)        f(0)   4 + f(0)        f(1)  <-- Overlapping Subproblem
+ *                |             |          |          / \
+ *            1 + 0 = 1         2      4 + 2 = 6    /     \
+ *                                                /         \
+ *                                         1 + f(-1)        f(0)
+ *                                             |             |
+ *                                         1 + 0 = 1         2
+ * For the input array nums = [2, 1, 4, 9], the final DP array will be [2, 2, 6, 11].
  *
- * 198. House Robber
+ * ==================================================================================================
+  * 198. House Robber
  * You are a professional robber planning to rob houses along a street. Each house has a certain amount of money stashed,
  * the only constraint stopping you from robbing each of them is that adjacent houses have security systems connected
  * and it will automatically contact the police if two adjacent houses were broken into on the same night.

@@ -31,6 +31,39 @@ import java.util.Arrays;
  * 2. Unbounded: If we pick an item, we stay at the SAME item (index), allowing re-use.
  * We process LEFT-TO-RIGHT in space optimization to explicitly allow re-using.
  * ==================================================================================================
+ *
+ * ### Why Greedy Fails Here
+ * A Greedy approach for knapsack problems involves calculating the **Value-to-Weight Ratio** for every item and always picking the item with the highest ratio first.
+ * The flaw with this logic in the Unbounded Knapsack is the **wasted space**.
+ * Because you cannot break an item into fractions,
+ * picking the highest-ratio item might leave a chunk of empty space in your bag that is too small to fit anything else.
+ * A slightly "worse" ratio item might pack perfectly into the bag, yielding a higher total value.
+ *
+ * ### The Proof (A Counter-Example)
+ * Let's look at a scenario where the Greedy algorithm completely traps itself, while Dynamic Programming finds the true optimal answer.
+ *
+ * **The Scenario:**
+ * * **Knapsack Capacity (W):** 10
+ * * **Item A:** Weight = 7, Value = 15 *(Ratio: 2.14)*
+ * * **Item B:** Weight = 5, Value = 10 *(Ratio: 2.00)*
+ * **The Greedy Approach (Fails):**
+ * 1. Greedy sees Item A has the better ratio (2.14 vs 2.00).
+ * 2. It puts one Item A in the bag.
+ * 3. **Current Value:** 15. **Remaining Capacity:** 3.
+ * 4. Neither Item A nor Item B fits in the remaining capacity of 3. The algorithm stops.
+ * 5. **Greedy Total Value: 15**
+ *
+ * ### When DOES Greedy Work?
+ *
+ * Greedy *only* works for the **Fractional Knapsack** problem.
+ * In the Fractional variation, the thief carries a knife.
+ * If they have 3 units of capacity left and the next best item weighs 7 units,
+ * they can simply slice off a fraction of that item to perfectly fill the remaining space to the brim.
+ * Because no space is ever wasted, the ratio-based Greedy approach is flawless.
+ * Since your problem statement says you can either "include an item or exclude it" (meaning whole items only),
+ * you must use Dynamic Programming to guarantee the correct answer.
+ * Would you like to write out the recursive tree for this Unbounded Knapsack problem,
+ * or would you prefer to jump straight into building the DP Tabulation (Bottom-Up) matrix?
  */
 public class UnboundedKnapsack {
 

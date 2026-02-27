@@ -42,6 +42,14 @@ Your task is to transform it into a **fully documented and well-explained versio
 - Provide **step-by-step reasoning**.
 - Make explanations **easy for beginners and interviewers to understand**.
 
+
+### 7. add recursion tree structre if its a recursion problem
+- Use **clean formatting**.
+- Provide **step-by-step reasoning**.
+- give me the recursion tree structure with proper example use same example for DP array and recursion tree structure 
+- also add the final value of DP array used for memorization 
+- add all this in the comments of the code
+- 
 ---
 
 ## Important Notes

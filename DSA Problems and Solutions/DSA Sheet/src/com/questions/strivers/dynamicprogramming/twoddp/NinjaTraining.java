@@ -30,9 +30,52 @@ import java.util.Arrays;
  * Day 1: 50 (Task 1) - Cannot do Task 2 again
  * Day 2: 90 (Task 2) - Cannot do Task 1 again
  * Total = 70 + 50 + 90 = 210.
+ *
+ *
+ * Let's use a 3-day training schedule. The Ninja can pick Activity 0, 1, or 2.
+ * Day 0: [10, 40, 70]
+ * Day 1: [20, 50, 80]
+ * Day 2: [30, 60, 90]
+ *
+ *                          f(Day 2, lastTask=3)
+ *                       /          |           \
+ *                     /            |             \
+ *          Pick Act 0           Pick Act 1         Pick Act 2
+ *          (Earn 30)            (Earn 60)          (Earn 90)
+ *            /                     |                   \
+ *     f(Day 1, last=0)      f(Day 1, last=1)      f(Day 1, last=2)
+ *       /         \            /         \            /         \
+ *  Act 1        Act 2       Act 0       Act 2      Act 0        Act 1
+ * (Earn 50)    (Earn 80)   (Earn 20)   (Earn 80)  (Earn 20)    (Earn 50)
+ *    /            \           /            \          /            \
+ * f(0, 1)       f(0, 2)    f(0, 0)       f(0, 2)   f(0, 0)       f(0, 1)
+ *                   ^                        ^
+ *                   |                        |
+ *           🚨 OVERLAP ALERT! 🚨        🚨 OVERLAP ALERT! 🚨
+ *
+ *
+ * DP Array	    Col 0 (Restricted: 0)	Col 1 (Restricted: 1)	Col 2 (Restricted: 2)	Col 3 (No Restriction)
+ * Day 0	    70	                    70	                    40	                    70
+ * Day 1	    120	                    120	                    120	                    120
+ * Day 2	    210	                    210	                    180	                    210 (Final Answer)
+ *
  * ==================================================================================================
+ *
+ * 1. Why is the size dp[n][4]?
+ * n (The Rows): Represents the number of days (Day 0, Day 1, ..., Day N-1).
+ * 4 (The Columns): Represents the "Last Activity" constraint.
+ * You might wonder: "Wait, there are only 3 activities (0, 1, and 2). Why do we need 4 columns?"
+ * We need a 4th state (Index 3) to represent "No Restriction".
+ * When we evaluate the very first day (or ask for the final answer on the last day),
+ * there is no "previous activity" holding us back.
+ * We need a specific column in our table to say: "Calculate the absolute maximum points we can get if we are allowed to pick ANY of the 3 activities."
+ *
+ * Column 0: Max points if we are restricted from Activity 0 today.
+ * Column 1: Max points if we are restricted from Activity 1 today.
+ * Column 2: Max points if we are restricted from Activity 2 today.
+ * Column 3: Max points if we have NO restrictions today (This is where our final answer lives!).
  */
-public class NinjaTraining {
+public class  NinjaTraining {
 
     public static void main(String[] args) {
         // Input: Merit points for [Day][Activity]

@@ -17,8 +17,6 @@ import java.util.Arrays;
  * - (row + 1, col)
  * - (row + 1, col + 1)
  *
- *
- *
  * EXAMPLE:
  * Input: matrix = [[2,1,3],
  *                  [6,5,4],

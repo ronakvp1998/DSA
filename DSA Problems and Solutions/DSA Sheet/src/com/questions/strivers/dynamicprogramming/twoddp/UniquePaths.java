@@ -34,6 +34,34 @@ import java.util.Arrays;
  * 4. Space Optimization: Reduce 2D table to 1D array.
  * 5. Combinatorics: Mathematical formula (Best Time/Space).
  * ==================================================================================================
+ * m = 3 (rows), n = 2 (columns).
+ *[ (0,0), (0,1) ]
+ * [ (1,0), (1,1) ]
+ * [ (2,0), (2,1) ]  <- Destination
+ *
+ *
+ *                              f(2, 1)
+ *                            /         \
+ *               (Move UP)  /             \ (Move LEFT)
+ *                        /                 \
+ *                  f(1, 1)                 f(2, 0)
+ *                 /       \               /       \
+ *               UP       LEFT           UP       LEFT
+ *             /             \         /             \
+ *         f(0, 1)         f(1, 0)  f(1, 0)         f(2, -1)
+ *          /   \           /   \    /   \         (Out of bounds: 0)
+ *       ...    f(0,0)   f(0,0) ... ...  ...
+ *               (1)      (1)
+ *                         ^          ^
+ *                         |          |
+ *                   🚨 OVERLAP ALERT! 🚨
+ *
+ *
+ * DP Array,    Col 0,  Col 1
+ * Row 0,       1,      1
+ * Row 1,       1,      2
+ * Row 2,       1,      3 (Final Answer)
+ * 
  */
 public class UniquePaths {
 

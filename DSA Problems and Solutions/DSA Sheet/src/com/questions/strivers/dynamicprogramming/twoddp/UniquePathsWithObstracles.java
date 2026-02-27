@@ -27,6 +27,30 @@ import java.util.Arrays;
  * CRITICAL EDGE CASE:
  * If the Start (0,0) or End (m-1, n-1) is an obstacle (1), the answer is 0.
  * ==================================================================================================
+ * Grid (0 = Empty, 1 = Obstacle):
+ * [ 0, 0, 0 ]
+ * [ 0, 1, 0 ]
+ * [ 0, 0, 0 ]
+ *                                  f(2, 2)
+ *                               /         \
+ *                  (Move UP)  /             \ (Move LEFT)
+ *                           /                 \
+ *                     f(1, 2)                 f(2, 1)
+ *                    /       \               /       \
+ *                  UP       LEFT           UP       LEFT
+ *                /             \         /             \
+ *            f(0, 2)         f(1, 1)  f(1, 1)         f(2, 0)
+ *             /   \         [OBSTACLE] [OBSTACLE]       /   \
+ *           ...   ...       (Returns 0) (Returns 0)   ...   ...
+ *                               ^          ^
+ *                               |          |
+ *                       🚨 PATH BLOCKED! OVERLAP ALERT! 🚨
+ *
+ * DP Array,    Col 0,  Col 1,  Col 2
+ * Row 0,       1,      1,      1
+ * Row 1,       1,      0,      1
+ * Row 2,       1,      1,      2 (Final Answer)
+ * 
  */
 public class UniquePathsWithObstracles {
 

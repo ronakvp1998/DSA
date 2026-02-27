@@ -37,6 +37,33 @@ import java.util.List;
  * - If we start from the top, we need to check boundary conditions for every move.
  * - If we start from the bottom, every cell is guaranteed to have two children below it.
  * ==================================================================================================
+ *  * EXAMPLE:
+ *  * Input: triangle = [[2], [3,4], [6,5,7], [4,1,8,3]]
+ *  * 2
+ *  * 3 4
+ *  * 6 5 7
+ *  * 4 1 8 3
+ *
+ *                               f(0, 0) -> Value: 2
+ *                             /         \
+ *                  (Down)   /             \   (Down-Right)
+ *                         /                 \
+ *              f(1, 0) -> Val: 3           f(1, 1) -> Val: 4
+ *                /       \                   /       \
+ *             DOWN     DOWN-RIGHT         DOWN     DOWN-RIGHT
+ *             /             \             /             \
+ *         f(2, 0)         f(2, 1)      f(2, 1)         f(2, 2)
+ *           ...             ...          ...             ...
+ *                            ^            ^
+ *                            |            |
+ *                      🚨 OVERLAP ALERT! 🚨
+ *
+ * DP Array,    Col 0,  Col 1,  Col 2,  Col 3
+ * Row 0,       11      -       -       -
+ * Row 1,       9       10      -       -
+ * Row 2,       7       6       10      -
+ * Row 3,       4       1       8       3
+ *
  */
 public class MinPathSumTriangle {
 
