@@ -1,120 +1,313 @@
 package com.questions.strivers.greedyalgorithm.easy;
-
 /**
- * ==================================================================================================
- * PROBLEM STATEMENT: 678. Valid Parenthesis String (Medium)
- * ==================================================================================================
+ * ============================================================================
+ * 678. Valid Parenthesis String
+ * ============================================================================
+ * * PROBLEM STATEMENT:
  * Given a string s containing only three types of characters: '(', ')' and '*',
  * return true if s is valid.
  * * The following rules define a valid string:
  * 1. Any left parenthesis '(' must have a corresponding right parenthesis ')'.
  * 2. Any right parenthesis ')' must have a corresponding left parenthesis '('.
  * 3. Left parenthesis '(' must go before the corresponding right parenthesis ')'.
- * 4. '*' could be treated as a single right parenthesis ')' or a single left parenthesis '('
- * or an empty string "".
- *
+ * 4. '*' could be treated as a single right parenthesis ')' or a single left
+ * parenthesis '(' or an empty string "".
+ * * * CONSTRAINTS:
+ * - 1 <= s.length <= 100
+ * - s[i] is '(', ')' or '*'.
+ * * * EXAMPLES:
  * Example 1: Input: s = "()"   -> Output: true
  * Example 2: Input: s = "(*)"  -> Output: true
  * Example 3: Input: s = "(*))" -> Output: true
- * ==================================================================================================
- * APPROACH: TOP-DOWN DYNAMIC PROGRAMMING (Memoization)
- * ==================================================================================================
- * We can use recursion to explore all possible interpretations of the '*' character.
- * To avoid the exponential time complexity of pure recursion (where '*' causes 3 branches),
- * we use a 2D 'memo' array to cache our results.
- * * State Variables:
- * 1. `index`: Our current position in the string.
- * 2. `openCount`: The number of unmatched left parentheses '(' we currently have.
- * * Base Cases:
- * - If `openCount < 0`, we have too many ')' and it's invalid. Return false.
- * - If we reach the end of the string (`index == s.length()`), it's valid ONLY if `openCount == 0`.
- * * Recursive Transitions:
- * - If '(', we MUST increment openCount.
- * - If ')', we MUST decrement openCount.
- * - If '*', we branch into 3 possibilities: treat as '(', treat as ')', or treat as "".
- * If ANY of these branches return true, the current path is valid.
- * * Time Complexity: O(N^2) - We have N indices and at most N possible values for openCount.
- * Space Complexity: O(N^2) - For the 2D memoization array, plus O(N) for the recursion stack.
- * ==================================================================================================
+ * * * ============================================================================
+ * CONCEPTUAL VISUALIZATION: RECURSION TREE (s = "(*)")
+ * ============================================================================
+ * Let f(index, count) represent checking the string from 'index' with 'count'
+ * number of currently unmatched open '(' brackets.
+ * *                                f(0, 0) [char: '(']
+ *                                          |
+ *                                          | (count becomes 1)
+ *                                          v
+ *          f(1, 1) [char: '*'] -> Wildcard branches into 3 possibilities!
+ *                                          |
+ *          +-----------------------+-----------------------+
+ *          | (Treat as '(')        | (Treat as empty "")   | (Treat as ')')
+ *          v                       v                       v
+ *          f(2, 2) [char: ')']     f(2, 1) [char: ')']     f(2, 0) [char: ')']
+ *          |                       |                       |
+ *          | (count: 2->1)         | (count: 1->0)         | (count: 0->-1) INVALID!
+ *          v                       v                       v
+ *          f(3, 1)                 f(3, 0)                 f(3, -1)
+ *          (Base: index 3,         (Base: index 3,         (Returns false early)
+ *          count != 0 -> false)    count == 0 -> TRUE!)
+ *
+ * * * Overall Result: TRUE (since at least one branch reached f(3, 0))
+ * * * COMPLETE FINAL DP ARRAY STATE (s = "(*)", n = 3):
+ * (Rows = index, Cols = count of open brackets)
+ * (T = true, F = false)
+ * * 0  1  2  3 (count)
+ * 0 [T, F, F, F] <- Final Answer at top left (index 0, count 0): TRUE
+ * 1 [F, T, F, F]
+ * 2 [T, F, T, F]
+ * 3 [T, F, F, F] <- Base Cases
  */
+
+import java.util.Arrays;
+
 public class ValidParenthesisStringDP {
 
-    public static void main(String[] args) {
-        System.out.println("Test Case 1 '()'   (Expected: true)  -> Result: " + checkValidString("()"));
-        System.out.println("Test Case 2 '(*)'  (Expected: true)  -> Result: " + checkValidString("(*)"));
-        System.out.println("Test Case 3 '(*))' (Expected: true)  -> Result: " + checkValidString("(*))"));
-        System.out.println("Test Case 4 ')*('  (Expected: false) -> Result: " + checkValidString(")*("));
+    /**
+     * ========================================================================
+     * PHASE 1: BRUTE FORCE RECURSION (The "Think it" stage)
+     * ========================================================================
+     * INTUITION:
+     * We process the string character by character. We must maintain a `count`
+     * of open '(' brackets.
+     * - If we see '(', increment count.
+     * - If we see ')', decrement count. (If count drops below 0, it's invalid).
+     * - If we see '*', we branch into 3 paths (increment, decrement, or skip).
+     * If ANY path leads to the end of the string with count == 0, it's valid.
+     * * * COMPLEXITY:
+     * - Time: O(3^N) -> In the worst case (string of all '*'), we branch 3 ways
+     * at every character. Exponential.
+     * - Space: O(N) -> Auxiliary stack space for recursion depth up to N. No heap.
+     */
+    public boolean checkValidStringRecursive(String s) {
+        return solveRecursive(0, 0, s);
+    }
+
+    private boolean solveRecursive(int index, int count, String s) {
+        // Base cases
+        if (count < 0) return false; // More ')' than '('
+        if (index == s.length()) return count == 0; // All open brackets closed
+
+        char c = s.charAt(index);
+        if (c == '(') {
+            return solveRecursive(index + 1, count + 1, s);
+        } else if (c == ')') {
+            return solveRecursive(index + 1, count - 1, s);
+        } else {
+            // Wildcard '*': try '(', ')', and empty
+            return solveRecursive(index + 1, count + 1, s) ||
+                    solveRecursive(index + 1, count - 1, s) ||
+                    solveRecursive(index + 1, count, s);
+        }
     }
 
     /**
-     * Wrapper method to initialize the memoization table and start recursion.
+     * ========================================================================
+     * PHASE 2: TOP-DOWN MEMOIZATION (The "Refine it" stage)
+     * ========================================================================
+     * INTUITION:
+     * The recursion tree reveals massive overlapping subproblems. For example,
+     * solving `f(index=3, count=2)` could happen from many different wildcard
+     * assignments. We cache results in a 2D `memo` array to avoid re-evaluating.
+     * (We use an int array where -1 is unvisited, 0 is false, 1 is true).
+     * * * COMPLEXITY:
+     * - Time: O(N^2) -> Max N indices, and max possible count is N.
+     * - Space: O(N^2) Heap Space for `memo` + O(N) Auxiliary Stack Space.
      */
-    public static boolean checkValidString(String s) {
+    public boolean checkValidStringMemo(String s) {
         int n = s.length();
-        // memo[index][openCount]
-        // We use the Boolean object wrapper so unvisited states default to 'null'
-        Boolean[][] memo = new Boolean[n][n + 1];
+        int[][] memo = new int[n][n + 1];
+        for (int[] row : memo) Arrays.fill(row, -1);
 
-        return isValid(s, 0, 0, memo);
+        return solveMemo(0, 0, s, memo) == 1;
+    }
+
+    private int solveMemo(int index, int count, String s, int[][] memo) {
+        if (count < 0) return 0;
+        if (index == s.length()) return count == 0 ? 1 : 0;
+
+        if (memo[index][count] != -1) return memo[index][count];
+
+        char c = s.charAt(index);
+        boolean isValid = false;
+
+        if (c == '(') {
+            isValid = solveMemo(index + 1, count + 1, s, memo) == 1;
+        } else if (c == ')') {
+            isValid = solveMemo(index + 1, count - 1, s, memo) == 1;
+        } else {
+            isValid = solveMemo(index + 1, count + 1, s, memo) == 1 ||
+                    solveMemo(index + 1, count - 1, s, memo) == 1 ||
+                    solveMemo(index + 1, count, s, memo) == 1;
+        }
+
+        return memo[index][count] = isValid ? 1 : 0;
     }
 
     /**
-     * Recursive helper method with Memoization.
-     * * @param s The input string.
-     * @param index The current character index we are evaluating.
-     * @param openCount The current balance of unmatched '(' parentheses.
-     * @param memo The cache to store previously computed states.
-     * @return true if the remaining string can be valid, false otherwise.
+     * ========================================================================
+     * PHASE 3: BOTTOM-UP TABULATION (The "Build it" stage)
+     * ========================================================================
+     * INTUITION:
+     * Convert the memoized recursion into an iterative approach. We build the
+     * table from the end of the string (index N) backwards to index 0.
+     * `dp[index][count]` means "Can we form a valid string from 'index' to end
+     * given we currently have 'count' unmatched open brackets?"
+     * * * EXACT DEFAULT STATE OF DP ARRAY (s = "(*)", n=3):
+     * After base case initialization (dp[n][0] = true), before loops:
+     * 0  1  2  3 (count)
+     * 0 [F, F, F, F]
+     * 1 [F, F, F, F]
+     * 2 [F, F, F, F]
+     * 3 [T, F, F, F]  <- dp[3][0] is true, representing string end with 0 open.
+     * * * COMPLEXITY:
+     * - Time: O(N^2) -> Two nested loops, each running N times.
+     * - Space: O(N^2) Heap Space for `dp`. No stack space.
      */
-    private static boolean isValid(String s, int index, int openCount, Boolean[][] memo) {
-        // BASE CASE 1:
-        // If at any point we have more closing brackets than open ones, the string is permanently invalid.
-        // We MUST check this before accessing the memo array to prevent ArrayIndexOutOfBoundsException!
-        if (openCount < 0) {
-            return false;
+    public boolean checkValidStringTabulation(String s) {
+        int n = s.length();
+        boolean[][] dp = new boolean[n + 1][n + 1];
+
+        // Base Case: end of string, 0 open brackets is true.
+        dp[n][0] = true;
+
+        for (int i = n - 1; i >= 0; i--) {
+            for (int count = 0; count <= n; count++) {
+                char c = s.charAt(i);
+                boolean isValid = false;
+
+                if (c == '(') {
+                    if (count + 1 <= n) isValid = dp[i + 1][count + 1];
+                } else if (c == ')') {
+                    if (count > 0) isValid = dp[i + 1][count - 1];
+                } else {
+                    if (count + 1 <= n) isValid |= dp[i + 1][count + 1];
+                    if (count > 0) isValid |= dp[i + 1][count - 1];
+                    isValid |= dp[i + 1][count];
+                }
+
+                dp[i][count] = isValid;
+            }
+        }
+        return dp[0][0];
+    }
+
+    /**
+     * ========================================================================
+     * PHASE 4: SPACE OPTIMIZATION (The "Perfect it" stage)
+     * ========================================================================
+     * INTUITION:
+     * Looking at the Tabulation code, to calculate `dp[i][...]`, we strictly
+     * only ever need data from `dp[i+1][...]`. We do not need the rest of the
+     * matrix. We can collapse the 2D matrix into two 1D arrays: `next`
+     * (representing i+1) and `curr` (representing i).
+     * * * COMPLEXITY:
+     * - Time: O(N^2) -> Iteration count remains the same.
+     * - Space: O(N) Heap Space -> Two 1D arrays of size N+1.
+     */
+    public boolean checkValidStringSpaceOptimized(String s) {
+        int n = s.length();
+        boolean[] next = new boolean[n + 1];
+        boolean[] curr = new boolean[n + 1];
+
+        next[0] = true;
+
+        for (int i = n - 1; i >= 0; i--) {
+            for (int count = 0; count <= n; count++) {
+                char c = s.charAt(i);
+                boolean isValid = false;
+
+                if (c == '(') {
+                    if (count + 1 <= n) isValid = next[count + 1];
+                } else if (c == ')') {
+                    if (count > 0) isValid = next[count - 1];
+                } else {
+                    if (count + 1 <= n) isValid |= next[count + 1];
+                    if (count > 0) isValid |= next[count - 1];
+                    isValid |= next[count];
+                }
+
+                curr[count] = isValid;
+            }
+            // Swap arrays for next iteration
+            next = curr.clone(); // Clone is safer here as we overwrite curr next loop
+        }
+        return next[0];
+    }
+
+    /**
+     * ========================================================================
+     * PHASE 5: ALTERNATIVE APPROACH (Greedy - The Absolute Optimal Solution)
+     * ========================================================================
+     * INTUITION:
+     * The DP approaches show that at any index, 'count' isn't just one value,
+     * but a *range* of possible open brackets due to '*'.
+     * Let `cmin` be the minimum possible open brackets (can't go below 0).
+     * Let `cmax` be the maximum possible open brackets.
+     * - '(' increases both limits.
+     * - ')' decreases both limits. (If cmax < 0, it means we have too many ')' -> false).
+     * - '*' means we can decrease (treat as ')'), increase (treat as '('), or keep same.
+     * At the end, if 0 is within the range [cmin, cmax], then `cmin == 0` is true.
+     * * * COMPLEXITY:
+     * - Time: O(N) -> Single pass through the string.
+     * - Space: O(1) -> Only integer variables used.
+     */
+    public boolean checkValidStringGreedy(String s) {
+        int cmin = 0; // Min open '(' possible
+        int cmax = 0; // Max open '(' possible
+
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                cmax++;
+                cmin++;
+            } else if (c == ')') {
+                cmax--;
+                cmin--;
+            } else if (c == '*') {
+                cmax++; // if we treat '*' as '('
+                cmin--; // if we treat '*' as ')'
+            }
+
+            // If cmax is negative, it means even if we used all '*' as '(',
+            // we still have unmatched ')'. Invalid string.
+            if (cmax < 0) return false;
+
+            // cmin can't be negative. If it goes negative, it just means we
+            // shouldn't have treated previous '*' as ')'. We floor it to 0.
+            cmin = Math.max(cmin, 0);
         }
 
-        // BASE CASE 2:
-        // We have successfully processed the entire string.
-        if (index == s.length()) {
-            // It is only valid if all opened parentheses have been perfectly matched/closed.
-            return openCount == 0;
-        }
+        return cmin == 0;
+    }
 
-        // MEMOIZATION CHECK:
-        // If we have already solved the subproblem for this specific index and openCount,
-        // instantly return the cached result instead of recalculating the tree.
-        if (memo[index][openCount] != null) {
-            return memo[index][openCount];
-        }
+    /**
+     * ========================================================================
+     * TESTING SUITE
+     * ========================================================================
+     */
+    public static void main(String[] args) {
+        ValidParenthesisStringDP solver = new ValidParenthesisStringDP();
 
-        char currentChar = s.charAt(index);
-        boolean isValidPath = false;
+        System.out.println("=== Test Case 1: Standard Success ===");
+        String s1 = "()";
+        System.out.println("Recursion  : " + solver.checkValidStringRecursive(s1));
+        System.out.println("Memoization: " + solver.checkValidStringMemo(s1));
+        System.out.println("Tabulation : " + solver.checkValidStringTabulation(s1));
+        System.out.println("Space Opt  : " + solver.checkValidStringSpaceOptimized(s1));
+        System.out.println("Greedy     : " + solver.checkValidStringGreedy(s1));
+        System.out.println("Expected   : true\n");
 
-        // RECURSIVE TRANSITIONS:
-        if (currentChar == '(') {
-            // Strictly treat as an open parenthesis
-            isValidPath = isValid(s, index + 1, openCount + 1, memo);
-        }
-        else if (currentChar == ')') {
-            // Strictly treat as a close parenthesis
-            isValidPath = isValid(s, index + 1, openCount - 1, memo);
-        }
-        else if (currentChar == '*') {
-            // The magic of the '*' character: We try ALL THREE possibilities.
-            // If even a single one of these paths returns true, then 'isValidPath' becomes true.
-            isValidPath =
-                    isValid(s, index + 1, openCount + 1, memo) || // 1. Treat '*' as '('
-                            isValid(s, index + 1, openCount - 1, memo) || // 2. Treat '*' as ')'
-                            isValid(s, index + 1, openCount, memo);       // 3. Treat '*' as empty string ""
-        }
+        System.out.println("=== Test Case 2: Wildcard Success ===");
+        String s2 = "(*)";
+        System.out.println("Greedy     : " + solver.checkValidStringGreedy(s2));
+        System.out.println("Expected   : true\n");
 
+        System.out.println("=== Test Case 3: Wildcard Multiple Closing ===");
+        String s3 = "(*))";
+        System.out.println("Greedy     : " + solver.checkValidStringGreedy(s3));
+        System.out.println("Expected   : true\n");
 
+        System.out.println("=== Edge Case: Invalid Early Closing ===");
+        String s4 = ")(";
+        System.out.println("Greedy     : " + solver.checkValidStringGreedy(s4));
+        System.out.println("Expected   : false\n");
 
-        // CACHE THE RESULT:
-        // Save the outcome of this state so we never have to compute it again.
-        memo[index][openCount] = isValidPath;
-
-        return isValidPath;
+        System.out.println("=== Edge Case: All Wildcards ===");
+        String s5 = "***";
+        System.out.println("Greedy     : " + solver.checkValidStringGreedy(s5));
+        System.out.println("Expected   : true\n");
     }
 }

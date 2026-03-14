@@ -52,7 +52,7 @@ public class CoinChange {
 
     /**
      * ----------------------------------------------------------------------
-     * APPROACH 1: GREEDY (DO NOT USE FOR THIS PROBLEM)
+     * APPROACH 1: GREEDY (DO NOT USE FOR THIS PROBLEM) only works for canonical coin system
      * ----------------------------------------------------------------------
      * LOGIC:
      * Sort coins descending. Take as many of the largest coin as possible,
