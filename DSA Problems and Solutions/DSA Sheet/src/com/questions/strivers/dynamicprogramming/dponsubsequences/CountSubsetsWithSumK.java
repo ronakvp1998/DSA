@@ -41,6 +41,28 @@ import java.util.Arrays;
  * If the array contains zeros (e.g., [0, 0, 1] target=1), standard DP initialization (dp[0]=1) fails.
  * We must handle the case where picking a '0' doesn't change the sum but counts as a distinct subset.
  * ==================================================================================================
+ * Input: arr = [1, 2, 2], target = 3
+ *
+ *                              f(2, 3)
+ *                           [arr[2] = 2]
+ *                           /          \
+ *             NOT PICK (Target=3)      PICK (Target=3-2=1)
+ *                   /                      \
+ *              f(1, 3)                    f(1, 1)
+ *            [arr[1] = 2]               [arr[1] = 2]
+ *            /          \               /          \
+ *      NOT PICK        PICK         NOT PICK       PICK
+ *        /                \           /              \
+ *    f(0, 3)            f(0, 1)    f(0, 1)        (Invalid)
+ *  [arr[0]=1]         [arr[0]=1]  [arr[0]=1]    arr[1] > target
+ *      |                  |           |              |
+ *  Returns 0          Returns 1   Returns 1      Returns 0
+ *
+ *  Index (i) \ Target (t), 0,  1,  2,  3
+ * 0 (arr[0] = 1),          1,  1,  0,  0
+ * 1 (arr[1] = 2),          1,  1,  1,  1
+ * 2 (arr[2] = 2),          1,  1,  2,  2
+ *
  */
 public class CountSubsetsWithSumK {
 
@@ -166,6 +188,19 @@ public class CountSubsetsWithSumK {
      * COMPLEXITY:
      * - Time: O(N * K)
      * - Space: O(N * K)
+     *
+     * arr = [2, 3, 1] with a target k = 5.
+     * Index (i) \ Target (t),  0,  1,  2,  3,  4,  5
+     * 0 (arr[0] = 2),          1,  0,  1,  0,  0,  0
+     * 1 (arr[1] = 3),          0,  0,  0,  0,  0,  0
+     * 2 (arr[2] = 1),          0,  0,  0,  0,  0,  0
+     *
+     * arr = [0, 2, 3] (Notice the 0 is at index 0) Target K = 3
+     * Index (i) \ Target (t),  0,  1,  2,  3
+     * 0 (arr[0] = 0),          2,  0,  0,  0
+     * 1 (arr[1] = 2),          0,  0,  0,  0
+     * 2 (arr[2] = 3),          0,  0,  0,  0
+     *
      */
     private static int countSubsetsTabulation(int[] arr, int k) {
         int n = arr.length;

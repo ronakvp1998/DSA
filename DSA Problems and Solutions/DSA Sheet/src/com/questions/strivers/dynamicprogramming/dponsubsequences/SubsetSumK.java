@@ -123,6 +123,13 @@ public class SubsetSumK {
      * APPROACH 2: MEMOIZATION (Top-Down DP)
      * Time Complexity: O(N * K) - We compute each (index, target) state exactly once.
      * Space Complexity: O(N * K) [DP array] + O(N) [Recursion Stack].
+     *
+     * The reason we use an int[][] array initialized to -1 instead of a primitive boolean[][] array comes down to the "Three-State Problem" in memoization.
+     * The "Three-State" Problem in Memoization
+     * In Top-Down DP, our cache isn't just tracking true or false. We actually need a way to represent three distinctly different states:
+     * Uncalculated: We haven't visited this subproblem yet.
+     * Calculated & True: We visited it, and a valid subset does exist.
+     * Calculated & False: We visited it, and a valid subset does not exist.
      */
     private static boolean subsetSumMemo(int index, int target, int[] arr, int[][] dp) {
         // Base cases (Same as recursion)
@@ -154,6 +161,13 @@ public class SubsetSumK {
      * APPROACH 3: TABULATION (Bottom-Up DP)
      * Time Complexity: O(N * K) - Nested loops over array length and target.
      * Space Complexity: O(N * K) - 2D DP array. Recursion stack overhead is eliminated.
+     *
+     * arr = [2, 3, 1], n = 3, k = 7.
+     * default values of dp array for tabulation 
+     * Index (i) \ Target (t),  0,  1,  2,  3,  4,  5,  6,  7
+     * 0 (arr[0] = 2),          T,  F,  T,  F,  F,  F,  F,  F
+     * 1 (arr[1] = 3),          T,  F,  F,  F,  F,  F,  F,  F
+     * 2 (arr[2] = 1),          T,  F,  F,  F,  F,  F,  F,  F
      */
     private static boolean subsetSumTabulation(int n, int k, int[] arr) {
         // dp[i][t] is true if there is a subset from index 0..i that sums exactly to 't'

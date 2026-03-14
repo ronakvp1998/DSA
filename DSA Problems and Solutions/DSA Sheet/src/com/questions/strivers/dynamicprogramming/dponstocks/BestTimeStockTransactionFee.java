@@ -105,13 +105,13 @@ public class BestTimeStockTransactionFee {
             // Can Buy
             profit = Math.max(
                     -prices[i] + maxProfitMemo(i + 1, 1, prices, fee, dp), // Buy
-                    maxProfitMemo(i + 1, 0, prices, fee, dp)               // Rest
+                    0 + maxProfitMemo(i + 1, 0, prices, fee, dp)               // Rest
             );
         } else {
             // Must Sell
             profit = Math.max(
                     (prices[i] - fee) + maxProfitMemo(i + 1, 0, prices, fee, dp), // Sell
-                    maxProfitMemo(i + 1, 1, prices, fee, dp)                      // Rest
+                    0 + maxProfitMemo(i + 1, 1, prices, fee, dp)                      // Rest
             );
         }
         return dp[i][hasStock] = profit;

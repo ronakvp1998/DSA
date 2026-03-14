@@ -1,67 +1,45 @@
 package com.questions.practice.dynamicprogramming;
 
-import java.util.Arrays;
-
-/**
- * ==================================================================================================
- * PROBLEM: TRIANGLE (LeetCode 120)
- * ==================================================================================================
- * PROBLEM STATEMENT:
- * Given a triangle array, return the minimum path sum from top to bottom.
- * For each step, you may move to an adjacent number of the row below.
- * More formally, if you are on index 'i' on the current row, you may move to either:
- * - index 'i' (directly below-left)
- * - index 'i + 1' (directly below-right)
- * on the next row.
- *
- *
- * EXAMPLE:
- * Input: triangle = [[2], [3,4], [6,5,7], [4,1,8,3]]
- * 2
- * 3 4
- * 6 5 7
- * 4 1 8 3
- *
- * Output: 11
- * Explanation: The minimum path sum from top to bottom is 2 + 3 + 5 + 1 = 11.
- *
- * KEY INSIGHT:
- * In a Triangle, every cell (row, col) has two children in the next row:
- * 1. (row + 1, col)
- * 2. (row + 1, col + 1)
- *
- * It is best to solve this BOTTOM-UP (start from the last row and move up).
- * Why?
- * - If we start from the top, we need to check boundary conditions for every move.
- * - If we start from the bottom, every cell is guaranteed to have two children below it.
- * ==================================================================================================
- */
+//
+// * MASTERCLASS: TARGET SUM (LeetCode 494)
+// * ==================================================================================================
+//         * * ### 1. Header & Problem Context
+// * * **Problem Statement:**
+//        * You are given an integer array 'nums' and an integer 'target'.
+//        * You want to build an expression out of nums by adding one of the symbols '+' or '-'
+//        * before each integer in nums and then concatenate all the integers.
+// * Return the number of different expressions that you can build, which evaluates to target.
 public class DpTest {
-    public static void main(String[] args) {
-        int n = 5;
-        int m = 5;
-        int dp[][] = new int[n][m];
-        int arr[][] = new int[n][m];
-        for(int i[] : dp){
-            Arrays.fill(i,-1);
+
+    private static int recu(int i,int k,int nums[]){
+        if(i == 0){
+            return (k%nums[i] == 0) ? 1 : 0;
         }
-        System.out.println(minPathSum(n-1,m-1,arr,dp));
+        int notTake = recu(i-1,k,nums);
+        int take = 0;
+        if(nums[i] <= k){
+            take = recu(i,k - nums[i],nums);
+        }
+        return take + notTake;
     }
 
-    // button up approach
-    private static int minPathSum(int row,int col,int arr[][],int dp[][]) {
-        if(row < 0 || col < 0 ){
-            return (int)1e9;
+    private static int tabu(int k,int nums[]){
+        int n = nums.length;
+        int[][] dp = new int[n][k+1];
+        for(int i=0;i<=k;i++){
+            if(i%nums[i] == 0) dp[0][i] = 1;
         }
-        if(row == 0 && col == 0){
-            return arr[row][col];
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=k;j++){
+                int notTake = dp[i-1][j];
+                int take = 0;
+                if(nums[i] <= j){
+                    take = dp[i][j-nums[i]];
+                }
+                dp[i][j] = notTake + take;
+            }
         }
-        int up = (int)1e9;
-        int left = (int)1e9;
-        for (int i = 0; i < arr[arr.length - 1].length; i++) {
-            up = minPathSum(row-1,i,arr,dp);
-        }
-        left = minPathSum(row,col-1,arr,dp);
-        return arr[row][col] + Math.min(up,left);
+        return dp[n-1][k];
     }
+
 }

@@ -1,4 +1,4 @@
-# Java Code Documentation & Explanation Prompt
+**# Java Code Documentation & Explanation Prompt
 
 I will provide a Java code snippet.
 
@@ -12,6 +12,7 @@ Your task is to transform it into a **fully documented and well-explained versio
 - Add a **detailed problem statement** from the LeetCode platform (or similar source).
 - Place the **problem statement and the approach** at the top of the code comments.
 - Add a **`main` method** if one is not already present for testing.
+- Add proper constraints for the problem
 
 ### 2. Detailed In-Code Comments
 - Explain **every important line**.
@@ -58,5 +59,7 @@ Your task is to transform it into a **fully documented and well-explained versio
 
 ---
 
+- give me the complete redable recursion stack tree with proper example also give me the final dp array values
+
 **Next Step:**  
-Wait for me to provide the Java code to document and explain.
+Wait for me to provide the Java code to document and explain.**
