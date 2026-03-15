@@ -16,6 +16,11 @@ package com.questions.strivers.greedyalgorithm.medium;
  * Example 2:
  * Input: nums = [2,3,0,1,4]
  * Output: 2
+ *
+ * Constraints:
+ * 1 <= nums.length <= 104
+ * 0 <= nums[i] <= 1000
+ * It's guaranteed that you can reach nums[n - 1].
  * ==================================================================================================
  * APPROACH 1: GREEDY ALGORITHM (Implicit BFS / Window Tracking) - OPTIMAL
  * ==================================================================================================

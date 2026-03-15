@@ -35,6 +35,7 @@ package com.questions.strivers.greedyalgorithm.medium;
  */
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class MinimumPlatforms {
 
@@ -72,7 +73,8 @@ public class MinimumPlatforms {
         int maxPlatforms = 1;
 
         // Two Pointers:
-        // 'i' points to the next arrival to process. We start at 1 since we handled arr[0] by making platforms as default 1.
+        // 'i' points to the next arrival to process.
+        //  We start at 1 since we handled arr[0] by making platforms as default 1.
         // 'j' points to the next departure to process. We start at 0.
         int i = 1;
         int j = 0;
@@ -98,5 +100,120 @@ public class MinimumPlatforms {
         }
 
         return maxPlatforms;
+    }
+/**
+ * 🟡 PROBLEM: MINIMUM NUMBER OF PLATFORMS REQUIRED
+ * * * Problem Statement:
+ * Given arrival and departure times of all trains that reach a railway station,
+ * find the minimum number of platforms required for the railway station so that
+ * no train waits.
+ * * * Constraints:
+ * - 1 <= N <= 50,000
+ * - 0000 <= arr[i], dep[i] <= 2359
+ * - Arrival and departure times can span across the day (24-hour format).
+ * * * Example 1:
+ * Input: arr[] = {900, 940, 950, 1100, 1500, 1800}, dep[] = {910, 1200, 1120, 1130, 1900, 2000}
+ * Output: 3
+ * * * Example 2:
+ * Input: arr[] = {900, 1100, 1235}, dep[] = {1000, 1200, 1240}
+ * Output: 1
+ * * * -------------------------------------------------------------------------
+ * CONCEPTUAL VISUALIZATION (Example 1)
+ * -------------------------------------------------------------------------
+ * This is an "Interval Overlap" problem. We need to find the maximum number
+ * of intervals that overlap at any single point in time.
+ * * Sorted Event Timeline:
+ * Time:    900(A)  910(D)  940(A)  950(A)  1100(A)  1120(D)  1130(D)  1200(D) ...
+ * Count:     1       0       1       2        3        2        1        0
+ * Max Count: 3
+ * * * RECURSION TREE (Conceptual for Overlap):
+ * Since this isn't a "choice" problem (like Knapsack), but an "observation"
+ * of concurrent events, a recursion tree would simply explore (Index_Arrival, Index_Departure).
+ * * State: (arr_idx, dep_idx)
+ * (0,0) -> Train 1 arrives (+1)
+ * |--> (1,0) -> Train 2 arrives (+1)
+ * |--> (1,1) -> Train 1 departs (-1)
+ * |--> (2,1) -> Train 3 arrives (+1) ...
+ * * FINAL DP ARRAY (Sweep Line Logic):
+ * If we mapped every minute (0000-2359) to an array:
+ * Minutes: [ ... 900, 901, ... 910, ... 2359 ]
+ * Change:  [ ... +1,  0,  ... -1,  ...  0   ]
+ * Prefix:  [ ... 1,   1,  ...  0,  ...  0   ]
+ *
+     * PHASE 1: BRUTE FORCE
+     * Intuition: For every train, count how many other trains have an arrival
+     * time between its own arrival and departure.
+     * * Time Complexity: O(N^2)
+     * Space Complexity: O(1) Auxiliary
+     */
+    public static int findPlatformBrute(int[] arr, int[] dep, int n) {
+        int platNeeded = 1, result = 1;
+        for (int i = 0; i < n; i++) {
+            platNeeded = 1; // Count itself
+            for (int j = 0; j < n; j++) {
+                if (i != j) {
+                    // Check if train 'j' is at the station during train 'i'
+                    if (arr[i] >= arr[j] && dep[j] >= arr[i]) {
+                        platNeeded++;
+                    }
+                }
+            }
+            result = Math.max(result, platNeeded);
+        }
+        return result;
+    }
+
+    /**
+     * PHASE 3: SWEEP LINE / FREQUENCY ARRAY (The "Build it" Stage)
+     * Intuition: Since time is bounded (0000 to 2359), we can use a frequency
+     * array. We mark arrival as +1 and departure as -1 at their respective indices.
+     * * * GRID - DEFAULT STATE (Time 0 to 2359):
+     * [0, 0, 0, ... +1 (at 900), ... -1 (at 910+1), ... 0]
+     * * * GRID - FINAL PREFIX SUM STATE:
+     * [0, 0, 0, ... 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, ... 0]
+     * * * Time Complexity: O(N + 2360) => O(N)
+     * Space Complexity: O(2360) => O(1)
+     */
+    public static int findPlatformSweepLine(int[] arr, int[] dep, int n) {
+        int[] times = new int[2361]; // Covering all minutes in 24h
+
+        for (int i = 0; i < n; i++) {
+            times[arr[i]]++;        // Arrival
+            times[dep[i] + 1]--;    // Departure (Freeing after the minute)
+        }
+
+        int maxPlats = 0, currentPlats = 0;
+        for (int t = 0; t < 2361; t++) {
+            currentPlats += times[t];
+            maxPlats = Math.max(maxPlats, currentPlats);
+        }
+        return maxPlats;
+    }
+
+    /**
+     * PHASE 4: MIN-HEAP OPTIMIZATION
+     * Intuition: Use a Min-Heap to track the departure times of trains currently
+     * at the station. If the earliest departing train leaves before the next
+     * arrival, we reuse that platform.
+     * * Time Complexity: O(N log N)
+     * Space Complexity: O(N) for the Heap.
+     */
+    public static int findPlatformHeap(int[] arr, int[] dep, int n) {
+        // Sort arrivals only to process chronologically
+        int[][] trains = new int[n][2];
+        for(int i=0; i<n; i++) trains[i] = new int[]{arr[i], dep[i]};
+        Arrays.sort(trains, (a, b) -> a[0] - b[0]);
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        pq.add(trains[0][1]);
+
+        for (int i = 1; i < n; i++) {
+            // If the earliest train in the heap departs before current arrives
+            if (pq.peek() < trains[i][0]) {
+                pq.poll();
+            }
+            pq.add(trains[i][1]);
+        }
+        return pq.size();
     }
 }
