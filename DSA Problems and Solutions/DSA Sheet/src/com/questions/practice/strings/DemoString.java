@@ -2,21 +2,33 @@ package com.questions.practice.strings;
 
 public class DemoString {
 
-    public static boolean test (String s,String goal){
+    public static String rec (int n){
+        String current = "1";
 
-        char a = goal.charAt(0);
-        int i = s.lastIndexOf(a);
+        // Iteratively build the sequence up to n
+        for (int i = 2; i <= n; i++) {
+            current = applyRle(current);
+        }
 
+        return current;
+    }
 
+    private static String applyRle(String s){
         StringBuilder sb = new StringBuilder();
-        sb.append(s.substring(i,s.length()));
-        sb.append(s.substring(0,i));
-        System.out.println(sb);
-        return sb.toString().equals(goal);
+        int count = 1;
+        for(int i=1;i<s.length();i++){
+            if(s.charAt(i) == s.charAt(i-1)){
+                count++;
+            }else{
+                sb.append(count).append(s.charAt(i-1));
+                count=1;
+            }
+        }
+        sb.append(count).append(s.charAt(s.length()-1));
+        return sb.toString();
     }
 
     public static void main(String[] args) {
-        String s = "defdefdefabcabc", goal = "defdefabcabcdef";
-        System.out.println(test(s,goal));
+
     }
 }

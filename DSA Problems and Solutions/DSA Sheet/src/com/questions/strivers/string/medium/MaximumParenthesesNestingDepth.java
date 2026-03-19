@@ -30,7 +30,7 @@ package com.questions.strivers.string.medium;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-public class MaximumNestingDepth {
+public class MaximumParenthesesNestingDepth {
 
     /**
      * ========================================================================

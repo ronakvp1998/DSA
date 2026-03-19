@@ -24,50 +24,6 @@ package com.questions.strivers.string.medium;
  * ============================================================================
  */
 public class SumOfBeautyOfAllSubstrings {
-
-    /**
-     * ========================================================================
-     * Phase 1: Brute Force Approach - The "Think it" stage.
-     * ========================================================================
-     * Detailed Intuition:
-     * The most literal translation of the problem is to generate every single
-     * valid substring, independently calculate its beauty, and sum it up.
-     * For every starting index `i` and ending index `j`, we extract the substring,
-     * iterate through its characters to build a frequency map, and then find
-     * the maximum and minimum frequencies.
-     * * Complexity Analysis:
-     * - Time Complexity: O(N^3). Generating the substring bounds takes O(N^2).
-     * Iterating through the substring to build the frequency map takes up to O(N).
-     * Total time is cubic, which would Time Limit Exceed (TLE) for constraints
-     * larger than ~300.
-     * - Space Complexity: O(N) Auxiliary Heap Space to allocate the substring
-     * string objects during extraction, plus O(1) for the frequency array of
-     * size 26.
-     * ========================================================================
-     */
-    public static int beautySumBruteForce(String s) {
-        int n = s.length();
-        int totalBeauty = 0;
-
-        for (int i = 0; i < n; i++) {
-            for (int j = i; j < n; j++) {
-                // Extract substring
-                String sub = s.substring(i, j + 1);
-
-                // Build frequency array for this specific substring
-                int[] freq = new int[26];
-                for (int k = 0; k < sub.length(); k++) {
-                    freq[sub.charAt(k) - 'a']++;
-                }
-
-                // Calculate beauty
-                totalBeauty += calculateBeauty(freq);
-            }
-        }
-
-        return totalBeauty;
-    }
-
     /**
      * ========================================================================
      * Phase 2: Expanding Window (Optimized Iteration) - The "Perfect it" stage.
@@ -132,6 +88,50 @@ public class SumOfBeautyOfAllSubstrings {
         // minFreq will equal maxFreq, resulting in a beauty of 0.
         return maxFreq - minFreq;
     }
+
+    /**
+     * ========================================================================
+     * (Skip this) Phase 1: Brute Force Approach - The "Think it" stage.
+     * ========================================================================
+     * Detailed Intuition:
+     * The most literal translation of the problem is to generate every single
+     * valid substring, independently calculate its beauty, and sum it up.
+     * For every starting index `i` and ending index `j`, we extract the substring,
+     * iterate through its characters to build a frequency map, and then find
+     * the maximum and minimum frequencies.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N^3). Generating the substring bounds takes O(N^2).
+     * Iterating through the substring to build the frequency map takes up to O(N).
+     * Total time is cubic, which would Time Limit Exceed (TLE) for constraints
+     * larger than ~300.
+     * - Space Complexity: O(N) Auxiliary Heap Space to allocate the substring
+     * string objects during extraction, plus O(1) for the frequency array of
+     * size 26.
+     * ========================================================================
+     */
+    public static int beautySumBruteForce(String s) {
+        int n = s.length();
+        int totalBeauty = 0;
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                // Extract substring
+                String sub = s.substring(i, j + 1);
+
+                // Build frequency array for this specific substring
+                int[] freq = new int[26];
+                for (int k = 0; k < sub.length(); k++) {
+                    freq[sub.charAt(k) - 'a']++;
+                }
+
+                // Calculate beauty
+                totalBeauty += calculateBeauty(freq);
+            }
+        }
+
+        return totalBeauty;
+    }
+
 
     /**
      * ========================================================================
