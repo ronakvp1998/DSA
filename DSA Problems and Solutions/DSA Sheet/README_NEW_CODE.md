@@ -19,6 +19,7 @@ This version of the prompt ensures that the entire breakdown—from the recursio
 >
 > ### 2.1. Progressive Implementation Roadmap if DP Problem
 > Provide the following methods in order within the class:
+> for each of the Phase explain the approach and steps to be performed in short
 > * **Phase 1: Brute Force Recursion** - The "Think it" stage.
 > * **Phase 2: Top-Down Memoization** - The "Refine it" stage.
 > * **Phase 3: Bottom-Up Tabulation** - The "Build it" stage.

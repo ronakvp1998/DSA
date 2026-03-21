@@ -1,8 +1,22 @@
-package com.questions.strivers.recursionbacktracking.medium.sorting;
+package com.questions.strivers.sorting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/*
+ Problem Statement:
+ -----------------
+ Implement Merge Sort to sort an array of integers.
+
+ Merge Sort is a Divide and Conquer algorithm:
+ 1. Divide the array into two halves recursively.
+ 2. Sort each half recursively using Merge Sort.
+ 3. Merge the two sorted halves into one sorted array.
+
+ Example:
+ Input:  [3, 1, 2, 4]
+ Output: [1, 2, 3, 4]
+*/
 public class MergeSort {
 
     public static void main(String[] args) {
@@ -12,20 +26,6 @@ public class MergeSort {
         System.out.println("Sorted Array:   " + Arrays.toString(arr));
     }
 
-    /*
-     Problem Statement:
-     -----------------
-     Implement Merge Sort to sort an array of integers.
-
-     Merge Sort is a Divide and Conquer algorithm:
-     1. Divide the array into two halves recursively.
-     2. Sort each half recursively using Merge Sort.
-     3. Merge the two sorted halves into one sorted array.
-
-     Example:
-     Input:  [3, 1, 2, 4]
-     Output: [1, 2, 3, 4]
-    */
 
     /**
      * Function: mergeSort

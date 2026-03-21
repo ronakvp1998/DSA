@@ -1,7 +1,23 @@
-package com.questions.strivers.recursionbacktracking.medium.sorting;
+package com.questions.strivers.sorting;
 
 import java.util.Arrays;
+/*
+ Problem Statement:
+ -----------------
+ Implement QuickSort to sort an array of integers.
 
+ QuickSort is a Divide and Conquer algorithm:
+ 1. Select a pivot element.
+ 2. Partition the array such that:
+    - All elements <= pivot go to the left side.
+    - All elements > pivot go to the right side.
+ 3. Recursively apply the same procedure to the left and right subarrays.
+ 4. Base case is reached when subarray size is 0 or 1.
+
+ Example:
+ Input:  [4, 6, 2, 5, 7, 9, 1, 3]
+ Output: [1, 2, 3, 4, 5, 6, 7, 9]
+*/
 public class QuickSort {
 
     public static void main(String[] args) {
@@ -10,24 +26,6 @@ public class QuickSort {
         quickSort(arr, 0, arr.length - 1);
         System.out.println("Sorted Array:   " + Arrays.toString(arr));
     }
-
-    /*
-     Problem Statement:
-     -----------------
-     Implement QuickSort to sort an array of integers.
-
-     QuickSort is a Divide and Conquer algorithm:
-     1. Select a pivot element.
-     2. Partition the array such that:
-        - All elements <= pivot go to the left side.
-        - All elements > pivot go to the right side.
-     3. Recursively apply the same procedure to the left and right subarrays.
-     4. Base case is reached when subarray size is 0 or 1.
-
-     Example:
-     Input:  [4, 6, 2, 5, 7, 9, 1, 3]
-     Output: [1, 2, 3, 4, 5, 6, 7, 9]
-    */
 
     /**
      * Function: quickSort

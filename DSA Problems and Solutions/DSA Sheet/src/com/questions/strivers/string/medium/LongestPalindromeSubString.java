@@ -33,7 +33,7 @@ package com.questions.strivers.string.medium;
  * PROGRESSIVE IMPLEMENTATION ROADMAP
  * ============================================================================
  */
-public class LongestPalindrome {
+public class LongestPalindromeSubString {
 
     /**
      * ========================================================================

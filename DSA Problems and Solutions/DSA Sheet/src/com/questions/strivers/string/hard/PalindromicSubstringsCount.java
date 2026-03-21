@@ -32,7 +32,7 @@ package com.questions.strivers.string.hard;
  * PROGRESSIVE IMPLEMENTATION ROADMAP
  * ============================================================================
  */
-public class PalindromicSubstrings {
+public class PalindromicSubstringsCount {
 
     /**
      * ========================================================================

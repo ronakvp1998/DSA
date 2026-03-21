@@ -114,12 +114,12 @@ public class LongestCommonSubsequenceLength {
 
         if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
             return memo[i][j] = 1 + solveMemo(i - 1, j - 1, s1, s2, memo);
-        } else {
-            return memo[i][j] = Math.max(
-                    solveMemo(i - 1, j, s1, s2, memo),
-                    solveMemo(i, j - 1, s1, s2, memo)
-            );
         }
+
+        int skip1 = solveMemo(i - 1, j, s1, s2, memo);
+        int skip2 = solveMemo(i, j - 1, s1, s2, memo);
+
+        return memo[i][j] = Math.max(skip1,skip2);
     }
 
     /**

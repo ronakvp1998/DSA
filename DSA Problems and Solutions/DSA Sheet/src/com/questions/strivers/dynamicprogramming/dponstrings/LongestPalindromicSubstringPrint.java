@@ -33,7 +33,7 @@ package com.questions.strivers.dynamicprogramming.dponstrings;
  * PROGRESSIVE IMPLEMENTATION ROADMAP
  * ============================================================================
  */
-public class LongestPalindromeSubStringPrint {
+public class LongestPalindromicSubstringPrint {
 
     /**
      * ========================================================================
