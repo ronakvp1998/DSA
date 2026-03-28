@@ -37,7 +37,7 @@ package com.questions.strivers.bitmanipulation.interviewproblem;
 
 import java.util.*;
 
-public class TwoOddAppearing {
+public class SingleNumberIII {
 
     public static void main(String[] args) {
         int[] nums1 = {1, 2, 1, 3, 5, 2};

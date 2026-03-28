@@ -36,7 +36,7 @@ package com.questions.strivers.bitmanipulation.interviewproblem;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SingleNumber {
+public class SingleNumberI {
 
     public static void main(String[] args) {
         // Test Case 1
