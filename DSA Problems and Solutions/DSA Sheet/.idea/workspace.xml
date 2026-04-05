@@ -45,10 +45,14 @@
     "Application.DPTest.executor": "Run",
     "Application.DemoString.executor": "Run",
     "Application.DpTest.executor": "Run",
+    "Application.KthElementMasterclass.executor": "Run",
     "Application.LongestCommonSubstringLength.executor": "Run",
     "Application.LongestPalindromicSubsequence.executor": "Debug",
     "Application.Main.executor": "Run",
     "Application.MaxHeap.executor": "Run",
+    "Application.MaxSubArraySumPrint.executor": "Run",
+    "Application.NextPermutation.executor": "Run",
+    "Application.PrefixSumMasterclass.executor": "Run",
     "Application.PrintPermutations.executor": "Run",
     "Application.ReverseQueueRecursion.executor": "Run",
     "Application.ShortestCommonSupersequence.executor": "Run",
@@ -57,6 +61,13 @@
     "Application.SortQueueRecursion.executor": "Run",
     "Application.Subset1.executor": "Run",
     "Application.Subset2.executor": "Run",
+    "Application.Test (1).executor": "Run",
+    "Application.Test (2).executor": "Run",
+    "Application.Test (3).executor": "Run",
+    "Application.Test (4).executor": "Debug",
+    "Application.Test.executor": "Run",
+    "Application.TopKElementsMasterclass.executor": "Run",
+    "Application.TopKFrequentMasterclass.executor": "Run",
     "Application.com.questions.strivers.recursion.basics.queuesqueuesproblem.ReverseQueueRecursion.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -83,13 +94,13 @@
       <recent name="com.questions.strivers.dynamicprogramming.twoddp" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MaxHeap">
-    <configuration name="BaseConversionMaster" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.bitmanipulation.basics.BaseConversionMaster" />
+  <component name="RunManager" selected="Application.Test">
+    <configuration name="NextPermutation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.arrays.medium.NextPermutation" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.bitmanipulation.basics.*" />
+          <option name="PATTERN" value="com.questions.strivers.arrays.medium.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -97,12 +108,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DpTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.dynamicprogramming.DpTest" />
+    <configuration name="Test (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.Test" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.practice.dynamicprogramming.*" />
+          <option name="PATTERN" value="com.questions.practice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -110,12 +121,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MaxHeap" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.ctobhaiya.heaps.MaxHeap" />
+    <configuration name="Test (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.Test" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.ctobhaiya.heaps.*" />
+          <option name="PATTERN" value="com.questions.practice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -123,12 +134,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShortestCommonSupersequenceLength" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.dponstrings.ShortestCommonSupersequenceLength" />
+    <configuration name="Test (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.Test" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.dponstrings.*" />
+          <option name="PATTERN" value="com.questions.practice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -136,12 +147,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShortestCommonSupersequencePrint" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.dponstrings.ShortestCommonSupersequencePrint" />
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.practice.Test" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.dponstrings.*" />
+          <option name="PATTERN" value="com.questions.practice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -151,11 +162,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MaxHeap" />
-        <item itemvalue="Application.BaseConversionMaster" />
-        <item itemvalue="Application.DpTest" />
-        <item itemvalue="Application.ShortestCommonSupersequenceLength" />
-        <item itemvalue="Application.ShortestCommonSupersequencePrint" />
+        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.NextPermutation" />
+        <item itemvalue="Application.Test (4)" />
+        <item itemvalue="Application.Test (3)" />
+        <item itemvalue="Application.Test (2)" />
       </list>
     </recent_temporary>
   </component>
