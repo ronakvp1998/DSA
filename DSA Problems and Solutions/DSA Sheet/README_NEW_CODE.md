@@ -29,8 +29,9 @@ This version of the prompt ensures that the entire breakdown—from the recursio
 >
 > ### 2.2. Progressive Implementation Roadmap other problems
 > Provide the following methods in order within the class:
-> * **Phase 1: Brute Force approach** - The "Think it" stage.
-> * **Phase 2: Alternative Approaches** - (Greedy, Bitmask, BinarySearch, sliding window, 2 pointers,hashing etc., if applicable).
+> * **Phase 1: Best and recommended approach 
+> * **Phase 2: Brute Force approach** - The "Think it" stage.
+> * **Phase 3: Alternative Approaches** - (Greedy, Bitmask, BinarySearch, sliding window, 2 pointers,hashing etc., if applicable).
 >
 > ### 3. In-Code Technical Analysis
 > For **every phase** method, the preceding comments must include:

@@ -51,9 +51,11 @@
     "Application.Main.executor": "Run",
     "Application.MaxHeap.executor": "Run",
     "Application.MaxSubArraySumPrint.executor": "Run",
+    "Application.Merge2SortedArray.executor": "Run",
     "Application.NextPermutation.executor": "Run",
     "Application.PrefixSumMasterclass.executor": "Run",
     "Application.PrintPermutations.executor": "Run",
+    "Application.RepeatingAndMissingNumbers.executor": "Run",
     "Application.ReverseQueueRecursion.executor": "Run",
     "Application.ShortestCommonSupersequence.executor": "Run",
     "Application.ShortestCommonSupersequenceLength.executor": "Run",
@@ -95,6 +97,19 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Test">
+    <configuration name="Merge2SortedArray" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.arrays.hard.Merge2SortedArray" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.strivers.arrays.hard.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="NextPermutation" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.questions.strivers.arrays.medium.NextPermutation" />
       <module name="DSA Sheet" />
@@ -108,25 +123,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.Test" />
+    <configuration name="RepeatingAndMissingNumbers" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.arrays.hard.RepeatingAndMissingNumbers" />
       <module name="DSA Sheet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.questions.practice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Test (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.practice.Test" />
-      <module name="DSA Sheet" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.questions.practice.*" />
+          <option name="PATTERN" value="com.questions.strivers.arrays.hard.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -163,10 +165,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Test" />
+        <item itemvalue="Application.Merge2SortedArray" />
+        <item itemvalue="Application.RepeatingAndMissingNumbers" />
         <item itemvalue="Application.NextPermutation" />
         <item itemvalue="Application.Test (4)" />
-        <item itemvalue="Application.Test (3)" />
-        <item itemvalue="Application.Test (2)" />
       </list>
     </recent_temporary>
   </component>

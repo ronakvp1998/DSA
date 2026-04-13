@@ -4,96 +4,33 @@ import java.util.Arrays;
 
 public class Test {
 
-    public static void main(String[] args) {
-        int [][] arr = {{1,1,1},{1,0,1},{1,1,1}};
-        setZeroesOptimal(arr);
-        for(int[] a : arr){
-            System.out.println(Arrays.toString(a));
-        }
-    }
-    public static void setZeroesOptimal(int[][] matrix) {
-        int m = matrix.length, n = matrix[0].length;
-        boolean firstRowZero = false, firstColZero = firstRowZero;
-        for(int i=0;i<m;i++){
-            if(matrix[i][0] == 0){
-                firstColZero = true;
+    public static void merge(int[] arr1, int m, int[] arr2, int n) {
+        int[] arr3 = new int[n + m];
+        int left = 0, right = 0, index = 0;
+
+        // Merge both arrays into arr3
+        while (left < m && right < n) {
+            if (arr1[left] <= arr2[right]) {
+                arr3[index++] = arr1[left++];
+            } else {
+                arr3[index++] = arr2[right++];
             }
         }
-        for(int j=0;j<n;j++){
-            if(matrix[0][j] == 0){
-                firstRowZero = true;
-            }
+
+        // Copy remaining elements
+        while (left < m) {
+            arr3[index++] = arr1[left++];
         }
-        for(int i=1;i<m;i++){
-            for(int j=1;j<n;j++){
-                if(matrix[i][j] == 0){
-                    matrix[i][0] = 0;
-                    matrix[0][j] = 0;
-                }
-            }
+        while (right < n) {
+            arr3[index++] = arr2[right++];
         }
-        for(int i=1;i<m;i++){
-            for(int j=1;j<n;j++){
-                if(matrix[i][0] == 0 || matrix[0][j] == 0){
-                    matrix[i][j] = 0;
-                }
-            }
-        }
-        if(firstColZero){
-            for(int i=0;i<m;i++){
-                matrix[i][0] = 0;
-            }
-        }
-        if(firstRowZero){
-            for(int j=0;j<n;j++){
-                matrix[0][j] = 0;
-            }
-        }
-    }
-    public void setZeroesBetter(int[][] matrix) {
-        int m = matrix.length, n = matrix[0].length;
-        boolean [] zeroRows = new boolean[m];
-        boolean [] zeroCols = new boolean[n];
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(matrix[i][j] == 0){
-                    zeroRows[i] = true;
-                    zeroCols[j] = true;
-                }
-            }
-        }
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(zeroRows[i] || zeroCols[j]){
-                    matrix[i][j] = 0;
-                }
-            }
-        }
-    }
-    public void setZeroesBruteForce(int[][] matrix) {
-        int m = matrix.length;
-        int n = matrix[0].length;
-        int [][] copy = new int[m][n];
-        for(int i=0;i<m;i++){
-            copy[i] = matrix[i].clone();
-        }
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                if(matrix[i][j] == 0){
-                    for(int c = 0;c<n;c++){
-                        copy[i][c] = 0;
-                    }
-                    for(int r = 0;r<m;r++){
-                        copy[r][j] = 0;
-                    }
-                }
-            }
-        }
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                matrix[i][j] = copy[i][j];
-            }
-        }
+        arr1 = arr3;
+        System.out.println(Arrays.toString(arr1));
     }
 
+    public static void main(String[] args) {
+        int[] arr1_tc1 = {1, 4, 8, 10};
+        int[] arr2_tc1 = {2, 3, 9};
+        merge(arr1_tc1,arr2_tc1.length,arr2_tc1,arr2_tc1.length);
+    }
 }
