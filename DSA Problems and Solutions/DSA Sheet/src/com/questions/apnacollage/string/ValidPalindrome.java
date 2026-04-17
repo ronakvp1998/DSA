@@ -1,4 +1,4 @@
-package com.questions.apnacollageold.string;
+package com.questions.apnacollage.string;
 
 // code 1 : valid palindrome
 //Input: s = "A man, a plan, a canal: Panama"

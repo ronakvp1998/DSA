@@ -38,35 +38,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BaseConversionMaster.executor": "Run",
-    "Application.CombinationSum2.executor": "Run",
-    "Application.DPTest.executor": "Run",
-    "Application.DemoString.executor": "Run",
-    "Application.DpTest.executor": "Run",
-    "Application.LongestCommonSubstringLength.executor": "Run",
-    "Application.LongestPalindromicSubsequence.executor": "Debug",
-    "Application.Main.executor": "Run",
-    "Application.MaxHeap.executor": "Run",
-    "Application.PrintPermutations.executor": "Run",
-    "Application.ReverseQueueRecursion.executor": "Run",
-    "Application.ShortestCommonSupersequence.executor": "Run",
-    "Application.ShortestCommonSupersequenceLength.executor": "Run",
-    "Application.ShortestCommonSupersequencePrint.executor": "Run",
-    "Application.SortQueueRecursion.executor": "Run",
-    "Application.Subset1.executor": "Run",
-    "Application.Subset2.executor": "Run",
-    "Application.com.questions.strivers.recursion.basics.queuesqueuesproblem.ReverseQueueRecursion.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/DSA/DSA Problems and Solutions/DSA Sheet",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.editor"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BaseConversionMaster.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CombinationSum2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DPTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DemoString.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DpTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LongestCommonSubstringLength.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LongestPalindromicSubsequence.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MaxHeap.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PrintPermutations.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ReverseQueueRecursion.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ShortestCommonSupersequence.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ShortestCommonSupersequenceLength.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ShortestCommonSupersequencePrint.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SortQueueRecursion.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Subset1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Subset2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.com.questions.strivers.recursion.basics.queuesqueuesproblem.ReverseQueueRecursion.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/DSA/DSA Problems and Solutions/DSA Sheet&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\DSA\DSA Problems and Solutions\DSA Sheet" />
@@ -83,7 +83,7 @@
       <recent name="com.questions.strivers.dynamicprogramming.twoddp" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MaxHeap">
+  <component name="RunManager" selected="Application.JavaHeap">
     <configuration name="BaseConversionMaster" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.questions.strivers.bitmanipulation.basics.BaseConversionMaster" />
       <module name="DSA Sheet" />
@@ -103,6 +103,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.questions.practice.dynamicprogramming.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JavaHeap" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.questions.ctobhaiya.heaps.JavaHeap" />
+      <module name="DSA Sheet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.questions.ctobhaiya.heaps.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -136,26 +149,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ShortestCommonSupersequencePrint" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.questions.strivers.dynamicprogramming.dponstrings.ShortestCommonSupersequencePrint" />
-      <module name="DSA Sheet" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.questions.strivers.dynamicprogramming.dponstrings.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.JavaHeap" />
         <item itemvalue="Application.MaxHeap" />
         <item itemvalue="Application.BaseConversionMaster" />
         <item itemvalue="Application.DpTest" />
         <item itemvalue="Application.ShortestCommonSupersequenceLength" />
-        <item itemvalue="Application.ShortestCommonSupersequencePrint" />
       </list>
     </recent_temporary>
   </component>

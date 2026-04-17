@@ -1,4 +1,4 @@
-package com.questions.apnacollageold.array;
+package com.questions.apnacollage.array;
 
 //1 Maximum and minimum of an array using minimum number of comparisons
 
