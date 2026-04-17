@@ -1,135 +1,196 @@
 package com.questions.strivers.arrays.medium;
 
+/**
+ * ============================================================================
+ * MASTERCLASS: SUBARRAY SUM EQUALS K
+ * ============================================================================
+ * * ### 1. Header & Problem Context
+ * * 560. Subarray Sum Equals K
+ * Solved | Medium | Topics: Array, Hash Table, Prefix Sum | Companies
+ * * Hint:
+ * Given an array of integers `nums` and an integer `k`, return the total number
+ * of subarrays whose sum equals to `k`.
+ * A subarray is a contiguous non-empty sequence of elements within an array.
+ * * Example 1:
+ * Input: nums = [1,1,1], k = 2
+ * Output: 2
+ * * Example 2:
+ * Input: nums = [1,2,3], k = 3
+ * Output: 2
+ * * Constraints:
+ * - 1 <= nums.length <= 2 * 10^4
+ * - -1000 <= nums[i] <= 1000
+ * - -10^7 <= k <= 10^7
+ * * ---
+ * * ### Conceptual Visualization (Prefix Sum + Hash Map)
+ * * Since this is not a DP problem, we don't use a recursion tree. Instead, let's
+ * visualize the optimal Prefix Sum + Hashing approach.
+ * * Why does this work?
+ * If the cumulative sum up to index `i` is `Sum_i`, and the cumulative sum up to
+ * some previous index `j` is `Sum_j`, then the sum of the subarray from `j+1`
+ * to `i` is exactly `Sum_i - Sum_j`.
+ * * We want: `Sum_i - Sum_j = k`
+ * Rearranged: `Sum_j = Sum_i - k`
+ * * This means: As we iterate through the array maintaining a running sum (`Sum_i`),
+ * we just need to look back and ask: "Have we ever seen a running sum equal to
+ * `runningSum - k`?" If yes, a valid subarray exists! We use a HashMap to count
+ * exactly *how many times* we've seen that `Sum_j` in the past.
+ * * Visualization for nums = [3, 4, 7, 2, -3, 1, 4, 2], k = 7
+ * * Step | Num | RunningSum (RS) | Target (RS - k) | Map Contains Target? | Map State Updates
+ * ----------------------------------------------------------------------------------------
+ * 0   |  -  |       0         |      N/A        |        N/A           | {0: 1}  <- Base case!
+ * 1   |  3  |       3         |   3 - 7 = -4    | No                   | {0: 1, 3: 1}
+ * 2   |  4  |       7         |   7 - 7 = 0     | Yes! (+1 to answer)  | {0: 1, 3: 1, 7: 1}
+ * 3   |  7  |      14         |  14 - 7 = 7     | Yes! (+1 to answer)  | {0: 1, 3: 1, 7: 1, 14: 1}
+ * 4   |  2  |      16         |  16 - 7 = 9     | No                   | {0: 1, 3: 1, 7: 1, 14: 1, 16: 1}
+ * ... and so on.
+ * ============================================================================
+ */
+
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-/* https://takeuforward.org/arrays/count-subarray-sum-equals-k/
-Count Subarray sum Equals K
 
-Problem Statement: Given an array of integers and an integer k,
-return the total number of subarrays whose sum equals k.
-
-A subarray is a contiguous non-empty sequence of elements within an array.
-
-Pre-requisite: Longest subarray with given sum
-
-Example 1:
-Input Format: N = 4, array[] = {3, 1, 2, 4}, k = 6
-Result: 2
-Explanation: The subarrays that sum up to 6 are [3, 1, 2] and [2, 4].
-
-Example 2:
-Input Format: N = 3, array[] = {1,2,3}, k = 3
-Result: 2
-Explanation: The subarrays that sum up to 3 are [1, 2], and [3].
- */
 public class CountSubarraySum {
 
     /**
-     * Brute Force Approach 1 (Triple Nested Loops)
-     * ---------------------------------------------------
-     * For every possible subarray [i...j], calculate its sum by iterating from i to j.
-     * If the sum equals k, increment the counter.
-     *
-     * Time Complexity: O(N^3)
-     *  - Outer loop for i (O(N))
-     *  - Inner loop for j (O(N))
-     *  - Sum calculation loop (O(N))
-     * Space Complexity: O(1) (no extra data structures used)
+     * ========================================================================
+     * ### 2.2. Progressive Implementation Roadmap
+     * * Phase 1: Brute Force approach - The "Think it" stage.
+     * Approach: We calculate the sum of every possible subarray. We use two nested
+     * loops where the outer loop fixes the start index, and the inner loop extends
+     * the end index, maintaining a running sum to avoid a third loop.
+     * * ### 3. In-Code Technical Analysis
+     * Detailed Intuition:
+     * The simplest way to find all subarrays is to literally generate them all.
+     * By keeping a running tally in the inner loop, we efficiently calculate the
+     * sum of subarray `nums[i...j]` in O(1) time using the sum of `nums[i...j-1]`.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N^2) where N is the length of the array. We evaluate
+     * every possible contiguous sequence.
+     * - Space Complexity: O(1). Only a few integer variables are allocated in
+     * heap/stack space.
+     * ========================================================================
      */
-    private static int findAllSubarraysWithGivenSum(int arr[], int k) {
-        int n = arr.length; // size of the given array
-        int cnt = 0; // variable to store number of subarrays with sum = k
+    public int subarraySumBruteForce(int[] nums, int k) {
+        int count = 0;
+        int n = nums.length;
 
-        // Outer loop - starting index of subarray
         for (int i = 0; i < n; i++) {
-            // Inner loop - ending index of subarray
+            int currentSum = 0;
+            // Extend the subarray ending at j
             for (int j = i; j < n; j++) {
+                currentSum += nums[j];
 
-                int sum = 0; // sum of current subarray
-                // Loop to calculate sum of subarray [i...j]
-                for (int K = i; K <= j; K++)
-                    sum += arr[K];
-
-                // If sum equals k, increment counter
-                if (sum == k)
-                    cnt++;
+                // Check if the current contiguous sum equals our target
+                if (currentSum == k) {
+                    count++;
+                }
             }
         }
-        return cnt;
+
+        return count;
     }
 
     /**
-     * Brute Force Approach 2 (Double Nested Loops)
-     * ---------------------------------------------------
-     * Instead of recalculating the sum from scratch for every subarray,
-     * keep a running sum as we extend the subarray.
-     *
-     * Time Complexity: O(N^2)
-     * Space Complexity: O(1)
+     * ========================================================================
+     * Phase 2: Alternative Approach (Prefix Sum + Hash Map) - The "Perfect it" stage.
+     * Approach: We iterate through the array exactly once, calculating a cumulative
+     * prefix sum. We use a HashMap to store the frequencies of every prefix sum
+     * we have seen so far. If `prefixSum - k` exists in our map, we add its
+     * frequency to our total count.
+     * * ### 3. In-Code Technical Analysis
+     * Detailed Intuition:
+     * Why not use a Sliding Window / Two Pointers? Because the constraints state
+     * that `nums[i]` can be negative! A sliding window relies on the assumption
+     * that expanding the window increases the sum and shrinking it decreases the sum.
+     * Negative numbers break this monotonicity.
+     * Therefore, the Prefix Sum with a Hash Map is the absolute optimal way to
+     * track historical sums in O(1) lookup time, completely eliminating the
+     * need for the O(N^2) nested loop.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N). We traverse the array exactly once. HashMap
+     * insertions and lookups take O(1) time on average.
+     * - Space Complexity: O(N). We allocate heap space for the HashMap, which
+     * in the worst case (all distinct prefix sums) will store N distinct
+     * key-value pairs. Auxiliary stack space is O(1).
+     * ========================================================================
      */
-    private static int findAllSubarraysWithGivenSum2(int arr[], int k) {
-        int n = arr.length; // size of the given array
-        int cnt = 0; // variable to store number of subarrays with sum = k
+    public int subarraySumOptimal(int[] nums, int k) {
+        int count = 0;
+        int runningSum = 0;
 
-        // Outer loop - starting index of subarray
-        for (int i = 0; i < n; i++) {
-            int sum = 0; // sum of subarray starting at i
+        // Map stores: <PrefixSum, Frequency>
+        Map<Integer, Integer> prefixSumMap = new HashMap<>();
 
-            // Inner loop - ending index of subarray
-            for (int j = i; j < n; j++) {
-                // Add current element to running sum
-                sum += arr[j];
+        // CRITICAL BASE CASE:
+        // We initialize the map with (0, 1) because a running sum that perfectly
+        // equals 'k' early on means (runningSum - k) will be 0.
+        // This accounts for subarrays that start precisely at index 0.
+        prefixSumMap.put(0, 1);
 
-                // If sum equals k, increment counter
-                if (sum == k)
-                    cnt++;
+        for (int num : nums) {
+            runningSum += num;
+
+            // Check if we've seen a prefix sum that leaves exactly 'k' remaining
+            int target = runningSum - k;
+            if (prefixSumMap.containsKey(target)) {
+                // Add the frequency of how many times we've seen this target
+                count += prefixSumMap.get(target);
             }
+
+            // Update the map with the current running sum
+            prefixSumMap.put(runningSum, prefixSumMap.getOrDefault(runningSum, 0) + 1);
         }
-        return cnt;
+
+        return count;
     }
 
     /**
-     * Optimal Approach using Prefix Sum + HashMap
-     * ---------------------------------------------------
-     * We maintain a running prefix sum and store how many times
-     * each prefix sum has occurred in a HashMap.
-     *
-     * If `prefixSum - k` exists in the map, it means there is a subarray
-     * ending at the current index whose sum is k.
-     *
-     * Time Complexity: O(N)
-     * Space Complexity: O(N) (HashMap for storing prefix sums)
+     * ========================================================================
+     * ### 4. Testing Suite
+     * ========================================================================
      */
-    private static int findAllSubarraysWithGivenSum3(int arr[], int k) {
-        int n = arr.length; // size of the given array
-        Map<Integer, Integer> mpp = new HashMap<>(); // stores prefixSum -> frequency
-        int preSum = 0; // running prefix sum
-        int cnt = 0; // number of subarrays with sum = k
-
-        mpp.put(0, 1); // base case: prefix sum 0 occurs once before starting
-
-        for (int i = 0; i < n; i++) {
-            // Add current element to prefix sum
-            preSum += arr[i];
-
-            // The sum we need to remove to get sum = k
-            int remove = preSum - k;
-
-            // If remove exists, add its frequency to count
-            cnt += mpp.getOrDefault(remove, 0);
-
-            // Update the frequency of current prefix sum
-            mpp.put(preSum, mpp.getOrDefault(preSum, 0) + 1);
-        }
-        return cnt;
-    }
-
     public static void main(String[] args) {
-        int[] arr = {3, 1, 2, 4};
-        int k = 6;
+        CountSubarraySum solution = new CountSubarraySum();
 
-        System.out.println("Brute Force (O(N^3)): " + findAllSubarraysWithGivenSum(arr, k));
-        System.out.println("Improved Brute Force (O(N^2)): " + findAllSubarraysWithGivenSum2(arr, k));
-        System.out.println("Optimal (O(N)): " + findAllSubarraysWithGivenSum3(arr, k));
+        // Define Test Cases
+        int[][] testArrays = {
+                {1, 1, 1},                      // Example 1
+                {1, 2, 3},                      // Example 2
+                {3, 4, 7, 2, -3, 1, 4, 2},      // Complex mix of positives and negatives
+                {0, 0, 0, 0, 0},                // Edge Case: Zeroes (overlapping targets)
+                {-1, -1, 1},                    // Edge Case: Negatives
+                {1000}                          // Edge Case: Single element
+        };
+        int[] targets = {2, 3, 7, 0, 0, 1000};
+
+        System.out.println("=========================================================");
+        System.out.println("Executing Subarray Sum Equals K Testing Suite");
+        System.out.println("=========================================================\n");
+
+        for (int i = 0; i < testArrays.length; i++) {
+            int[] nums = testArrays[i];
+            int k = targets[i];
+            System.out.println("Test Case " + (i + 1) + ": nums = " + Arrays.toString(nums) + ", k = " + k);
+
+            // Test Brute Force
+            long start1 = System.nanoTime();
+            int res1 = solution.subarraySumBruteForce(nums, k);
+            long end1 = System.nanoTime();
+
+            // Test Optimal Hash Map
+            long start2 = System.nanoTime();
+            int res2 = solution.subarraySumOptimal(nums, k);
+            long end2 = System.nanoTime();
+
+            System.out.println("  [Brute Force] Output: " + res1 + " | Time: " + (end1 - start1) + " ns");
+            System.out.println("  [Optimal]     Output: " + res2 + " | Time: " + (end2 - start2) + " ns");
+
+            // Verification
+            boolean isValid = (res1 == res2);
+            System.out.println("  [Verification] Matching results: " + (isValid ? "PASS" : "FAIL"));
+            System.out.println("---------------------------------------------------------");
+        }
     }
 }
