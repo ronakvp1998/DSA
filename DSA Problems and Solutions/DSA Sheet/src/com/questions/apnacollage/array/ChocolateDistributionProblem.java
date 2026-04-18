@@ -1,4 +1,4 @@
-package com.questions.apnacollageold.array;
+package com.questions.apnacollage.array;
 
 // 5 Given an array arr[] of n integers where arr[i] represents the number of chocolates in ith packet. Each packet can have a variable number of chocolates. There are m students, the task is to distribute chocolate packets such that:
 //

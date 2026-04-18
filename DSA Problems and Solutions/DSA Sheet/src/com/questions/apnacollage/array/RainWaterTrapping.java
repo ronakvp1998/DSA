@@ -1,4 +1,4 @@
-package com.questions.apnacollageold.array;
+package com.questions.apnacollage.array;
 
 // code 11
 //
