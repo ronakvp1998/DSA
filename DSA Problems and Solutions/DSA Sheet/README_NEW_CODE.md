@@ -17,9 +17,10 @@ This version of the prompt ensures that the entire breakdown—from the recursio
 > * Formal problem statement, constraints, and input/output formats. please keep the exact problem statement from the leetcode its the its an leetcode problem, also tried to add good example at least 2.
 > * **Conceptual Visualization:** For DP problems, include a text-based **Recursion Tree** mapping the overlapping subproblems. with complete final dp array filled for the same example just below the recursion tree
 >
-> ### 2.1. Progressive Implementation Roadmap if DP Problem else Ignore DP apporach
+> ### 2.1. Progressive Implementation Roadmap if DP Problem else Ignore DP apporach and the comments
 > Provide the following methods in order within the class:
 > for each of the Phase explain the approach and steps to be performed in short
+> if not a DP problem please do not include the explaination for it 
 > * **Phase 1: Brute Force Recursion** - The "Think it" stage.
 > * **Phase 2: Top-Down Memoization** - The "Refine it" stage.
 > * **Phase 3: Bottom-Up Tabulation** - The "Build it" stage.

@@ -56,64 +56,6 @@ public class PrintSpiralMatrix {
 
     /**
      * ========================================================================
-     * PHASE 1: BRUTE FORCE / SIMULATION APPROACH (The "Think it" stage)
-     * ========================================================================
-     * Approach:
-     * We simulate the exact movement of a person walking through the matrix.
-     * We use a `visited` boolean matrix to remember where we've been. We keep
-     * track of our current direction (right, down, left, up). If we hit an edge
-     * or a previously visited cell, we turn 90 degrees clockwise.
-     * * Detailed Intuition:
-     * When faced with a trajectory problem, the most literal translation is to
-     * map out the trajectory mathematically using delta-X and delta-Y arrays
-     * (e.g., `dr = {0, 1, 0, -1}`, `dc = {1, 0, -1, 0}`). By verifying our next
-     * step against boundaries and a `visited` matrix, we guarantee a spiral.
-     * * Complexity Analysis:
-     * - Time Complexity: O(m * n)
-     * We visit each cell in the m x n matrix exactly once.
-     * - Space Complexity: O(m * n)
-     * Heap Space is O(m * n) because we allocate a completely separate 2D boolean
-     * array of size m x n to track visited states. Auxiliary Stack Space is O(1).
-     */
-    public List<Integer> spiralOrderSimulation(int[][] matrix) {
-        List<Integer> result = new ArrayList<>();
-        if (matrix == null || matrix.length == 0) return result;
-
-        int m = matrix.length;
-        int n = matrix[0].length;
-        boolean[][] visited = new boolean[m][n];
-
-        // Direction arrays for: Right, Down, Left, Up
-        int[] dr = {0, 1, 0, -1};
-        int[] dc = {1, 0, -1, 0};
-
-        int r = 0, c = 0;
-        int dir = 0; // Starts facing "Right"
-
-        for (int i = 0; i < m * n; i++) {
-            result.add(matrix[r][c]);
-            visited[r][c] = true;
-
-            // Calculate candidate next step
-            int nextR = r + dr[dir];
-            int nextC = c + dc[dir];
-
-            // If next step is valid, move there. Otherwise, turn 90 degrees.
-            if (nextR >= 0 && nextR < m && nextC >= 0 && nextC < n && !visited[nextR][nextC]) {
-                r = nextR;
-                c = nextC;
-            } else {
-                dir = (dir + 1) % 4; // Turn clockwise
-                r += dr[dir];
-                c += dc[dir];
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * ========================================================================
      * PHASE 2: OPTIMAL BOUNDARY APPROACH (The "Perfect it" stage)
      * ========================================================================
      * Approach:
@@ -180,6 +122,65 @@ public class PrintSpiralMatrix {
 
         return result;
     }
+
+    /**
+     * ========================================================================
+     * PHASE 1: BRUTE FORCE / SIMULATION APPROACH (The "Think it" stage)
+     * ========================================================================
+     * Approach:
+     * We simulate the exact movement of a person walking through the matrix.
+     * We use a `visited` boolean matrix to remember where we've been. We keep
+     * track of our current direction (right, down, left, up). If we hit an edge
+     * or a previously visited cell, we turn 90 degrees clockwise.
+     * * Detailed Intuition:
+     * When faced with a trajectory problem, the most literal translation is to
+     * map out the trajectory mathematically using delta-X and delta-Y arrays
+     * (e.g., `dr = {0, 1, 0, -1}`, `dc = {1, 0, -1, 0}`). By verifying our next
+     * step against boundaries and a `visited` matrix, we guarantee a spiral.
+     * * Complexity Analysis:
+     * - Time Complexity: O(m * n)
+     * We visit each cell in the m x n matrix exactly once.
+     * - Space Complexity: O(m * n)
+     * Heap Space is O(m * n) because we allocate a completely separate 2D boolean
+     * array of size m x n to track visited states. Auxiliary Stack Space is O(1).
+     */
+    public List<Integer> spiralOrderSimulation(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
+        if (matrix == null || matrix.length == 0) return result;
+
+        int m = matrix.length;
+        int n = matrix[0].length;
+        boolean[][] visited = new boolean[m][n];
+
+        // Direction arrays for: Right, Down, Left, Up
+        int[] dr = {0, 1, 0, -1};
+        int[] dc = {1, 0, -1, 0};
+
+        int r = 0, c = 0;
+        int dir = 0; // Starts facing "Right"
+
+        for (int i = 0; i < m * n; i++) {
+            result.add(matrix[r][c]);
+            visited[r][c] = true;
+
+            // Calculate candidate next step
+            int nextR = r + dr[dir];
+            int nextC = c + dc[dir];
+
+            // If next step is valid, move there. Otherwise, turn 90 degrees.
+            if (nextR >= 0 && nextR < m && nextC >= 0 && nextC < n && !visited[nextR][nextC]) {
+                r = nextR;
+                c = nextC;
+            } else {
+                dir = (dir + 1) % 4; // Turn clockwise
+                r += dr[dir];
+                c += dc[dir];
+            }
+        }
+
+        return result;
+    }
+
 
     /**
      * ========================================================================

@@ -19,14 +19,17 @@ import java.util.Arrays;
  * - The product of any subarray of nums is guaranteed to fit in a 32-bit integer.
  * * Input: An array of N integers.
  * Output: An integer representing the maximum product of any contiguous subarray.
+ *
  * * Example 1:
  * Input: nums = [2,3,-2,4]
  * Output: 6
  * Explanation: [2,3] has the largest product 6.
+ *
  * * Example 2:
  * Input: nums = [-2,0,-1]
  * Output: 0
  * Explanation: The result cannot be 2, because [-2,-1] is not a contiguous subarray.
+ *
  * * Conceptual Visualization (Prefix/Suffix Logic & The Zero/Negative Dilemma):
  * Array: [ 2,  3, -2,  4, -1]
  * * The challenge lies in negative numbers and zeros:
