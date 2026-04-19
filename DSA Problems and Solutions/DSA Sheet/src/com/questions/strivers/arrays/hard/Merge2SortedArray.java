@@ -40,6 +40,25 @@ import java.util.Arrays;
  * ============================================================================
  */
 public class Merge2SortedArray {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int p1 = m - 1;
+        int p2 = n - 1;
+        int p = m + n - 1;
+
+        // We only need to iterate until nums2 is fully merged.
+        // If p1 reaches < 0 first, we just keep dropping nums2 elements into place.
+        // If p2 reaches < 0 first, nums1's remaining elements are already perfectly sorted at the front!
+        while (p2 >= 0) {
+            if (p1 >= 0 && nums1[p1] > nums2[p2]) {
+                nums1[p] = nums1[p1];
+                p1--;
+            } else {
+                nums1[p] = nums2[p2];
+                p2--;
+            }
+            p--;
+        }
+    }
 
     /**
      * ========================================================================
