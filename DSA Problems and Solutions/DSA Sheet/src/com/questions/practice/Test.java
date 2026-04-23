@@ -9,6 +9,20 @@ public class Test {
 
     }
 
+    private static int findMin(int []nums){
+        int n = nums.length;
+        int low=0,high=n-1;
+        while (low < high){
+            int mid = low + (high-low)/2;
+            if(nums[mid] > nums[high]){
+                low = mid + 1;
+            }else{
+                high = mid;
+            }
+        }
+        return nums[low];
+    }
+
     public boolean search(int[] nums, int target) {
         if (nums == null || nums.length == 0) return false;
         int n = nums.length;
