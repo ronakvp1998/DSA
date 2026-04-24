@@ -2,147 +2,228 @@ package com.questions.strivers.binarysearch.bsonanswers;
 
 import java.util.Arrays;
 
-/*
-Problem Statement:
-You are given an array 'arr' of size 'n' which denotes the positions of stalls.
-You are also given an integer 'k' which denotes the number of aggressive cows.
-You need to place the cows in the stalls such that the minimum distance between
-any two cows is as large as possible.
-
----
-
-Examples:
-
-Example 1:
-Input: n = 6, k = 4, arr = {0,3,4,7,10,9}
-Output: 3
-Explanation: Place cows at {0, 3, 7, 10}. The minimum distance = 3.
-
-Example 2:
-Input: n = 5, k = 2, arr = {4,2,1,3,6}
-Output: 5
-Explanation: Place cows at {1, 6}. Minimum distance = 5.
-
----
-
-Approach 1: Brute Force (aggressiveCows)
-1. Sort stalls.
-2. Try all possible minimum distances from 1 to (max-min).
-3. For each distance, check if we can place all cows (using canWePlace).
-4. Return the largest valid distance.
-Time Complexity: O(n * (max-min)) → very slow for large inputs.
-Space Complexity: O(1).
-
-Approach 2: Optimized Binary Search (aggressiveCows2)
-1. Sort stalls.
-2. The answer lies between [1, max(stalls)-min(stalls)].
-3. Apply binary search on this range:
-   - For a mid distance, check if we can place all cows (using canWePlace2).
-   - If yes → try larger distance (low = mid+1).
-   - Else → try smaller distance (high = mid-1).
-4. Return high (largest valid distance).
-Time Complexity: O(n log(max-min)) → efficient.
-Space Complexity: O(1).
-
-Helper Function: canWePlace / canWePlace2
-- Greedily place cows: place the first cow at the first stall,
-  then place next cows only if distance from last placed cow ≥ given dist.
-- Return true if we can place all k cows.
-*/
+/**
+ * ============================================================================
+ * MASTERCLASS DSA EVALUATION
+ * ============================================================================
+ * * Aggressive Cows : Detailed Solution
+ * Solved | Medium / Hard
+ * * * PROBLEM STATEMENT:
+ * You are given an array 'arr' of size 'n' which denotes the position of stalls.
+ * You are also given an integer 'k' which denotes the number of aggressive cows.
+ * You are given the task of assigning stalls to 'k' cows such that the minimum
+ * distance between any two of them is the maximum possible. Find the maximum
+ * possible minimum distance.
+ * * * EXAMPLES:
+ * Example 1:
+ * Input Format: N = 6, k = 4, arr[] = {0,3,4,7,10,9}
+ * Result: 3
+ * Explanation: The maximum possible minimum distance between any two cows will
+ * be 3 when 4 cows are placed at positions {0, 3, 7, 10}. Here the distances
+ * between cows are 3, 4, and 3 respectively. We cannot make the minimum
+ * distance greater than 3 in any ways.
+ * * Example 2:
+ * Input Format: N = 5, k = 2, arr[] = {4,2,1,3,6}
+ * Result: 5
+ * Explanation: The maximum possible minimum distance between any two cows will
+ * be 5 when 2 cows are placed at positions {1, 6}.
+ * * * CONSTRAINTS (Standard Competitive Programming Assumptions):
+ * - 2 <= k <= N <= 10^5
+ * - 0 <= arr[i] <= 10^9
+ * ============================================================================
+ */
+import java.util.Arrays;
 
 public class AggressiveCows {
 
     /**
-     * Helper function for Brute Force approach.
-     * Checks if we can place 'cows' with at least 'dist' spacing.
+     * ========================================================================
+     * PHASE 1: Best and Recommended Approach (Binary Search on Answer)
+     * ========================================================================
+     * * APPROACH & STEPS:
+     * 1. Sort the Array: To linearly simulate placing cows from left to right,
+     * the stalls must be in strictly increasing order of their positions.
+     * 2. Define Search Space:
+     * - Minimum possible distance (`low`) is 1 (cows can be in adjacent stalls).
+     * - Maximum possible distance (`high`) is `arr[N-1] - arr[0]` (placing 2
+     * cows at the extreme ends).
+     * 3. Apply Binary Search: Calculate `mid` as a candidate minimum distance.
+     * 4. Greedily Check Feasibility: Use a helper method to place cows. Start
+     * the first cow at `arr[0]`. Iterate through the stalls. If the distance
+     * between the current stall and the last placed cow is >= `mid`, place a
+     * cow here.
+     * 5. Decision Logic:
+     * - If we can successfully place all `k` cows with at least `mid` distance,
+     * then `mid` is a valid answer. However, we want the *maximum* possible
+     * distance, so we save `mid` and search the right half (`low = mid + 1`).
+     * - If we cannot place `k` cows, the distance `mid` is too large. We must
+     * shrink our search space to the left half (`high = mid - 1`).
+     * * * DETAILED INTUITION:
+     * This is the quintessential "Maximin" (Maximize the Minimum) problem pattern
+     * heavily featured in rigorous revision resources. We transition to Binary
+     * Search because the answer space is monotonic: if placing cows with a
+     * minimum distance of `X` is possible, then `X-1`, `X-2` are inherently
+     * possible. If `X` is impossible, `X+1` is definitely impossible. This allows
+     * us to discard half the search space continuously.
+     * * * COMPLEXITY ANALYSIS:
+     * - Time Complexity: O(N log N + N log M), where N is the number of stalls
+     * and M is the difference between the maximum and minimum stall positions
+     * (`arr[N-1] - arr[0]`). Sorting takes O(N log N). The binary search runs
+     * log(M) times, and the feasibility check inside it takes O(N).
+     * - Space Complexity: O(1) auxiliary (ignoring the O(log N) space used
+     * by Java's Dual-Pivot Quicksort implementation under the hood of Arrays.sort).
+     * - Auxiliary Stack Space: O(1) (Iterative binary search).
+     * - Heap Space: O(1) (No dynamic structures instantiated).
      */
-    private static boolean canWePlace(int[] stalls, int dist, int cows) {
-        int n = stalls.length;
-        int cntCows = 1;      // Place first cow at the first stall
-        int last = stalls[0]; // Last placed cow position
+    public static int aggressiveCowsOptimal(int[] arr, int k) {
+        if (arr == null || arr.length < k) return -1;
 
-        for (int i = 1; i < n; i++) {
-            if (stalls[i] - last >= dist) {
-                cntCows++;       // Place next cow
-                last = stalls[i]; // Update last position
-            }
-            if (cntCows >= cows) return true; // Successfully placed all cows
-        }
-        return false;
-    }
+        Arrays.sort(arr);
+        int n = arr.length;
 
-    /**
-     * Brute Force Approach:
-     * Try all possible distances and return the maximum valid one.
-     *
-     * Time Complexity: O(n * (max-min))
-     * Space Complexity: O(1)
-     */
-    private static int aggressiveCows(int[] stalls, int k) {
-        int n = stalls.length;
-        Arrays.sort(stalls); // Sort stalls in ascending order
-
-        int limit = stalls[n - 1] - stalls[0]; // Max possible distance
-        for (int i = 1; i <= limit; i++) {
-            if (!canWePlace(stalls, i, k)) {
-                // First invalid distance → return previous
-                return (i - 1);
-            }
-        }
-        return limit; // If all worked, return max possible distance
-    }
-
-    /**
-     * Helper function for Binary Search approach.
-     * Same logic as canWePlace().
-     */
-    private static boolean canWePlace2(int[] stalls, int dist, int cows) {
-        int n = stalls.length;
-        int cntCows = 1;
-        int last = stalls[0];
-
-        for (int i = 1; i < n; i++) {
-            if (stalls[i] - last >= dist) {
-                cntCows++;
-                last = stalls[i];
-            }
-            if (cntCows >= cows) return true;
-        }
-        return false;
-    }
-
-    /**
-     * Optimized Approach: Binary Search on Answer
-     *
-     * Time Complexity: O(n log(max-min))
-     * Space Complexity: O(1)
-     */
-    private static int aggressiveCows2(int[] stalls, int k) {
-        int n = stalls.length;
-        Arrays.sort(stalls);
-
-        int low = 1, high = stalls[n - 1] - stalls[0]; // Search space
+        int low = 1;
+        int high = arr[n - 1] - arr[0];
+        int optimalDistance = 1;
 
         while (low <= high) {
-            int mid = (low + high) / 2; // Middle distance
+            int mid = low + (high - low) / 2;
 
-            if (canWePlace2(stalls, mid, k)) {
-                // If possible with 'mid' distance, try for larger
+            if (canPlaceCows(arr, k, mid)) {
+                optimalDistance = mid; // Valid distance, but look for a larger one
                 low = mid + 1;
             } else {
-                // Otherwise reduce the distance
-                high = mid - 1;
+                high = mid - 1; // Distance too large, cows don't fit
             }
         }
-        return high; // Largest valid distance
+
+        return optimalDistance;
     }
 
-    public static void main(String[] args) {
-        int[] stalls = {0, 3, 4, 7, 10, 9};
-        int k = 4;
+    // Helper method to greedily simulate placing k cows with at least 'minDist' between them
+    private static boolean canPlaceCows(int[] arr, int k, int minDist) {
+        int cowsPlaced = 1;          // Place the first cow...
+        int lastPlacedPosition = arr[0]; // ...at the first stall
 
-        // Optimized binary search solution
-        int ans = aggressiveCows2(stalls, k);
-        System.out.println("The maximum possible minimum distance is: " + ans);
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] - lastPlacedPosition >= minDist) {
+                cowsPlaced++;
+                lastPlacedPosition = arr[i];
+
+                if (cowsPlaced == k) {
+                    return true; // Successfully placed all cows
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * ========================================================================
+     * PHASE 2: Brute Force Approach - The "Think it" stage
+     * ========================================================================
+     * * APPROACH & STEPS:
+     * 1. Sort the array of stalls.
+     * 2. Identify the search boundaries: 1 to `arr[n-1] - arr[0]`.
+     * 3. Run a linear loop starting with distance `d = 1`.
+     * 4. For each distance `d`, use the greedy placement logic.
+     * 5. The moment a distance `d` fails (we cannot place `k` cows), we know
+     * the maximum possible distance was the *previous* one (`d - 1`).
+     * * * DETAILED INTUITION:
+     * We simulate the absolute basic thought process. "Can I place them 1 unit
+     * apart? Yes. 2 units? Yes. 3 units? Yes. 4 units? No." If 4 fails, 3 is
+     * our answer. It logically proves the condition but fails under strict
+     * time limits.
+     * * * COMPLEXITY ANALYSIS:
+     * - Time Complexity: O(N log N + M * N), where M is the max possible distance
+     * (`arr[N-1] - arr[0]`). If stall coordinates are up to 10^9, this loop
+     * will strictly result in Time Limit Exceeded (TLE).
+     * - Space Complexity: O(1) auxiliary (ignoring sort space).
+     * - Auxiliary Stack Space: O(1).
+     * - Heap Space: O(1).
+     */
+    public static int aggressiveCowsBruteForce(int[] arr, int k) {
+        if (arr == null || arr.length < k) return -1;
+
+        Arrays.sort(arr);
+        int n = arr.length;
+        int limit = arr[n - 1] - arr[0];
+
+        // Linearly scan the answer space
+        for (int d = 1; d <= limit; d++) {
+            if (!canPlaceCows(arr, k, d)) {
+                return d - 1; // Return the last successful distance
+            }
+        }
+
+        return limit;
+    }
+
+    /**
+     * ========================================================================
+     * PHASE 3: Alternative Approaches
+     * ========================================================================
+     * * Why purely Greedy fails without Binary Search:
+     * You might be tempted to just place cows by jumping exactly `(max-min)/k`
+     * stalls. However, stalls are not uniformly distributed. A purely greedy
+     * placement without testing a strict numerical distance threshold will
+     * inevitably group cows too closely when stalls are clustered, completely
+     * ruining the global minimum distance.
+     * * Binary Search on Answer combined with a Greedy checker is the singular,
+     * mathematically optimal paradigm for this problem.
+     */
+
+    /**
+     * ========================================================================
+     * TESTING SUITE
+     * ========================================================================
+     * Validating implementations against examples and critical edge cases.
+     */
+    public static void main(String[] args) {
+        System.out.println("Running Aggressive Cows Test Suite...\n");
+
+        // Test Case 1: Standard case (Example 1) - Note: Input is unsorted
+        int[] arr1 = {0, 3, 4, 7, 10, 9};
+        int k1 = 4;
+        runTestCase(1, arr1, k1, 3);
+
+        // Test Case 2: Standard case (Example 2) - Note: Input is unsorted
+        int[] arr2 = {4, 2, 1, 3, 6};
+        int k2 = 2;
+        runTestCase(2, arr2, k2, 5);
+
+        // Test Case 3: Edge Case - Exactly 2 cows
+        // Answer should be the distance between the first and last stall after sorting.
+        int[] arr3 = {1, 2, 8, 4, 9};
+        int k3 = 2;
+        runTestCase(3, arr3, k3, 8); // Sorted: 1, 2, 4, 8, 9. 9-1 = 8.
+
+        // Test Case 4: Edge Case - k equals N (Cows = Stalls)
+        // Must place a cow in every single stall. Answer is the min adjacent difference.
+        int[] arr4 = {2, 1, 8, 4, 9}; // Sorted: 1, 2, 4, 8, 9
+        int k4 = 5;
+        // Differences: (2-1=1), (4-2=2), (8-4=4), (9-8=1). Min difference is 1.
+        runTestCase(4, arr4, k4, 1);
+
+        // Test Case 5: Large Gap Case
+        int[] arr5 = {1, 1000000000};
+        int k5 = 2;
+        runTestCase(5, arr5, k5, 999999999);
+    }
+
+    private static void runTestCase(int testNumber, int[] arr, int k, int expected) {
+        // Clone array to prevent Phase 1 sort from bypassing Phase 2 sort cost in benchmarking
+        int[] arrForOptimal = arr.clone();
+
+        long startTime = System.nanoTime();
+        int resultOptimal = aggressiveCowsOptimal(arrForOptimal, k);
+        long endTime = System.nanoTime();
+
+        System.out.println("Test Case " + testNumber + ":");
+        System.out.println("Input: arr = " + Arrays.toString(arr) + ", k = " + k);
+        System.out.println("Expected: " + expected);
+        System.out.println("Output (Optimal): " + resultOptimal);
+        System.out.println("Execution Time: " + (endTime - startTime) / 1_000_000.0 + " ms");
+        System.out.println("Status: " + (resultOptimal == expected ? "✅ PASS" : "❌ FAIL"));
+        System.out.println("--------------------------------------------------");
     }
 }

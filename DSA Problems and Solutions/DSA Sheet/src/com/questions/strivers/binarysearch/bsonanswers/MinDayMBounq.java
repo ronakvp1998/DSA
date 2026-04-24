@@ -1,206 +1,250 @@
 package com.questions.strivers.binarysearch.bsonanswers;
-/*
-* Problem Statement: You are given 'N’ roses and you are also given an array 'arr'
-* where 'arr[i]'  denotes that the 'ith' rose will bloom on the 'arr[i]th' day.
-You can only pick already bloomed roses that are adjacent to make a bouquet.
-* You are also told that you require exactly 'k' adjacent bloomed roses to make a single bouquet.
-Find the minimum number of days required to make at least ‘m' bouquets each containing 'k' roses.
-* Return -1 if it is not possible.
 
-Examples
-
-Example 1:
-Input Format: N = 8, arr[] = {7, 7, 7, 7, 13, 11, 12, 7}, m = 2, k = 3
-Result: 12
-Explanation: On the 12th the first 4 flowers and the last 3 flowers would have already bloomed. So, we can easily make 2 bouquets, one with the first 3 and another with the last 3 flowers.
-
-Example 2:
-Input Format: N = 5, arr[] = {1, 10, 3, 10, 2}, m = 3, k = 2
-Result: -1
-Explanation: If we want to make 3 bouquets of 2 flowers each, we need at least 6 flowers. But we are given only 5 flowers, so, we cannot make the bouquets.
-
-
-Let's grasp the question better with the help of an example. Consider an array: {7, 7, 7, 7, 13, 11, 12, 7}. We aim to create bouquets with k, which is 3 adjacent flowers, and we need to make m, which is 2 such bouquets. Now, if we try to make bouquets on the 11th day, the first 4 flowers and the 6th and the last flowers would have bloomed. So, we will be having 6 flowers in total on the 11th day. However, we require two groups of 3 adjacent flowers each. Although we can form one group with the first 3 adjacent flowers, we cannot create a second group. Therefore, 11 is not the answer in this case.
-
-
-If we choose the 12th day, we can make 2 such groups, one with the first 3 adjacent flowers and the other with the last 3 adjacent flowers. Hence, we need a minimum of 12 days to make 2 bouquets.
-
-
-Observation:
-
-
-Impossible case: To create m bouquets with k adjacent flowers each, we require a minimum of m*k flowers in total. If the number of flowers in the array, represented by array-size, is less than m*k, it becomes impossible to form m bouquets even after all the flowers have bloomed. In such cases, where array-size < m*k, we should return -1.
- Maximum possible answer: The maximum potential answer corresponds to the time needed for all the flowers to bloom. In other words, it is the highest value within the given array i.e. max(arr[]).
-Minimum possible answer: The minimum potential answer corresponds to the time needed for atleast one flower to bloom. In other words, it is the smallest value within the given array i.e. min(arr[]).
-
-Note: From the above observations, we can conclude that our answer lies between the range [min(arr[]), max(arr[])].
-
-
-How to calculate the number of bouquets we can make on dth day:
-
-
-We will count the number of adjacent bloomed flowers(say cnt) and whenever we get a flower that is not bloomed, we will add the number of bouquets we can make with ‘cnt’ adjacent flowers i.e. floor(cnt/k) to the answer. We will follow the process throughout the array.
-
-
-Now, we will write a function possible(), that will return true if, on a certain day, we can make at least m bouquets otherwise it will return false. The steps will be the following:
-
-
-possible(arr[], day, m, k) algorithm:
-
-
-We will declare two variables i.e. ‘cnt’ and ‘noOfB’.
-cnt -> the number of adjacent flowers,
-noOfB -> the number of bouquets.
-We will run a loop to traverse the array.
-Inside the loop, we will do the following:
-If arr[i] <= day: This means the ith flower has bloomed. So, we will increase the number of adjacent flowers i.e. ‘cnt’ by 1.
-Otherwise, the flower has not bloomed. Here, we will calculate the number of bouquets we can make with ‘cnt’ adjacent flowers i.e. floor(cnt/k), and add it to the noOfB. Now, as this ith flower breaks the sequence of the adjacent bloomed flowers, we will set the ‘cnt’ 0.
-Lastly, outside the loop, we will calculate the floor(cnt/k) and add it to the noOfB.
-If noOfB >= m: This means, we can make at least m bouquets. So, we will return true.
-Otherwise, We will return false.
-
-Note: We actually pass a particular day as a parameter to the possible() function. The function returns true if it is possible to make atleast m bouquets on that particular day, otherwise, it returns false.
-
-
-* */
+/**
+ * ============================================================================
+ * MASTERCLASS DSA EVALUATION
+ * ============================================================================
+ * * 1482. Minimum Number of Days to Make m Bouquets
+ * Solved | Medium
+ * * * PROBLEM STATEMENT:
+ * You are given an integer array bloomDay, an integer m and an integer k.
+ * You want to make m bouquets. To make a bouquet, you need to use k adjacent
+ * flowers from the garden.
+ * * The garden consists of n flowers, the ith flower will bloom in the
+ * bloomDay[i] and then can be used in exactly one bouquet.
+ * * Return the minimum number of days you need to wait to be able to make m
+ * bouquets from the garden. If it is impossible to make m bouquets return -1.
+ * * * EXAMPLES:
+ * Example 1:
+ * Input: bloomDay = [1,10,3,10,2], m = 3, k = 1
+ * Output: 3
+ * Explanation: Let us see what happened in the first three days. x means
+ * flower bloomed and _ means flower did not bloom in the garden.
+ * We need 3 bouquets each should contain 1 flower.
+ * After day 1: [x, _, _, _, _]   // we can only make one bouquet.
+ * After day 2: [x, _, _, _, x]   // we can only make two bouquets.
+ * After day 3: [x, _, x, _, x]   // we can make 3 bouquets. The answer is 3.
+ * * Example 2:
+ * Input: bloomDay = [1,10,3,10,2], m = 3, k = 2
+ * Output: -1
+ * Explanation: We need 3 bouquets each has 2 flowers, that means we need 6
+ * flowers. We only have 5 flowers so it is impossible to get the needed
+ * bouquets and we return -1.
+ * * Example 3:
+ * Input: bloomDay = [7,7,7,7,12,7,7], m = 2, k = 3
+ * Output: 12
+ * Explanation: We need 2 bouquets each should have 3 flowers.
+ * Here is the garden after the 7 and 12 days:
+ * After day 7: [x, x, x, x, _, x, x]
+ * We can make one bouquet of the first three flowers that bloomed. We cannot
+ * make another bouquet from the last three flowers that bloomed because they
+ * are not adjacent.
+ * After day 12: [x, x, x, x, x, x, x]
+ * It is obvious that we can make two bouquets in different ways.
+ * * * CONSTRAINTS:
+ * - bloomDay.length == n
+ * - 1 <= n <= 10^5
+ * - 1 <= bloomDay[i] <= 10^9
+ * - 1 <= m <= 10^6
+ * - 1 <= k <= n
+ * ============================================================================
+ */
 public class MinDayMBounq {
-    // Function to check if it is possible to make at least m bouquets on a given day
-    private static boolean possible(int[] arr, int day, int m, int k) {
-        int n = arr.length; // total number of flowers
-        int cnt = 0; // count of consecutive bloomed flowers
-        int noOfB = 0; // number of bouquets made
 
-        // Loop through all flowers
-        for (int i = 0; i < n; i++) {
-            if (arr[i] <= day) {
-                // flower has bloomed on or before the given day
-                cnt++; // increment consecutive bloomed flower count
+    /**
+     * ========================================================================
+     * PHASE 1: Best and Recommended Approach (Binary Search on Answer)
+     * ========================================================================
+     * * APPROACH & STEPS:
+     * 1. Base Case Check: If the total flowers required (m * k) is greater
+     * than the total flowers in the garden (n), it's impossible. Return -1.
+     * (Note: Cast to long to prevent integer overflow since m=10^6 and k=10^5).
+     * 2. Identify Search Space: The minimum possible answer is the minimum
+     * day a flower blooms. The maximum possible answer is the maximum day
+     * a flower blooms.
+     * 3. Apply Binary Search: Calculate 'mid' day. Check if we can form 'm'
+     * bouquets by 'mid' day.
+     * 4. If true, 'mid' is a potential answer. Save it and search the left
+     * half (high = mid - 1) for a smaller (earlier) day.
+     * 5. If false, we need more time. Search the right half (low = mid + 1).
+     * * * DETAILED INTUITION:
+     * We observe a monotonic property: If we can make 'm' bouquets on day 'X',
+     * we can certainly make them on day 'X + 1', 'X + 2', etc. Conversely, if
+     * we cannot make them on day 'X', we cannot make them on day 'X - 1'.
+     * Because the validity of our condition flips from false to true at exactly
+     * one point and stays true, we can optimize our search using Binary Search
+     * on the answer range rather than checking day by day.
+     * * * COMPLEXITY ANALYSIS:
+     * - Time Complexity: O(N * log(Max_Day - Min_Day)), where N is the length
+     * of bloomDay. Finding min/max takes O(N). The binary search range is
+     * at most 10^9, so the while loop runs about log2(10^9) ≈ 30 times.
+     * Each check takes O(N) time. Overall time is extremely fast.
+     * - Space Complexity: O(1).
+     * - Auxiliary Stack Space: O(1) (Iterative approach, no recursion).
+     * - Heap Space: O(1) (No new objects or arrays instantiated).
+     */
+    public static int minDaysOptimal(int[] bloomDay, int m, int k) {
+        int n = bloomDay.length;
+        // Cast to long to prevent overflow: 10^6 * 10^5 = 10^11 > Integer.MAX_VALUE
+        if ((long) m * k > n) {
+            return -1;
+        }
+
+        int low = Integer.MAX_VALUE;
+        int high = Integer.MIN_VALUE;
+        for (int day : bloomDay) {
+            low = Math.min(low, day);
+            high = Math.max(high, day);
+        }
+
+        int optimalDays = -1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (canMakeBouquets(bloomDay, mid, m, k)) {
+                optimalDays = mid; // Possible answer, but try to find an earlier day
+                high = mid - 1;
             } else {
-                // flower not bloomed, check how many bouquets can be made from cnt
-                noOfB += (cnt / k);
-                cnt = 0; // reset counter as sequence is broken
+                low = mid + 1; // Not enough time, must wait longer
             }
         }
 
-        // After loop, check if any final sequence can make bouquets
-        noOfB += (cnt / k);
-
-        // Return true if total bouquets is at least m
-        return noOfB >= m;
+        return optimalDays;
     }
 
-    // Brute-force approach to find the minimum day to make m bouquets
-    private static int roseGarden(int[] arr, int k, int m) {
-        long val = (long) m * k; // total number of flowers needed
+    // Helper method to check if we can make 'm' bouquets by 'currentDay'
+    private static boolean canMakeBouquets(int[] bloomDay, int currentDay, int m, int k) {
+        int bouquetsCount = 0;
+        int consecutiveFlowers = 0;
 
-        int n = arr.length;
-        if (val > n) return -1; // Not enough flowers available
+        for (int day : bloomDay) {
+            if (day <= currentDay) {
+                consecutiveFlowers++;
+                if (consecutiveFlowers == k) {
+                    bouquetsCount++;
+                    consecutiveFlowers = 0; // Reset for the next bouquet
+                }
+            } else {
+                consecutiveFlowers = 0; // Contiguity broken, reset counter
+            }
+        }
+        return bouquetsCount >= m;
+    }
 
-        // Find minimum and maximum day values from the array
-        int mini = Integer.MAX_VALUE, maxi = Integer.MIN_VALUE;
-        for (int i = 0; i < n; i++) {
-            mini = Math.min(mini, arr[i]);
-            maxi = Math.max(maxi, arr[i]);
+    /**
+     * ========================================================================
+     * PHASE 2: Brute Force Approach - The "Think it" stage
+     * ========================================================================
+     * * APPROACH & STEPS:
+     * 1. Initial validation check (m * k > n).
+     * 2. Find the minimum and maximum days in the bloomDay array.
+     * 3. Iterate sequentially from the minimum day up to the maximum day.
+     * 4. For each day, linearly scan the bloomDay array to see if 'm'
+     * bouquets can be formed.
+     * 5. The first day that satisfies the condition is guaranteed to be
+     * the minimum day.
+     * * * DETAILED INTUITION:
+     * This is the literal translation of the problem statement. We simulate
+     * time passing day by day. Since we check in strictly increasing order,
+     * the very first success is naturally our minimum day. While logically
+     * sound, it fails under competitive constraints due to the massive range
+     * of possible days (up to 10^9).
+     * * * COMPLEXITY ANALYSIS:
+     * - Time Complexity: O(N * (Max_Day - Min_Day)). In the worst case,
+     * Max_Day is 10^9, leading to 10^14 operations (guaranteed Time Limit
+     * Exceeded).
+     * - Space Complexity: O(1).
+     * - Auxiliary Stack Space: O(1).
+     * - Heap Space: O(1).
+     */
+    public static int minDaysBruteForce(int[] bloomDay, int m, int k) {
+        int n = bloomDay.length;
+        if ((long) m * k > n) {
+            return -1;
         }
 
-        // Try every day from min to max to check feasibility
-        for (int i = mini; i <= maxi; i++) {
-            if (possible(arr, i, m, k)) {
-                return i; // First valid day found
+        int minDay = Integer.MAX_VALUE;
+        int maxDay = Integer.MIN_VALUE;
+        for (int day : bloomDay) {
+            minDay = Math.min(minDay, day);
+            maxDay = Math.max(maxDay, day);
+        }
+
+        // Linear scan over the answer space
+        for (int currentDay = minDay; currentDay <= maxDay; currentDay++) {
+            if (canMakeBouquets(bloomDay, currentDay, m, k)) {
+                return currentDay;
             }
         }
 
-        // If no valid day found, return -1
         return -1;
     }
 
     /**
-     * Time Complexity of Brute-force:
-     * Outer loop from min to max = O(max - min)
-     * Each call to possible() = O(n)
-     * Total = O(n * (max - min))
-     *
-     * Space Complexity = O(1) (only variables used)
+     * ========================================================================
+     * PHASE 3: Alternative Approaches
+     * ========================================================================
+     * * For this specific contiguous subset problem with a massive output range,
+     * Binary Search on Answer is the singular optimal paradigm.
+     * * Techniques like Sliding Window or Two Pointers do not apply because the
+     * constraint is based on independent numeric thresholds (bloom values <= X)
+     * rather than contiguous sums or dynamic lengths. The size of the "window"
+     * (k) is rigidly fixed, and we are searching for a value threshold, not
+     * subarray boundaries.
      */
-
-    // Optimized helper function reused in binary search version
-    private static boolean possible2(int[] arr, int day, int m, int k) {
-        int n = arr.length;
-        int cnt = 0, noOfB = 0;
-
-        for (int i = 0; i < n; i++) {
-            if (arr[i] <= day) {
-                cnt++;
-            } else {
-                noOfB += (cnt / k);
-                cnt = 0;
-            }
-        }
-
-        noOfB += (cnt / k);
-        return noOfB >= m;
-    }
-
-    // Optimized solution using binary search on the answer space
-    private static int roseGarden2(int[] arr, int k, int m) {
-        long val = (long) m * k;
-        int n = arr.length;
-
-        if (val > n) return -1; // Not enough flowers to make bouquets
-
-        // Find min and max days in the array
-        int mini = Integer.MAX_VALUE, maxi = Integer.MIN_VALUE;
-        for (int i = 0; i < n; i++) {
-            mini = Math.min(mini, arr[i]);
-            maxi = Math.max(maxi, arr[i]);
-        }
-
-        // Binary search between min and max
-        int low = mini, high = maxi;
-        while (low <= high) {
-            int mid = (low + high) / 2;
-
-            if (possible2(arr, mid, m, k)) {
-                // Try to find smaller valid day
-                high = mid - 1;
-            } else {
-                // Need more time, try higher days
-                low = mid + 1;
-            }
-        }
-
-        // low will point to the minimum day where making m bouquets is possible
-        return low;
-    }
 
     /**
-     * Time Complexity of Binary Search Approach:
-     * Binary search = O(log(max - min))
-     * Each call to possible() = O(n)
-     * Total = O(n * log(max - min))
-     *
-     * Space Complexity = O(1)
+     * ========================================================================
+     * TESTING SUITE
+     * ========================================================================
+     * Thorough testing against standard cases, impossible cases, and integer
+     * overflow edge cases.
      */
-
-    // Main function to test the code
     public static void main(String[] args) {
-        int[] arr = {7, 7, 7, 7, 13, 11, 12, 7};
-        int k = 3; // number of adjacent flowers needed in one bouquet
-        int m = 2; // number of bouquets needed
+        System.out.println("Running Minimum Days to Make Bouquets Test Suite...\n");
 
-        // Using brute-force approach
-        int ans = roseGarden(arr, k, m);
-        if (ans == -1)
-            System.out.println("We cannot make m bouquets.");
-        else
-            System.out.println("Brute-force: We can make bouquets on day " + ans);
+        // Test Case 1: Standard case (Example 1)
+        int[] bloom1 = {1, 10, 3, 10, 2};
+        int m1 = 3, k1 = 1;
+        runTestCase(1, bloom1, m1, k1, 3);
 
-        // Using binary search optimized approach
-        int ans2 = roseGarden2(arr, k, m);
-        if (ans2 == -1)
-            System.out.println("We cannot make m bouquets.");
-        else
-            System.out.println("Binary Search: We can make bouquets on day " + ans2);
+        // Test Case 2: Impossible case (Example 2)
+        int[] bloom2 = {1, 10, 3, 10, 2};
+        int m2 = 3, k2 = 2;
+        runTestCase(2, bloom2, m2, k2, -1);
+
+        // Test Case 3: Contiguous requirement check (Example 3)
+        int[] bloom3 = {7, 7, 7, 7, 12, 7, 7};
+        int m3 = 2, k3 = 3;
+        runTestCase(3, bloom3, m3, k3, 12);
+
+        // Test Case 4: Edge Case - Exactly enough flowers
+        int[] bloom4 = {5, 5, 5};
+        int m4 = 1, k4 = 3;
+        runTestCase(4, bloom4, m4, k4, 5);
+
+        // Test Case 5: Edge Case - Integer Overflow Prevention Check
+        // n = 3, m = 1000000, k = 100000. m*k = 10^11.
+        // If int overflow happens, (m*k) might wrap to a negative number,
+        // bypassing the initial length check and causing issues.
+        int[] bloom5 = {1, 2, 3};
+        int m5 = 1000000, k5 = 100000;
+        runTestCase(5, bloom5, m5, k5, -1);
     }
 
+    private static void runTestCase(int testNumber, int[] bloomDay, int m, int k, int expected) {
+        long startTime = System.nanoTime();
+        int resultOptimal = minDaysOptimal(bloomDay, m, k);
+        long endTime = System.nanoTime();
+
+        System.out.println("Test Case " + testNumber + ":");
+        System.out.println("Input: bloomDay = " + java.util.Arrays.toString(bloomDay) +
+                ", m = " + m + ", k = " + k);
+        System.out.println("Expected: " + expected);
+        System.out.println("Output (Optimal): " + resultOptimal);
+        System.out.println("Execution Time: " + (endTime - startTime) / 1_000_000.0 + " ms");
+        System.out.println("Status: " + (resultOptimal == expected ? "✅ PASS" : "❌ FAIL"));
+        System.out.println("--------------------------------------------------");
+    }
 }

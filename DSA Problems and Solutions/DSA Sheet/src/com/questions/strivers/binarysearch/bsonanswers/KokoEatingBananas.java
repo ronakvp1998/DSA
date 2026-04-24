@@ -1,160 +1,216 @@
 package com.questions.strivers.binarysearch.bsonanswers;
 
 /**
- * Problem Statement: A monkey is given ‘n’ piles of bananas, whereas the 'ith' pile has ‘a[i]’ bananas.
- * An integer ‘h’ is also given, which denotes the time (in hours) for all the bananas to be eaten.
- *         Each hour, the monkey chooses a non-empty pile of bananas and eats ‘k’ bananas.
- *         If the pile contains less than ‘k’ bananas, then the monkey consumes all the bananas and won’t eat any more bananas in that hour.
- *         Find the minimum number of bananas ‘k’ to eat per hour so that the monkey can eat all the bananas within ‘h’ hours.
- *         Examples
- *         Example 1:
- *         Input Format: N = 4, a[] = {7, 15, 6, 3}, h = 8
- *         Result: 5
- *         Explanation: If Koko eats 5 bananas/hr, he will take 2, 3, 2, and 1 hour to eat the piles accordingly.
- *         So, he will take 8 hours to complete all the piles.
- *         Example 2:
- *         Input Format: N = 5, a[] = {25, 12, 8, 14, 19}, h = 5
- *         Result: 25
- *         Explanation: If Koko eats 25 bananas/hr, he will take 1, 1, 1, 1, and 1 hour to eat the piles accordingly.
- *         So, he will take 5 hours to complete all the piles.
- *         Before moving on to the solution, let’s understand how Koko will eat the bananas. Assume,
- *         the given array is {3, 6, 7, 11} and the given time i.e. h is 8.
- *         First of all, Koko cannot eat bananas from different piles. He should complete the pile he has chosen and then he can go for another pile.
- *         Now, Koko decides to eat 2 bananas/hour. So, in order to complete the first he will take
- *         3 / 2 = 2 hours. Though mathematically, he should take 1.5 hrs but it is clearly stated in the question that
- *         after completing a pile Koko will not consume more bananas in that hour.
- *         So, for the first pile, Koko will eat 2 bananas in the first hour and then he will consume 1 banana in another hour.
- *
- *         From here we can conclude that we have to take ceil of (3/2). Similarly, we will calculate the times for other piles.
-
- *         1st pile: ceil(3/2) = 2 hrs
- *         2nd pile: ceil(6/2) = 3 hrs
- *         3rd pile: ceil(7/2) = 4 hrs
- *         4th pile: ceil(11/2) = 6 hrs
- *
- *         Koko will take 15 hrs in total to consume all the bananas from all the piles.
- *         Observation: Upon observation, it becomes evident that the maximum number of bananas (represented by 'k') that Koko can consume in an hour is obtained from the pile that contains the largest quantity of bananas. Therefore, the maximum value of 'k' corresponds to the maximum element present in the given array.
- *         So, our answer i.e. the minimum value of ‘k’ lies between 1 and the maximum element in the array i.e. max(a[]).
- *         Now, let’s move on to the solution.
- *
- * */
+ * ============================================================================
+ * MASTERCLASS DSA EVALUATION
+ * ============================================================================
+ * * 875. Koko Eating Bananas
+ * Solved | Medium
+ * * PROBLEM STATEMENT:
+ * Koko loves to eat bananas. There are n piles of bananas, the ith pile has
+ * piles[i] bananas. The guards have gone and will come back in h hours.
+ * * Koko can decide her bananas-per-hour eating speed of k. Each hour, she
+ * chooses some pile of bananas and eats k bananas from that pile. If the pile
+ * has less than k bananas, she eats all of them instead and will not eat any
+ * more bananas during this hour.
+ * * Koko likes to eat slowly but still wants to finish eating all the bananas
+ * before the guards return.
+ * * Return the minimum integer k such that she can eat all the bananas within
+ * h hours.
+ * * EXAMPLES:
+ * Example 1:
+ * Input: piles = [3,6,7,11], h = 8
+ * Output: 4
+ * * Example 2:
+ * Input: piles = [30,11,23,4,20], h = 5
+ * Output: 30
+ * * Example 3:
+ * Input: piles = [30,11,23,4,20], h = 6
+ * Output: 23
+ * * CONSTRAINTS:
+ * - 1 <= piles.length <= 10^4
+ * - piles.length <= h <= 10^9
+ * - 1 <= piles[i] <= 10^9
+ * ============================================================================
+ */
 public class KokoEatingBananas {
 
-    // ----------------------------------------------
-    // Brute-Force Approach
-    // ----------------------------------------------
-
-    // Utility method to find the maximum element in the array
-    private static int findMax(int[] v) {
-        int maxi = Integer.MIN_VALUE;
-        int n = v.length;
-        for (int i = 0; i < n; i++) {
-            maxi = Math.max(maxi, v[i]);  // Keep track of the maximum value
-        }
-        return maxi;
-    }
-
-    // Calculate total hours required to finish all bananas with a given eating speed
-    private static int calculateTotalHours(int[] v, int hourly) {
-        int totalH = 0;
-        int n = v.length;
-        for (int i = 0; i < n; i++) {
-            // Use Math.ceil to ensure partial piles take full hour
-            totalH += Math.ceil((double)(v[i]) / (double)(hourly));
-        }
-        return totalH;
-    }
-
-    // Brute-force method to find the minimum bananas per hour
-    private static int minimumRateToEatBananas(int[] v, int h) {
-        int maxi = findMax(v);  // The max possible value for k
-
-        // Try all possible rates from 1 to max
-        for (int i = 1; i <= maxi; i++) {
-            int reqTime = calculateTotalHours(v, i);  // Time taken at current rate
-            if (reqTime <= h) {
-                return i;  // First valid k found
-            }
-        }
-
-        return maxi;  // Fallback return
-    }
-
     /**
-     * Time Complexity (Brute Force):
-     * - Outer loop runs up to max(v[i]) => O(max)
-     * - Inner loop for each rate: O(N)
-     * - Total = O(max * N)
-     *
-     * Space Complexity: O(1) – constant extra space
+     * ========================================================================
+     * PHASE 1: Best and Recommended Approach (Binary Search on Answer)
+     * ========================================================================
+     * * APPROACH & STEPS:
+     * We need to find a minimum speed 'k'.
+     * - If Koko eats at speed k = 1, it takes the maximum possible time.
+     * - If Koko eats at speed k = max(piles), it takes exactly piles.length hours.
+     * * Notice the monotonic relationship: As speed (k) increases, the total
+     * hours required decreases. This strictly decreasing function tells us we
+     * can use Binary Search on the *answer range* [1, max(piles)] rather than
+     * searching an index.
+     * * 1. Initialize 'left' to 1 (minimum possible eating speed).
+     * 2. Initialize 'right' to the maximum pile size (eating any faster won't
+     * save time because a pile takes a minimum of 1 hour).
+     * 3. Calculate 'mid' speed. Check how many hours it takes to eat all piles
+     * at this speed.
+     * 4. If hours <= h, this speed is valid. Record it, but try to find a
+     * slower speed by searching the left half (right = mid - 1).
+     * 5. If hours > h, this speed is too slow. Search the right half
+     * (left = mid + 1).
+     * * DETAILED INTUITION:
+     * Instead of linearly guessing the speed, we halve our search space each
+     * iteration. We calculate ceiling division without floating-point math by
+     * using the formula: (pile + k - 1) / k.
+     * * COMPLEXITY ANALYSIS:
+     * - Time Complexity: O(N * log M), where N is the number of piles and M is
+     * the maximum number of bananas in a single pile. Getting the max pile takes
+     * O(N). The binary search runs log(M) times. Each check takes O(N) time.
+     * - Space Complexity: O(1).
+     * - Auxiliary Stack Space: O(1) (No recursion used).
+     * - Heap Space: O(1) (No dynamic data structures instantiated).
      */
+    public static int minEatingSpeedOptimal(int[] piles, int h) {
+        int left = 1;
+        int right = 0;
 
-    // ----------------------------------------------
-    // Optimized Binary Search Approach
-    // ----------------------------------------------
-
-    // Duplicate of findMax method for binary search approach
-    private static int findMax2(int[] v) {
-        int maxi = Integer.MIN_VALUE;
-        int n = v.length;
-        for (int i = 0; i < n; i++) {
-            maxi = Math.max(maxi, v[i]);
+        // Find the maximum pile size to set our upper bound
+        for (int pile : piles) {
+            right = Math.max(right, pile);
         }
-        return maxi;
-    }
 
-    // Duplicate of calculateTotalHours method for binary search approach
-    private static int calculateTotalHours2(int[] v, int hourly) {
-        int totalH = 0;
-        int n = v.length;
-        for (int i = 0; i < n; i++) {
-            totalH += Math.ceil((double)(v[i]) / (double)(hourly));
-        }
-        return totalH;
-    }
+        int optimalSpeed = right;
 
-    // Binary search to find minimum valid rate (k)
-    private static int minimumRateToEatBananas2(int[] v, int h) {
-        int low = 1, high = findMax2(v);  // Range of k
+        // Binary Search on the answer space
+        while (left <= right) {
+            int k = left + (right - left) / 2;
 
-        while (low <= high) {
-            int mid = (low + high) / 2;  // Try mid rate
-            int totalH = calculateTotalHours2(v, mid);
-
-            if (totalH <= h) {
-                // Can eat all in time or less, try smaller k
-                high = mid - 1;
+            if (canFinish(piles, h, k)) {
+                optimalSpeed = k; // k is valid, but can we go slower?
+                right = k - 1;
             } else {
-                // Not enough, need to increase k
-                low = mid + 1;
+                left = k + 1;     // k is too slow, we must eat faster
             }
         }
 
-        return low;  // Minimum rate that satisfies the condition
+        return optimalSpeed;
+    }
+
+    // Helper method to determine if speed k is sufficient
+    private static boolean canFinish(int[] piles, int h, int k) {
+        long hoursRequired = 0; // Use long to prevent integer overflow on large arrays
+        for (int pile : piles) {
+            // Equivalent to Math.ceil((double) pile / k) but avoids floating-point inaccuracies
+            hoursRequired += (pile + k - 1) / k;
+        }
+        return hoursRequired <= h;
     }
 
     /**
-     * Time Complexity (Binary Search):
-     * - Binary Search on range [1, max] => O(log(max))
-     * - For each mid, we compute total time in O(N)
-     * - Total = O(N * log(max))
-     *
-     * Space Complexity: O(1) – constant extra space
+     * ========================================================================
+     * PHASE 2: Brute Force Approach - The "Think it" stage
+     * ========================================================================
+     * * APPROACH & STEPS:
+     * The most straightforward way is to simulate the process. We start
+     * guessing the speed k = 1, then k = 2, k = 3, etc., until we find the
+     * first speed that allows Koko to finish within 'h' hours.
+     * * DETAILED INTUITION:
+     * This proves the logic of the time-calculation function. Since we want
+     * the MINIMUM integer k, the very first valid k we hit while counting up
+     * from 1 is guaranteed to be our answer.
+     * * COMPLEXITY ANALYSIS:
+     * - Time Complexity: O(N * M), where N is piles.length and M is the answer (k).
+     * In the worst case, M can be up to 10^9, making this approach strictly
+     * Time Limit Exceeded (TLE) for competitive programming constraints.
+     * - Space Complexity: O(1).
+     * - Auxiliary Stack Space: O(1).
+     * - Heap Space: O(1).
+     */
+    public static int minEatingSpeedBruteForce(int[] piles, int h) {
+        int k = 1;
+        while (true) {
+            long hoursRequired = 0;
+            for (int pile : piles) {
+                // Utilizing double cast + Math.ceil for readability in Brute Force
+                hoursRequired += (long) Math.ceil((double) pile / k);
+            }
+            if (hoursRequired <= h) {
+                return k;
+            }
+            k++;
+        }
+    }
+
+    /**
+     * ========================================================================
+     * PHASE 3: Alternative Approaches
+     * ========================================================================
+     * * For this specific problem, there are no other algorithm paradigms (like
+     * Greedy, Bitmask, Two Pointers) that provide a better or mathematically
+     * different approach than Binary Search on Answer.
+     * * Mathematical Bound Alternative (Optimization):
+     * We know that the minimum possible speed Koko *must* maintain on average
+     * is the total sum of bananas divided by 'h'.
+     * We can optimize the lower bound (`left`) of our binary search:
+     * left = Math.ceil(Total Bananas / h).
+     * * While this provides a tighter initial search space, summing the total
+     * bananas requires an O(N) pass and doesn't change the O(N log M)
+     * asymptotic time complexity. Binary search is already so aggressive that
+     * skipping lower bounds saves negligible operations (logarithmically).
+     * Therefore, the standard Binary Search in Phase 1 remains the industry standard.
      */
 
-    // ----------------------------------------------
-    // Driver Method
-    // ----------------------------------------------
+
+    /**
+     * ========================================================================
+     * TESTING SUITE
+     * ========================================================================
+     * Thorough testing against standard cases and tricky edge cases.
+     */
     public static void main(String[] args) {
-        int[] v = {7, 15, 6, 3};
-        int h = 8;
+        System.out.println("Running Koko Eating Bananas Test Suite...\n");
 
-        // Brute-force approach
-        int ans = minimumRateToEatBananas(v, h);
-        System.out.println("Brute-force: Koko should eat at least " + ans + " bananas/hr.");
+        // Test Case 1: Standard case (Example 1)
+        int[] piles1 = {3, 6, 7, 11};
+        int h1 = 8;
+        runTestCase(1, piles1, h1, 4);
 
-        // Optimized binary search approach
-        int ans2 = minimumRateToEatBananas2(v, h);
-        System.out.println("Binary Search: Koko should eat at least " + ans2 + " bananas/hr.");
+        // Test Case 2: Faster eating required (Example 2)
+        int[] piles2 = {30, 11, 23, 4, 20};
+        int h2 = 5;
+        runTestCase(2, piles2, h2, 30);
+
+        // Test Case 3: More relaxed time (Example 3)
+        int[] piles3 = {30, 11, 23, 4, 20};
+        int h3 = 6;
+        runTestCase(3, piles3, h3, 23);
+
+        // Test Case 4: Edge Case - h equals piles.length (must eat max pile in 1 hr)
+        int[] piles4 = {10, 20, 30, 40};
+        int h4 = 4;
+        runTestCase(4, piles4, h4, 40);
+
+        // Test Case 5: Edge Case - Single pile, large h
+        int[] piles5 = {100};
+        int h5 = 100;
+        runTestCase(5, piles5, h5, 1);
+
+        // Test Case 6: Edge Case - Integer Overflow Prevention Check
+        // If we sum hours incorrectly using ints, large numbers will overflow
+        int[] piles6 = {805306368, 805306368, 805306368};
+        int h6 = 1000000000;
+        runTestCase(6, piles6, h6, 3);
+    }
+
+    private static void runTestCase(int testNumber, int[] piles, int h, int expected) {
+        long startTime = System.nanoTime();
+        int resultOptimal = minEatingSpeedOptimal(piles, h);
+        long endTime = System.nanoTime();
+
+        System.out.println("Test Case " + testNumber + ":");
+        System.out.println("Input: piles = " + java.util.Arrays.toString(piles) + ", h = " + h);
+        System.out.println("Expected: " + expected);
+        System.out.println("Output (Optimal): " + resultOptimal);
+        System.out.println("Execution Time: " + (endTime - startTime) / 1_000_000.0 + " ms");
+        System.out.println("Status: " + (resultOptimal == expected ? "✅ PASS" : "❌ FAIL"));
+        System.out.println("--------------------------------------------------");
     }
 }
