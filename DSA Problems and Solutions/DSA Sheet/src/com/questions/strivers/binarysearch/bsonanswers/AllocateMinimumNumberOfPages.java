@@ -33,7 +33,7 @@ package com.questions.strivers.binarysearch.bsonanswers;
  * - 1 <= m <= 10^5
  * ============================================================================
  */
-public class AllocateMinimumNumberOfPages {
+    public class AllocateMinimumNumberOfPages {
 
     /**
      * ========================================================================

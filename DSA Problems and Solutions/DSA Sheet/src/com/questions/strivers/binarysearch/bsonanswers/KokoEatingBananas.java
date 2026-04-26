@@ -1,5 +1,7 @@
 package com.questions.strivers.binarysearch.bsonanswers;
 
+import java.util.Arrays;
+
 /**
  * ============================================================================
  * MASTERCLASS DSA EVALUATION
@@ -68,42 +70,45 @@ public class KokoEatingBananas {
      * - Auxiliary Stack Space: O(1) (No recursion used).
      * - Heap Space: O(1) (No dynamic data structures instantiated).
      */
-    public static int minEatingSpeedOptimal(int[] piles, int h) {
-        int left = 1;
-        int right = 0;
 
-        // Find the maximum pile size to set our upper bound
-        for (int pile : piles) {
-            right = Math.max(right, pile);
-        }
+     private static int minEatingSpeedOptimal(int[] piles, int h) {
+         // Find maximum element
+         int maxPile = Arrays.stream(piles).max().getAsInt();
 
-        int optimalSpeed = right;
+         // Initialize low and high pointers
+         int low = 1, high = maxPile;
+         int ans = maxPile;
 
-        // Binary Search on the answer space
-        while (left <= right) {
-            int k = left + (right - left) / 2;
+         // Binary search on answer space
+         while (low <= high) {
+             // Using low + (high - low) / 2 is safer to prevent overflow here as well
+             int mid = low + (high - low) / 2;
 
-            if (canFinish(piles, h, k)) {
-                optimalSpeed = k; // k is valid, but can we go slower?
-                right = k - 1;
-            } else {
-                left = k + 1;     // k is too slow, we must eat faster
-            }
-        }
+             // Note: Now evaluating against a long
+             long totalH = calculateTotalHours(piles, mid);
 
-        return optimalSpeed;
-    }
+             // If possible, try smaller speed
+             if (totalH <= h) {
+                 ans = mid;
+                 high = mid - 1;
+             }
+             // Otherwise, try larger speed
+             else {
+                 low = mid + 1;
+             }
+         }
+         return ans;
+     }
 
-    // Helper method to determine if speed k is sufficient
-    private static boolean canFinish(int[] piles, int h, int k) {
-        long hoursRequired = 0; // Use long to prevent integer overflow on large arrays
-        for (int pile : piles) {
-            // Equivalent to Math.ceil((double) pile / k) but avoids floating-point inaccuracies
-            hoursRequired += (pile + k - 1) / k;
-        }
-        return hoursRequired <= h;
-    }
-
+     // Changed return type to long
+     private static long calculateTotalHours(int[] piles, int speed) {
+         long totalH = 0; // Changed from int to long
+         for (int bananas : piles) {
+             totalH += (long) Math.ceil((double) bananas / speed);
+         }
+         return totalH;
+     }
+     
     /**
      * ========================================================================
      * PHASE 2: Brute Force Approach - The "Think it" stage

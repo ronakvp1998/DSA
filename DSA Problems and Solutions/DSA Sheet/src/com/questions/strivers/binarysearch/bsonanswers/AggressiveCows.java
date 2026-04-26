@@ -32,7 +32,6 @@ import java.util.Arrays;
  * - 0 <= arr[i] <= 10^9
  * ============================================================================
  */
-import java.util.Arrays;
 
 public class AggressiveCows {
 
@@ -100,6 +99,9 @@ public class AggressiveCows {
     }
 
     // Helper method to greedily simulate placing k cows with at least 'minDist' between them
+//    We always assign the 1st slot because it guarantees the absolute maximum leftover space for the remaining cows.
+//    If a specific distance cannot be achieved by starting at arr[0],
+//    it is an absolute mathematical certainty that it cannot be achieved by starting anywhere else.
     private static boolean canPlaceCows(int[] arr, int k, int minDist) {
         int cowsPlaced = 1;          // Place the first cow...
         int lastPlacedPosition = arr[0]; // ...at the first stall
