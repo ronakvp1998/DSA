@@ -78,7 +78,7 @@ public class PaintersPartition {
 
         int low = 0;
         long high = 0; // Guarding against integer overflow for massive sums
-
+        // low = max, high = sum
         for (int board : boards) {
             low = Math.max(low, board);
             high += board;
