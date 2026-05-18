@@ -1,4 +1,4 @@
-package com.questions.strivers.binarysearch.bson2darray;
+package strivers.binarysearch.bson2darray;
 
 /**
  * ============================================================================

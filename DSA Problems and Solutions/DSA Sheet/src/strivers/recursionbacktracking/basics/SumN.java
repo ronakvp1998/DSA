@@ -1,4 +1,4 @@
-package com.questions.strivers.recursionbacktracking.basics;
+package strivers.recursionbacktracking.basics;
 
 public class SumN {
 

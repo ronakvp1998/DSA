@@ -1,4 +1,4 @@
-package com.questions.ctobhaiya.heaps;
+package ctobhaiya.heaps;
 
 import java.util.ArrayList;
 import java.util.Collections;

@@ -1,4 +1,4 @@
-package com.questions.strivers.stackandqueues.monotonicstackqueue;
+package strivers.stackandqueues.monotonicstackqueue;
 
 import java.util.List;
 import java.util.Stack;

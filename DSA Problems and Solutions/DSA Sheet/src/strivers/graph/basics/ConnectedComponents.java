@@ -1,4 +1,4 @@
-package com.questions.strivers.graph.basics;
+package strivers.graph.basics;
 
 import java.util.*;
 

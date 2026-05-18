@@ -1,4 +1,4 @@
-package com.questions.strivers.slidingwind2pointer.count;
+package strivers.slidingwind2pointer.count;
 /**
  * ============================================================================
  * 🤖 MASTERCLASS DSA SOLUTION

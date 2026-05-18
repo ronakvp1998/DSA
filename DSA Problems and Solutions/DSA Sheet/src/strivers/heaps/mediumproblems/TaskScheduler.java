@@ -1,4 +1,4 @@
-package com.questions.strivers.heaps.mediumproblems;
+package strivers.heaps.mediumproblems;
 
 /**
  * ==================================================================================================

@@ -1,4 +1,4 @@
-package com.questions.strivers.dynamicprogramming.twoddp;
+package strivers.dynamicprogramming.twoddp;
 
 import java.util.ArrayList;
 import java.util.Arrays;

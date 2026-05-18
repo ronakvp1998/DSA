@@ -1,4 +1,4 @@
-package com.questions.strivers.binarytrees.medium;
+package strivers.binarytrees.medium;
 
 class Pair<U, V> {
     private U key;

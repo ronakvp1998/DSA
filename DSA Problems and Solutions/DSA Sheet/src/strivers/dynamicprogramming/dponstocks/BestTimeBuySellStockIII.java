@@ -1,4 +1,4 @@
-package com.questions.strivers.dynamicprogramming.dponstocks;
+package strivers.dynamicprogramming.dponstocks;
 /**
  * ============================================================================
  * MASTERCLASS SOLUTION: 123. Best Time to Buy and Sell Stock III

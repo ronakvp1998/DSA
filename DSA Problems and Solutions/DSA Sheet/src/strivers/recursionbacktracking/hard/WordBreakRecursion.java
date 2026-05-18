@@ -1,4 +1,4 @@
-package com.questions.strivers.recursionbacktracking.hard;
+package strivers.recursionbacktracking.hard;
 
 import java.util.*;
 

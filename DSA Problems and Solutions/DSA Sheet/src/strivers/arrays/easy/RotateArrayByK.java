@@ -1,4 +1,4 @@
-package com.questions.strivers.arrays.easy;
+package strivers.arrays.easy;
 
 /*
 Problem: Rotate an array of size n by k steps (either to the left or right).

@@ -1,4 +1,4 @@
-package com.questions.apnacollage.string;
+package apnacollage.string;
 
 import java.util.Stack;
 

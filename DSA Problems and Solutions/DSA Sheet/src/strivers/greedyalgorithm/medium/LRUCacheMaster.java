@@ -1,4 +1,4 @@
-package com.questions.strivers.greedyalgorithm.medium;
+package strivers.greedyalgorithm.medium;
 
 /**
  * 🟡 PROBLEM: LEAST RECENTLY USED (LRU) PAGE REPLACEMENT ALGORITHM

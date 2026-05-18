@@ -1,4 +1,4 @@
-package com.questions.strivers.binarytrees;
+package strivers.binarytrees;
 
 public class TreeNode {
     public int val;

@@ -1,4 +1,4 @@
-package com.questions.strivers.arrays.easy;
+package strivers.arrays.easy;
 
 /*
 Problem Statement: Given an integer N and an array of size N-1 containing N-1 numbers between 1 to N.

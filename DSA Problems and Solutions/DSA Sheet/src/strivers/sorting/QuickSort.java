@@ -1,4 +1,4 @@
-package com.questions.strivers.sorting;
+package strivers.sorting;
 
 import java.util.Arrays;
 /*

@@ -1,4 +1,4 @@
-package com.questions.strivers.string.medium;
+package strivers.string.medium;
 
 /**
  * ============================================================================

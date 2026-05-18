@@ -1,4 +1,4 @@
-package com.questions.strivers.graph.basics.traversal;
+package strivers.graph.basics.traversal;
 
 import java.util.*;
 

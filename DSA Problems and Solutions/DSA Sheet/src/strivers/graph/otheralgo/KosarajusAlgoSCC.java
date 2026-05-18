@@ -1,4 +1,4 @@
-package com.questions.strivers.graph.otheralgo;
+package strivers.graph.otheralgo;
 
 import java.util.*;
 

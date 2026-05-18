@@ -1,4 +1,4 @@
-package com.questions.strivers.linkedlist.old;
+package strivers.linkedlist.old;
 
 public class LinkedList {
     public static void main(String[] args) {

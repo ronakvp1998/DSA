@@ -1,4 +1,4 @@
-package com.questions.apnacollage.array;
+package apnacollage.array;
 
 // 3 find max sub array
 public class MaxSumSubArray {

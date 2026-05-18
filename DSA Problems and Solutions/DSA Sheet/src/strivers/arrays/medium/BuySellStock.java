@@ -1,4 +1,4 @@
-package com.questions.strivers.arrays.medium;
+package strivers.arrays.medium;
 // Problem Link: https://takeuforward.org/data-structure/stock-buy-and-sell/
 // Problem Statement:
 // You are given an array of prices where prices[i] is the price of a given stock on the ith day.

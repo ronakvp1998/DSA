@@ -1,4 +1,4 @@
-package com.questions.strivers.graph.basics.dfs;
+package strivers.graph.basics.dfs;
 
 public class DFSGridMatrix {
 

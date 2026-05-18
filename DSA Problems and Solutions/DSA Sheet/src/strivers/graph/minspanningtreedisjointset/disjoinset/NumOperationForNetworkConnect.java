@@ -1,4 +1,4 @@
-package com.questions.strivers.graph.minspanningtreedisjointset.disjoinset;
+package strivers.graph.minspanningtreedisjointset.disjoinset;
 
 /**
  * =====================================================================================

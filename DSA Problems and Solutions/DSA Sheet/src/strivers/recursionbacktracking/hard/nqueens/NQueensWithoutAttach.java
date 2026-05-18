@@ -1,4 +1,4 @@
-package com.questions.strivers.recursionbacktracking.hard.nqueens;
+package strivers.recursionbacktracking.hard.nqueens;
 
 // Problem Statement:
 // Place N Queens on an n x n chessboard such that each row has exactly one Queen,

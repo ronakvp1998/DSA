@@ -1,4 +1,4 @@
-package com.questions.strivers.dynamicprogramming.dponstrings;
+package strivers.dynamicprogramming.dponstrings;
 /**
  * ============================================================================
  * 5. Longest Palindromic Substring

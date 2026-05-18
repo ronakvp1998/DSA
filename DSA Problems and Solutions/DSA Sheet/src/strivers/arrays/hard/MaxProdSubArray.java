@@ -1,4 +1,4 @@
-package com.questions.strivers.arrays.hard;
+package strivers.arrays.hard;
 
 import java.util.Arrays;
 

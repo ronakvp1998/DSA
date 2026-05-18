@@ -1,4 +1,4 @@
-package com.questions.strivers.dynamicprogramming.dponstrings;
+package strivers.dynamicprogramming.dponstrings;
 /**
  * ============================================================================
  * 1143. Longest Common Subsequence (Striver DP-26)

@@ -1,6 +1,6 @@
-package com.questions.strivers.binarytrees.medium;
+package strivers.binarytrees.medium;
 
-import com.questions.strivers.binarytrees.TreeNode;
+import strivers.binarytrees.TreeNode;
 
 import java.util.*;
 
@@ -106,9 +106,9 @@ public class TopView {
 }
 
 
-//package com.questions.strivers.binarytrees.medium;
+//package strivers.binarytrees.medium;
 //
-//import com.questions.strivers.binarytrees.TreeNode;
+//import strivers.binarytrees.TreeNode;
 //import java.util.*;
 //
 ///**

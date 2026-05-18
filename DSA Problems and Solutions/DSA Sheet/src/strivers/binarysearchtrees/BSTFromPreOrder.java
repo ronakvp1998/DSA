@@ -1,6 +1,6 @@
-package com.questions.strivers.binarysearchtrees;
+package strivers.binarysearchtrees;
 
-import com.questions.strivers.binarytrees.TreeNode;
+import strivers.binarytrees.TreeNode;
 
 import java.util.Arrays;
 

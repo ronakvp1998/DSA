@@ -1,4 +1,4 @@
-package com.questions.strivers.binarysearch.bsonanswers;
+package strivers.binarysearch.bsonanswers;
 
 import java.util.PriorityQueue;
 

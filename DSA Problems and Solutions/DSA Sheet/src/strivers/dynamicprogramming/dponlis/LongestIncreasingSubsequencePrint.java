@@ -1,4 +1,4 @@
-package com.questions.strivers.dynamicprogramming.dponlis;
+package strivers.dynamicprogramming.dponlis;
 
 import java.util.ArrayList;
 import java.util.Arrays;

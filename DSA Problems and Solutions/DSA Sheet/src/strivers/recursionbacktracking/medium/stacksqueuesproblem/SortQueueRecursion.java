@@ -1,4 +1,4 @@
-package com.questions.strivers.recursionbacktracking.medium.stacksqueuesproblem;
+package strivers.recursionbacktracking.medium.stacksqueuesproblem;
 
 import java.util.ArrayList;
 import java.util.List;

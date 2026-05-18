@@ -1,4 +1,4 @@
-package com.questions.strivers.trie;
+package strivers.trie;
 
 //https://takeuforward.org/data-structure/implement-trie-1/
 

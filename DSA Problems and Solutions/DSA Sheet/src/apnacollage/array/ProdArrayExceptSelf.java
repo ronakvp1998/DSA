@@ -1,4 +1,4 @@
-package com.questions.apnacollage.array;
+package apnacollage.array;
 // pg 6
 // code 12 :Product of Array Except Self
 //Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].

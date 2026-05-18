@@ -1,4 +1,4 @@
-package com.questions.strivers.recursionbacktracking.medium.subsequences;
+package strivers.recursionbacktracking.medium.subsequences;
 import java.util.ArrayList;
 import java.util.List;
 public class PrintSubsequences {

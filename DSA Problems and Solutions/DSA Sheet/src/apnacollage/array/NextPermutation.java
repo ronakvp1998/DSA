@@ -1,4 +1,4 @@
-package com.questions.apnacollage.array;
+package apnacollage.array;
 
 import java.util.Arrays;
 // pg 1

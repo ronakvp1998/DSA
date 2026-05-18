@@ -1,4 +1,4 @@
-package com.questions.strivers.bitmanipulation.basics;
+package strivers.bitmanipulation.basics;
 
 
 /**

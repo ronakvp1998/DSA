@@ -1,4 +1,4 @@
-package com.questions.strivers.linkedlist.dll.doublylinkedlist;
+package strivers.linkedlist.dll.doublylinkedlist;
 
 public class DoublyLinkedList {
 

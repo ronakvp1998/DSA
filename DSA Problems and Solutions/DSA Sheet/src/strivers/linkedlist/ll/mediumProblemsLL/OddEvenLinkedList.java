@@ -1,4 +1,4 @@
-package com.questions.strivers.linkedlist.ll.mediumProblemsLL;
+package strivers.linkedlist.ll.mediumProblemsLL;
 
 import java.util.ArrayList;
 import java.util.List;

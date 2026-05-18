@@ -1,4 +1,4 @@
-package com.questions.strivers.string.hard;
+package strivers.string.hard;
 
 /**
  * ============================================================================

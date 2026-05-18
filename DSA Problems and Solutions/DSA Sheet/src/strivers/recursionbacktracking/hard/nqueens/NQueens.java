@@ -1,4 +1,4 @@
-package com.questions.strivers.recursionbacktracking.hard.nqueens;
+package strivers.recursionbacktracking.hard.nqueens;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

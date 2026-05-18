@@ -1,4 +1,4 @@
-package com.questions.strivers.dynamicprogramming.dponlis;
+package strivers.dynamicprogramming.dponlis;
 /**
  * ==================================================================================================
  * 🏆 MASTERCLASS: LARGEST DIVISIBLE SUBSET (LeetCode 368)

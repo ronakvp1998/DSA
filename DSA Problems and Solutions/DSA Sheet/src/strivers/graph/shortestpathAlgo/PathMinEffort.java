@@ -1,4 +1,4 @@
-package com.questions.strivers.graph.shortestpathAlgo;
+package strivers.graph.shortestpathAlgo;
 
 import java.util.Arrays;
 import java.util.Comparator;

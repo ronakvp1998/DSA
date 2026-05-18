@@ -1,4 +1,4 @@
-package com.questions.strivers.stackandqueues.prefixinfixpostfix;
+package strivers.stackandqueues.prefixinfixpostfix;
 
 import java.util.Stack;
 

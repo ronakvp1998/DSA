@@ -1,4 +1,4 @@
-package com.questions.strivers.linkedlist.ll.mediumProblemsLL;
+package strivers.linkedlist.ll.mediumProblemsLL;
 
 public class ReverseLL {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.questions.strivers.arrays.hard;
+package strivers.arrays.hard;
 /**
  * ============================================================================
  * 🎯 MASTERCLASS: Pascal's Triangle - Variation 1 (Find Element at r, c)

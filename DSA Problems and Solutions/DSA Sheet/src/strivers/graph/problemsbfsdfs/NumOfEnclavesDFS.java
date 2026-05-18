@@ -1,4 +1,4 @@
-package com.questions.strivers.graph.problemsbfsdfs;
+package strivers.graph.problemsbfsdfs;
 
 /**
  * ========================= Problem: Number of Enclaves (DFS) =========================

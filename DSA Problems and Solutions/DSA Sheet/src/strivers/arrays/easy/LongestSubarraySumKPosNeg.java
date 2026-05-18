@@ -1,4 +1,4 @@
-package com.questions.strivers.arrays.easy;
+package strivers.arrays.easy;
 
 import java.util.HashMap;
 import java.util.Map;

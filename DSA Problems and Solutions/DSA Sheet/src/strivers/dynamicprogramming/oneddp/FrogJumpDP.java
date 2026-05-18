@@ -1,4 +1,4 @@
-package com.questions.strivers.dynamicprogramming.oneddp;
+package strivers.dynamicprogramming.oneddp;
 
 import java.util.Arrays;
 

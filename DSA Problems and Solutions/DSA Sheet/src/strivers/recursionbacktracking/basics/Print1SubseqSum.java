@@ -1,4 +1,4 @@
-package com.questions.strivers.recursionbacktracking.basics;
+package strivers.recursionbacktracking.basics;
 
 import java.util.ArrayList;
 import java.util.List;

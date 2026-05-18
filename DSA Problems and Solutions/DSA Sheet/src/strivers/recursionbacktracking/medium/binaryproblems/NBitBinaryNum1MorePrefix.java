@@ -1,4 +1,4 @@
-package com.questions.strivers.recursionbacktracking.medium.binaryproblems;
+package strivers.recursionbacktracking.medium.binaryproblems;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package com.questions.strivers.graph.basics.bfs;
+package strivers.graph.basics.bfs;
 
 import java.util.*;
 

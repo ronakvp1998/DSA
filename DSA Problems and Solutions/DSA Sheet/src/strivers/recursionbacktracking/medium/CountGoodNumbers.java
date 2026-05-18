@@ -1,4 +1,4 @@
-package com.questions.strivers.recursionbacktracking.medium;
+package strivers.recursionbacktracking.medium;
 /*
 1922. Count Good Numbers
 

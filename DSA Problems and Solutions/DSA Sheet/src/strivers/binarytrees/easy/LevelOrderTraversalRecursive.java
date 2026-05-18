@@ -1,6 +1,6 @@
-package com.questions.strivers.binarytrees.easy;
+package strivers.binarytrees.easy;
 
-import com.questions.strivers.binarytrees.TreeNode;
+import strivers.binarytrees.TreeNode;
 
 import java.util.LinkedList;
 import java.util.List;

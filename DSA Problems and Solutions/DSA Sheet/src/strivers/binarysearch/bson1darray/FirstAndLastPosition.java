@@ -1,4 +1,4 @@
-package com.questions.strivers.binarysearch.bson1darray;
+package strivers.binarysearch.bson1darray;
 
 /**
  * Masterclass Solution: 34. Find First and Last Position of Element in Sorted Array

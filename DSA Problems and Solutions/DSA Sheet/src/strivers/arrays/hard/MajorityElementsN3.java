@@ -1,4 +1,4 @@
-package com.questions.strivers.arrays.hard;
+package strivers.arrays.hard;
 /**
  * ============================================================================
  * 🎯 MASTERCLASS: Majority Element II (> N/3 times)

@@ -1,4 +1,4 @@
-package com.questions.strivers.dynamicprogramming.dponmcm;
+package strivers.dynamicprogramming.dponmcm;
 
 /**
  * ==================================================================================================

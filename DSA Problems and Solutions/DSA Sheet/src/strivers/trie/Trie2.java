@@ -1,4 +1,4 @@
-package com.questions.strivers.trie;
+package strivers.trie;
 
 // Define a class for the trie data structure
 public class Trie2 {

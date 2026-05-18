@@ -1,4 +1,4 @@
-package com.questions.strivers.dynamicprogramming.intro;
+package strivers.dynamicprogramming.intro;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package com.questions.ctobhaiya.heaps;
+package ctobhaiya.heaps;
 
 import java.util.Collections;
 import java.util.PriorityQueue;

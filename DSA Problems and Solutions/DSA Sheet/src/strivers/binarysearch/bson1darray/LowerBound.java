@@ -1,4 +1,4 @@
-package com.questions.strivers.binarysearch.bson1darray;
+package strivers.binarysearch.bson1darray;
 
 /**
  * Masterclass Solution: Lower Bound in a Sorted Array

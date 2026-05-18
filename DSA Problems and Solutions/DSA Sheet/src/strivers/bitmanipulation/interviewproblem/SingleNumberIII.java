@@ -1,4 +1,4 @@
-package com.questions.strivers.bitmanipulation.interviewproblem;
+package strivers.bitmanipulation.interviewproblem;
 
 /**
  * ==================================================================================================

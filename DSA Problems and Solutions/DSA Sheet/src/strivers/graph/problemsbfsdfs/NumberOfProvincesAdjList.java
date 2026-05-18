@@ -1,4 +1,4 @@
-package com.questions.strivers.graph.problemsbfsdfs;
+package strivers.graph.problemsbfsdfs;
 
 import java.util.ArrayList;
 import java.util.List;

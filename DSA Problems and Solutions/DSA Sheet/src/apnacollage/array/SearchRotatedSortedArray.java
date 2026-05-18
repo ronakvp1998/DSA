@@ -1,4 +1,4 @@
-package com.questions.apnacollage.array;
+package apnacollage.array;
 
 // 6 search in rotated sorted array in Log(n) TC
 public class SearchRotatedSortedArray {

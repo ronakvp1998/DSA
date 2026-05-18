@@ -1,4 +1,4 @@
-package com.questions.strivers.linkedlist.ll.linkedlist1d;
+package strivers.linkedlist.ll.linkedlist1d;
 
 class Node {
 

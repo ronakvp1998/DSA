@@ -1,4 +1,4 @@
-package com.questions.strivers.linkedlist.ll.mediumProblemsLL;
+package strivers.linkedlist.ll.mediumProblemsLL;
 
 public class Sort0s1s2sLL {
 

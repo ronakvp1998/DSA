@@ -1,4 +1,4 @@
-package com.questions.apnacollage.array;
+package apnacollage.array;
 
 // 8 Buy sell stock TC O(N)
 // pg 23

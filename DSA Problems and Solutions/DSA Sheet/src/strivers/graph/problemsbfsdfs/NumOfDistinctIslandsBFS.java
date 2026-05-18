@@ -1,4 +1,4 @@
-package com.questions.strivers.graph.problemsbfsdfs;
+package strivers.graph.problemsbfsdfs;
 
 import java.util.*;
 
@@ -216,7 +216,7 @@ public class NumOfDistinctIslandsBFS {
 }
 
 /*
-package com.questions.strivers.graph.problemsbfsdfs;
+package strivers.graph.problemsbfsdfs;
 
         import java.util.*;
 

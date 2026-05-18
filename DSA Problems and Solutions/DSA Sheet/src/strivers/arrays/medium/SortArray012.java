@@ -1,4 +1,4 @@
-package com.questions.strivers.arrays.medium;
+package strivers.arrays.medium;
 /**
  * ============================================================================
  * MASTERCLASS: SORT COLORS

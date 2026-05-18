@@ -1,4 +1,4 @@
-package com.questions.strivers.arrays.easy;
+package strivers.arrays.easy;
 
 /*
  https://takeuforward.org/data-structure/count-maximum-consecutive-ones-in-the-array/

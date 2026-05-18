@@ -1,4 +1,4 @@
-package com.questions.strivers.graph.minspanningtreedisjointset;
+package strivers.graph.minspanningtreedisjointset;
 
 import java.util.*;
 

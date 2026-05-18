@@ -1,4 +1,4 @@
-package com.questions.strivers.dynamicprogramming.dponsubsequences;
+package strivers.dynamicprogramming.dponsubsequences;
 /**
  * ==================================================================================================
  * 🏆 MASTERCLASS: ROD CUTTING PROBLEM (Unbounded Knapsack Variation)

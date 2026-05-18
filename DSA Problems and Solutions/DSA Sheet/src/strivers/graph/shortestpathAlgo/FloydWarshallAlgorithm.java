@@ -1,4 +1,4 @@
-package com.questions.strivers.graph.shortestpathAlgo;
+package strivers.graph.shortestpathAlgo;
 
 public class FloydWarshallAlgorithm {
     /* Function to find the shortest distance

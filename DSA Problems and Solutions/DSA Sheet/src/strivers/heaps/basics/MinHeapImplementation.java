@@ -1,4 +1,4 @@
-package com.questions.strivers.heaps.basics;
+package strivers.heaps.basics;
 
 /**
  * ==================================================================================================

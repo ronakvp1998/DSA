@@ -1,4 +1,4 @@
-package com.questions.strivers.heaps.hard;
+package strivers.heaps.hard;
 
 import java.util.*;
 

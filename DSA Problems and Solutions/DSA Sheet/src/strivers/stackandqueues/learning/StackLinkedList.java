@@ -1,4 +1,4 @@
-package com.questions.strivers.stackandqueues.learning;
+package strivers.stackandqueues.learning;
 
 class Node{
     Node next;

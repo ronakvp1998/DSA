@@ -1,4 +1,4 @@
-package com.questions.strivers.dynamicprogramming.dponsubsequences;
+package strivers.dynamicprogramming.dponsubsequences;
 
 import java.util.Arrays;
 

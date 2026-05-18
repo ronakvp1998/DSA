@@ -1,4 +1,4 @@
-package com.questions.strivers.dynamicprogramming.dponstocks;
+package strivers.dynamicprogramming.dponstocks;
 
 /**
  * ============================================================================

@@ -1,4 +1,4 @@
-package com.questions.strivers.linkedlist.ll.hardProblemLL;
+package strivers.linkedlist.ll.hardProblemLL;
 
 public class Merge2SortedLL {
     public static void main(String[] args) {

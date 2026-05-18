@@ -1,4 +1,4 @@
-package com.questions.strivers.graph.toposortproblems;
+package strivers.graph.toposortproblems;
 
 import java.util.ArrayList;
 import java.util.Stack;

@@ -1,4 +1,4 @@
-package com.questions.strivers.arrays.hard;
+package strivers.arrays.hard;
 /**
  * ============================================================================
  * 🎯 MASTERCLASS: Subarrays with XOR 'K'

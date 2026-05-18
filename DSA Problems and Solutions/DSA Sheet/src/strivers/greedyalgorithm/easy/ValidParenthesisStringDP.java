@@ -1,4 +1,4 @@
-package com.questions.strivers.greedyalgorithm.easy;
+package strivers.greedyalgorithm.easy;
 /**
  * ============================================================================
  * 678. Valid Parenthesis String

@@ -1,4 +1,4 @@
-package com.questions.strivers.bitmanipulation.advancemaths;
+package strivers.bitmanipulation.advancemaths;
 
 /**
  * ==================================================================================================

@@ -1,4 +1,4 @@
-package com.questions.strivers.slidingwind2pointer.sum;
+package strivers.slidingwind2pointer.sum;
 
 /**
  * ============================================================================

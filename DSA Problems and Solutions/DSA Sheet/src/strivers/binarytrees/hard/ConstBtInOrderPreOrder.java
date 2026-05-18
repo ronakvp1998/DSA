@@ -1,4 +1,4 @@
-package com.questions.strivers.binarytrees.hard;
+package strivers.binarytrees.hard;
 
 public class ConstBtInOrderPreOrder {
 

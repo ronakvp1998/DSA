@@ -1,4 +1,4 @@
-package com.questions.dailypractice;
+package dailypractice;
 
 import java.util.ArrayList;
 import java.util.List;

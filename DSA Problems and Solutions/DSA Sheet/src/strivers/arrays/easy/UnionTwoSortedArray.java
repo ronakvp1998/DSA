@@ -1,4 +1,4 @@
-package com.questions.strivers.arrays.easy;
+package strivers.arrays.easy;
 
 /*
 Problem Statement: Given two sorted arrays, arr1, and arr2 of size n and m.
