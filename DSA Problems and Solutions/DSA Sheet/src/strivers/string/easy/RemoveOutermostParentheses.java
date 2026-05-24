@@ -40,6 +40,43 @@ public class RemoveOutermostParentheses {
 
     /**
      * ============================================================================
+     * PHASE 2: ALTERNATIVE APPROACH - Optimal Counter (Space Optimized)
+     * ============================================================================
+     * Detailed Intuition:
+     * Building on the Stack intuition: we don't actually need to store the
+     * characters in a physical Stack. Since the only character we ever push is '(',
+     * we only care about the *size* of the stack (the depth of the parentheses).
+     * We can replace the O(N) Stack with an O(1) integer counter.
+     * * Complexity Analysis:
+     * - Time: O(N). Single pass through the string array.
+     * - Space: O(1) auxiliary space. We only use a single integer. (The O(N) heap
+     * space used by the StringBuilder is required for the output and does not
+     * count towards auxiliary algorithm space).
+     */
+    public String removeOuterParenthesesOptimal(String s) {
+        StringBuilder result = new StringBuilder();
+        int depth = 0;
+
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                // Only append if it's an inner parenthesis (depth > 0)
+                if (depth > 0) {
+                    result.append(c);
+                }
+                depth++;
+            } else {
+                depth--;
+                // Only append if it's an inner parenthesis (depth > 0 after decrementing)
+                if (depth > 0) {
+                    result.append(c);
+                }
+            }
+        }
+        return result.toString();
+    }
+
+    /**
+     * ============================================================================
      * PHASE 1: BRUTE FORCE APPROACH - The "Think it" stage.
      * ============================================================================
      * Detailed Intuition:
@@ -115,42 +152,6 @@ public class RemoveOutermostParentheses {
         return result.toString();
     }
 
-    /**
-     * ============================================================================
-     * PHASE 2: ALTERNATIVE APPROACH - Optimal Counter (Space Optimized)
-     * ============================================================================
-     * Detailed Intuition:
-     * Building on the Stack intuition: we don't actually need to store the
-     * characters in a physical Stack. Since the only character we ever push is '(',
-     * we only care about the *size* of the stack (the depth of the parentheses).
-     * We can replace the O(N) Stack with an O(1) integer counter.
-     * * Complexity Analysis:
-     * - Time: O(N). Single pass through the string array.
-     * - Space: O(1) auxiliary space. We only use a single integer. (The O(N) heap
-     * space used by the StringBuilder is required for the output and does not
-     * count towards auxiliary algorithm space).
-     */
-    public String removeOuterParenthesesOptimal(String s) {
-        StringBuilder result = new StringBuilder();
-        int depth = 0;
-
-        for (char c : s.toCharArray()) {
-            if (c == '(') {
-                // Only append if it's an inner parenthesis (depth > 0)
-                if (depth > 0) {
-                    result.append(c);
-                }
-                depth++;
-            } else {
-                depth--;
-                // Only append if it's an inner parenthesis (depth > 0 after decrementing)
-                if (depth > 0) {
-                    result.append(c);
-                }
-            }
-        }
-        return result.toString();
-    }
 
     /**
      * ============================================================================

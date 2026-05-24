@@ -39,6 +39,56 @@ import java.util.Map;
 
 public class IsomorphicString {
 
+
+    /**
+     * ========================================================================
+     * Phase 3: ASCII Array Hashing - The "Perfect it" stage.
+     * ========================================================================
+     * Detailed Intuition:
+     * As a Senior Developer, we know HashMaps introduce overhead (Object wrappers
+     * like `Character`, hashing functions, tree node allocations).
+     * Since the problem explicitly states "valid ascii character", we know there
+     * are exactly 256 possible characters. We can replace the HashMaps with two
+     * simple primitive integer arrays of size 256.
+     * * Instead of mapping characters to characters, we map characters to their
+     * **latest seen index**. If the latest seen indices for s[i] and t[i] do not
+     * match, their structure is broken.
+     * * CRITICAL TRICK: We store `i + 1` instead of `i`. In Java, `int[]` defaults
+     * to `0`. If we stored `i`, index 0 would be indistinguishable from an
+     * unvisited character. Storing `i + 1` ensures 0 safely means "unvisited".
+     * * Complexity Analysis:
+     * - Time Complexity: O(N). Single pass through the string. Array lookups
+     * are lightning-fast O(1).
+     * - Space Complexity: O(1) Auxiliary Heap Space. We allocate exactly two
+     * arrays of 256 integers, regardless of how large N gets. This is highly
+     * cache-friendly.
+     * ========================================================================
+     */
+    public static boolean isIsomorphicOptimal(String s, String t) {
+        if (s.length() != t.length()) return false;
+
+        int[] mapS = new int[256];
+        int[] mapT = new int[256];
+
+        for (int i = 0; i < s.length(); i++) {
+            char c1 = s.charAt(i);
+            char c2 = t.charAt(i);
+
+            // If the last seen positions of these characters don't match,
+            // the structural mapping is broken.
+            if (mapS[c1] != mapT[c2]) {
+                return false;
+            }
+
+            // Update the last seen positions. Use i + 1 to avoid conflicts
+            // with the default int array value of 0.
+            mapS[c1] = i + 1;
+            mapT[c2] = i + 1;
+        }
+
+        return true;
+    }
+
     /**
      * ========================================================================
      * Phase 1: Brute Force Approach (Index Matching) - The "Think it" stage.
@@ -131,54 +181,6 @@ public class IsomorphicString {
         return true;
     }
 
-    /**
-     * ========================================================================
-     * Phase 3: ASCII Array Hashing - The "Perfect it" stage.
-     * ========================================================================
-     * Detailed Intuition:
-     * As a Senior Developer, we know HashMaps introduce overhead (Object wrappers
-     * like `Character`, hashing functions, tree node allocations).
-     * Since the problem explicitly states "valid ascii character", we know there
-     * are exactly 256 possible characters. We can replace the HashMaps with two
-     * simple primitive integer arrays of size 256.
-     * * Instead of mapping characters to characters, we map characters to their
-     * **latest seen index**. If the latest seen indices for s[i] and t[i] do not
-     * match, their structure is broken.
-     * * CRITICAL TRICK: We store `i + 1` instead of `i`. In Java, `int[]` defaults
-     * to `0`. If we stored `i`, index 0 would be indistinguishable from an
-     * unvisited character. Storing `i + 1` ensures 0 safely means "unvisited".
-     * * Complexity Analysis:
-     * - Time Complexity: O(N). Single pass through the string. Array lookups
-     * are lightning-fast O(1).
-     * - Space Complexity: O(1) Auxiliary Heap Space. We allocate exactly two
-     * arrays of 256 integers, regardless of how large N gets. This is highly
-     * cache-friendly.
-     * ========================================================================
-     */
-    public static boolean isIsomorphicOptimal(String s, String t) {
-        if (s.length() != t.length()) return false;
-
-        int[] mapS = new int[256];
-        int[] mapT = new int[256];
-
-        for (int i = 0; i < s.length(); i++) {
-            char c1 = s.charAt(i);
-            char c2 = t.charAt(i);
-
-            // If the last seen positions of these characters don't match,
-            // the structural mapping is broken.
-            if (mapS[c1] != mapT[c2]) {
-                return false;
-            }
-
-            // Update the last seen positions. Use i + 1 to avoid conflicts
-            // with the default int array value of 0.
-            mapS[c1] = i + 1;
-            mapT[c2] = i + 1;
-        }
-
-        return true;
-    }
 
     /**
      * ========================================================================

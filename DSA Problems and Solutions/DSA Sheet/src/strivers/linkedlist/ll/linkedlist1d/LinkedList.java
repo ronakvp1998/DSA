@@ -1,150 +1,180 @@
 package strivers.linkedlist.ll.linkedlist1d;
 
+/**
+ * Node class representing a single element in the Linked List.
+ */
 class Node {
+    int data;     // Stores the value of the node
+    Node next;    // Reference pointer to the next node in the list
 
-    int data;
-    Node next;
-
+    // Constructor to initialize a node with both data and next pointer
     Node(int data1, Node next1){
         this.data = data1;
         this.next = next1;
     }
 
+    // Constructor to initialize a node with only data (next defaults to null)
     Node(int data){
         this.data = data;
         this.next = null;
     }
 }
 
-public class LinkedList{
+public class LinkedList {
 
     public static void main(String[] args) {
-        int arr[] = {2, 5, 4,6,2, 9, 8,4,4};
+        int arr[] = {2, 5, 4, 6, 2, 9, 8, 4, 4};
+
+        // 1. Convert array to Linked List
         Node head = arrayToLinkedList(arr);
+        System.out.print("Original List: ");
         printLL(head);
-//        System.out.println(searchElement(head,2));
-//        head = deleteFirst(head);
-//        printLL(head);
-//        head = deleteIndex(head,1);
-//        printLL(head);
-//        head = deleteLast(head);
-//        printLL(head);
-//        head = deleteValue(head,2);
-//        printLL(head);
-//        head = deleteAllOccValue(head,4);
-//        printLL(head);
-//        head = insertAtHead(head,10);
-//        printLL(head);
-//        head = insertAtIndex(head,2,33);
-//        printLL(head);
-//        head = insertLast(head,21);
-//        printLL(head);
+
+        // 2. Reverse the Linked List
         head = reverse(head);
+        System.out.print("Reversed List: ");
         printLL(head);
+
+        // Example of other operations (Uncomment to test):
+        // System.out.println("Index of 9: " + searchElement(head, 9));
+        // head = insertAtIndex(head, 2, 99);
+        // printLL(head);
+        // head = deleteAllOccValue(head, 4);
+        // printLL(head);
     }
 
-    // 4 reverse LL
+    /**
+     * Reverses the Linked List iteratively.
+     * Approach: Use three pointers (prev, curr, next) to reverse the links one by one.
+     */
     private static Node reverse(Node head){
-        Node prev = null;
-        Node curr = head;
-        Node next = null;
+        Node prev = null;       // Points to the reversed portion
+        Node curr = head;       // Current node being processed
+        Node next = null;       // Temporarily stores the remaining list
 
         while (curr != null){
-            next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
+            next = curr.next;   // 1. Save the next node
+            curr.next = prev;   // 2. Reverse the current node's pointer
+            prev = curr;        // 3. Move prev one step forward
+            curr = next;        // 4. Move curr one step forward
         }
-        return prev;
+        return prev;            // prev becomes the new head
     }
 
-    // 3 insert at last
+    /**
+     * Inserts a new node at the end of the Linked List.
+     */
     private static Node insertLast(Node head, int value){
+        // Edge case: If the list is empty, inserting at last is same as inserting at head
         if(head == null){
-            return insertAtHead(head,value);
+            return insertAtHead(head, value);
         }
 
         Node temp = head;
+        // Traverse until the last node (temp.next == null)
         while (temp.next != null){
             temp = temp.next;
         }
+
+        // Create the new node and link the last node to it
         Node newNode = new Node(value);
         temp.next = newNode;
         return head;
     }
 
-    // 2 insert at index
+    /**
+     * Inserts a new node at a specific zero-based index.
+     * BUG FIX: Fixed infinite loop and incorrect conditional logic.
+     */
     private static Node insertAtIndex(Node head, int index, int value){
+        // Edge case: empty list but index is not 0
         if(head == null && index != 0){
             return null;
         }
+        // If inserting at the very beginning
         if(index == 0){
-            return insertAtHead(head,value);
+            return insertAtHead(head, value);
         }
+
         Node temp = head;
-        int count = 0;
         Node prev = null;
-        while (index != count){
-            if(count == value){
+        int count = 0;
+
+        // Traverse to find the exact index
+        while (temp != null){
+            if(count == index){
                 Node newNode = new Node(value);
-                prev.next = newNode;
-                newNode.next = temp;
-                break;
+                prev.next = newNode;  // Connect previous node to new node
+                newNode.next = temp;  // Connect new node to the current node
+                return head;          // Return early since insertion is done
             }
             prev = temp;
             temp = temp.next;
+            count++;                  // BUG FIX: Increment count!
         }
+
+        // Edge case: Inserting exactly at the end of the list
+        if (count == index) {
+            prev.next = new Node(value);
+        }
+
         return head;
     }
 
-    // 1 insert at head
+    /**
+     * Inserts a new node at the beginning of the Linked List.
+     */
     private static Node insertAtHead(Node head, int value){
-        if(head == null){
-            Node newNode = new Node(value);
-            return newNode;
-        }
-        Node newNode = new Node(value,head);
-        head = newNode;
-        return head;
+        // Create new node pointing to the current head
+        Node newNode = new Node(value, head);
+        return newNode; // The new node becomes the new head
     }
 
-    // 5 delete all occ of value from LL
+    /**
+     * Deletes all nodes that contain a specific value.
+     */
     private static Node deleteAllOccValue(Node head, int value){
-        if(head == null){
-            return null;
-        }
+        if(head == null) return null;
+
+        // 1. Handle cases where the target value is at the head
         while (head != null && head.data == value){
             head = head.next;
         }
+
+        // 2. Handle the rest of the list
         Node temp = head;
         Node prev = null;
         while (temp != null){
             if(temp.data == value){
-                prev.next = temp.next;
-                temp = temp.next;
-            }else {
-                prev = temp;
-                temp = temp.next;}
+                prev.next = temp.next; // Bypass the node to delete it
+                temp = temp.next;      // Move temp forward
+            } else {
+                prev = temp;           // Move prev forward
+                temp = temp.next;      // Move temp forward
+            }
         }
         return head;
     }
 
-
-    // 4 delete a value from LL
+    /**
+     * Deletes the first occurrence of a specific value.
+     */
     private static Node deleteValue(Node head, int value){
-        if(head == null){
-            return null;
-        }
+        if(head == null) return null;
+
         Node temp = head;
         Node prev = null;
+
         while (temp != null){
+            // Case 1: The value is at the head node
             if(temp.data == value && prev == null){
                 head = head.next;
                 break;
             }
+            // Case 2: The value is somewhere in the middle or end
             else if(temp.data == value){
                 prev.next = temp.next;
-                break;
+                break; // Stop after deleting the *first* occurrence
             }
             prev = temp;
             temp = temp.next;
@@ -152,74 +182,84 @@ public class LinkedList{
         return head;
     }
 
-    // 3 delete last
+    /**
+     * Deletes the last node of the Linked List.
+     */
     private static Node deleteLast(Node head){
+        // Edge case: Empty list or list with only one node
         if(head == null || head.next == null){
             return null;
         }
 
         Node temp = head;
+        // Stop at the second-to-last node
         while (temp.next.next != null){
             temp = temp.next;
         }
+        // Sever the link to the last node
         temp.next = null;
         return head;
     }
 
-    // 2 delete a position or index
+    /**
+     * Deletes a node at a specific zero-based index.
+     */
     private static Node deleteIndex(Node head, int index){
-        if (head == null){
-            return null;
-        }
+        if (head == null) return null;
+
         if(index == 0){
             return deleteFirst(head);
         }
+
         Node temp = head;
         Node prev = null;
         int count = 0;
+
         while (temp != null){
             if(count == index){
-                prev.next = temp.next;
+                prev.next = temp.next; // Bypass the node at the index
                 break;
             }
             count++;
             prev = temp;
             temp = temp.next;
-
         }
         return head;
     }
 
-    // 1 delete head
+    /**
+     * Deletes the first node (head) of the Linked List.
+     */
     private static Node deleteFirst(Node head){
         if(head == null || head.next == null){
-            System.out.println("Empty LL");
             return null;
         }
-        head = head.next;
-        return head;
+        return head.next; // Simply return the second node
     }
 
-    // 3 search element in LL
+    /**
+     * Searches for a target value and returns its zero-based index.
+     * Returns -1 if not found.
+     */
     private static int searchElement(Node head, int target){
-        if(head == null){
-            System.out.println("Empty LL");
-            return -1;
-        }
+        if(head == null) return -1;
+
         Node temp = head;
         int count = 0;
+
         while (temp != null){
             if(temp.data == target){
-                return count;
-            }else{
-                temp = temp.next;
-                count++;
+                return count; // Target found
             }
+            temp = temp.next;
+            count++;
         }
-        return -1;
+        return -1; // Target not found
     }
 
-    // 2 traverse into ll
+    /**
+     * Traverses and prints the Linked List.
+     */
     private static void printLL(Node head){
         if(head == null ){
             System.out.println("Empty LL");
@@ -227,27 +267,27 @@ public class LinkedList{
         }
         Node temp = head;
         while (temp != null){
-            System.out.print(temp.data + "->");
+            System.out.print(temp.data + " -> ");
             temp = temp.next;
         }
-        System.out.println();
+        System.out.println("null");
     }
 
-    // 1 convert array into linkedlist
+    /**
+     * Converts an array into a Singly Linked List.
+     */
     private static Node arrayToLinkedList(int arr[]){
-        if(arr.length <= 0){
-            System.out.println("Empty LL");
-            return null;
-        }
+        if(arr.length <= 0) return null;
+
         Node head = new Node(arr[0]);
         Node temp = head;
-        for(int i=1;i< arr.length;i++){
+
+        // Loop through the array, creating nodes and linking them
+        for(int i = 1; i < arr.length; i++){
             Node newNode = new Node(arr[i]);
-            temp.next = newNode;
-            temp = newNode;
+            temp.next = newNode; // Link current node to the new node
+            temp = newNode;      // Move the pointer forward
         }
         return head;
     }
-
 }
-

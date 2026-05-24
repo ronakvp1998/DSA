@@ -26,55 +26,6 @@ public class CountSubstrings {
 
     /**
      * ========================================================================
-     * Phase 1: Brute Force Approach - The "Think it" stage.
-     * ========================================================================
-     * Detailed Intuition:
-     * To find all substrings with exactly 'k' distinct characters, the most
-     * intuitive approach is to generate every possible substring. For every
-     * starting index `i`, we expand a window to the right index `j`.
-     * We maintain a frequency array to count the distinct characters in the
-     * current window. If the distinct count reaches `k`, we increment our
-     * answer. If it exceeds `k`, we can safely break the inner loop because
-     * adding more characters will never decrease the distinct count.
-     * * Complexity Analysis:
-     * - Time Complexity: O(N^2), where N is the length of the string. In the
-     * worst case, we iterate through the remaining string for every character.
-     * - Space Complexity: O(1) Auxiliary Heap Space. We use a frequency array
-     * of size 26, which is constant regardless of the string's length.
-     * ========================================================================
-     */
-    public static int countSubstringsBruteForce(String s, int k) {
-        int n = s.length();
-        int totalCount = 0;
-
-        for (int i = 0; i < n; i++) {
-            int[] freq = new int[26];
-            int distinctCount = 0;
-
-            for (int j = i; j < n; j++) {
-                int charIndex = s.charAt(j) - 'a';
-
-                // If it's a new character, increment distinct count
-                if (freq[charIndex] == 0) {
-                    distinctCount++;
-                }
-                freq[charIndex]++;
-
-                // If we hit exactly k distinct, we found a valid substring
-                if (distinctCount == k) {
-                    totalCount++;
-                }
-                // If we exceed k, no further extensions from 'i' will be valid
-                else if (distinctCount > k) {
-                    break;
-                }
-            }
-        }
-        return totalCount;
-    }
-
-    /**
-     * ========================================================================
      * Phase 2: Optimal Sliding Window (At Most K Trick) - The "Perfect it" stage.
      * ========================================================================
      * Detailed Intuition:
@@ -138,6 +89,56 @@ public class CountSubstrings {
 
         return totalSubstrings;
     }
+
+    /**
+     * ========================================================================
+     * Phase 1: Brute Force Approach - The "Think it" stage.
+     * ========================================================================
+     * Detailed Intuition:
+     * To find all substrings with exactly 'k' distinct characters, the most
+     * intuitive approach is to generate every possible substring. For every
+     * starting index `i`, we expand a window to the right index `j`.
+     * We maintain a frequency array to count the distinct characters in the
+     * current window. If the distinct count reaches `k`, we increment our
+     * answer. If it exceeds `k`, we can safely break the inner loop because
+     * adding more characters will never decrease the distinct count.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N^2), where N is the length of the string. In the
+     * worst case, we iterate through the remaining string for every character.
+     * - Space Complexity: O(1) Auxiliary Heap Space. We use a frequency array
+     * of size 26, which is constant regardless of the string's length.
+     * ========================================================================
+     */
+    public static int countSubstringsBruteForce(String s, int k) {
+        int n = s.length();
+        int totalCount = 0;
+
+        for (int i = 0; i < n; i++) {
+            int[] freq = new int[26];
+            int distinctCount = 0;
+
+            for (int j = i; j < n; j++) {
+                int charIndex = s.charAt(j) - 'a';
+
+                // If it's a new character, increment distinct count
+                if (freq[charIndex] == 0) {
+                    distinctCount++;
+                }
+                freq[charIndex]++;
+
+                // If we hit exactly k distinct, we found a valid substring
+                if (distinctCount == k) {
+                    totalCount++;
+                }
+                // If we exceed k, no further extensions from 'i' will be valid
+                else if (distinctCount > k) {
+                    break;
+                }
+            }
+        }
+        return totalCount;
+    }
+
 
     /**
      * ========================================================================
