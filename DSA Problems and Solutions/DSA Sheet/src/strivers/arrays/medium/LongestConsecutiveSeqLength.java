@@ -60,6 +60,61 @@ import java.util.Set;
 
 public class LongestConsecutiveSeqLength {
 
+
+    /**
+     * ========================================================================
+     * PHASE 3: OPTIMAL HASHING APPROACH (The "Perfect it" stage)
+     * ========================================================================
+     * * Approach:
+     * Insert all array elements into a HashSet. Iterate over the set.
+     * Check if the current element is the start of a sequence by querying
+     * `!set.contains(num - 1)`. If it is, use a while loop to check for
+     * `num + 1`, `num + 2`, etc. within the set, incrementing the streak.
+     * * Detailed Intuition:
+     * To drop from O(N log N) to O(N), we must abandon sorting and trade Space
+     * for Time. A HashSet provides O(1) lookups. To ensure we don't do redundant
+     * counting (which would regress us to O(N^2)), we apply the "Starter Check".
+     * We ONLY count upwards if the current number has no left-neighbor in the set.
+     * This guarantees the inner `while` loop runs exactly N times *in total* * across the entire execution of the algorithm.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N)
+     * Populating the Set takes O(N). Iterating the set takes O(N). Because of
+     * the `!set.contains(num - 1)` guard, the inner while loop evaluates each
+     * element at most once globally. Total time: O(N) + O(N) = O(N).
+     * - Space Complexity: O(N)
+     * Heap Space: O(N) to store up to N unique integers in the HashSet.
+     * Stack Space: O(1) iterative execution.
+     */
+    public int longestConsecutiveOptimal(int[] nums) {
+        if (nums == null || nums.length == 0) return 0;
+
+        Set<Integer> numSet = new HashSet<>();
+        for (int num : nums) {
+            numSet.add(num);
+        }
+
+        int longestStreak = 0;
+
+        for (int num : numSet) {
+            // Intelligent Gatekeeper: Only proceed if this is a sequence starter
+            if (!numSet.contains(num - 1)) {
+                int currentNum = num;
+                int currentStreak = 1;
+
+                // O(1) lookups string together the sequence instantly
+                while (numSet.contains(currentNum + 1)) {
+                    currentNum += 1;
+                    currentStreak += 1;
+                }
+
+                longestStreak = Math.max(longestStreak, currentStreak);
+            }
+        }
+
+        return longestStreak;
+    }
+
+
     /**
      * ========================================================================
      * PHASE 1: BRUTE FORCE APPROACH (The "Think it" stage)
@@ -152,59 +207,6 @@ public class LongestConsecutiveSeqLength {
 
         // Final check in case the longest sequence ends at the last element
         return Math.max(longestStreak, currentStreak);
-    }
-
-    /**
-     * ========================================================================
-     * PHASE 3: OPTIMAL HASHING APPROACH (The "Perfect it" stage)
-     * ========================================================================
-     * * Approach:
-     * Insert all array elements into a HashSet. Iterate over the set.
-     * Check if the current element is the start of a sequence by querying
-     * `!set.contains(num - 1)`. If it is, use a while loop to check for
-     * `num + 1`, `num + 2`, etc. within the set, incrementing the streak.
-     * * Detailed Intuition:
-     * To drop from O(N log N) to O(N), we must abandon sorting and trade Space
-     * for Time. A HashSet provides O(1) lookups. To ensure we don't do redundant
-     * counting (which would regress us to O(N^2)), we apply the "Starter Check".
-     * We ONLY count upwards if the current number has no left-neighbor in the set.
-     * This guarantees the inner `while` loop runs exactly N times *in total* * across the entire execution of the algorithm.
-     * * Complexity Analysis:
-     * - Time Complexity: O(N)
-     * Populating the Set takes O(N). Iterating the set takes O(N). Because of
-     * the `!set.contains(num - 1)` guard, the inner while loop evaluates each
-     * element at most once globally. Total time: O(N) + O(N) = O(N).
-     * - Space Complexity: O(N)
-     * Heap Space: O(N) to store up to N unique integers in the HashSet.
-     * Stack Space: O(1) iterative execution.
-     */
-    public int longestConsecutiveOptimal(int[] nums) {
-        if (nums == null || nums.length == 0) return 0;
-
-        Set<Integer> numSet = new HashSet<>();
-        for (int num : nums) {
-            numSet.add(num);
-        }
-
-        int longestStreak = 0;
-
-        for (int num : numSet) {
-            // Intelligent Gatekeeper: Only proceed if this is a sequence starter
-            if (!numSet.contains(num - 1)) {
-                int currentNum = num;
-                int currentStreak = 1;
-
-                // O(1) lookups string together the sequence instantly
-                while (numSet.contains(currentNum + 1)) {
-                    currentNum += 1;
-                    currentStreak += 1;
-                }
-
-                longestStreak = Math.max(longestStreak, currentStreak);
-            }
-        }
-
-        return longestStreak;
     }
 
     /**
