@@ -10,6 +10,41 @@ public class Test {
         int arr[] = {100,4,200,1,3,2};
         System.out.println(longestConsecutive(arr));
     }
+    public int[] twoSum2(int[] numbers, int target) {
+        int left = 0,right=numbers.length-1;
+        while (left < right){
+            int sum = numbers[left] + numbers[right];
+            if(sum == target){
+                return new int[]{left+1,right+1};
+            }
+            if(sum < target){
+                left++;
+            }else if (sum > target){
+                right--;
+            }
+        }
+        return new int[]{};
+    }
+
+    public boolean isPalindrome(String s) {
+        String temp = s.toLowerCase();
+        int n = temp.length();
+        int i=0,j=n-1;
+        while (i < j){
+            while (i < j && (temp.charAt(i) < 'a' || temp.charAt(i) > 'z')){
+                i++;
+            }
+            while (i < j && (temp.charAt(j) < 'a' || temp.charAt(j) > 'z')){
+                j--;
+            }
+            if(temp.charAt(i) != temp.charAt(j)){
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
 
     public static int longestConsecutive(int[] nums) {
         if(nums == null || nums.length == 0){
