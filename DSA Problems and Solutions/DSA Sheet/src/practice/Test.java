@@ -1,6 +1,8 @@
 package practice;
 
 import strivers.linkedlist.ll.linkedlist1d.DeleteNodeInLinkedList;
+import strivers.linkedlist.ll.mediumProblemsLL.OddEvenLinkedList;
+import strivers.linkedlist.ll.mediumProblemsLL.RemoveNthLastNode;
 
 import java.util.*;
 
@@ -9,286 +11,121 @@ public class Test {
     static class Node{
         Node next;
         int data;
-        Node(int data){
-            this.data = data;
-        }
         Node(int data,Node next){
             this.data = data;
             this.next = next;
         }
     }
-    
-    private static boolean isPalindrome(Node head){
-        if(head == null){
-            return true;
-        }
-        Node fast = head;
-        Node slow = head;
-        while (fast.next != null){
-            fast = fast.next.next;
-            slow = slow.next;
-        }
-        if(fast.next != null){
-            slow = slow.next;
-        }
-        Node midHead = slow;
-        Node reversedMidHead = reverseLLTest(midHead);
 
-        Node temp = head;
-        while (temp.next != null){
-            if(temp.data != reversedMidHead.data){
-                return false;
-            }
-            temp = temp.next;
-            reversedMidHead = reversedMidHead.next;
-        }
-        return true;
-    }
-
-    private static Node reverseLLTest(Node head){
-        Node temp = head;
-        Node prev = null;
-        while (temp != null){
-            Node t = temp.next;
-            temp.next = prev;
-            prev = temp;
-            temp = t;
-        }
-        return prev;
-    }
-
-    private static Node startLL(Node head){
-        Node fast = head;
-        Node slow = head;
-        boolean isCycle = false;
-        while (fast != null && fast.next != null){
-            slow = slow.next;
-            fast = fast.next.next;
-            if(slow == fast){
-                isCycle = true;
-                break;
-            }
-        }
-        if(!isCycle){
+    private static Node removeMiddle(Node head){
+        if(head == null || head.next == null){
             return null;
         }
-        slow = head;
-        while (slow != fast){
+        Node dummy = new Node(0,head);
+        Node slow = dummy;
+        Node fast = dummy;
+        fast = fast.next;
+        while (fast != null && fast.next != null){
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+
+        slow.next = slow.next.next;
+        return dummy.next;
+    }
+
+    public int maxFrequency(int[] nums, int k) {
+        Arrays.sort(nums);
+        int left = 0;
+        long windowSum=0;
+        int maxFreq = 0;
+        for(int right=0;right<nums.length;right++){
+            windowSum += nums[right];
+            while ((long) (right-left+1) * nums[right] - windowSum > k){
+                windowSum -= nums[left];
+                left++;
+            }
+            maxFreq = Math.max(maxFreq,right-left+1);
+        }
+        return maxFreq;
+    }
+
+
+    public int maxFrequencyBruteForce(int[] nums, int k) {
+        Arrays.sort(nums);
+        int maxFreq = 1;
+        for(int i=0;i<nums.length;i++){
+            int currentK = k;
+            int currentFreq = 1;
+            int target = nums[i];
+            for(int j=i-1;j>=0;j--){
+                int diff = target - nums[j];
+                if(currentK >= diff){
+                    currentK -= diff;
+                    currentFreq++;
+                }else{
+                    break;
+                }
+            }
+            maxFreq = Math.max(maxFreq,currentFreq);
+        }
+        return maxFreq;
+    }
+
+    public Node removeNthFromEndOptimal(Node head, int n) {
+        Node dummy = new Node(0,head);
+        Node fast = dummy;
+        Node slow = dummy;
+        for (int i=0;i<=n;i++){
+            fast = fast.next;
+        }
+        while (fast != null){
             slow = slow.next;
             fast = fast.next;
         }
-        return slow;
+        slow.next = slow.next.next;
+        return dummy.next;
     }
 
-    private static boolean detectLoop(Node head){
-        Node fast = head;
+    public static Node oddEvenListOptimal(Node head) {
+        if(head == null || head.next == null || head.next.next == null){
+            return head;
+        }
+        Node odd = head;
+        Node even = head.next;
+        Node evenHead = even;
+        while (even != null && even.next != null){
+            odd.next = even.next;
+            odd = odd.next;
+
+            even.next = odd.next;
+            even = even.next;
+        }
+        odd.next = evenHead;
+        return head;
+    }
+
+    private static int loopLength(Node head){
+        if(head == null || head.next == null){
+            return 0;
+        }
         Node slow = head;
+        Node fast = head;
         while (fast != null && fast.next != null){
-            slow = slow.next;
             fast = fast.next.next;
-            if(slow == fast){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static Node reverseLL(Node head){
-        Node temp = head;
-        Node prev = null;
-        while (temp != null){
-            Node next = temp.next;
-            temp.next = prev;
-            prev = temp;
-            temp = next;
-        }
-        return prev;
-    }
-
-    private static Node middle(Node head){
-        Node slow = head;
-        Node fast = head;
-        while (fast.next != null){
-            if(fast.next.next != null){
-                fast = fast.next.next;
-            }else{
-                break;
-            }
             slow = slow.next;
-        }
-        return slow;
-    }
 
-    private static Node reverse(Node head){
-        if(head == null || head.next == null){
-            return head;
-        }
-        Node current = head;
-        Node prev = null;
-        while (current != null){
-            prev = current.prev;
-            current.prev = current.next;
-            current.next = prev;
-            current = current.prev;
-        }
-        return prev.prev;
-    }
-
-    // delete by index
-    private static Node deleteIndex(Node head,int index){
-        if(head == null){
-            return null;
-        }
-        if(index == 0){
-            return deleteHead(head);
-        }
-        Node temp = head;
-        int count = 0 ;
-        while (temp != null){
-            if(count == index){
-                break;
+            if(slow == fast){
+                int count = 1;
+                slow = slow.next;
+                while (fast != slow){
+                    count++;
+                    slow = slow.next;
+                }
+                return count;
             }
-            count++;
-            temp = temp.next;
         }
-        if(temp == null){
-            return head;
-        }
-        Node prev = temp.prev;
-        Node next = temp.next;
-
-        prev.next = next;
-        if(next != null){
-            next.prev = prev;
-        }
-        temp.prev = null;
-        temp.next = null;
-        return head;
-    }
-
-    // delete by value
-    private static Node deleteValue(Node head,int value){
-        if(head == null ){
-            return null;
-        }
-        Node temp = head;
-        while (temp != null){
-            if(temp.data == value){
-                break;
-            }
-            temp = temp.next;
-        }
-        if(temp == null){
-            return head;
-        }
-
-        if(temp == head){
-            head = head.next;
-            if(head != null){
-                head.prev = null;
-            }
-            temp.next = null;
-            return head;
-        }
-        Node prev = temp.prev;
-        prev.next = temp.next;
-        if(temp.next != null){
-            temp.next.prev = prev;
-        }
-        temp.prev = null;
-        temp.next = null;
-        return head;
-    }
-
-    // delete tail
-    private static Node deleteTail(Node head){
-        if(head == null || head.next == null){
-            return null;
-        }
-        Node temp = head;
-        while (temp.next.next != null){
-            temp = temp.next;
-        }
-        Node tail = temp.next;
-        temp.next = null;
-        tail.prev = null;
-        return head;
-    }
-
-    // delete head
-    private static Node deleteHead(Node head){
-        if(head == null || head.next == null){
-            return null;
-        }
-        Node prevHead = head;
-        head = head.next;
-
-        head.prev = null;
-        prevHead.next = null;
-
-        return head;
-    }
-
-    // insert at position
-    private static Node insertBeforeKthPos(Node head,int k,int data){
-        if(k == 0){
-            return insertHead(head,data);
-        }
-        Node temp = head;
-        int count = 0;
-        while (temp != null){
-            if(count == k){
-                break;
-            }
-            count++;
-            temp = temp.next;
-        }
-        if(temp == null){
-            return insertTail(head,data);
-        }
-        Node node = new Node(data,temp,temp.prev);
-        temp.prev.next = node;
-        temp.prev = node;
-        return head;
-    }
-
-    // insert at tail
-    private static Node insertTail(Node head,int data){
-        if(head == null ){
-            return new Node(data);
-        }
-        Node temp = head;
-        while (temp.next != null){
-            temp = temp.next;
-        }
-        Node node = new Node(data,null,temp);
-        temp.next = node;
-        return head;
-    }
-
-    // array into DLL
-    private static Node arrToDLL(int arr[]){
-        if(arr == null || arr.length == 0){
-            return null;
-        }
-        Node head = new Node(arr[0]);
-        Node temp = head;
-        for(int i =1;i<arr.length;i++){
-            Node node = new Node(arr[i],null,temp);
-            temp.next = node;
-            temp = temp.next;
-        }
-        return head;
-    }
-
-    // insert at head
-    private static Node insertHead(Node head,int data){
-        if(head == null){
-            return new Node(data);
-        }
-        Node node = new Node(data,head,null);
-        head.prev = node;
-        return node;
+        return 0;
     }
 
 }
