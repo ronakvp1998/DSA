@@ -57,6 +57,7 @@ package strivers.slidingwind2pointer.length;
  */
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -105,6 +106,36 @@ public class LongestRepeatingCharacterReplacement {
             // Window is valid (or at least maintained its max size), update maxLength
             maxLength = Math.max(maxLength, right - left + 1);
             right++;
+        }
+
+        return maxLength;
+    }
+
+    public int characterReplacement(String s, int k) {
+        HashMap<Character, Integer> freqMap = new HashMap<>();
+        int left = 0;
+        int maxFreq = 0;
+        int maxLength = 0;
+
+        for (int right = 0; right < s.length(); right++) {
+            char rightChar = s.charAt(right);
+            // Add the current character to our frequency map
+            freqMap.put(rightChar, freqMap.getOrDefault(rightChar, 0) + 1);
+
+            // Update the maximum frequency of a single character seen so far in the window
+            maxFreq = Math.max(maxFreq, freqMap.get(rightChar));
+
+            // If the letters to replace exceed k, the window is invalid
+            // Window Size = (right - left + 1)
+            if ((right - left + 1) - maxFreq > k) {
+                char leftChar = s.charAt(left);
+                // Decrease the frequency of the character leaving the window
+                freqMap.put(leftChar, freqMap.get(leftChar) - 1);
+                left++; // Shrink the window
+            }
+
+            // Update the max length found so far
+            maxLength = Math.max(maxLength, right - left + 1);
         }
 
         return maxLength;
