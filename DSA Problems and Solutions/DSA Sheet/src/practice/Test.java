@@ -7,6 +7,54 @@ import java.util.List;
 
 public class Test {
 
+    static class ListNode{
+        int val;
+        ListNode next;
+        ListNode() {}
+        ListNode(int val) { this.val = val; }
+        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode ansHead = null;
+        if(list1.val <= list2.val){
+            ansHead.val = list1.val;
+        }else{
+            ansHead.val = list2.val;
+        }
+        ListNode ansTemp = ansHead;
+        while (list1 != null && list2 !=null){
+            if(list1.val <= list2.val){
+                ansTemp.next = new ListNode(list1.val);
+                list1 = list1.next;
+            }else{
+                ansTemp.next = new ListNode(list2.val);
+                list2 = list2.next;
+            }
+        }
+        while (list1 != null){
+            ansTemp.next = new ListNode(list1.val);
+            list1 = list1.next;
+        }
+        while (list2 != null){
+            ansTemp.next = new ListNode(list2.val);
+            list2 = list2.next;
+        }
+        return ansHead;
+    }
+
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+        while (curr != null){
+            ListNode nextNode = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+        return prev;
+    }
+
     public int findMin(int[] nums) {
         int n = nums.length;
         int low=0,high = n-1;
