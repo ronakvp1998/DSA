@@ -1,9 +1,8 @@
 package practice;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import strivers.linkedlist.ll.mediumProblemsLL.CopyListWithRandomPointer;
+
+import java.util.*;
 
 public class Test {
 
@@ -13,6 +12,89 @@ public class Test {
         ListNode() {}
         ListNode(int val) { this.val = val; }
         ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+    }
+
+    static class Node {
+        int val;
+        Node next;
+        Node random;
+
+        public Node(int val) {
+            this.val = val;
+            this.next = null;
+            this.random = null;
+        }
+    }
+
+    public static Node copyRandomListBruteForce(Node head) {
+        Map<Node,Node> oldToNewMap = new HashMap<>();
+        Node current = head;
+        while (current != null){
+            oldToNewMap.put(current,new Node(current.val));
+            current = current.next;
+
+        }
+        current = head;
+        while (current != null){
+            Node clone = oldToNewMap.get(current);
+            clone.next = oldToNewMap.get(current.next);
+            clone.random = oldToNewMap.get(current.random);
+            current = current.next;
+        }
+        return oldToNewMap.get(head);
+    }
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy = new ListNode(0,head);
+        ListNode fast = dummy;
+        ListNode slow = dummy;
+
+        for(int i=0;i<=n;i++){
+            fast = fast.next;
+        }
+
+        while (fast != null){
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        slow.next = slow.next.next;
+        return dummy.next;
+    }
+
+    public void reorderList(ListNode head) {
+        if (head == null || head.next == null || head.next.next == null) return;
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        // reverse the second half
+        ListNode prev = null;
+        ListNode curr = slow.next;
+        slow.next = null;
+        while (curr != null){
+            ListNode nextTemp = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = nextTemp;
+        }
+
+        // merge 2 halves
+        ListNode first = head;
+        ListNode second = prev;
+        while (second != null){
+            ListNode temp1 = first.next;
+            ListNode temp2 = second.next;
+            first.next = second;
+            second.next = temp1;
+
+            first = temp1;
+            second = temp2;
+        }
+
     }
 
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
