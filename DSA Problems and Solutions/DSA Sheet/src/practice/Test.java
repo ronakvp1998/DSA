@@ -27,12 +27,14 @@ public class Test {
     }
 
     public static Node copyRandomListBruteForce(Node head) {
+        if(head == null){
+            return null;
+        }
         Map<Node,Node> oldToNewMap = new HashMap<>();
         Node current = head;
         while (current != null){
             oldToNewMap.put(current,new Node(current.val));
             current = current.next;
-
         }
         current = head;
         while (current != null){
