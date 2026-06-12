@@ -1,5 +1,8 @@
 package practice;
 
+import strivers.linkedlist.ll.hardProblemLL.MergeKSortedLists;
+import strivers.linkedlist.ll.hardProblemLL.MergeTwoSortedLists;
+import strivers.linkedlist.ll.mediumProblemsLL.Add2Numbers;
 import strivers.linkedlist.ll.mediumProblemsLL.CopyListWithRandomPointer;
 
 import java.util.*;
@@ -26,6 +29,179 @@ public class Test {
         }
     }
 
+    public ListNode addTwo(ListNode l1, ListNode l2){
+        ListNode dummyHead = new ListNode(0);
+        ListNode current = dummyHead;
+        int carry = 0;
+        while (l1 != null || l2 != null || carry != 0){
+            int x = (l1 != null) ? l1.val : 0;
+            int y = (l2 != null) ? l2.val : 0;
+            int sum = x + y + carry;
+            carry = sum/10;
+            current.next = new ListNode(sum%10);
+            current = current.next;
+            if(l1 != null) l1 = l1.next;
+            if(l2 != null) l2 = l2.next;
+        }
+        return dummyHead.next;
+    }
+
+    public ListNode addOne(ListNode head){
+        ListNode notNine = null;
+        ListNode current = head;
+        while (current != null){
+            if(current.val != 9){
+                notNine = current;
+            }
+            current = current.next;
+        }
+        if(notNine != null){
+            ListNode newHead = new ListNode(1);
+            newHead.next = head;
+
+            current = head;
+            while (current != null){
+                current.val = 0;
+                current = current.next;
+            }
+            return newHead;
+        }
+        notNine.val++;
+        current = notNine.next;
+        while (current != null){
+            current.val = 0;
+            current = current.next;
+        }
+        return head;
+    }
+
+    public ListNode intersection(ListNode l1, ListNode l2){
+        ListNode ptr1 = l1;
+        ListNode ptr2 = l2;
+        while (ptr1 != ptr2){
+            ptr1 = (ptr1 == null) ? l2 : ptr1.next;
+            ptr2 = (ptr2 == null) ? l1 : ptr2.next;
+        }
+        return ptr1;
+    }
+
+    public static ListNode sortOptimal(ListNode head){
+
+        ListNode zeroDummy = new ListNode(-1);
+        ListNode oneDummy = new ListNode(-1);
+        ListNode twoDummy = new ListNode(-1);
+
+        ListNode zeroTail = zeroDummy;
+        ListNode oneTail = oneDummy;
+        ListNode twoTail = twoDummy;
+
+        ListNode current = head;
+        while (current != null){
+            if(current.val == 0){
+                zeroTail.next = current;
+                zeroTail = zeroTail.next;
+            } else if (current.val == 1) {
+                oneTail.next = current;
+                oneTail = oneTail.next;
+            }else{
+                twoTail.next = current;
+                twoTail = twoTail.next;
+            }
+            current = current.next;
+        }
+        zeroTail.next = (oneDummy.next != null) ? oneDummy.next : twoDummy.next;
+        oneTail.next = twoDummy.next;
+        twoTail.next = null;
+        return zeroDummy.next;
+    }
+
+    public ListNode mergeTwoListsOptimal(ListNode list1, ListNode list2) {
+        ListNode dummy = new ListNode(-1);
+        ListNode current = dummy;
+        while (list1 != null && list2 != null){
+            if(list1.val <= list2.val){
+                current.next = list1;
+                list1 = list1.next;
+            }else{
+                current.next = list2;
+                list2 = list2.next;
+            }
+            current = current.next;
+        }
+        current.next = (list1 != null)? list1 : list2;
+        return dummy.next;
+    }
+
+
+    public ListNode mergeKListsOptimal(ListNode[] lists) {
+        if(lists == null || lists.length == 0){
+            return null;
+        }
+        PriorityQueue<ListNode> pq = new PriorityQueue<>((a,b) -> a.val - b.val);
+        for(ListNode l : lists){
+            pq.add(l);
+        }
+        ListNode dummy = new ListNode(-1);
+        ListNode current = dummy;
+        while (!pq.isEmpty()){
+            ListNode minNode = pq.poll();
+            current.next = minNode;
+            current = current.next;
+            if(minNode.next != null){
+                pq.add(minNode.next);
+            }
+        }
+        return dummy.next;
+    }
+
+
+    public int findDuplicate(int[] nums) {
+        if(nums == null || nums.length <= 1){
+            return -1;
+        }
+        int slow = nums[0];
+        int fast = nums[0];
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }while (slow != fast);
+        slow = nums[0];
+        while (slow != fast){
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
+    }
+
+    public boolean hasCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if(slow == fast){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public ListNode addTwoNumbersOptimal(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(0);
+        ListNode current = dummy;
+        int carry = 0;
+        while (l1 != null || l2 != null || carry != 0){
+            int x = (l1 != null) ? l1.val : 0;
+            int y = (l2 != null) ? l2.val : 0;
+            int sum = x + y + carry;
+            carry = sum/10;
+            current.next = new ListNode(sum%10);
+            current = current.next;
+            if(l1 != null) l1 = l1.next;
+            if(l2 != null) l2 = l2.next;
+        }
+        return dummy.next;
+    }
     public static Node copyRandomListBruteForce(Node head) {
         if(head == null){
             return null;
