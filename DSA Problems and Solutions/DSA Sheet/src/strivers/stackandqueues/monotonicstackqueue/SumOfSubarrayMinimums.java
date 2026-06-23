@@ -146,55 +146,6 @@ public class SumOfSubarrayMinimums {
 
     /**
      * ============================================================================
-     * PHASE 3: ALTERNATIVE APPROACH (DP via Monotonic Stack)
-     * ============================================================================
-     * Detailed Intuition:
-     * We can define `dp[i]` as the sum of minimums of all contiguous subarrays
-     * that strictly END at index `i`.
-     * * If we find the Previous Smaller Element index `j` for our current element `i`:
-     * - For all subarrays starting between `j+1` and `i`, `arr[i]` is the minimum.
-     * There are `(i - j)` such subarrays, adding `(i - j) * arr[i]` to our sum.
-     * - For all subarrays starting at or before `j` and ending at `i`, their
-     * minimums are already perfectly captured by `dp[j]`.
-     * * Thus, the state transition is: dp[i] = dp[j] + (i - j) * arr[i].
-     * The final answer is simply the sum of all `dp[i]`. This achieves a brilliant
-     * single-pass O(N) solution.
-     *
-     * Complexity Analysis:
-     * - Time Complexity: O(N). Single pass from left to right.
-     * - Space Complexity: O(N) for the DP array and the Stack.
-     * ============================================================================
-     */
-    public int sumSubarrayMinsDP(int[] arr) {
-        int n = arr.length;
-        int[] dp = new int[n];
-        Deque<Integer> stack = new ArrayDeque<>();
-        long totalSum = 0;
-
-        for (int i = 0; i < n; i++) {
-            // Maintain strictly increasing stack to find PSE
-            while (!stack.isEmpty() && arr[stack.peek()] >= arr[i]) {
-                stack.pop();
-            }
-
-            if (stack.isEmpty()) {
-                // No smaller element to the left.
-                // arr[i] is the minimum for all subarrays ending at i.
-                dp[i] = (i + 1) * arr[i];
-            } else {
-                int j = stack.peek();
-                dp[i] = dp[j] + (i - j) * arr[i];
-            }
-
-            stack.push(i);
-            totalSum = (totalSum + dp[i]) % MOD;
-        }
-
-        return (int) totalSum;
-    }
-
-    /**
-     * ============================================================================
      * 4. TESTING SUITE
      * ============================================================================
      * Tests all the different approaches against standard and edge cases.
@@ -214,20 +165,17 @@ public class SumOfSubarrayMinimums {
         System.out.println("Input:        " + format.apply(arr1));
         System.out.println("Optimal:      " + solver.sumSubarrayMinsOptimal(arr1) + " (Expected: 17)");
         System.out.println("Brute Force:  " + solver.sumSubarrayMinsBruteForce(arr1));
-        System.out.println("DP Approach:  " + solver.sumSubarrayMinsDP(arr1));
 
         System.out.println("\n=== Test Case 2: Larger Values (Example 2) ===");
         int[] arr2 = {11, 81, 94, 43, 3};
         System.out.println("Input:        " + format.apply(arr2));
         System.out.println("Optimal:      " + solver.sumSubarrayMinsOptimal(arr2) + " (Expected: 444)");
-        System.out.println("DP Approach:  " + solver.sumSubarrayMinsDP(arr2));
 
         System.out.println("\n=== Test Case 3: Duplicate Elements (Edge Case) ===");
         int[] arr3 = {7, 1, 7, 1, 7};
         System.out.println("Input:        " + format.apply(arr3));
         System.out.println("Optimal:      " + solver.sumSubarrayMinsOptimal(arr3));
         System.out.println("Brute Force:  " + solver.sumSubarrayMinsBruteForce(arr3));
-        System.out.println("DP Approach:  " + solver.sumSubarrayMinsDP(arr3));
 
         System.out.println("\n=== Test Case 4: Strictly Increasing Array ===");
         int[] arr4 = {1, 2, 3, 4, 5};

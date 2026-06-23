@@ -40,6 +40,55 @@ import java.util.stream.IntStream;
  */
 public class TrappingRainWaterMasterclass {
 
+
+    /**
+     * ============================================================================
+     * PHASE 4: ALTERNATIVE APPROACH 2 (Monotonic Decreasing Stack)
+     * ============================================================================
+     * Detailed Intuition:
+     * Instead of computing water column-by-column, we can compute it row-by-row
+     * bounded horizontally. We use a strictly decreasing monotonic stack to track
+     * indices.
+     * When we encounter an elevation `height[i]` that is taller than the top of
+     * the stack, we know a "puddle" has been formed.
+     * - The bottom of the puddle is the popped element.
+     * - The left wall is the new top of the stack.
+     * - The right wall is `height[i]`.
+     * We calculate the bounded water and continue popping until the monotonic
+     * property is restored.
+     *
+     * Complexity Analysis:
+     * - Time Complexity: O(N). Each index is pushed and popped exactly once.
+     * - Space Complexity: O(N) auxiliary heap space for the Deque.
+     * ============================================================================
+     */
+    public int trapStack(int[] height) {
+        int totalWater = 0;
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        for (int i = 0; i < height.length; i++) {
+            // While a right boundary is found that is taller than the stack's top
+            int current = height[i];
+            while (!stack.isEmpty() && current > height[stack.peek()]) {
+                int puddleBottom = stack.pop();
+
+                if (stack.isEmpty()) {
+                    break; // No left boundary exists to trap water
+                }
+
+                int leftBoundary = stack.peek();
+                int width = i - leftBoundary - 1;
+                int boundedHeight = Math.min(height[leftBoundary], current) - height[puddleBottom];
+
+                totalWater += width * boundedHeight;
+            }
+
+            stack.push(i);
+        }
+
+        return totalWater;
+    }
+
     /**
      * ============================================================================
      * PHASE 1: OPTIMAL APPROACH (Two Pointers)
@@ -172,53 +221,6 @@ public class TrappingRainWaterMasterclass {
         return IntStream.range(0, n)
                 .map(i -> Math.min(leftMax[i], rightMax[i]) - height[i])
                 .sum();
-    }
-
-    /**
-     * ============================================================================
-     * PHASE 4: ALTERNATIVE APPROACH 2 (Monotonic Decreasing Stack)
-     * ============================================================================
-     * Detailed Intuition:
-     * Instead of computing water column-by-column, we can compute it row-by-row
-     * bounded horizontally. We use a strictly decreasing monotonic stack to track
-     * indices.
-     * When we encounter an elevation `height[i]` that is taller than the top of
-     * the stack, we know a "puddle" has been formed.
-     * - The bottom of the puddle is the popped element.
-     * - The left wall is the new top of the stack.
-     * - The right wall is `height[i]`.
-     * We calculate the bounded water and continue popping until the monotonic
-     * property is restored.
-     *
-     * Complexity Analysis:
-     * - Time Complexity: O(N). Each index is pushed and popped exactly once.
-     * - Space Complexity: O(N) auxiliary heap space for the Deque.
-     * ============================================================================
-     */
-    public int trapStack(int[] height) {
-        int totalWater = 0;
-        Deque<Integer> stack = new ArrayDeque<>();
-
-        for (int i = 0; i < height.length; i++) {
-            // While a right boundary is found that is taller than the stack's top
-            while (!stack.isEmpty() && height[i] > height[stack.peek()]) {
-                int puddleBottom = stack.pop();
-
-                if (stack.isEmpty()) {
-                    break; // No left boundary exists to trap water
-                }
-
-                int leftBoundary = stack.peek();
-                int width = i - leftBoundary - 1;
-                int boundedHeight = Math.min(height[leftBoundary], height[i]) - height[puddleBottom];
-
-                totalWater += width * boundedHeight;
-            }
-
-            stack.push(i);
-        }
-
-        return totalWater;
     }
 
     /**
