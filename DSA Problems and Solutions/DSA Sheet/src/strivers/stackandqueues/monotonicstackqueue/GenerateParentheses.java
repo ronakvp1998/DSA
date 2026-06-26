@@ -1,9 +1,6 @@
 package strivers.stackandqueues.monotonicstackqueue;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.function.Function;
 
 /**
@@ -63,7 +60,8 @@ public class GenerateParentheses {
         return result;
     }
 
-    private void backtrack(List<String> result, StringBuilder currentString, int openCount, int closeCount, int maxPairs) {
+    private void backtrack(List<String> result, StringBuilder currentString,
+                           int openCount, int closeCount, int maxPairs) {
         // Base case: If the current string is complete
         if (currentString.length() == maxPairs * 2) {
             result.add(currentString.toString());
@@ -83,6 +81,74 @@ public class GenerateParentheses {
             backtrack(result, currentString, openCount, closeCount + 1, maxPairs);
             currentString.deleteCharAt(currentString.length() - 1); // Backtrack
         }
+    }
+
+    // Helper class to store our state on the stack
+    private class State {
+        String str;
+        int openCount;
+        int closeCount;
+
+        State(String str, int openCount, int closeCount) {
+            this.str = str;
+            this.openCount = openCount;
+            this.closeCount = closeCount;
+        }
+    }
+
+    /*
+    Instead of making recursive function calls, we will manage our own stack.
+    The stack needs to hold the "state" of our string at any given point. To know what valid moves we can make next, our state must keep track of three things:
+    curr_str: The current sequence of parentheses (e.g., "(()").
+    open_count: How many ( we have used so far.
+    close_count: How many ) we have used so far.
+    The Rules (Same as Recursion)
+    As we pop states off our stack, we evaluate them using two rules:
+    Rule 1: We can add an open parenthesis ( as long as open_count < n.
+    Rule 2: We can add a close parenthesis ) as long as close_count < open_count (this ensures we never close a parenthesis that hasn't been opened).
+     Time Complexity: O(4^n / sqrt(n)). This is bounded by the n-th Catalan number,
+     * which represents the number of valid parenthesis combinations. The asymptotic
+     * behavior of Catalan numbers is (4^n) / (n * sqrt(n)).
+     * - Space Complexity: O(n) Auxiliary Stack Space for the recursion depth.
+     * O(4^n / sqrt(n)) Heap Space to store the final list of valid combinations.
+     */
+
+    public List<String> generateParenthesis(int n) {
+        List<String> result = new ArrayList<>();
+        if (n == 0) {
+            return result;
+        }
+
+        // Initialize the explicit stack
+        Stack<State> stack = new Stack<>();
+        stack.push(new State("(", 1, 0));
+
+        while (!stack.isEmpty()) {
+            // Pop the current state to process it
+            State curr = stack.pop();
+
+            // Base case equivalent: if the string is fully formed
+            if (curr.str.length() == 2 * n) {
+                result.add(curr.str);
+                continue;
+            }
+
+            // Push new states to the stack based on our rules.
+
+            // Rule 1: We can still add a close parenthesis.
+            // We push this FIRST so that it sits lower on the stack
+            // and the open parenthesis state gets processed first (LIFO).
+            if (curr.closeCount < curr.openCount) {
+                stack.push(new State(curr.str + ")", curr.openCount, curr.closeCount + 1));
+            }
+
+            // Rule 2: We can still add an open parenthesis
+            if (curr.openCount < n) {
+                stack.push(new State(curr.str + "(", curr.openCount + 1, curr.closeCount));
+            }
+        }
+
+        return result;
     }
 
     /**

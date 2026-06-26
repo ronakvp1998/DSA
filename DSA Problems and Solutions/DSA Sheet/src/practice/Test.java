@@ -6,188 +6,98 @@ import java.util.stream.IntStream;
 
 public class Test {
 
-    public long subArrayRangesBruteForce(int[] nums) {
-        long totalSum = 0;
-        int n = nums.length;
-        for(int i=0;i<n;i++){
-            int min = nums[i];
-            int max = nums[i];
-            for(int j=i;j<n;j++){
-                min = Math.min(min,nums[j]);
-                max = Math.max(max,nums[j]);
-                totalSum += (max - min);
-            }
-        }
-        return totalSum;
+    public String removeKdigits(String num, int k) {
+
     }
 
-    public int[] asteroidCollisionOptimal(int[] asteroids) {
+    public int carFleetPhase1(int target, int[] position, int[] speed) {
+        int n = position.length;
+        if (n == 0){
+            return 0;
+        }
+        double[][] cars = new double[n][2];
+        for(int i=0;i<n;i++){
+            cars[i][0] = position[i];
+            cars[i][1] = (double) (target-position[i])/speed[i];
+        }
+        Arrays.sort(cars, (a,b) -> Double.compare(b[0],a[0]));
+        int fleets = 0;
+        double maxTime = 0.0;
+        for(int i=0;i<n;i++){
+            if(cars[i][1] > maxTime){
+                fleets++;
+                maxTime = cars[i][1];
+            }
+        }
+        return fleets;
+    }
+
+    public int[] dailyTemperatures(int[] temperatures) {
+        int n = temperatures.length;
+        int ans[] = new int[n];
         Deque<Integer> stack = new ArrayDeque<>();
-        for(int ast : asteroids){
-            boolean destroyed = false;
-            while (!stack.isEmpty() && stack.peek() > 0 && ast < 0){
-                int topSize = stack.peek();
-                int incomingSize = Math.abs(ast);
-                if(topSize < incomingSize){
-                    stack.pop();
-                    continue;
-                } else if (topSize == incomingSize) {
-                    stack.pop();
-                }
-                destroyed = true;
-                break;
+        for(int i=0;i<n;i++){
+            int currentTemp = temperatures[i];
+            while (!stack.isEmpty() && temperatures[stack.peek()] < currentTemp){
+                int prevDayIndex = stack.pop();
+                ans[prevDayIndex] = i - prevDayIndex;
             }
-            if(!destroyed){
-                stack.push(ast);
-            }
+            stack.push(i);
         }
-        int res[] = new int[stack.size()];
-        for(int i = res.length-1;i >= 0 ;i--){
-            res[i] = stack.pop();
-        }
+        return ans;
+    }
+
+    public List<String> generatePar(int n){
+        List<String> res = new ArrayList<>();
+        backtrack(res,new StringBuilder(),0,0,n);
         return res;
     }
 
-    public int[] asteroid(int []asteroids){
-        List<Integer> list = Arrays.stream(asteroids).boxed().collect(Collectors.toList());
-        boolean collisionHappened = true;
-        while (collisionHappened){
-            collisionHappened = false;
-            for(int i=0;i<list.size()-1;i++){
-                int left = list.get(i);
-                int right = list.get(i+1);
-                if(left > 0 && right < 0){
-                    collisionHappened = true;
-                    if(Math.abs(left) > Math.abs(right)){
-                        list.remove(i+1);
-                    } else if (Math.abs(left) < Math.abs(right)) {
-                        list.remove(i);
-                    }else{
-                        list.remove(i+1);
-                        list.remove(i);
-                    }
+    public void backtrack(List<String> res,StringBuilder currentString,
+                          int openCount, int closeCount, int maxPairs){
+
+        if(currentString.length() == maxPairs*2){
+            res.add(currentString.toString());
+            return;
+        }
+        if(openCount < maxPairs){
+            currentString.append("(");
+            backtrack(res,currentString,openCount+1,closeCount,maxPairs);
+            currentString.deleteCharAt(currentString.length()-1);
+        }
+        if(closeCount < openCount){
+            currentString.append(")");
+            backtrack(res,currentString,openCount,closeCount+1,maxPairs);;
+            currentString.deleteCharAt(currentString.length()-1);
+        }
+    }
+
+    public int evalRPM(String [] tokens){
+        Deque<Integer> stack = new ArrayDeque<>();
+        for(String token : tokens){
+            switch (token){
+                case "+":
+                    stack.push(stack.pop() + stack.pop());
                     break;
-                }
+                case"-":
+                    int a = stack.pop();
+                    int b = stack.pop();
+                    stack.push(b - a);
+                    break;
+                case "/":
+                    a = stack.pop();
+                    b = stack.pop();
+                    stack.push(b/a);
+                    break;
+                case "*":
+                    stack.push(stack.pop() * stack.pop());
+                    break;
+                default:
+                    stack.push(Integer.parseInt(token));
+                    break;
             }
         }
-        return list.stream().mapToInt(i ->i).toArray();
-    }
-
-    public static final int MOD = 1000000007;
-    public int sumSubarrayMin(int arr[]){
-        int n = arr.length;
-
-        int []pse = new int[n];
-        int []nse = new int[n];
-
-        Deque<Integer> stack = new ArrayDeque<>();
-
-        // find PSE
-        for(int i=0;i<n;i++){
-            while (!stack.isEmpty() && arr[stack.peek()] >= arr[i]){
-                stack.pop();
-            }
-            pse[i] = stack.isEmpty() ? -1 : stack.peek();
-            stack.push(i);
-        }
-        stack.clear();
-
-        // find NSE
-        for(int i=n-1;i>=0;i--){
-            while (!stack.isEmpty() && arr[stack.peek()] > arr[i]){
-                stack.pop();
-            }
-            nse[i] = stack.isEmpty() ? n : stack.peek();
-            stack.push(i);
-        }
-
-        // total
-        long totalSum = 0;
-        for(int i=0;i<n;i++){
-            long leftDist = i - pse[i];
-            long rightDist = nse[i] - i;
-            long subarrayCount = (leftDist * rightDist) % MOD;
-            long contribute = (subarrayCount * arr[i]) % MOD;
-            totalSum = (totalSum + contribute) % MOD;
-        }
-        return (int) totalSum;
-    }
-
-    public int trapPrefixSuffix(int[] height) {
-        int n = height.length;
-        if(n <= 2){
-            return 0;
-        }
-        int []leftMax = new int[n];
-        int []rightMax = new int[n];
-
-        leftMax[0] = height[0];
-        for(int i=1;i<n;i++){
-            leftMax[i] = Math.max(height[i],leftMax[i-1]);
-        }
-        rightMax[n-1] = height[n-1];
-        for(int i=n-2;i>=0;i--){
-            rightMax[i] = Math.max(height[i],rightMax[i+1]);
-        }
-        return IntStream.range(0,n)
-                .map(i -> Math.min(leftMax[i],rightMax[i]) - height[i])
-                .sum();
-    }
-
-    public int trapStack(int[] height) {
-        if(height == null || height.length <= 2){
-            return 0;
-        }
-        int left=0,right = height.length-1;
-        int leftMax=0,rightMax=0,totalWater=0;
-        while (left < right){
-            if(height[left] <= height[right]){
-                if(height[left] >= leftMax){
-                    leftMax = height[left];
-                }else{
-                    totalWater += leftMax - height[left];
-                }
-                left++;
-            }else{
-                if(height[right] >= rightMax){
-                    rightMax = height[right];
-                }else{
-                    totalWater += rightMax - height[right];
-                }
-                right--;
-            }
-        }
-        return totalWater;
-    }
-
-    public int[] nextSmallestElement(int []nums){
-        int n = nums.length;
-        Deque<Integer> stack = new ArrayDeque<>();
-        int ans[] = new int[n];
-        for(int i=n-1;i>=0;i--){
-            int current = nums[i];
-            while (!stack.isEmpty() && stack.peek() >= current){
-                stack.pop();
-            }
-            ans[i] = stack.isEmpty() ? -1 : stack.peek() ;
-            stack.push(current);
-        }
-        return ans;
-    }
-
-    public int[] nextGreaterElements(int[] nums) {
-        int n = nums.length;
-        Deque<Integer> stack = new ArrayDeque<>();
-        int ans[] = new int[n];
-        for(int i=(n-1)*2;i>=0;i--){
-            int current = nums[i%n];
-            while (!stack.isEmpty() && stack.peek() <= current){
-                stack.pop();
-            }
-            ans[i%n] = stack.peek() == null ? -1 : stack.peek();
-            stack.push(current);
-        }
-        return ans;
+        return stack.pop();
     }
 
 }

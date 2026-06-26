@@ -116,6 +116,55 @@ public class NextGreaterElementI {
     }
 
     /**
+     * ========================================================================
+     * Phase 1: Optimal Approach (Monotonic Stack - Left to Right)
+     * ========================================================================
+     * Detailed Intuition:
+     * Iterating from left to right, we don't know the future yet. So, when we
+     * process an element at index 'i', we push its INDEX onto the stack. This
+     * index "waits" in the stack for a larger element to arrive.
+     * For every new element we visit, we check if it is greater than the element
+     * at the top of our stack. If it is, then the current element is the exact
+     * "Next Greater Element" for that waiting index! We pop the index, update
+     * our result array, and check the new top of the stack.
+     * We initialize the result array with -1 so any index left in the stack
+     * at the end naturally keeps -1 as its answer.
+     * * * Complexity Analysis:
+     * - Time Complexity: O(N), where N is the length of the array. Every index
+     * is pushed onto the stack exactly once and popped at most once.
+     * - Space Complexity: O(N) auxiliary space used by the Stack to hold waiting
+     * indices in the worst-case (e.g., a strictly decreasing array).
+     * ========================================================================
+     */
+    public int[] findNextGreaterOptimalLeftToRight(int[] arr) {
+        int n = arr.length;
+        int[] result = new int[n];
+
+        // Initialize all answers to -1 by default
+        Arrays.fill(result, -1);
+
+        // Stack stores INDICES of elements waiting for a next greater element
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        // Iterating Left to Right
+        for (int i = 0; i < n; i++) {
+
+            // While the stack is not empty AND the current element is strictly
+            // greater than the element whose index is at the top of the stack:
+            while (!stack.isEmpty() && arr[i] > arr[stack.peek()]) {
+                // We found the next greater element for the index at the top!
+                int waitingIndex = stack.pop();
+                result[waitingIndex] = arr[i];
+            }
+
+            // Push the current element's index onto the stack to wait for its future greater element
+            stack.push(i);
+        }
+
+        return result;
+    }
+
+    /**
      * ============================================================================
      * PHASE 2: BRUTE FORCE APPROACH (Nested Loops) -> "Think it"
      * ============================================================================

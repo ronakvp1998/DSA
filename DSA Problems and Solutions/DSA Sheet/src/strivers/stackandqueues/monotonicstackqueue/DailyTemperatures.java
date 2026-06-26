@@ -79,16 +79,22 @@ public class DailyTemperatures {
         // ArrayDeque is preferred over Stack/LinkedList for speed.
         Deque<Integer> stack = new ArrayDeque<>();
 
-        for (int i = 0; i < n; i++) {
-            int currentTemp = temperatures[i];
+        // Iterate from right to left
+        for (int i = n - 1; i >= 0; i--) {
 
-            // Resolve days waiting for a warmer temperature
-            while (!stack.isEmpty() && temperatures[stack.peek()] < currentTemp) {
-                int prevDayIndex = stack.pop();
-                result[prevDayIndex] = i - prevDayIndex;
+            // Pop any future days that are colder than or equal to today.
+            // They are useless to us and to any days before us.
+            while (!stack.isEmpty() && temperatures[stack.peek()] <= temperatures[i]) {
+                stack.pop();
             }
 
-            // Push current day onto the stack
+            // If the stack isn't empty, the top element is our next warmer day!
+            if (!stack.isEmpty()) {
+                result[i] = stack.peek() - i;
+            }
+            // (If the stack IS empty, result[i] remains 0, which is correct)
+
+            // Push today's index onto the stack so previous days can see it
             stack.push(i);
         }
 
