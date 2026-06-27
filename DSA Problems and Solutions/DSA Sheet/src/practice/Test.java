@@ -6,98 +6,159 @@ import java.util.stream.IntStream;
 
 public class Test {
 
-    public String removeKdigits(String num, int k) {
-
-    }
-
-    public int carFleetPhase1(int target, int[] position, int[] speed) {
-        int n = position.length;
-        if (n == 0){
-            return 0;
-        }
-        double[][] cars = new double[n][2];
-        for(int i=0;i<n;i++){
-            cars[i][0] = position[i];
-            cars[i][1] = (double) (target-position[i])/speed[i];
-        }
-        Arrays.sort(cars, (a,b) -> Double.compare(b[0],a[0]));
-        int fleets = 0;
-        double maxTime = 0.0;
-        for(int i=0;i<n;i++){
-            if(cars[i][1] > maxTime){
-                fleets++;
-                maxTime = cars[i][1];
-            }
-        }
-        return fleets;
-    }
-
-    public int[] dailyTemperatures(int[] temperatures) {
-        int n = temperatures.length;
-        int ans[] = new int[n];
-        Deque<Integer> stack = new ArrayDeque<>();
-        for(int i=0;i<n;i++){
-            int currentTemp = temperatures[i];
-            while (!stack.isEmpty() && temperatures[stack.peek()] < currentTemp){
-                int prevDayIndex = stack.pop();
-                ans[prevDayIndex] = i - prevDayIndex;
-            }
-            stack.push(i);
-        }
-        return ans;
-    }
-
-    public List<String> generatePar(int n){
-        List<String> res = new ArrayList<>();
-        backtrack(res,new StringBuilder(),0,0,n);
-        return res;
-    }
-
-    public void backtrack(List<String> res,StringBuilder currentString,
-                          int openCount, int closeCount, int maxPairs){
-
-        if(currentString.length() == maxPairs*2){
-            res.add(currentString.toString());
+    public static void convertOptimal(int[] arr) {
+        if(arr == null || arr.length <= 1){
             return;
         }
-        if(openCount < maxPairs){
-            currentString.append("(");
-            backtrack(res,currentString,openCount+1,closeCount,maxPairs);
-            currentString.deleteCharAt(currentString.length()-1);
-        }
-        if(closeCount < openCount){
-            currentString.append(")");
-            backtrack(res,currentString,openCount,closeCount+1,maxPairs);;
-            currentString.deleteCharAt(currentString.length()-1);
+        int n = arr.length;
+        for(int i = (n-2)/2;i>=0;i--){
+            maxHeapifyIterative(arr,n,i);
         }
     }
 
-    public int evalRPM(String [] tokens){
-        Deque<Integer> stack = new ArrayDeque<>();
-        for(String token : tokens){
-            switch (token){
-                case "+":
-                    stack.push(stack.pop() + stack.pop());
-                    break;
-                case"-":
-                    int a = stack.pop();
-                    int b = stack.pop();
-                    stack.push(b - a);
-                    break;
-                case "/":
-                    a = stack.pop();
-                    b = stack.pop();
-                    stack.push(b/a);
-                    break;
-                case "*":
-                    stack.push(stack.pop() * stack.pop());
-                    break;
-                default:
-                    stack.push(Integer.parseInt(token));
-                    break;
+    private static void maxHeapifyIterative(int arr[],int n,int i){
+        while (true){
+            int largest = i;
+            int left = 2*i+1;
+            int right = 2*i+2;
+            if(left < n && arr[left] > arr[largest]){
+                largest = left;
+            }
+            if(right < n && arr[right] > arr[largest]){
+                largest = right;
+            }
+            if(largest != i){
+                swap(arr,i,largest);
+                i = largest;
+            }else{
+                break;
             }
         }
-        return stack.pop();
+    }
+
+    private static void swap(int arr[],int a,int b){
+        int temp = arr[a];
+        arr[a] = arr[b];
+        arr[b] = temp;
+    }
+
+    public static boolean isMaxHeapOptimal(int[] arr) {
+        if(arr == null || arr.length <= 1){
+            return true;
+        }
+        int n = arr.length;
+        for(int i=0;i<=(n-2)/2;i++){
+            int leftChild = 2*i+1;
+            int rightChild = 2*i+2;
+            if(leftChild < n && arr[i] < arr[leftChild]){
+                return false;
+            }
+            if(rightChild < n && arr[i] < arr[rightChild]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isMinHeapOptimal(int[] arr) {
+        if(arr == null || arr.length <= 1){
+            return true;
+        }
+        int n = arr.length;
+        for(int i=0;i<=(n-2)/2;i++){
+            int leftChild = 2*i+1;
+            int rightChild = 2*i+2;
+            if(leftChild < n && arr[i] > arr[leftChild]){
+                return false;
+            }
+            if(rightChild < n && arr[i] > arr[rightChild]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    static class MaxHeap{
+        int size ;
+        final int capacity;
+        final int[] heap;
+
+        public MaxHeap(int capacity){
+            this.size = 0;
+            this.capacity = capacity;
+            this.heap = new int[capacity];
+        }
+
+        public int left(int i) {
+            return 2*i+1;
+        }
+        public int right(int i){
+            return 2*i+2;
+        }
+        public int parent(int i){
+            return (i-1)/2;
+        }
+        public void insert(int data){
+            if(size == capacity){
+                System.out.println("Heap is full");
+                return;
+            }
+            int i = size;
+            heap[i] = data;
+            size++;
+            while (i != 0 && heap[i] > heap[parent(i)]){
+                swap(i,parent(i));
+                i = parent(i);
+            }
+        }
+
+        private int extractMaxHeap(){
+            if(size == 0){
+                return -1;
+            }
+            if(size == 1){
+                return heap[--size];
+            }
+            int root = heap[0];
+            swap(0,size-1);
+            size--;
+            heapifyMaxHeap(0);
+            return root;
+        }
+
+        private void heapifyMaxHeap(int i){
+            while (true){
+                int largest = i;
+                int l = left(i);
+                int r = right(i);
+                if(l < size && heap[l] > heap[largest]){
+                    largest = l;
+                }
+                if(r < size && heap[r] > heap[largest]){
+                    largest = r;
+                }
+                if(i != largest){
+                    swap(i,largest);
+                    i = largest;
+                }else{
+                    break;
+                }
+            }
+        }
+
+
+        private int peek(){
+            if(size == 0){
+                return -1;
+            }
+            return heap[0];
+        }
+
+        private void swap(int a,int b){
+            int temp = heap[a];
+            heap[a] = heap[b];
+            heap[b] = temp;
+        }
     }
 
 }
