@@ -70,6 +70,7 @@ public class MaximumSumCombination {
         Set<String> visited = new HashSet<>();
 
         // Initialize with the maximum possible sum
+        // Max Heap storing int[] {sum, index_A, index_B}
         maxHeap.offer(new int[]{A[n - 1] + B[n - 1], n - 1, n - 1});
         visited.add((n - 1) + "," + (n - 1));
 
