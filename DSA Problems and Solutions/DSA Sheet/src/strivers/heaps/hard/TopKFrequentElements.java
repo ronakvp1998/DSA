@@ -36,6 +36,50 @@ import java.util.stream.Collectors;
 
 public class TopKFrequentElements {
 
+
+    /**
+     * ==============================================================================================
+     * Phase 3: Alternative Approach 1 - Min-Heap / PriorityQueue
+     * ==============================================================================================
+     * Detailed Intuition:
+     * Instead of sorting ALL elements, we only care about the top K. We can maintain a Min-Heap
+     * (PriorityQueue) of size K. As we iterate through the frequency map entries, we add them to
+     * the heap. If the heap size exceeds K, we poll (remove) the smallest element. What's left in
+     * the heap at the end will be exactly the K elements with the highest frequencies.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N log K). Building the map takes O(N). Inserting into a heap of size K
+     * takes O(log K), and we do this for at most N unique elements. O(N + N log K) = O(N log K).
+     * This strictly satisfies the "better than O(N log N)" constraint.
+     * - Space Complexity: O(N + K). The frequency map takes O(N) heap space, and the PriorityQueue
+     * takes O(K) heap space. Total space is bounded by O(N).
+     */
+    public static int[] topKFrequentMinHeap(int[] nums, int k) {
+        // map<element,freq>
+        Map<Integer, Integer> freqMap = new HashMap<>();
+        for (int num : nums) {
+            freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
+        }
+
+        // Min-Heap based on frequency
+        PriorityQueue<Map.Entry<Integer, Integer>> minHeap =
+                new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
+
+        for (Map.Entry<Integer, Integer> entry : freqMap.entrySet()) {
+            minHeap.offer(entry);
+            if (minHeap.size() > k) {
+                minHeap.poll(); // Evict the least frequent element
+            }
+        }
+
+        int[] result = new int[k];
+        for (int i = k - 1; i >= 0; i--) {
+            // Extract from heap (gives smallest first, so populate backwards for sorted order)
+            result[i] = minHeap.poll().getKey();
+        }
+
+        return result;
+    }
+
     /**
      * ==============================================================================================
      * Phase 1: Optimal Approach - Bucket Sort (The Recommended Approach)
@@ -119,48 +163,6 @@ public class TopKFrequentElements {
         int[] result = new int[k];
         for (int i = 0; i < k; i++) {
             result[i] = entryList.get(i).getKey();
-        }
-
-        return result;
-    }
-
-    /**
-     * ==============================================================================================
-     * Phase 3: Alternative Approach 1 - Min-Heap / PriorityQueue
-     * ==============================================================================================
-     * Detailed Intuition:
-     * Instead of sorting ALL elements, we only care about the top K. We can maintain a Min-Heap
-     * (PriorityQueue) of size K. As we iterate through the frequency map entries, we add them to
-     * the heap. If the heap size exceeds K, we poll (remove) the smallest element. What's left in
-     * the heap at the end will be exactly the K elements with the highest frequencies.
-     * * Complexity Analysis:
-     * - Time Complexity: O(N log K). Building the map takes O(N). Inserting into a heap of size K
-     * takes O(log K), and we do this for at most N unique elements. O(N + N log K) = O(N log K).
-     * This strictly satisfies the "better than O(N log N)" constraint.
-     * - Space Complexity: O(N + K). The frequency map takes O(N) heap space, and the PriorityQueue
-     * takes O(K) heap space. Total space is bounded by O(N).
-     */
-    public static int[] topKFrequentMinHeap(int[] nums, int k) {
-        Map<Integer, Integer> freqMap = new HashMap<>();
-        for (int num : nums) {
-            freqMap.put(num, freqMap.getOrDefault(num, 0) + 1);
-        }
-
-        // Min-Heap based on frequency
-        PriorityQueue<Map.Entry<Integer, Integer>> minHeap =
-                new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
-
-        for (Map.Entry<Integer, Integer> entry : freqMap.entrySet()) {
-            minHeap.offer(entry);
-            if (minHeap.size() > k) {
-                minHeap.poll(); // Evict the least frequent element
-            }
-        }
-
-        int[] result = new int[k];
-        for (int i = k - 1; i >= 0; i--) {
-            // Extract from heap (gives smallest first, so populate backwards for sorted order)
-            result[i] = minHeap.poll().getKey();
         }
 
         return result;

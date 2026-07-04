@@ -35,6 +35,60 @@ import java.util.stream.Collectors;
 
 public class HandOfStraights {
 
+
+    /**
+     * ==============================================================================================
+     * Phase 3: Alternative Approach - Stream API + PriorityQueue (Min-Heap)
+     * ==============================================================================================
+     * Detailed Intuition:
+     * Similar to the optimal approach, but leveraging Java 8 Stream API to build a frequency map.
+     * Instead of a TreeMap, we load all unique keys into a PriorityQueue (Min-Heap). This allows
+     * us to repeatedly poll the smallest available card and attempt to build a sequence. We keep
+     * checking the frequency map, and if a card count drops to zero, we ignore it when it pops
+     * from the heap.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N + K log K). Building the map with streams is O(N). Building the Heap
+     * takes O(K). Extracting the minimum and polling takes O(K log K) across the process.
+     * - Space Complexity: O(K) heap space for the frequency map and PriorityQueue.
+     */
+    public static boolean isNStraightHandStreamAPI(int[] hand, int groupSize) {
+        if (hand.length % groupSize != 0) {
+            return false;
+        }
+
+        // 1. Build Frequency Map using Java 8 Streams
+        Map<Integer, Long> frequencyMap = Arrays.stream(hand)
+                .boxed()
+                .collect(Collectors.groupingBy(e -> e, Collectors.counting()));
+
+        // 2. Load unique cards into a Min-Heap
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>(frequencyMap.keySet());
+
+        while (!minHeap.isEmpty()) {
+            int smallestCard = minHeap.peek();
+
+            // If we've exhausted this card in previous sequences, remove it
+            if (frequencyMap.get(smallestCard) == 0) {
+                minHeap.poll();
+                continue;
+            }
+
+            // Attempt to build a group of 'groupSize' starting from 'smallestCard'
+            for (int i = 0; i < groupSize; i++) {
+                int currentCard = smallestCard + i;
+                long count = frequencyMap.getOrDefault(currentCard, 0L);
+
+                if (count == 0) {
+                    return false; // Sequence broken
+                }
+
+                frequencyMap.put(currentCard, count - 1);
+            }
+        }
+
+        return true;
+    }
+
     /**
      * ==============================================================================================
      * Phase 1: Optimal Approach - TreeMap Frequency Counter (The Recommended Approach)
@@ -134,59 +188,6 @@ public class HandOfStraights {
             // If we couldn't complete a group of groupSize, it's invalid
             if (cardsFound != groupSize) {
                 return false;
-            }
-        }
-
-        return true;
-    }
-
-    /**
-     * ==============================================================================================
-     * Phase 3: Alternative Approach - Stream API + PriorityQueue (Min-Heap)
-     * ==============================================================================================
-     * Detailed Intuition:
-     * Similar to the optimal approach, but leveraging Java 8 Stream API to build a frequency map.
-     * Instead of a TreeMap, we load all unique keys into a PriorityQueue (Min-Heap). This allows
-     * us to repeatedly poll the smallest available card and attempt to build a sequence. We keep
-     * checking the frequency map, and if a card count drops to zero, we ignore it when it pops
-     * from the heap.
-     * * Complexity Analysis:
-     * - Time Complexity: O(N + K log K). Building the map with streams is O(N). Building the Heap
-     * takes O(K). Extracting the minimum and polling takes O(K log K) across the process.
-     * - Space Complexity: O(K) heap space for the frequency map and PriorityQueue.
-     */
-    public static boolean isNStraightHandStreamAPI(int[] hand, int groupSize) {
-        if (hand.length % groupSize != 0) {
-            return false;
-        }
-
-        // 1. Build Frequency Map using Java 8 Streams
-        Map<Integer, Long> frequencyMap = Arrays.stream(hand)
-                .boxed()
-                .collect(Collectors.groupingBy(e -> e, Collectors.counting()));
-
-        // 2. Load unique cards into a Min-Heap
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>(frequencyMap.keySet());
-
-        while (!minHeap.isEmpty()) {
-            int smallestCard = minHeap.peek();
-
-            // If we've exhausted this card in previous sequences, remove it
-            if (frequencyMap.get(smallestCard) == 0) {
-                minHeap.poll();
-                continue;
-            }
-
-            // Attempt to build a group of 'groupSize' starting from 'smallestCard'
-            for (int i = 0; i < groupSize; i++) {
-                int currentCard = smallestCard + i;
-                long count = frequencyMap.getOrDefault(currentCard, 0L);
-
-                if (count == 0) {
-                    return false; // Sequence broken
-                }
-
-                frequencyMap.put(currentCard, count - 1);
             }
         }
 
