@@ -1,4 +1,4 @@
-package strivers.arrays.medium;
+package strivers.arrays.easy;
 
 /**
  * ============================================================================
@@ -54,37 +54,6 @@ public class Sum2Problem {
 
     /**
      * ========================================================================
-     * PHASE 1: BRUTE FORCE APPROACH (The "Think it" stage)
-     * ========================================================================
-     * Approach:
-     * We need to find pairs. The most straightforward way is to check every
-     * single possible pair in the array to see if their sum equals the target.
-     * We use a nested loop: the outer loop picks the first element, and the
-     * inner loop iterates through the remaining elements to find a match.
-     * * Intuition:
-     * Before optimizing, establish the baseline. We know the array length is up
-     * to 10^4. Checking all pairs means N * (N - 1) / 2 operations. For 10^4,
-     * this is roughly 5 * 10^7 operations, which might pass but is highly inefficient.
-     * * Complexity Analysis:
-     * - Time Complexity: O(n^2)
-     * We are iterating over the rest of the array for each element.
-     * - Space Complexity: O(1)
-     * No extra memory is used. Auxiliary stack space is O(1) and heap space is O(1).
-     */
-    public int[] twoSumBruteForce(int[] nums, int target) {
-        int n = nums.length;
-        for (int i = 0; i < n - 1; i++) {
-            for (int j = i + 1; j < n; j++) {
-                if (nums[i] + nums[j] == target) {
-                    return new int[]{i, j};
-                }
-            }
-        }
-        return new int[]{}; // Should not be reached based on problem constraints
-    }
-
-    /**
-     * ========================================================================
      * PHASE 2: OPTIMAL HASHING (The "Perfect it" stage - Alternative Approach)
      * ========================================================================
      * Approach:
@@ -123,6 +92,38 @@ public class Sum2Problem {
 
         return new int[]{}; // Fallback
     }
+
+    /**
+     * ========================================================================
+     * PHASE 1: BRUTE FORCE APPROACH (The "Think it" stage)
+     * ========================================================================
+     * Approach:
+     * We need to find pairs. The most straightforward way is to check every
+     * single possible pair in the array to see if their sum equals the target.
+     * We use a nested loop: the outer loop picks the first element, and the
+     * inner loop iterates through the remaining elements to find a match.
+     * * Intuition:
+     * Before optimizing, establish the baseline. We know the array length is up
+     * to 10^4. Checking all pairs means N * (N - 1) / 2 operations. For 10^4,
+     * this is roughly 5 * 10^7 operations, which might pass but is highly inefficient.
+     * * Complexity Analysis:
+     * - Time Complexity: O(n^2)
+     * We are iterating over the rest of the array for each element.
+     * - Space Complexity: O(1)
+     * No extra memory is used. Auxiliary stack space is O(1) and heap space is O(1).
+     */
+    public int[] twoSumBruteForce(int[] nums, int target) {
+        int n = nums.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return new int[]{}; // Should not be reached based on problem constraints
+    }
+
 
     /**
      * ========================================================================

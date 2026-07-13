@@ -68,6 +68,7 @@ public class EncodeDecodeStringsMasterclass {
             for (String s : strs) {
                 sb.append(s.length()).append('#').append(s);
             }
+
             return sb.toString();
         }
 
