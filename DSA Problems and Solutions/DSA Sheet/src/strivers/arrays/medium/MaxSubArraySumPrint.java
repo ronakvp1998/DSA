@@ -58,6 +58,67 @@ import java.util.Arrays;
 public class MaxSubArraySumPrint {
 
     /**
+     * ========================================================================
+     * PHASE 2: OPTIMAL APPROACH - KADANE'S ALGORITHM (The "Perfect it" stage)
+     * ========================================================================
+     * Approach:
+     * Use Kadane's Algorithm but introduce tracking variables: `currStart`,
+     * `bestStart`, and `bestEnd`. Whenever `nums[i]` by itself is greater than
+     * `currentMax + nums[i]`, we reset `currentMax` to `nums[i]` AND reset
+     * `currStart` to `i`. Whenever `currentMax` sets a new `globalMax`, we copy
+     * `currStart` to `bestStart`, and set `bestEnd` to `i`.
+     * * Detailed Intuition:
+     * Standard Kadane's tells us *what* the max sum is, but inherently throws
+     * away the history of *where* it came from. By tracking the exact moment a
+     * sequence begins (the "fresh start" condition) and locking in that start
+     * index ONLY when the sequence breaks a new global record, we can perfectly
+     * trace the structural boundaries of the optimal subarray in a single pass.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N)
+     * A single iteration through the array. Arrays.copyOfRange takes O(K) where
+     * K is the length of the subarray, which is bounded by N. Overall Time: O(N).
+     * - Space Complexity: O(N)
+     * Heap space is O(N) required to construct and return the resultant subarray.
+     * Auxiliary stack space is O(1).
+     */
+    public Result printMaxSubArrayOptimal(int[] nums) {
+        // Handle edge case of empty array
+        if (nums == null || nums.length == 0) {
+            return new Result(0, new int[]{});
+        }
+
+        int currentMax = nums[0];
+        int globalMax = nums[0];
+
+        int currStart = 0;
+        int bestStart = 0;
+        int bestEnd = 0;
+
+        for (int i = 1; i < nums.length; i++) {
+            // Decision: Do we start a new sequence exactly here, or extend?
+            if (nums[i] > currentMax + nums[i]) {
+                currentMax = nums[i];
+                currStart = i; // Reset the starting pointer of our current streak
+            } else {
+                currentMax += nums[i];
+            }
+
+            // Did this current sequence break the global record?
+            if (currentMax > globalMax) {
+                globalMax = currentMax;
+
+                // Snapshot the boundaries!
+                bestStart = currStart;
+                bestEnd = i;
+            }
+        }
+
+        // Extract the sub-array using the captured bounds
+        int[] subArray = Arrays.copyOfRange(nums, bestStart, bestEnd + 1);
+        return new Result(globalMax, subArray);
+    }
+
+    /**
      * Helper class to hold both the max sum and the resulting subarray bounds
      */
     static class Result {
@@ -111,67 +172,6 @@ public class MaxSubArraySumPrint {
                     bestStart = i;
                     bestEnd = j;
                 }
-            }
-        }
-
-        // Extract the sub-array using the captured bounds
-        int[] subArray = Arrays.copyOfRange(nums, bestStart, bestEnd + 1);
-        return new Result(globalMax, subArray);
-    }
-
-    /**
-     * ========================================================================
-     * PHASE 2: OPTIMAL APPROACH - KADANE'S ALGORITHM (The "Perfect it" stage)
-     * ========================================================================
-     * Approach:
-     * Use Kadane's Algorithm but introduce tracking variables: `currStart`,
-     * `bestStart`, and `bestEnd`. Whenever `nums[i]` by itself is greater than
-     * `currentMax + nums[i]`, we reset `currentMax` to `nums[i]` AND reset
-     * `currStart` to `i`. Whenever `currentMax` sets a new `globalMax`, we copy
-     * `currStart` to `bestStart`, and set `bestEnd` to `i`.
-     * * Detailed Intuition:
-     * Standard Kadane's tells us *what* the max sum is, but inherently throws
-     * away the history of *where* it came from. By tracking the exact moment a
-     * sequence begins (the "fresh start" condition) and locking in that start
-     * index ONLY when the sequence breaks a new global record, we can perfectly
-     * trace the structural boundaries of the optimal subarray in a single pass.
-     * * Complexity Analysis:
-     * - Time Complexity: O(N)
-     * A single iteration through the array. Arrays.copyOfRange takes O(K) where
-     * K is the length of the subarray, which is bounded by N. Overall Time: O(N).
-     * - Space Complexity: O(N)
-     * Heap space is O(N) required to construct and return the resultant subarray.
-     * Auxiliary stack space is O(1).
-     */
-    public Result printMaxSubArrayOptimal(int[] nums) {
-        // Handle edge case of empty array
-        if (nums == null || nums.length == 0) {
-            return new Result(0, new int[]{});
-        }
-
-        int currentMax = nums[0];
-        int globalMax = nums[0];
-
-        int currStart = 0;
-        int bestStart = 0;
-        int bestEnd = 0;
-
-        for (int i = 1; i < nums.length; i++) {
-            // Decision: Do we start a new sequence exactly here, or extend?
-            if (nums[i] > currentMax + nums[i]) {
-                currentMax = nums[i];
-                currStart = i; // Reset the starting pointer of our current streak
-            } else {
-                currentMax += nums[i];
-            }
-
-            // Did this current sequence break the global record?
-            if (currentMax > globalMax) {
-                globalMax = currentMax;
-
-                // Snapshot the boundaries!
-                bestStart = currStart;
-                bestEnd = i;
             }
         }
 

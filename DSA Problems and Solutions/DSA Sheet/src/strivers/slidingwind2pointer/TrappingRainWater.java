@@ -29,6 +29,49 @@ import java.util.List;
  */
 public class TrappingRainWater {
 
+
+    /**
+     * Phase 3: Alternative Approach - Precomputed Prefix/Suffix Arrays (Dynamic Programming)
+     * * * Detailed Intuition:
+     * The brute force recalculates the left and right maxes repeatedly. We can optimize
+     * this by trading space for time. We iterate through the array once from left to right
+     * to populate a `leftMax` array, and once from right to left to populate a `rightMax`
+     * array. Then, in a final O(N) pass, we calculate the trapped water using the
+     * precomputed arrays. This is often the most intuitive leap from the brute-force method.
+     * * * Complexity Analysis:
+     * Time Complexity: O(N)
+     * We perform three separate O(N) traversals of the array.
+     * Space Complexity: O(N)
+     * We allocate two auxiliary arrays (`leftMax` and `rightMax`) on the heap, each of size N.
+     */
+    public int trapPrecomputedArrays(int[] height) {
+        int n = height.length;
+        if (n == 0) return 0;
+
+        // Calculate left max boundary
+        int[] leftMax = new int[n];
+        leftMax[0] = height[0];
+        for (int i = 1; i < n; i++) {
+            leftMax[i] = Math.max(height[i], leftMax[i - 1]);
+        }
+
+        // Calculate right max boundary
+        int[] rightMax = new int[n];
+        rightMax[n - 1] = height[n - 1];
+        for (int i = n - 2; i >= 0; i--) {
+            rightMax[i] = Math.max(height[i], rightMax[i + 1]);
+        }
+
+        // Get the trapped water
+        int trappedWater = 0;
+        for (int i = 0; i < n; i++) {
+            int waterLevel = Math.min(leftMax[i], rightMax[i]);
+            trappedWater += waterLevel - height[i];
+        }
+
+        return trappedWater;
+    }
+
     /**
      * ========================================================================
      * 2.2 PROGRESSIVE IMPLEMENTATION ROADMAP (NON-DP FOCUS)
@@ -117,48 +160,6 @@ public class TrappingRainWater {
 
             // Calculate trapped water for current bar
             trappedWater += Math.min(leftMax, rightMax) - height[i];
-        }
-
-        return trappedWater;
-    }
-
-    /**
-     * Phase 3: Alternative Approach - Precomputed Prefix/Suffix Arrays (Dynamic Programming)
-     * * * Detailed Intuition:
-     * The brute force recalculates the left and right maxes repeatedly. We can optimize
-     * this by trading space for time. We iterate through the array once from left to right
-     * to populate a `leftMax` array, and once from right to left to populate a `rightMax`
-     * array. Then, in a final O(N) pass, we calculate the trapped water using the
-     * precomputed arrays. This is often the most intuitive leap from the brute-force method.
-     * * * Complexity Analysis:
-     * Time Complexity: O(N)
-     * We perform three separate O(N) traversals of the array.
-     * Space Complexity: O(N)
-     * We allocate two auxiliary arrays (`leftMax` and `rightMax`) on the heap, each of size N.
-     */
-    public int trapPrecomputedArrays(int[] height) {
-        int n = height.length;
-        if (n == 0) return 0;
-
-        // Calculate left max boundary
-        int[] leftMax = new int[n];
-        leftMax[0] = height[0];
-        for (int i = 1; i < n; i++) {
-            leftMax[i] = Math.max(height[i], leftMax[i - 1]);
-        }
-
-        // Calculate right max boundary
-        int[] rightMax = new int[n];
-        rightMax[n - 1] = height[n - 1];
-        for (int i = n - 2; i >= 0; i--) {
-            rightMax[i] = Math.max(height[i], rightMax[i + 1]);
-        }
-
-        // Get the trapped water
-        int trappedWater = 0;
-        for (int i = 0; i < n; i++) {
-            int waterLevel = Math.min(leftMax[i], rightMax[i]);
-            trappedWater += waterLevel - height[i];
         }
 
         return trappedWater;

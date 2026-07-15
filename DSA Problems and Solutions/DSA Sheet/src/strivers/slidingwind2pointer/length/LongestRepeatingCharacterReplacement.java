@@ -113,11 +113,10 @@ public class LongestRepeatingCharacterReplacement {
 
     public int characterReplacement(String s, int k) {
         HashMap<Character, Integer> freqMap = new HashMap<>();
-        int left = 0;
+        int left = 0,right=0,n=s.length();
         int maxFreq = 0;
         int maxLength = 0;
-
-        for (int right = 0; right < s.length(); right++) {
+        while (right < n) {
             char rightChar = s.charAt(right);
             // Add the current character to our frequency map
             freqMap.put(rightChar, freqMap.getOrDefault(rightChar, 0) + 1);
@@ -136,6 +135,7 @@ public class LongestRepeatingCharacterReplacement {
 
             // Update the max length found so far
             maxLength = Math.max(maxLength, right - left + 1);
+            right++;
         }
 
         return maxLength;

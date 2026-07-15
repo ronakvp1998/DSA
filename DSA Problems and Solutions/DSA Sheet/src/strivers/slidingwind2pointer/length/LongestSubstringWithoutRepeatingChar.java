@@ -72,11 +72,10 @@ public class LongestSubstringWithoutRepeatingChar {
      */
     public int lengthOfLongestSubstringOptimal(String s) {
         if (s == null || s.isEmpty()) return 0;
-
         int[] charIndexMap = new int[128]; // Direct address table for ASCII
         int maxLength = 0;
-
-        for (int left = 0, right = 0; right < s.length(); right++) {
+        int left = 0, right=0, n =s.length();
+        while (right < n){
             char currentChar = s.charAt(right);
 
             // If the character was seen, jump the left pointer to the right of its last occurrence.
@@ -88,6 +87,7 @@ public class LongestSubstringWithoutRepeatingChar {
 
             // Store the index + 1 to denote where the left pointer should jump if seen again
             charIndexMap[currentChar] = right + 1;
+            right++;
         }
 
         return maxLength;
@@ -193,20 +193,18 @@ public class LongestSubstringWithoutRepeatingChar {
      */
     public int lengthOfLongestSubstringHashMap(String s) {
         if (s == null || s.isEmpty()) return 0;
-
         Map<Character, Integer> charMap = new HashMap<>();
-        int maxLength = 0;
-
-        for (int left = 0, right = 0; right < s.length(); right++) {
+        int maxLength = 0,n=s.length();
+        int left =0, right=0;
+        while (right < n){
             char currentChar = s.charAt(right);
-
             if (charMap.containsKey(currentChar)) {
                 left = Math.max(left, charMap.get(currentChar) + 1);
             }
             charMap.put(currentChar, right);
             maxLength = Math.max(maxLength, right - left + 1);
+            right++;
         }
-
         return maxLength;
     }
 

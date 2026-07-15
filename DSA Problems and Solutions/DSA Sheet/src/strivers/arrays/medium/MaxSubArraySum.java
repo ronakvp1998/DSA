@@ -51,7 +51,87 @@ package strivers.arrays.medium;
 
 import java.util.Arrays;
 
-public class MaxSubArraySumLength {
+public class MaxSubArraySum {
+
+    public int maxSubArray1(int[] nums) {
+        // Array to store the maximum subarray sum ending at each index
+        int[] arr = new int[nums.length];
+
+        // Base case: first element
+        arr[0] = nums[0];
+        int globalMax = arr[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            // THE "RESET" LOGIC:
+            // If the sum up to the previous step is negative, it hurts us.
+            // We "reset to 0" by not adding it, starting fresh at nums[i].
+            if (arr[i - 1] < 0) {
+                arr[i] = nums[i];
+            }
+            // Otherwise, we carry the positive momentum forward
+            else {
+                arr[i] = arr[i - 1] + nums[i];
+            }
+
+            // Check if our newly calculated sum is the best we've seen overall
+            globalMax = Math.max(globalMax, arr[i]);
+        }
+
+        return globalMax;
+    }
+
+    public int maxSubArray(int[] nums) {
+        int maxSum = Integer.MIN_VALUE; // Start with the smallest possible number
+        int currentSum = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            // 1. Add the current number to our running total
+            currentSum += nums[i];
+
+            // 2. Update the global max if our current running total is higher
+            maxSum = Math.max(maxSum, currentSum);
+
+            // 3. HERE IS THE RESET: If the running total dips below zero,
+            // it's useless to us. Ditch it and start fresh at 0.
+            if (currentSum < 0) {
+                currentSum = 0;
+            }
+        }
+
+        return maxSum;
+    }
+
+    /**
+     * ========================================================================
+     * PHASE 4: SPACE OPTIMIZATION (The "Perfect it" stage - Kadane's Algorithm)
+     * ========================================================================
+     * Approach:
+     * We discard the O(N) DP array and replace it with a single variable to track
+     * the maximum sum ending at the current position.
+     * * Detailed Intuition:
+     * If we look at the transition `dp[i] = Math.max(nums[i], dp[i - 1] + nums[i])`,
+     * we see that the calculation for `dp[i]` ONLY requires `dp[i-1]`. The rest of
+     * the historical DP array (`dp[i-2]`, `dp[i-3]`, etc.) is completely useless.
+     * We can optimize away the array and just keep a running "current best" integer.
+     * This is formally known as Kadane's Algorithm.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N)
+     * Single traversal of the array.
+     * - Space Complexity: O(1)
+     * Only primitive integer variables are used. Heap space O(1), Stack space O(1).
+     */
+    public int maxSubArraySpaceOptimized(int[] nums) {
+        int currentMax = nums[0]; // Represents dp[i-1]
+        int globalMax = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            currentMax = Math.max(nums[i], currentMax + nums[i]);
+            globalMax = Math.max(globalMax, currentMax);
+        }
+
+        return globalMax;
+    }
+
 
     /**
      * ========================================================================
@@ -192,37 +272,6 @@ public class MaxSubArraySumLength {
 
     /**
      * ========================================================================
-     * PHASE 4: SPACE OPTIMIZATION (The "Perfect it" stage - Kadane's Algorithm)
-     * ========================================================================
-     * Approach:
-     * We discard the O(N) DP array and replace it with a single variable to track
-     * the maximum sum ending at the current position.
-     * * Detailed Intuition:
-     * If we look at the transition `dp[i] = Math.max(nums[i], dp[i - 1] + nums[i])`,
-     * we see that the calculation for `dp[i]` ONLY requires `dp[i-1]`. The rest of
-     * the historical DP array (`dp[i-2]`, `dp[i-3]`, etc.) is completely useless.
-     * We can optimize away the array and just keep a running "current best" integer.
-     * This is formally known as Kadane's Algorithm.
-     * * Complexity Analysis:
-     * - Time Complexity: O(N)
-     * Single traversal of the array.
-     * - Space Complexity: O(1)
-     * Only primitive integer variables are used. Heap space O(1), Stack space O(1).
-     */
-    public int maxSubArraySpaceOptimized(int[] nums) {
-        int currentMax = nums[0]; // Represents dp[i-1]
-        int globalMax = nums[0];
-
-        for (int i = 1; i < nums.length; i++) {
-            currentMax = Math.max(nums[i], currentMax + nums[i]);
-            globalMax = Math.max(globalMax, currentMax);
-        }
-
-        return globalMax;
-    }
-
-    /**
-     * ========================================================================
      * PHASE 5: ALTERNATIVE APPROACH (Divide and Conquer)
      * ========================================================================
      * Approach:
@@ -287,7 +336,7 @@ public class MaxSubArraySumLength {
      * ========================================================================
      */
     public static void main(String[] args) {
-        MaxSubArraySumLength solution = new MaxSubArraySumLength();
+        MaxSubArraySum solution = new MaxSubArraySum();
 
         // Define Test Cases
         int[][] testCases = {

@@ -65,7 +65,9 @@ public class PermutationInString {
                 return true;
             }
             // Slide window: remove outgoing char, add incoming char
+            // 1. Remove the outgoing character from the left of the window
             s2Count[s2.charAt(i) - 'a']--;
+            // 2. Add the incoming character to the right of the window
             s2Count[s2.charAt(i + s1.length()) - 'a']++;
         }
 
@@ -112,8 +114,8 @@ public class PermutationInString {
         }
 
         // Slide the window
-        int left = 0;
-        for (int right = s1.length(); right < s2.length(); right++) {
+        int left = 0,right = s1.length(),n=s2.length();
+        while (right < n) {
             if (matches == 26) return true;
 
             // Process character entering the window (right pointer)
@@ -134,6 +136,7 @@ public class PermutationInString {
                 matches--; // We just broke a previously matching frequency
             }
             left++;
+            right++;
         }
 
         return matches == 26;

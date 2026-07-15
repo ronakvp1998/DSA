@@ -49,47 +49,48 @@ public class FindMinimumInRotatedArray {
      * PHASE 1: BEST AND RECOMMENDED APPROACH (Optimized Binary Search)
      * ========================================================================
      * Approach:
-     * We use a modified Binary Search. In a rotated sorted array, the minimum element
-     * is the only element that is smaller than its previous element. It acts as the
-     * "inflection point". We can find this by comparing the middle element with the
-     * rightmost element of our current search space.
-     * * Detailed Intuition:
-     * 1. Calculate 'mid'.
-     * 2. Compare nums[mid] with nums[high].
-     * 3. If nums[mid] > nums[high], it means the array is unsorted in the right half.
-     * Therefore, the inflection point (minimum element) MUST be in the right half,
-     * and it cannot be 'mid' itself (since mid is greater than high).
-     * So, we set low = mid + 1.
-     * 4. If nums[mid] <= nums[high], the right half is perfectly sorted. This means
-     * the minimum element is either 'mid' itself, or it exists in the left half.
-     * So, we set high = mid.
-     * 5. The loop terminates when low == high, at which point 'low' points to the minimum.
-     * * Complexity Analysis:
-     * - Time Complexity: O(log N). We halve the search space at every step.
-     * - Space Complexity: O(1) auxiliary space. We only use three primitive integer
-     * variables (low, high, mid) which are stored on the stack. Zero heap space used.
+     * The Core Idea:In a rotated sorted array,
+     * if you split it in half,
+     * at least one half will always be completely sorted.Find the middle (mid).
+     * Identify the sorted half:
+     * If the left half is sorted (nums[low] <= nums[mid]):
+     * The smallest value in this half is nums[low].
+     * Update your global minimum with it,
+     * then discard this half and search the right side (low = mid + 1).
+     * If the right half is sorted (nums[mid] <= nums[high]):
+     * The smallest value in this half is nums[mid].
+     * Update your global minimum with it,
+     * then discard this half and search the left side (high = mid - 1).
+     * Repeat until low surpasses high.
+     * Time Complexity: $O(\log n)$We are using Binary Search,
+     * which cuts the search space in half during every iteration.
+     * Space Complexity: $O(1)$We are only using a few integer variables (low, high, mid, min) regardless of the array's size.
      */
     public int findMinBest(int[] nums) {
-        if (nums == null || nums.length == 0) {
-            throw new IllegalArgumentException("Array must not be empty");
-        }
+        int n = nums.length;
+        int low = 0, high = n - 1;
+        int min = Integer.MAX_VALUE;
 
-        int low = 0;
-        int high = nums.length - 1;
-
-        while (low < high) {
+        while (low <= high) {
             int mid = low + (high - low) / 2;
 
-            if (nums[mid] > nums[high]) {
-                // Minimum is in the right half
+            // If the left half is sorted
+            if (nums[low] <= nums[mid]) {
+                // The minimum of this sorted half is nums[low]
+                min = Math.min(min, nums[low]);
+                // Eliminate the left half
                 low = mid + 1;
-            } else {
-                // Minimum is in the left half, or is mid itself
-                high = mid;
+            }
+            // If the right half is sorted
+            else {
+                // The minimum of this sorted half is nums[mid]
+                min = Math.min(min, nums[mid]);
+                // Eliminate the right half
+                high = mid - 1;
             }
         }
 
-        return nums[low];
+        return min;
     }
 
     /**
