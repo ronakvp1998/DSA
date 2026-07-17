@@ -1,37 +1,31 @@
 package practice;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 public class Test {
 
-    public int phase1OptimalGreedy(int[] gas, int[] cost) {
-        int totalGas=0,totalCost=0,currentTank=0,startingStation=0;
-        for(int i=0;i<gas.length;i++){
-            totalGas += gas[i];
-            totalCost += cost[i];
-            currentTank += gas[i] - cost[i];
-            if(currentTank < 0){
-                startingStation = i+1;
-                currentTank = 0;
-            }
+    private static void backtrack(List<List<Integer>> result,
+                                  List<Integer> current,int []nums,int start){
+        result.add(new ArrayList<>(current));
+        if(start == nums.length){
+            return;
         }
-        if(totalCost > totalGas){
-            return -1;
+        for(int i=start;i<nums.length;i++){
+            current.add(nums[i]);
+            backtrack(result,current,nums,i+1);
+            current.remove(current.size()-1);
         }
-        return startingStation;
     }
 
-    public int maxSubArray(int[] nums) {
-        if(nums == null || nums.length == 0){
-            return 0;
+    private static void backtrac2(List<List<Integer>> res,List<Integer> current,int []nums,int index){
+        if(index == nums.length){
+            res.add(new ArrayList<>(current));
+            return;
         }
-        int n =nums.length;
-        int currentSum=0,maxsum = Integer.MIN_VALUE;
-        for(int i=0;i<n;i++){
-            currentSum += nums[i];
-            maxsum = Math.max(maxsum,currentSum);
-            if(currentSum < 0){
-                currentSum = 0;
-            }
-        }
-        return maxsum;
+        backtrac2(res,current,nums,index+1);
+        current.add(nums[index]);
+        backtrac2(res,current,nums,index+1);
+        current.remove(current.size()-1);
     }
 }

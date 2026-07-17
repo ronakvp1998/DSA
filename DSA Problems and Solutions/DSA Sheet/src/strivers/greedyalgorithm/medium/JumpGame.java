@@ -68,6 +68,43 @@ public class JumpGame {
 
     /**
      * ============================================================================
+     * PHASE 4: Optimal Greedy Approach (Forward) - The "Perfect it" stage.
+     * ============================================================================
+     * Detailed Intuition:
+     * Do we really need an array to track every reachable state? No.
+     * We just need to track the MAXIMUM index we can reach so far.
+     * As we iterate through the array, if our current index `i` is greater than
+     * `maxReach`, it means we are stuck and cannot even reach our current position.
+     * Otherwise, we update `maxReach` to be the max of its current value and
+     * `i + nums[i]`. If `maxReach` exceeds or equals the last index, we win!
+     *
+     * Complexity Analysis:
+     * Time: O(N) - A single pass through the array.
+     * Space: O(1) - O(1) heap space (single integer). O(1) auxiliary stack space.
+     */
+    public boolean phase4OptimalGreedyForward(int[] nums) {
+        int maxReach = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            // If the current index is beyond the maximum reach, we are stuck!
+            if (i > maxReach) {
+                return false;
+            }
+
+            // Update the furthest we can reach
+            maxReach = Math.max(maxReach, i + nums[i]);
+
+            // Early exit optimization: if we can already reach the end, stop checking
+            if (maxReach >= nums.length - 1) {
+                return true;
+            }
+        }
+
+        return true;
+    }
+
+    /**
+     * ============================================================================
      * PHASE 1: Brute Force Recursion - The "Think it" stage.
      * ============================================================================
      * Detailed Intuition:
@@ -170,43 +207,6 @@ public class JumpGame {
             }
         }
         return dp[0];
-    }
-
-    /**
-     * ============================================================================
-     * PHASE 4: Optimal Greedy Approach (Forward) - The "Perfect it" stage.
-     * ============================================================================
-     * Detailed Intuition:
-     * Do we really need an array to track every reachable state? No.
-     * We just need to track the MAXIMUM index we can reach so far.
-     * As we iterate through the array, if our current index `i` is greater than
-     * `maxReach`, it means we are stuck and cannot even reach our current position.
-     * Otherwise, we update `maxReach` to be the max of its current value and
-     * `i + nums[i]`. If `maxReach` exceeds or equals the last index, we win!
-     *
-     * Complexity Analysis:
-     * Time: O(N) - A single pass through the array.
-     * Space: O(1) - O(1) heap space (single integer). O(1) auxiliary stack space.
-     */
-    public boolean phase4OptimalGreedyForward(int[] nums) {
-        int maxReach = 0;
-
-        for (int i = 0; i < nums.length; i++) {
-            // If the current index is beyond the maximum reach, we are stuck!
-            if (i > maxReach) {
-                return false;
-            }
-
-            // Update the furthest we can reach
-            maxReach = Math.max(maxReach, i + nums[i]);
-
-            // Early exit optimization: if we can already reach the end, stop checking
-            if (maxReach >= nums.length - 1) {
-                return true;
-            }
-        }
-
-        return true;
     }
 
     /**

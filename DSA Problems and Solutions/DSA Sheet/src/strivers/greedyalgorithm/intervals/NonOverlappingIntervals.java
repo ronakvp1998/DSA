@@ -1,4 +1,4 @@
-package strivers.greedyalgorithm.medium;
+package strivers.greedyalgorithm.intervals;
 
 /**
  * ==================================================================================================

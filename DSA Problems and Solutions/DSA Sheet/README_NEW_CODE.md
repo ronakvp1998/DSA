@@ -24,7 +24,7 @@ This version of the prompt ensures that the entire breakdown—from the recursio
 > *(If the problem is not a DP problem, ignore this section and its explanations).*
 >
 > Provide the following methods in order within the class. For each phase, briefly explain the approach and the steps to be performed:
-> * **Phase 1: Brute Force Recursion** - The "Think it" stage.
+> * **Phase 1: Brute Force Recursion** - The "Think it" stage, also add the for loop and normal recursion/backtracking code both if present.
 > * **Phase 2: Top-Down Memoization** - The "Refine it" stage.
 > * **Phase 3: Bottom-Up Tabulation** - The "Build it" stage.
     >     * *CRITICAL:* In the comments directly above this method, provide a text-based grid showing the **exact default state of the DP array immediately after base case initialization**, right before the main nested `for` loops begin. Additionally, provide a text-based grid showing the **exact final state of the DP array** for the same example.
@@ -46,4 +46,4 @@ This version of the prompt ensures that the entire breakdown—from the recursio
 > * Add a `main` method to thoroughly test all the different approaches against standard and edge cases (especially zero-value edge cases if applicable).
 >
 > ---
-> **Problem Statement:** > [INSERT PROBLEM HERE]
+> **Problem Statement:** > give me recursive solution for this problem add the normal recursion and for loop both solution if present [INSERT PROBLEM HERE]

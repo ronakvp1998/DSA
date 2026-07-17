@@ -1,261 +1,252 @@
 package strivers.greedyalgorithm.medium;
-
 /**
- * ==================================================================================================
- * PROBLEM STATEMENT: 45. Jump Game II (Medium)
- * ==================================================================================================
- * You are given a 0-indexed array of integers nums of length n. You are initially positioned at index 0.
- * Each element nums[i] represents the maximum length of a forward jump from index i.
- * Return the minimum number of jumps to reach index n - 1.
- * The test cases are generated such that you can reach index n - 1.
+ * ============================================================================
+ * 🚀 MASTERCLASS: 45. Jump Game II
+ * ============================================================================
  *
+ * ROLE: Senior DSA Interviewer & Competitive Programming Evaluator
+ *
+ * PROBLEM STATEMENT:
+ * You are given a 0-indexed array of integers `nums` of length `n`. You are
+ * initially positioned at index 0.
+ *
+ * Each element `nums[i]` represents the maximum length of a forward jump from
+ * index `i`. In other words, if you are at index `i`, you can jump to any
+ * index `(i + j)` where:
+ *   - 0 <= j <= nums[i]
+ *   - i + j < n
+ *
+ * Return the minimum number of jumps to reach index `n - 1`. The test cases
+ * are generated such that you can reach index `n - 1`.
+ *
+ * EXAMPLES:
  * Example 1:
  * Input: nums = [2,3,1,1,4]
  * Output: 2
+ * Explanation: The minimum number of jumps to reach the last index is 2.
+ * Jump 1 step from index 0 to 1, then 3 steps to the last index.
  *
  * Example 2:
  * Input: nums = [2,3,0,1,4]
  * Output: 2
  *
- * Constraints:
- * 1 <= nums.length <= 104
- * 0 <= nums[i] <= 1000
- * It's guaranteed that you can reach nums[n - 1].
- * ==================================================================================================
- * APPROACH 1: GREEDY ALGORITHM (Implicit BFS / Window Tracking) - OPTIMAL
- * ==================================================================================================
- * To find the MINIMUM jumps, we can think of this as expanding windows.
- * We track the 'currentEnd' of our current level. As we iterate, we continuously calculate
- * the 'farthest' point we can reach for the NEXT level. When we hit 'currentEnd', we jump.
- * Time Complexity: O(N)
- * Space Complexity: O(1)
- * ==================================================================================================
- * APPROACH 2: BRUTE FORCE RECURSIVE (Explores all paths)
- * ==================================================================================================
- * This approach tries every single valid combination of jumps to reach the end.
- * From any given position, it branches out to try jumping 1 step, 2 steps, all the way to nums[position] steps.
- * It recursively calculates the jumps needed from each of those landing spots, adds 1 (for the current jump),
- * and returns the absolute minimum among all paths.
- * * Drawback: Because it calculates overlapping subproblems repeatedly, it has an exponential time complexity.
- * It will trigger a Time Limit Exceeded (TLE) error on LeetCode for large arrays.
- * Time Complexity: O(max_jump^N) (Exponential)
- * Space Complexity: O(N) due to the call stack depth.
- * ==================================================================================================
+ * CONSTRAINTS:
+ * - 1 <= nums.length <= 10^4
+ * - 0 <= nums[i] <= 1000
+ * - It's guaranteed that you can reach nums[n - 1].
+ *
+ * ============================================================================
+ * PROGRESSIVE IMPLEMENTATION ROADMAP (Non-DP Primary Focus)
+ *
+ * While Jump Game II can be modeled as a Dynamic Programming problem, the
+ * explicitly requested Optimal approach is Greedy. We will structure the
+ * roadmap as follows:
+ *   Phase 1: Optimal Approach (Greedy)
+ *   Phase 2: Brute Force Approach (Pure Recursion)
+ *   Phase 3: Alternative Approach (DP Tabulation / Memoization)
+ * ============================================================================
  */
+
+import java.util.Arrays;
+import java.util.List;
+
 public class JumpGameII {
 
-    public static void main(String[] args) {
-        int[] nums1 = {2, 3, 1, 1, 4};
-        int[] nums2 = {2, 3, 0, 1, 4};
-        int[] nums3 = {0};
-
-        System.out.println("--- TESTING OPTIMAL GREEDY APPROACH ---");
-        System.out.println("Test Case 1 (Expected: 2) -> Result: " + jump(nums1));
-        System.out.println("Test Case 2 (Expected: 2) -> Result: " + jump(nums2));
-        System.out.println("Test Case 3 (Expected: 0) -> Result: " + jump(nums3));
-
-        System.out.println("\n--- TESTING BRUTE FORCE RECURSIVE APPROACH ---");
-        System.out.println("Test Case 1 (Expected: 2) -> Result: " + jumpRecursive(nums1));
-        System.out.println("Test Case 2 (Expected: 2) -> Result: " + jumpRecursive(nums2));
-        System.out.println("Test Case 3 (Expected: 0) -> Result: " + jumpRecursive(nums3));
-    }
-
     /**
-     * APPROACH 1: OPTIMAL GREEDY (Implicit BFS / Window Tracking)
-     * ==============================================================================================
-     * Conceptually, this approach groups the array into "levels" or "windows", exactly like a
-     * Breadth-First Search (BFS), but without the overhead of a Queue.
-     * * - Level 0: The starting index (0).
-     * - Level 1: All indices you can reach in exactly 1 jump from Level 0.
-     * - Level 2: All indices you can reach in exactly 1 jump from anywhere in Level 1.
-     * * How it works:
-     * 1. 'currentEnd' marks the boundary of our current level.
-     * 2. As we iterate through the elements in the current level, we continuously calculate
-     * the 'farthest' point we could reach for the NEXT level.
-     * 3. When our loop index 'i' hits the 'currentEnd', we have explored all options for this
-     * level. We are now forced to make a jump to proceed, so we increment our jump count
-     * and update 'currentEnd' to the 'farthest' point we found.
-     * * Time Complexity: O(N)   - We scan the array exactly once.
-     * Space Complexity: O(1)  - Only primitive variables are used.
-     * ==============================================================================================
+     * ========================================================================
+     * PHASE 1: OPTIMAL APPROACH (Greedy) - The "Master it" Stage
+     * ========================================================================
+     *
+     * INTUITION:
+     * Instead of calculating the minimum jumps for every single index (like DP),
+     * we can keep track of the maximum reach we can achieve within the current
+     * jump's boundary.
+     *
+     * We maintain three variables:
+     * 1. `jumps`: The number of jumps taken so far.
+     * 2. `currentEnd`: The furthest index we can reach with the current number of jumps.
+     * 3. `farthest`: The farthest index we can reach if we take one more jump from
+     *    any of the indices we've traversed up to `currentEnd`.
+     *
+     * As we iterate through the array, we constantly update `farthest`. When our
+     * loop index `i` reaches `currentEnd`, it means we have evaluated all the
+     * jumping options for the current jump phase. We must now "take" the jump
+     * (increment `jumps`), and our new boundary becomes the `farthest` we found.
+     *
+     * Note: We stop the loop at `n - 2` (or `nums.length - 1`) because we do not
+     * need to jump *from* the last index.
+     *
+     * COMPLEXITY ANALYSIS:
+     * - Time Complexity: O(N) where N is the length of `nums`. We do a single pass.
+     * - Space Complexity: O(1) auxiliary space. We only use primitive variables.
+     * ========================================================================
      */
-    public static int jump(int[] nums) {
-        // Edge Case: If the array has 1 or 0 elements, we are already at the destination.
-        if (nums.length <= 1) return 0;
+    public int jumpGreedy(int[] nums) {
+        if (nums == null || nums.length <= 1) {
+            return 0; // No jumps needed if we're already at the end.
+        }
 
-        int jumps = 0;      // Total number of jumps made so far
-        int currentEnd = 0; // The farthest index we can reach with our CURRENT number of jumps
-        int farthest = 0;   // The farthest index we can reach with the NEXT jump
+        int jumps = 0;
+        int currentEnd = 0;
+        int farthest = 0;
 
-        // We iterate only up to the second-to-last element (nums.length - 1).
-        // Reason: If we are standing at the last index, we are done. We don't need to jump
-        // from it. Processing the last index could unnecessarily trigger an extra jump.
+        // Iterate up to the second-to-last element.
         for (int i = 0; i < nums.length - 1; i++) {
-
-            // 1. Greedily track the maximum reach from our current position
+            // Update the farthest index we can reach from the current position
             farthest = Math.max(farthest, i + nums[i]);
 
-            // 2. If we have finished exploring all elements in the current jump window...
+            // If we have reached the boundary of the current jump, we must jump
             if (i == currentEnd) {
-
-                // ...we MUST commit to a jump to move into the next window.
                 jumps++;
-
-                // The next window's boundary is the farthest point we just discovered.
                 currentEnd = farthest;
 
-                // 3. Early Exit Optimization:
-                // If our new window boundary already covers or exceeds the final destination,
-                // we are guaranteed to reach the end. No need to process the rest of the array.
+                // Early exit optimization: if our current jump boundary reaches or
+                // exceeds the last index, we can stop immediately.
                 if (currentEnd >= nums.length - 1) {
                     break;
                 }
             }
         }
-
         return jumps;
     }
-    /*
-Imagine you are playing a board game where each square tells you the maximum number of spaces you can jump forward. You want to reach the end in the fewest turns possible.
-Instead of guessing and checking every path, you use a radar (farthest).
-As you walk through the squares you can currently reach (your currentEnd), your radar is constantly scanning the horizon: "If I jump from THIS square, how far could I go?"
-You don't actually make a jump immediately. You keep walking and scanning until you reach the absolute edge of your current reachable area (i == currentEnd).
-Once you hit that boundary, you say: "Okay, my turn is over.
-Out of all the squares I just scanned, the best one takes me to index X."
-You count one jump (jumps++), set your new boundary to X (currentEnd = farthest), and repeat until your boundary includes the final square.
-
-2. The Dry Run
-Let's trace the algorithm using the standard LeetCode example:
-nums = [2, 3, 1, 1, 4]
-Target index to reach: nums.length - 1 = 4
-
-Initial State:
-jumps = 0
-currentEnd = 0 (We start at index 0, so our first "window" ends exactly where we stand)
-farthest = 0
-
-showing BFS levels and greedy choices]
-
-Iteration 1: i = 0 (Value = 2)
-Update Radar: What is the farthest we can reach from here?
-farthest = Math.max(0, 0 + 2)  👉 farthest = 2
-Check Boundary: Are we at the end of our current window? (i == currentEnd) -> (0 == 0). YES.
-We must jump to leave the starting line.
-jumps++ 👉 jumps = 1
-currentEnd = farthest 👉 currentEnd = 2
-Early Exit Check: Is currentEnd (2) >= Target (4)? No.
-(Now, our current window of exploration is from index 1 to index 2. We will scan both before committing to our next jump).
-
-Iteration 2: i = 1 (Value = 3)
-Update Radar: What is the farthest we can reach from here?
-farthest = Math.max(2, 1 + 3) 👉 farthest = 4
-Check Boundary: Are we at the end of our current window? (i == currentEnd) -> (1 == 2). NO.
-We don't jump yet. We just remember that jumping from here could get us to index 4.
-
-Iteration 3: i = 2 (Value = 1)
-Update Radar: What is the farthest we can reach from here?
-farthest = Math.max(4, 2 + 1) 👉 farthest = 4 (It doesn't beat our previous best).
-Check Boundary: Are we at the end of our current window? (i == currentEnd) -> (2 == 2). YES.
-We have finished exploring our level 1 window. Time to commit to the best jump we found!
-jumps++ 👉 jumps = 2
-currentEnd = farthest 👉 currentEnd = 4
-
-Early Exit Check: Is currentEnd (4) >= Target (4)? YES!
-
-We trigger the break statement and exit the loop early.
-
-Final Output:
-The loop terminates, and we return jumps = 2.
-     */
 
     /**
-     * APPROACH 2: BRUTE FORCE RECURSIVE (Wrapper Method)
-     * Kicks off the recursive helper from the starting index (0).
+     * ========================================================================
+     * PHASE 2: BRUTE FORCE APPROACH (Recursion) - The "Think it" Stage
+     * ========================================================================
+     *
+     * INTUITION:
+     * The most rudimentary way to solve this is to stand at index 0 and try
+     * jumping 1 step, 2 steps, ..., up to `nums[0]` steps. From each landing
+     * spot, we recursively ask, "What is the minimum jumps to the end from here?"
+     *
+     * The minimum of all those recursive calls + 1 (for the jump we just took)
+     * will be our answer.
+     *
+     * COMPLEXITY ANALYSIS:
+     * - Time Complexity: O(K^N) in the worst case, where K is the max jump length
+     *   and N is the size of the array. The branching factor is massive.
+     * - Space Complexity: O(N) auxiliary stack space for the recursion tree.
+     * ========================================================================
      */
-    public static int jumpRecursive(int[] nums) {
-        Integer[] memo = new Integer[nums.length];
-        return minJumpsFromPosition(0, nums,memo);
+    public int jumpBruteForce(int[] nums) {
+        return solveRecursive(nums, 0);
     }
 
-    /**
-     * Helper method for the recursive approach.
-     * @param position The current index we are standing on.
-     * @param nums The original array of maximum jump lengths.
-     * @return The absolute minimum jumps required to reach the end from this position.
-     */
-    private static int minJumpsFromPosition(int position, int[] nums,Integer []memo) {
-        // BASE CASE:
-        // If our current position is at or beyond the last index, we need exactly 0 more jumps!
-        if (position >= nums.length - 1) {
+    private int solveRecursive(int[] nums, int currentIndex) {
+        // Base case: If we've reached or exceeded the last index, 0 more jumps needed.
+        if (currentIndex >= nums.length - 1) {
             return 0;
         }
-        // ==========================================
-        // If this position is NOT null in our cache, we have been here before!
-        // Return the saved answer immediately instead of running the loop.
-        if (memo[position] != null) {
-            return memo[position];
+
+        int minJumps = 100000; // Acts as "Infinity" to avoid overflow with +1
+
+        // Try every possible jump length from the current index
+        int maxJumpLimit = Math.min(nums.length - 1, currentIndex + nums[currentIndex]);
+        for (int nextIndex = currentIndex + 1; nextIndex <= maxJumpLimit; nextIndex++) {
+            int jumpsFromNext = solveRecursive(nums, nextIndex);
+            if (jumpsFromNext != 100000) {
+                minJumps = Math.min(minJumps, jumpsFromNext + 1);
+            }
         }
-        // Initialize the minimum jumps for this position to a safely large number.
-        // We do NOT use Integer.MAX_VALUE because adding 1 to it later would cause an integer overflow,
-        // turning it into a negative number and breaking the Math.min comparison.
-        int minJumps = 10000;
-
-        // Determine the maximum jump size allowed from our current position.
-        int maxJumpLength = nums[position];
-
-        // RECURSIVE STEP:
-        // Try every possible jump size from 1 up to maxJumpLength.
-        for (int jumpSize = 1; jumpSize <= maxJumpLength; jumpSize++) {
-
-            // Recursively calculate how many jumps it takes to finish the game from our NEW landing spot.
-            int jumpsFromNextPos = minJumpsFromPosition(position + jumpSize, nums,memo);
-
-            // Update the minimum jumps found so far.
-            // We add 1 to 'jumpsFromNextPos' because we just took 1 jump to get to that next position.
-            minJumps = Math.min(minJumps, 1 + jumpsFromNextPos);
-        }
-        // CACHE THE RESULT
-        // ==========================================
-        // Before returning our hard-earned answer, save it in the memo array!
-        memo[position] = minJumps;
 
         return minJumps;
     }
+
+    /**
+     * ========================================================================
+     * PHASE 3: ALTERNATIVE APPROACH (DP Tabulation) - The "Build it" Stage
+     * ========================================================================
+     *
+     * INTUITION:
+     * We can optimize the brute force by remembering the answers to overlapping
+     * subproblems. Instead of recursion (Top-Down), we can use an array (Bottom-Up).
+     *
+     * Let `dp[i]` be the minimum number of jumps needed to reach the end from index `i`.
+     * We can build this from right to left.
+     *
+     * INITIAL STATE OF DP ARRAY (for nums = [2, 3, 1, 1, 4]):
+     * Index:  [   0,   1,   2,   3,   4 ]
+     * Values: [ INF, INF, INF, INF,   0 ]
+     * (We need 0 jumps from the last index to the last index).
+     *
+     * FINAL STATE OF DP ARRAY (for nums = [2, 3, 1, 1, 4]):
+     * Index:  [  0,  1,  2,  3,  4 ]
+     * Values: [  2,  1,  2,  1,  0 ]
+     * Output is dp[0] = 2.
+     *
+     * COMPLEXITY ANALYSIS:
+     * - Time Complexity: O(N^2) because for every index `i`, we might iterate
+     *   through up to N subsequent indices.
+     * - Space Complexity: O(N) heap space for the `dp` array. No call stack used.
+     * ========================================================================
+     */
+    public int jumpDP(int[] nums) {
+        int n = nums.length;
+        if (n <= 1) return 0;
+
+        int[] dp = new int[n];
+        // Initialize the array with an arbitrarily large number
+        Arrays.fill(dp, 100000);
+
+        // Base case: 0 jumps required to reach the last index from the last index
+        dp[n - 1] = 0;
+
+        // Build from right to left
+        for (int i = n - 2; i >= 0; i--) {
+            int maxJumpLimit = Math.min(n - 1, i + nums[i]);
+            // Check all reachable nodes and find the one that requires min jumps
+            for (int j = i + 1; j <= maxJumpLimit; j++) {
+                dp[i] = Math.min(dp[i], 1 + dp[j]);
+            }
+        }
+
+        return dp[0];
+    }
+
+    /**
+     * ========================================================================
+     * TESTING SUITE
+     * ========================================================================
+     * Comprehensive tests against standard scenarios and zero-value edge cases.
+     * Utilizing Java 8 Stream API for clean test execution.
+     */
+    public static void main(String[] args) {
+        JumpGameII solver = new JumpGameII();
+
+        // Structure: List of Test Cases (Input Array)
+        List<int[]> testCases = Arrays.asList(
+                new int[]{2, 3, 1, 1, 4}, // Standard case 1
+                new int[]{2, 3, 0, 1, 4}, // Standard case 2 (with a 0)
+                new int[]{0},             // Edge case: length 1, no jump needed
+                new int[]{1},             // Edge case: length 1, no jump needed
+                new int[]{1, 2, 3},       // Linear increasing
+                new int[]{7, 0, 9, 6, 9, 6, 1, 7, 9, 0, 1, 2, 9, 0, 3} // Larger case
+        );
+
+        System.out.println("🚀 Executing Jump Game II Testing Suite 🚀\n");
+
+        testCases.forEach(testCase -> {
+            System.out.println("Input: " + Arrays.toString(testCase));
+
+            long startTimeGreedy = System.nanoTime();
+            int resGreedy = solver.jumpGreedy(testCase);
+            long timeGreedy = System.nanoTime() - startTimeGreedy;
+
+            long startTimeDP = System.nanoTime();
+            int resDP = solver.jumpDP(testCase);
+            long timeDP = System.nanoTime() - startTimeDP;
+
+            // Only run Brute Force on small arrays to avoid TLE during testing
+            String resBrute = "Skipped (Length > 10)";
+            if (testCase.length <= 10) {
+                resBrute = String.valueOf(solver.jumpBruteForce(testCase));
+            }
+
+            System.out.printf("  -> Optimal Greedy : %d jumps [Time: %d ns]%n", resGreedy, timeGreedy);
+            System.out.printf("  -> DP Tabulation  : %d jumps [Time: %d ns]%n", resDP, timeDP);
+            System.out.printf("  -> Brute Force    : %s jumps%n", resBrute);
+            System.out.println("-".repeat(50));
+        });
+    }
 }
-/**
- * ==================================================================================================
- * COMPLEXITY ANALYSIS FOR ALL APPROACHES
- * ==================================================================================================
- * * APPROACH 1: GREEDY ALGORITHM (Implicit BFS / Window Tracking)
- * --------------------------------------------------------------------------------------------------
- * * Time Complexity: O(N)
- * Reasoning: We iterate through the 'nums' array exactly one time using a single loop.
- * Inside the loop, we only perform basic arithmetic and variable assignments (like Math.max),
- * which all take constant O(1) time.
- * * Space Complexity: O(1)
- * Reasoning: We only allocate three primitive integer variables (jumps, currentEnd, farthest)
- * to keep track of our state. The memory used remains constant regardless of the array size.
- *
- * * APPROACH 2: BRUTE FORCE RECURSIVE (Without Memoization)
- * --------------------------------------------------------------------------------------------------
- * * Time Complexity: O(K^N) -> Exponential (Where K is the max jump length)
- * Reasoning: At every index, the algorithm branches out up to K times (trying a jump of 1, 2,
- * up to nums[i]). For an array of length N, the recursion tree explodes in size, calculating
- * the exact same overlapping paths millions of times.
- * * Space Complexity: O(N)
- * Reasoning: We don't create any arrays, but the recursion call stack takes up memory. In the
- * worst-case scenario (jumping 1 step at a time), the recursive functions will stack N levels
- * deep in memory before hitting the base case.
- *
- * * APPROACH 3: TOP-DOWN DYNAMIC PROGRAMMING (Memoization)
- * --------------------------------------------------------------------------------------------------
- * * Time Complexity: O(N^2)
- * Reasoning: Thanks to the cache, we calculate the answer for each index exactly ONCE.
- * There are N indices to process. For each index, we run a loop up to nums[i] times (which in
- * the worst case is N jumps). Calculating N states, doing up to N work per state = O(N^2).
- * * Space Complexity: O(N)
- * Reasoning: We use O(N) extra space for two reasons:
- * 1. The `Integer[] memo` array of size N.
- * 2. The recursion call stack, which can still go up to N levels deep in the worst case.
- * ==================================================================================================
- */

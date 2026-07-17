@@ -1,4 +1,4 @@
-package strivers.recursionbacktracking.medium;
+package strivers.recursionbacktracking.medium.subsequences;
 
 /*
 Problem Statement:
