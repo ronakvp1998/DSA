@@ -1,4 +1,4 @@
-package strivers.recursionbacktracking.medium.subsequences;
+package strivers.recursionbacktracking.medium.combinationsum;
 
 import java.util.ArrayList;
 import java.util.List;

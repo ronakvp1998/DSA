@@ -1,4 +1,4 @@
-package strivers.recursionbacktracking.medium.subsequences;
+package strivers.recursionbacktracking.medium;
 
 public class GenerateBinaryStrings {
 

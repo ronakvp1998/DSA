@@ -1,4 +1,4 @@
-package strivers.recursionbacktracking.medium.subsequences;
+package strivers.recursionbacktracking.medium.premutationprobelms;
 
 import java.util.ArrayList;
 import java.util.List;

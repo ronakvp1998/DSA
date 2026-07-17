@@ -5,27 +5,30 @@ import java.util.stream.Collectors;
 
 public class Test {
 
-    private static void backtrack(List<List<Integer>> result,
-                                  List<Integer> current,int []nums,int start){
-        result.add(new ArrayList<>(current));
-        if(start == nums.length){
+    public List<List<Integer>> combinationSum2ForLoop(int[] candidates, int target) {
+        Arrays.sort(candidates);
+        List<List<Integer>> res = new ArrayList<>();
+        solveForLoop(0,candidates,target,new ArrayList<>(),res);
+        return res;
+    }
+
+    private void solveForLoop(int start,int []candidates,int target,List<Integer> current,
+                              List<List<Integer>> res){
+        if(target == 0){
+            res.add(new ArrayList<>(current));
             return;
         }
-        for(int i=start;i<nums.length;i++){
-            current.add(nums[i]);
-            backtrack(result,current,nums,i+1);
+        for(int i=start;i<candidates.length;i++){
+            if(i > start && candidates[i] == candidates[i-1]){
+                continue;
+            }
+            if(candidates[i] > target){
+                break;
+            }
+            current.add(candidates[i]);
+            solveForLoop(i+1,candidates,target-candidates[i],current,res);
             current.remove(current.size()-1);
         }
     }
 
-    private static void backtrac2(List<List<Integer>> res,List<Integer> current,int []nums,int index){
-        if(index == nums.length){
-            res.add(new ArrayList<>(current));
-            return;
-        }
-        backtrac2(res,current,nums,index+1);
-        current.add(nums[index]);
-        backtrac2(res,current,nums,index+1);
-        current.remove(current.size()-1);
-    }
 }
