@@ -45,6 +45,7 @@ import java.util.stream.IntStream;
 
 public class SubstringsWithAllThreeCharacters {
 
+
     /**
      * ============================================================================
      * PHASE 1: OPTIMAL APPROACH (Pointer Tracking / Last Seen Index)
@@ -89,6 +90,49 @@ public class SubstringsWithAllThreeCharacters {
 
     /**
      * ============================================================================
+     * PHASE 3: ALTERNATIVE APPROACH (Standard Sliding Window)
+     * ============================================================================
+     * Detailed Intuition:
+     * This is the standard "Shrinkable Sliding Window" pattern. We maintain a window
+     * `[left...right]` and a frequency array. We expand `right` character by character.
+     *
+     * Once the window becomes valid (frequency of a, b, c are all > 0), we know that
+     * appending any characters to the right of this window keeps it valid. So, there
+     * are `n - right` valid substrings that start at `left`. We add this to our count,
+     * and then try to shrink the window from the `left` while it remains valid,
+     * repeating the addition.
+     *
+     * Complexity Analysis:
+     * Time Complexity: O(N). The `right` pointer moves from 0 to N-1. The `left`
+     * pointer also moves at most N times across the entire algorithm. O(2N) -> O(N).
+     * Space Complexity: O(1) Auxiliary Space. Fixed frequency array of size 3.
+     */
+    public int numberOfSubstringsAlternative(String s) {
+        int count = 0;
+        int left = 0,right=0;
+        int n = s.length();
+        int[] freq = new int[3];
+
+       while (right < n) {
+            freq[s.charAt(right) - 'a']++;
+
+            // While the current window is valid, count combinations and shrink
+            while (freq[0] > 0 && freq[1] > 0 && freq[2] > 0) {
+                // If window [left, right] is valid, then [left, right+1] ... [left, n-1] are also valid
+                count += (n - right);
+
+                // Shrink from the left
+                freq[s.charAt(left) - 'a']--;
+                left++;
+            }
+            right++;
+        }
+
+        return count;
+    }
+
+    /**
+     * ============================================================================
      * PHASE 2: BRUTE FORCE APPROACH
      * ============================================================================
      * Detailed Intuition:
@@ -122,48 +166,6 @@ public class SubstringsWithAllThreeCharacters {
                     count += (n - j);
                     break; // Early exit optimization
                 }
-            }
-        }
-
-        return count;
-    }
-
-    /**
-     * ============================================================================
-     * PHASE 3: ALTERNATIVE APPROACH (Standard Sliding Window)
-     * ============================================================================
-     * Detailed Intuition:
-     * This is the standard "Shrinkable Sliding Window" pattern. We maintain a window
-     * `[left...right]` and a frequency array. We expand `right` character by character.
-     *
-     * Once the window becomes valid (frequency of a, b, c are all > 0), we know that
-     * appending any characters to the right of this window keeps it valid. So, there
-     * are `n - right` valid substrings that start at `left`. We add this to our count,
-     * and then try to shrink the window from the `left` while it remains valid,
-     * repeating the addition.
-     *
-     * Complexity Analysis:
-     * Time Complexity: O(N). The `right` pointer moves from 0 to N-1. The `left`
-     * pointer also moves at most N times across the entire algorithm. O(2N) -> O(N).
-     * Space Complexity: O(1) Auxiliary Space. Fixed frequency array of size 3.
-     */
-    public int numberOfSubstringsAlternative(String s) {
-        int count = 0;
-        int left = 0;
-        int n = s.length();
-        int[] freq = new int[3];
-
-        for (int right = 0; right < n; right++) {
-            freq[s.charAt(right) - 'a']++;
-
-            // While the current window is valid, count combinations and shrink
-            while (freq[0] > 0 && freq[1] > 0 && freq[2] > 0) {
-                // If window [left, right] is valid, then [left, right+1] ... [left, n-1] are also valid
-                count += (n - right);
-
-                // Shrink from the left
-                freq[s.charAt(left) - 'a']--;
-                left++;
             }
         }
 
