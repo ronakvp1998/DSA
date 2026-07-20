@@ -38,6 +38,51 @@ import java.util.List;
  */
 public class MaxConsecutiveOnesIII {
 
+
+    /**
+     * ======================================================================================
+     * Phase 3: Alternative Approach - The "Refine It" Stage
+     * Approach: Dynamic Shrinking Sliding Window
+     * ======================================================================================
+     * Detailed Intuition:
+     * This is the logical stepping stone between the Brute Force and Optimal solutions.
+     * We use a sliding window `[left, right]`. We expand `right` to include elements. If
+     * our zero count exceeds `k`, the window is invalid. We then run an inner `while` loop
+     * to advance `left` until the zero count is valid again (<= k). We update the maximum
+     * length only when the window is valid.
+     *
+     * Complexity Analysis:
+     * - Time Complexity: O(2N) -> O(N). In the worst case, each element is visited twice:
+     *   once by the `right` pointer and once by the `left` pointer.
+     * - Space Complexity: O(1) Auxiliary Space. No heap allocation, purely stack primitives.
+     * ======================================================================================
+     */
+    public int longestOnesAlternative(int[] nums, int k) {
+        int left = 0,right = 0,n = nums.length;
+        int zeroCount = 0;
+        int maxLength = 0;
+
+        while (right < n) {
+            if (nums[right] == 0) {
+                zeroCount++;
+            }
+
+            // Shrink the window from the left until it is valid
+            while (zeroCount > k) {
+                if (nums[left] == 0) {
+                    zeroCount--;
+                }
+                left++;
+            }
+
+            maxLength = Math.max(maxLength, right - left + 1);
+
+            right++;
+        }
+
+        return maxLength;
+    }
+
     /**
      * ======================================================================================
      * Phase 1: Optimal Approach - The "Perfect It" Stage
@@ -122,48 +167,6 @@ public class MaxConsecutiveOnesIII {
 
                 maxLength = Math.max(maxLength, j - i + 1);
             }
-        }
-
-        return maxLength;
-    }
-
-    /**
-     * ======================================================================================
-     * Phase 3: Alternative Approach - The "Refine It" Stage
-     * Approach: Dynamic Shrinking Sliding Window
-     * ======================================================================================
-     * Detailed Intuition:
-     * This is the logical stepping stone between the Brute Force and Optimal solutions.
-     * We use a sliding window `[left, right]`. We expand `right` to include elements. If
-     * our zero count exceeds `k`, the window is invalid. We then run an inner `while` loop
-     * to advance `left` until the zero count is valid again (<= k). We update the maximum
-     * length only when the window is valid.
-     *
-     * Complexity Analysis:
-     * - Time Complexity: O(2N) -> O(N). In the worst case, each element is visited twice:
-     *   once by the `right` pointer and once by the `left` pointer.
-     * - Space Complexity: O(1) Auxiliary Space. No heap allocation, purely stack primitives.
-     * ======================================================================================
-     */
-    public int longestOnesAlternative(int[] nums, int k) {
-        int left = 0;
-        int zeroCount = 0;
-        int maxLength = 0;
-
-        for (int right = 0; right < nums.length; right++) {
-            if (nums[right] == 0) {
-                zeroCount++;
-            }
-
-            // Shrink the window from the left until it is valid
-            while (zeroCount > k) {
-                if (nums[left] == 0) {
-                    zeroCount--;
-                }
-                left++;
-            }
-
-            maxLength = Math.max(maxLength, right - left + 1);
         }
 
         return maxLength;

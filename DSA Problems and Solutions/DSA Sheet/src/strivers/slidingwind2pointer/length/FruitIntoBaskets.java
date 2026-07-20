@@ -91,9 +91,9 @@ public class FruitIntoBaskets {
 
         Map<Integer, Integer> fruitFrequency = new HashMap<>();
         int maxFruits = 0;
-        int left = 0;
+        int left = 0, right = 0;
 
-        for (int right = 0; right < fruits.length; right++) {
+        while (right < fruits.length) {
             // Add current tree's fruit to our basket tracking
             fruitFrequency.put(fruits[right], fruitFrequency.getOrDefault(fruits[right], 0) + 1);
 
@@ -112,6 +112,7 @@ public class FruitIntoBaskets {
 
             // At this point, the window is valid (<= 2 fruit types)
             maxFruits = Math.max(maxFruits, right - left + 1);
+            right++;
         }
 
         return maxFruits;
