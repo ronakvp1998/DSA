@@ -51,46 +51,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CountSubarraySum {
+public class SubarraySumEqualsK {
 
-    /**
-     * ========================================================================
-     * ### 2.2. Progressive Implementation Roadmap
-     * * Phase 1: Brute Force approach - The "Think it" stage.
-     * Approach: We calculate the sum of every possible subarray. We use two nested
-     * loops where the outer loop fixes the start index, and the inner loop extends
-     * the end index, maintaining a running sum to avoid a third loop.
-     * * ### 3. In-Code Technical Analysis
-     * Detailed Intuition:
-     * The simplest way to find all subarrays is to literally generate them all.
-     * By keeping a running tally in the inner loop, we efficiently calculate the
-     * sum of subarray `nums[i...j]` in O(1) time using the sum of `nums[i...j-1]`.
-     * * Complexity Analysis:
-     * - Time Complexity: O(N^2) where N is the length of the array. We evaluate
-     * every possible contiguous sequence.
-     * - Space Complexity: O(1). Only a few integer variables are allocated in
-     * heap/stack space.
-     * ========================================================================
-     */
-    public int subarraySumBruteForce(int[] nums, int k) {
-        int count = 0;
-        int n = nums.length;
-
-        for (int i = 0; i < n; i++) {
-            int currentSum = 0;
-            // Extend the subarray ending at j
-            for (int j = i; j < n; j++) {
-                currentSum += nums[j];
-
-                // Check if the current contiguous sum equals our target
-                if (currentSum == k) {
-                    count++;
-                }
-            }
-        }
-
-        return count;
-    }
 
     /**
      * ========================================================================
@@ -148,11 +110,50 @@ public class CountSubarraySum {
 
     /**
      * ========================================================================
+     * ### 2.2. Progressive Implementation Roadmap
+     * * Phase 1: Brute Force approach - The "Think it" stage.
+     * Approach: We calculate the sum of every possible subarray. We use two nested
+     * loops where the outer loop fixes the start index, and the inner loop extends
+     * the end index, maintaining a running sum to avoid a third loop.
+     * * ### 3. In-Code Technical Analysis
+     * Detailed Intuition:
+     * The simplest way to find all subarrays is to literally generate them all.
+     * By keeping a running tally in the inner loop, we efficiently calculate the
+     * sum of subarray `nums[i...j]` in O(1) time using the sum of `nums[i...j-1]`.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N^2) where N is the length of the array. We evaluate
+     * every possible contiguous sequence.
+     * - Space Complexity: O(1). Only a few integer variables are allocated in
+     * heap/stack space.
+     * ========================================================================
+     */
+    public int subarraySumBruteForce(int[] nums, int k) {
+        int count = 0;
+        int n = nums.length;
+
+        for (int i = 0; i < n; i++) {
+            int currentSum = 0;
+            // Extend the subarray ending at j
+            for (int j = i; j < n; j++) {
+                currentSum += nums[j];
+
+                // Check if the current contiguous sum equals our target
+                if (currentSum == k) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
+    /**
+     * ========================================================================
      * ### 4. Testing Suite
      * ========================================================================
      */
     public static void main(String[] args) {
-        CountSubarraySum solution = new CountSubarraySum();
+        SubarraySumEqualsK solution = new SubarraySumEqualsK();
 
         // Define Test Cases
         int[][] testArrays = {

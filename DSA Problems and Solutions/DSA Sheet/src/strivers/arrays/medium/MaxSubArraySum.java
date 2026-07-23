@@ -53,6 +53,42 @@ import java.util.Arrays;
 
 public class MaxSubArraySum {
 
+/*
+    This code implements **Kadane’s Algorithm**, an elegant and highly efficient way to solve the Maximum Subarray problem.
+    The core idea is that **a negative running sum is a liability**.
+    As you iterate through the array, you accumulate a running total (`currentSum`).
+    If that running total ever drops below zero, it means the sequence of numbers you've looked at so far will only drag down the value of any future numbers you add to it.
+    Instead of carrying that "debt" forward,
+    the algorithm immediately discards the sequence by resetting `currentSum` to `0` and starts fresh with the next number.
+    Meanwhile, `maxSum` constantly watches and records the highest peak the running total ever reached.
+* **Time Complexity:** **O(N)**
+    We iterate through the array exactly once. Every operation inside the loop (addition, comparison, assignment) takes constant time, making it exceptionally fast.
+* **Space Complexity:** **O(1)**
+    We only use two integer variables (`maxSum` and `currentSum`) to keep track of our state.
+    No additional data structures are created, meaning it takes the same amount of extra memory whether the array has ten elements or a million.
+  */
+    public int maxSubArray(int[] nums) {
+        int maxSum = Integer.MIN_VALUE; // Start with the smallest possible number
+        int currentSum = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            // 1. Add the current number to our running total
+            currentSum += nums[i];
+
+            // 2. Update the global max if our current running total is higher
+            maxSum = Math.max(maxSum, currentSum);
+
+            // 3. HERE IS THE RESET: If the running total dips below zero,
+            // it's useless to us. Ditch it and start fresh at 0.
+            if (currentSum < 0) {
+                currentSum = 0;
+            }
+        }
+
+        return maxSum;
+    }
+
+
     public int maxSubArray1(int[] nums) {
         // Array to store the maximum subarray sum ending at each index
         int[] arr = new int[nums.length];
@@ -78,27 +114,6 @@ public class MaxSubArraySum {
         }
 
         return globalMax;
-    }
-
-    public int maxSubArray(int[] nums) {
-        int maxSum = Integer.MIN_VALUE; // Start with the smallest possible number
-        int currentSum = 0;
-
-        for (int i = 0; i < nums.length; i++) {
-            // 1. Add the current number to our running total
-            currentSum += nums[i];
-
-            // 2. Update the global max if our current running total is higher
-            maxSum = Math.max(maxSum, currentSum);
-
-            // 3. HERE IS THE RESET: If the running total dips below zero,
-            // it's useless to us. Ditch it and start fresh at 0.
-            if (currentSum < 0) {
-                currentSum = 0;
-            }
-        }
-
-        return maxSum;
     }
 
     /**

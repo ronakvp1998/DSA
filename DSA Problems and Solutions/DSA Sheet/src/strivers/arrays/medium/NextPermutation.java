@@ -72,73 +72,6 @@ import java.util.List;
 
 public class NextPermutation {
 
-    /**
-     * ========================================================================
-     * PHASE 1: BRUTE FORCE APPROACH (The "Think it" stage)
-     * ========================================================================
-     * Approach:
-     * Generate all possible permutations of the array using recursion/backtracking.
-     * Store them in a list, sort the list lexicographically, find the current
-     * permutation, and return the one immediately following it. If it's the last
-     * one, return the first one.
-     * * Detailed Intuition:
-     * This is the literal translation of the problem definition ("if all the
-     * permutations of the array are sorted in one container..."). While logically
-     * sound, it is computationally catastrophic for arrays larger than ~10 elements.
-     * * Complexity Analysis:
-     * - Time Complexity: O(N! * N)
-     * Generating all permutations takes O(N!) time. Sorting them takes O(N! * log(N!))
-     * which is roughly O(N! * N log N). For N=100 (LeetCode constraint), 100! is
-     * a number with 158 digits. The universe will end before this finishes.
-     * - Space Complexity: O(N!)
-     * Heap Space: We store N! permutations of size N.
-     * Stack Space: O(N) for the depth of the recursion tree.
-     */
-    public void nextPermutationBruteForce(int[] nums) {
-        // NOTE: This approach is purely conceptual to demonstrate foundational
-        // understanding. Executing this on N > 10 will result in TLE/OOM.
-        List<List<Integer>> allPermutations = new ArrayList<>();
-        generatePermutations(nums, 0, allPermutations);
-
-        // Sort permutations lexicographically
-        allPermutations.sort((a, b) -> {
-            for (int i = 0; i < a.size(); i++) {
-                if (!a.get(i).equals(b.get(i))) {
-                    return a.get(i) - b.get(i);
-                }
-            }
-            return 0;
-        });
-
-        // Convert current array to list for comparison
-        List<Integer> current = new ArrayList<>();
-        for (int num : nums) current.add(num);
-
-        // Find current permutation and pick the next
-        for (int i = 0; i < allPermutations.size(); i++) {
-            if (allPermutations.get(i).equals(current)) {
-                List<Integer> next = allPermutations.get((i + 1) % allPermutations.size());
-                for (int j = 0; j < nums.length; j++) {
-                    nums[j] = next.get(j);
-                }
-                return;
-            }
-        }
-    }
-
-    private void generatePermutations(int[] nums, int start, List<List<Integer>> result) {
-        if (start == nums.length) {
-            List<Integer> current = new ArrayList<>();
-            for (int num : nums) current.add(num);
-            result.add(current);
-            return;
-        }
-        for (int i = start; i < nums.length; i++) {
-            swap(nums, start, i);
-            generatePermutations(nums, start + 1, result);
-            swap(nums, start, i); // backtrack
-        }
-    }
 
     /**
      * ========================================================================
@@ -205,6 +138,74 @@ public class NextPermutation {
             swap(nums, start, end);
             start++;
             end--;
+        }
+    }
+
+    /**
+     * ========================================================================
+     * PHASE 1: BRUTE FORCE APPROACH (The "Think it" stage)
+     * ========================================================================
+     * Approach:
+     * Generate all possible permutations of the array using recursion/backtracking.
+     * Store them in a list, sort the list lexicographically, find the current
+     * permutation, and return the one immediately following it. If it's the last
+     * one, return the first one.
+     * * Detailed Intuition:
+     * This is the literal translation of the problem definition ("if all the
+     * permutations of the array are sorted in one container..."). While logically
+     * sound, it is computationally catastrophic for arrays larger than ~10 elements.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N! * N)
+     * Generating all permutations takes O(N!) time. Sorting them takes O(N! * log(N!))
+     * which is roughly O(N! * N log N). For N=100 (LeetCode constraint), 100! is
+     * a number with 158 digits. The universe will end before this finishes.
+     * - Space Complexity: O(N!)
+     * Heap Space: We store N! permutations of size N.
+     * Stack Space: O(N) for the depth of the recursion tree.
+     */
+    public void nextPermutationBruteForce(int[] nums) {
+        // NOTE: This approach is purely conceptual to demonstrate foundational
+        // understanding. Executing this on N > 10 will result in TLE/OOM.
+        List<List<Integer>> allPermutations = new ArrayList<>();
+        generatePermutations(nums, 0, allPermutations);
+
+        // Sort permutations lexicographically
+        allPermutations.sort((a, b) -> {
+            for (int i = 0; i < a.size(); i++) {
+                if (!a.get(i).equals(b.get(i))) {
+                    return a.get(i) - b.get(i);
+                }
+            }
+            return 0;
+        });
+
+        // Convert current array to list for comparison
+        List<Integer> current = new ArrayList<>();
+        for (int num : nums) current.add(num);
+
+        // Find current permutation and pick the next
+        for (int i = 0; i < allPermutations.size(); i++) {
+            if (allPermutations.get(i).equals(current)) {
+                List<Integer> next = allPermutations.get((i + 1) % allPermutations.size());
+                for (int j = 0; j < nums.length; j++) {
+                    nums[j] = next.get(j);
+                }
+                return;
+            }
+        }
+    }
+
+    private void generatePermutations(int[] nums, int start, List<List<Integer>> result) {
+        if (start == nums.length) {
+            List<Integer> current = new ArrayList<>();
+            for (int num : nums) current.add(num);
+            result.add(current);
+            return;
+        }
+        for (int i = start; i < nums.length; i++) {
+            swap(nums, start, i);
+            generatePermutations(nums, start + 1, result);
+            swap(nums, start, i); // backtrack
         }
     }
 

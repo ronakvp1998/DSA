@@ -39,6 +39,53 @@ import java.util.stream.Collectors;
 
 public class TopKFrequentElementsMasterclass {
 
+
+    /**
+     * ========================================================================
+     * PHASE 3: ALTERNATIVE APPROACH (Min-Heap / Priority Queue)
+     * ========================================================================
+     * * Detailed Intuition:
+     * Instead of sorting the entire map of unique elements, we only need the top k.
+     * We can maintain a Min-Heap of size k. We iterate through our frequency map,
+     * adding elements to the heap. The heap is ordered by frequency (smallest at the top).
+     * If the heap's size exceeds k, we `poll()` the root (which is the element
+     * with the lowest frequency currently in the heap). By the end, only the top k
+     * highest-frequency elements remain in the heap.
+     * * * Complexity Analysis:
+     * - Time Complexity: O(N log k)
+     * Building the frequency map takes O(N). Inserting into a heap of size k takes
+     * O(log k). Doing this for U unique elements takes O(U log k). Worst case: O(N log k).
+     * - Space Complexity: O(N) Heap Space, O(1) Auxiliary Stack Space
+     * O(N) for the HashMap and O(k) for the Priority Queue.
+     */
+    public int[] topKFrequentAlternative(int[] nums, int k) {
+        // 1. Build frequency map
+        Map<Integer, Integer> frequencyMap = new HashMap<>();
+        for (int num : nums) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+
+        // 2. Create Min-Heap ordered by frequency
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>(
+                (n1, n2) -> frequencyMap.get(n1) - frequencyMap.get(n2)
+        );
+
+        // 3. Maintain heap of size k
+        for (int num : frequencyMap.keySet()) {
+            minHeap.add(num);
+            if (minHeap.size() > k) {
+                minHeap.poll(); // Evict the element with the lowest frequency
+            }
+        }
+
+        // 4. Extract results
+        int[] result = new int[k];
+        for (int i = 0; i < k; i++) {
+            result[i] = minHeap.poll();
+        }
+        return result;
+    }
+
     /**
      * ========================================================================
      * PHASE 1: OPTIMAL APPROACH (Bucket Sort)
@@ -130,52 +177,6 @@ public class TopKFrequentElementsMasterclass {
                 .mapToInt(Map.Entry::getKey)
                 // 7. Collect into an int array
                 .toArray();
-    }
-
-    /**
-     * ========================================================================
-     * PHASE 3: ALTERNATIVE APPROACH (Min-Heap / Priority Queue)
-     * ========================================================================
-     * * Detailed Intuition:
-     * Instead of sorting the entire map of unique elements, we only need the top k.
-     * We can maintain a Min-Heap of size k. We iterate through our frequency map,
-     * adding elements to the heap. The heap is ordered by frequency (smallest at the top).
-     * If the heap's size exceeds k, we `poll()` the root (which is the element
-     * with the lowest frequency currently in the heap). By the end, only the top k
-     * highest-frequency elements remain in the heap.
-     * * * Complexity Analysis:
-     * - Time Complexity: O(N log k)
-     * Building the frequency map takes O(N). Inserting into a heap of size k takes
-     * O(log k). Doing this for U unique elements takes O(U log k). Worst case: O(N log k).
-     * - Space Complexity: O(N) Heap Space, O(1) Auxiliary Stack Space
-     * O(N) for the HashMap and O(k) for the Priority Queue.
-     */
-    public int[] topKFrequentAlternative(int[] nums, int k) {
-        // 1. Build frequency map
-        Map<Integer, Integer> frequencyMap = new HashMap<>();
-        for (int num : nums) {
-            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
-        }
-
-        // 2. Create Min-Heap ordered by frequency
-        PriorityQueue<Integer> minHeap = new PriorityQueue<>(
-                (n1, n2) -> frequencyMap.get(n1) - frequencyMap.get(n2)
-        );
-
-        // 3. Maintain heap of size k
-        for (int num : frequencyMap.keySet()) {
-            minHeap.add(num);
-            if (minHeap.size() > k) {
-                minHeap.poll(); // Evict the element with the lowest frequency
-            }
-        }
-
-        // 4. Extract results
-        int[] result = new int[k];
-        for (int i = 0; i < k; i++) {
-            result[i] = minHeap.poll();
-        }
-        return result;
     }
 
     /**

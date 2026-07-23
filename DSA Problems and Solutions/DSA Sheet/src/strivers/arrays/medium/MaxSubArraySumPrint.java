@@ -56,6 +56,61 @@ package strivers.arrays.medium;
 import java.util.Arrays;
 
 public class MaxSubArraySumPrint {
+/*
+* **`tempStart`** acts as a scout. Whenever the running sum drops below zero, the current sequence is dead.
+* The scout moves to the very next element (`i + 1`) to mark the potential beginning of a brand-new sequence.
+* **`start` and `end**` are the official record keepers. They only update when `currentSum` breaks the previous `maxSum` record.
+* When that happens, they lock in the scout's position (`tempStart`) and the current index (`i`) as the new boundaries of the winning subarray.
+* **Time Complexity: O(N)**
+    We still iterate through the main array exactly once to find the maximum sum and its boundaries.
+    * The `for` loop at the end to print the subarray takes at most O(N) time if the subarray spans the entire original array.
+    * Dropping the constants (O(N + N) = O(2N)), the overall time complexity remains strictly O(N).
+* **Space Complexity: O(1)**
+    We only added three primitive integer variables (`start`, `end`, `tempStart`) to track the indices.
+    * Because we print the numbers directly from the original array rather than creating a new one to hold the result,
+    * it requires no extra memory regardless of how large the input array gets.
+  */
+    public int maxSubArray(int[] nums) {
+        int maxSum = Integer.MIN_VALUE; // Start with the smallest possible number
+        int currentSum = 0;
+
+        // Variables to track the indices of the subarray
+        int start = 0;
+        int end = 0;
+        int tempStart = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            // 1. Add the current number to our running total
+            currentSum += nums[i];
+
+            // 2. Update the global max and record the indices if our current sum is higher
+            if (currentSum > maxSum) {
+                maxSum = currentSum;
+                start = tempStart;
+                end = i;
+            }
+
+            // 3. HERE IS THE RESET: If the running total dips below zero,
+            // ditch it and start fresh at 0.
+            if (currentSum < 0) {
+                currentSum = 0;
+                // The next potential subarray will start at the next index
+                tempStart = i + 1;
+            }
+        }
+
+        // Print the actual subarray
+        System.out.print("Maximum Subarray: [");
+        for (int i = start; i <= end; i++) {
+            System.out.print(nums[i] + (i == end ? "" : ", "));
+        }
+        System.out.println("]");
+
+        // Print the maximum sum
+        System.out.println("Maximum Sum: " + maxSum);
+
+        return maxSum;
+    }
 
     /**
      * ========================================================================
