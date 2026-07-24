@@ -95,6 +95,7 @@ public class LongestConsecutiveSeqLength {
 
         int longestStreak = 0;
 
+        // iterate over set
         for (int num : numSet) {
             // Intelligent Gatekeeper: Only proceed if this is a sequence starter
             if (!numSet.contains(num - 1)) {

@@ -61,6 +61,17 @@ public class SubarraySumEqualsK {
      * prefix sum. We use a HashMap to store the frequencies of every prefix sum
      * we have seen so far. If `prefixSum - k` exists in our map, we add its
      * frequency to our total count.
+     *
+     * A prefix sum is simply the cumulative sum of all numbers from the start of the array up to your current index.
+     * Imagine you are at index 4, and your current prefix sum (runningSum) is 10.
+     * If your target k is 3, you need to know: Is there any subarray ending here that adds up to 3?
+     * Instead of looking backwards through the array to add numbers up, we use basic algebra:
+     * If the sum from the beginning to right now is 10, and we want a chunk at the end that equals 3,
+     * then the sum of the first part of the array must have been 7.
+     * The Formula: runningSum - k = target
+     * If we have seen this target sum earlier in the array,
+     * it guarantees that the numbers strictly between that old position and our current position add up exactly to k.
+     *
      * * ### 3. In-Code Technical Analysis
      * Detailed Intuition:
      * Why not use a Sliding Window / Two Pointers? Because the constraints state

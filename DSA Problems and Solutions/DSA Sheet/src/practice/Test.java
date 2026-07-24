@@ -6,72 +6,57 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Test {
-
-    public int subarraySum(int[] nums, int k) {
-
+    int nums[];
+    public Test(int[] nums) {
+        this.nums = nums;
     }
 
-    public void nextPermutation(int[] nums) {
+    public int sumRange(int left, int right) {
+
+    }
+    public int findDuplicate(int[] nums) {
+        int slow=nums[0],fast=nums[0];
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }while (slow != fast);
+
+        slow = nums[0];
+        while (slow != fast){
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
+    }
+
+    public static List<List<Integer>> generateSubarrays(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
         int n = nums.length;
-        int a=-1;
-        for(int i=n-2;i>=0;i--){
-            // nums[i] < nums[i+1]
-            if(nums[i] < nums[i+1]){
-                a = i;
-                break;
+        for(int i=0;i<n;i++){
+            for(int j=i;j<n;j++){
+                res.add(Arrays.stream(nums,i,j+1).boxed().collect(Collectors.toList()));
             }
         }
-        if(a == -1){
-            reverse(nums,0,n-1);
+        return res;
+    }
+
+    public static List<List<Integer>> generateSubsequencesRecursive(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        findSubsequences(nums,0,new ArrayList<>(),res);
+        return res;
+    }
+
+    public static void findSubsequences(int []nums,int index,List<Integer> path,
+                                        List<List<Integer>> res){
+
+        if(index == nums.length){
+            res.add(new ArrayList<>(path));
             return;
         }
-        // nums[j] > nums[i];
-        for(int j=n-1;j>=0;j--){
-            if(nums[j] > nums[a]){
-                swap(nums,a,j);
-                break;
-            }
-        }
-        reverse(nums,a+1,n-1);
-    }
-
-    private void reverse(int nums[],int start,int end){
-        int left=start,right=end;
-        while (left <= right){
-            swap(nums,left,right);
-            left++;
-            right--;
-        }
-    }
-
-    private void swap(int nums[],int i,int j){
-        int temp = nums[i];
-        nums[i] = nums[j];
-        nums[j] = temp;
-    }
-
-    public int maxSubArray(int[] nums) {
-        int currentSum = 0,globalMax= Integer.MIN_VALUE;
-        int n = nums.length;
-        int start=0,end=0,tempStart=0;
-        for (int i=0;i<n;i++){
-            currentSum += nums[i];
-            if(currentSum > globalMax){
-                globalMax = currentSum;
-                start = tempStart;
-                end = i;
-            }
-            if(currentSum < 0){
-                currentSum = 0;
-                tempStart = i+1;
-            }
-        }
-        for(int i=start;i<=end;i++){
-            System.out.print(nums[i] + " ");
-        }
-        System.out.println();
-        System.out.println(globalMax);
-        return globalMax;
+        path.add(nums[index]);
+        findSubsequences(nums,index+1,path,res);
+        path.remove(path.size()-1);
+        findSubsequences(nums,index+1,path,res);
     }
 
 }

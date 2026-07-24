@@ -51,32 +51,6 @@ import java.util.Arrays;
 
 public class PrefixSumMasterclass {
 
-    /**
-     * ========================================================================
-     * PHASE 1: BRUTE FORCE APPROACH (The "Think it" stage)
-     * ========================================================================
-     * Approach:
-     * For every query, we iterate through the array from the 'left' index to
-     * the 'right' index, accumulating the sum on the fly.
-     * * Detailed Intuition:
-     * This is the most direct translation of the problem statement. However, if
-     * we have Q queries and the array size is N, we are repeatedly summing the
-     * exact same overlapping elements over and over again.
-     * * Complexity Analysis:
-     * - Time Complexity: O(N) per query.
-     * If there are Q queries, total time is O(Q * N). For LeetCode constraints
-     * (10^4 queries * 10^4 elements), this is 10^8 operations, which is too slow.
-     * - Space Complexity: O(1).
-     * We only use a single primitive integer for the running sum. Heap space is
-     * O(1), and auxiliary stack space is O(1).
-     */
-    public int rangeSumBruteForce(int[] nums, int left, int right) {
-        int sum = 0;
-        for (int i = left; i <= right; i++) {
-            sum += nums[i];
-        }
-        return sum;
-    }
 
     /**
      * ========================================================================
@@ -121,6 +95,33 @@ public class PrefixSumMasterclass {
         // prefix[right + 1] holds the sum of nums[0...right]
         // prefix[left] holds the sum of nums[0...left-1]
         return prefix[right + 1] - prefix[left];
+    }
+
+    /**
+     * ========================================================================
+     * PHASE 1: BRUTE FORCE APPROACH (The "Think it" stage)
+     * ========================================================================
+     * Approach:
+     * For every query, we iterate through the array from the 'left' index to
+     * the 'right' index, accumulating the sum on the fly.
+     * * Detailed Intuition:
+     * This is the most direct translation of the problem statement. However, if
+     * we have Q queries and the array size is N, we are repeatedly summing the
+     * exact same overlapping elements over and over again.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N) per query.
+     * If there are Q queries, total time is O(Q * N). For LeetCode constraints
+     * (10^4 queries * 10^4 elements), this is 10^8 operations, which is too slow.
+     * - Space Complexity: O(1).
+     * We only use a single primitive integer for the running sum. Heap space is
+     * O(1), and auxiliary stack space is O(1).
+     */
+    public int rangeSumBruteForce(int[] nums, int left, int right) {
+        int sum = 0;
+        for (int i = left; i <= right; i++) {
+            sum += nums[i];
+        }
+        return sum;
     }
 
     /**
