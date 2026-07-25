@@ -3,17 +3,38 @@ package practice;
 import strivers.arrays.medium.MaxSubArraySumPrint;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Test {
-    int nums[];
+
+    public int[] productExceptSelf(int[] nums) {
+        int n = nums.length;
+
+    }
+
+    public int[] topKFrequent(int[] nums, int k){
+        int n = nums.length;
+        return Arrays.stream(nums).boxed()
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
+                .entrySet().stream()
+                .sorted((a,b) -> Long.compare(b.getValue(),a.getValue()))
+                .mapToInt(Map.Entry::getKey).limit(k).toArray();
+    }
+
+
+    int prefixSums[];
     public Test(int[] nums) {
-        this.nums = nums;
+        this.prefixSums = new int[nums.length+1];
+        for(int i=0;i<nums.length;i++){
+            prefixSums[i+1] = prefixSums[i] + nums[i];
+        }
     }
 
     public int sumRange(int left, int right) {
-
+        return prefixSums[right + 1] - prefixSums[left];
     }
+
     public int findDuplicate(int[] nums) {
         int slow=nums[0],fast=nums[0];
         do{

@@ -54,6 +54,41 @@ public class ProductOfArrayExceptSelf {
 
     /**
      * ============================================================================
+     * Phase 3: Space Optimized Two-Pass - The "Perfect it" stage.
+     * ============================================================================
+     * Detailed Intuition:
+     * We notice that we don't strictly need two separate arrays. We can use the
+     * `result` array to store the left products. Then, instead of building a `right`
+     * array, we can iterate backwards through the array maintaining a running
+     * `rightProduct` variable, multiplying it with the `result` array in place.
+     *
+     * Complexity Analysis:
+     * Time (O): O(n) - Two passes over the array.
+     * Space (O): O(1) extra heap space. We only use a single integer variable.
+     * (Note: The return array does not count towards space complexity per the prompt).
+     */
+    public static int[] phase3SpaceOptimized(int[] nums) {
+        int n = nums.length;
+        int[] result = new int[n];
+
+        // Step 1: Calculate left products directly into the result array
+        result[0] = 1;
+        for (int i = 1; i < n; i++) {
+            result[i] = result[i - 1] * nums[i - 1];
+        }
+
+        // Step 2: Calculate right product on the fly and multiply with result
+        int rightProduct = 1;
+        for (int i = n - 1; i >= 0; i--) {
+            result[i] = result[i] * rightProduct;
+            rightProduct *= nums[i]; // Update running right product for the next iteration
+        }
+
+        return result;
+    }
+
+    /**
+     * ============================================================================
      * Phase 1: Brute Force approach - The "Think it" stage.
      * ============================================================================
      * Detailed Intuition:
@@ -119,41 +154,6 @@ public class ProductOfArrayExceptSelf {
         // Combine
         for (int i = 0; i < n; i++) {
             result[i] = left[i] * right[i];
-        }
-
-        return result;
-    }
-
-    /**
-     * ============================================================================
-     * Phase 3: Space Optimized Two-Pass - The "Perfect it" stage.
-     * ============================================================================
-     * Detailed Intuition:
-     * We notice that we don't strictly need two separate arrays. We can use the
-     * `result` array to store the left products. Then, instead of building a `right`
-     * array, we can iterate backwards through the array maintaining a running
-     * `rightProduct` variable, multiplying it with the `result` array in place.
-     *
-     * Complexity Analysis:
-     * Time (O): O(n) - Two passes over the array.
-     * Space (O): O(1) extra heap space. We only use a single integer variable.
-     * (Note: The return array does not count towards space complexity per the prompt).
-     */
-    public static int[] phase3SpaceOptimized(int[] nums) {
-        int n = nums.length;
-        int[] result = new int[n];
-
-        // Step 1: Calculate left products directly into the result array
-        result[0] = 1;
-        for (int i = 1; i < n; i++) {
-            result[i] = result[i - 1] * nums[i - 1];
-        }
-
-        // Step 2: Calculate right product on the fly and multiply with result
-        int rightProduct = 1;
-        for (int i = n - 1; i >= 0; i--) {
-            result[i] = result[i] * rightProduct;
-            rightProduct *= nums[i]; // Update running right product for the next iteration
         }
 
         return result;
