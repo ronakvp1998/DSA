@@ -61,43 +61,6 @@ import java.util.Arrays;
 
 public class SortArray012 {
 
-    /**
-     * ========================================================================
-     * PHASE 1: BRUTE FORCE APPROACH (Counting Sort / Two-Pass) - "Think it"
-     * ========================================================================
-     * Approach:
-     * Iterate through the array once and count the exact occurrences of 0s, 1s,
-     * and 2s. In the second pass, overwrite the original array with the correct
-     * number of 0s followed by 1s and then 2s.
-     * * Intuition:
-     * When dealing with a strictly limited set of discrete values (only three
-     * possible values here), standard O(N log N) comparison sorting is overkill.
-     * A straightforward way to group them is to simply count them and recreate
-     * the sequence. This is effectively a basic implementation of Counting Sort.
-     * * Complexity Analysis:
-     * - Time Complexity: O(N)
-     * We make exactly two passes over the array of size N (one for counting,
-     * one for overwriting). O(2N) simplifies to O(N).
-     * - Space Complexity: O(1)
-     * We only use three integer variables to maintain counts.
-     * Heap Space: O(1). Auxiliary Stack Space: O(1).
-     */
-    public void sortColorsBruteForce(int[] nums) {
-        int count0 = 0, count1 = 0, count2 = 0;
-
-        // Pass 1: Count occurrences
-        for (int num : nums) {
-            if (num == 0) count0++;
-            else if (num == 1) count1++;
-            else count2++;
-        }
-
-        // Pass 2: Overwrite array
-        int i = 0;
-        while (count0 > 0) { nums[i++] = 0; count0--; }
-        while (count1 > 0) { nums[i++] = 1; count1--; }
-        while (count2 > 0) { nums[i++] = 2; count2--; }
-    }
 
     /**
      * ========================================================================
@@ -152,6 +115,45 @@ public class SortArray012 {
             }
         }
     }
+
+    /**
+     * ========================================================================
+     * PHASE 1: BRUTE FORCE APPROACH (Counting Sort / Two-Pass) - "Think it"
+     * ========================================================================
+     * Approach:
+     * Iterate through the array once and count the exact occurrences of 0s, 1s,
+     * and 2s. In the second pass, overwrite the original array with the correct
+     * number of 0s followed by 1s and then 2s.
+     * * Intuition:
+     * When dealing with a strictly limited set of discrete values (only three
+     * possible values here), standard O(N log N) comparison sorting is overkill.
+     * A straightforward way to group them is to simply count them and recreate
+     * the sequence. This is effectively a basic implementation of Counting Sort.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N)
+     * We make exactly two passes over the array of size N (one for counting,
+     * one for overwriting). O(2N) simplifies to O(N).
+     * - Space Complexity: O(1)
+     * We only use three integer variables to maintain counts.
+     * Heap Space: O(1). Auxiliary Stack Space: O(1).
+     */
+    public void sortColorsBruteForce(int[] nums) {
+        int count0 = 0, count1 = 0, count2 = 0;
+
+        // Pass 1: Count occurrences
+        for (int num : nums) {
+            if (num == 0) count0++;
+            else if (num == 1) count1++;
+            else count2++;
+        }
+
+        // Pass 2: Overwrite array
+        int i = 0;
+        while (count0 > 0) { nums[i++] = 0; count0--; }
+        while (count1 > 0) { nums[i++] = 1; count1--; }
+        while (count2 > 0) { nums[i++] = 2; count2--; }
+    }
+
 
     /**
      * ========================================================================

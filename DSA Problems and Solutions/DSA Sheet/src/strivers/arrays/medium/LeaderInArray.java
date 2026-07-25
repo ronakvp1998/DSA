@@ -52,46 +52,6 @@ import java.util.List;
 
 public class LeaderInArray {
 
-    /**
-     * ### 2.2 Progressive Implementation Roadmap: Phase 1
-     * Phase 1: Brute Force Approach - The "Think it" stage.
-     * Approach:
-     * For every element at index `i`, we iterate through all subsequent elements
-     * from `i + 1` to `n - 1`. If we find any element strictly greater than `arr[i]`,
-     * then `arr[i]` is not a leader. If the inner loop finishes without finding
-     * a greater element, `arr[i]` is a leader.
-     * * ### 3. In-Code Technical Analysis
-     * Detailed Intuition:
-     * This is a direct, literal translation of the problem statement. We pick an
-     * element and manually verify the condition against every element to its right.
-     * * Complexity Analysis:
-     * - Time Complexity: O(N^2)
-     * In the worst case (e.g., an array sorted in descending order), the inner
-     * loop runs (N-1) + (N-2) + ... + 1 times, resulting in a quadratic time complexity.
-     * - Space Complexity: O(1) auxiliary space (excluding output array).
-     * Heap Space: O(N) only to store the resulting list of leaders.
-     * Auxiliary Stack Space: O(1) as there is no recursion.
-     */
-    public List<Integer> findLeadersBruteForce(int[] arr) {
-        List<Integer> leaders = new ArrayList<>();
-        int n = arr.length;
-
-        for (int i = 0; i < n; i++) {
-            boolean isLeader = true;
-            // Check all elements to the right of the current element
-            for (int j = i + 1; j < n; j++) {
-                if (arr[j] > arr[i]) {
-                    isLeader = false;
-                    break;
-                }
-            }
-            // If no greater element was found, it's a leader
-            if (isLeader) {
-                leaders.add(arr[i]);
-            }
-        }
-        return leaders;
-    }
 
     /**
      * ### 2.2 Progressive Implementation Roadmap: Phase 2
@@ -136,6 +96,48 @@ public class LeaderInArray {
 
         // The list is constructed in reverse order, so we reverse it back
         Collections.reverse(leaders);
+        return leaders;
+    }
+
+
+    /**
+     * ### 2.2 Progressive Implementation Roadmap: Phase 1
+     * Phase 1: Brute Force Approach - The "Think it" stage.
+     * Approach:
+     * For every element at index `i`, we iterate through all subsequent elements
+     * from `i + 1` to `n - 1`. If we find any element strictly greater than `arr[i]`,
+     * then `arr[i]` is not a leader. If the inner loop finishes without finding
+     * a greater element, `arr[i]` is a leader.
+     * * ### 3. In-Code Technical Analysis
+     * Detailed Intuition:
+     * This is a direct, literal translation of the problem statement. We pick an
+     * element and manually verify the condition against every element to its right.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N^2)
+     * In the worst case (e.g., an array sorted in descending order), the inner
+     * loop runs (N-1) + (N-2) + ... + 1 times, resulting in a quadratic time complexity.
+     * - Space Complexity: O(1) auxiliary space (excluding output array).
+     * Heap Space: O(N) only to store the resulting list of leaders.
+     * Auxiliary Stack Space: O(1) as there is no recursion.
+     */
+    public List<Integer> findLeadersBruteForce(int[] arr) {
+        List<Integer> leaders = new ArrayList<>();
+        int n = arr.length;
+
+        for (int i = 0; i < n; i++) {
+            boolean isLeader = true;
+            // Check all elements to the right of the current element
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] > arr[i]) {
+                    isLeader = false;
+                    break;
+                }
+            }
+            // If no greater element was found, it's a leader
+            if (isLeader) {
+                leaders.add(arr[i]);
+            }
+        }
         return leaders;
     }
 
