@@ -35,6 +35,7 @@ package strivers.arrays.medium;
  */
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class TopKFrequentElementsMasterclass {
@@ -84,6 +85,28 @@ public class TopKFrequentElementsMasterclass {
             result[i] = minHeap.poll();
         }
         return result;
+    }
+
+    public int[] topKFrequentw(int[] nums, int k) {
+        int n = nums.length;
+
+        Map<Integer,Long> map = Arrays.stream(nums).boxed()
+                .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.comparingLong(map::get));
+
+        for(Map.Entry<Integer,Long> e : map.entrySet()){
+            pq.offer(e.getKey());
+            if(pq.size() > k){
+                pq.poll();
+            }
+        }
+
+        int[] res = new int[k];
+        for(int i= 0;i<k;i++){
+            res[i] = pq.poll();
+        }
+        return res;
     }
 
     /**
