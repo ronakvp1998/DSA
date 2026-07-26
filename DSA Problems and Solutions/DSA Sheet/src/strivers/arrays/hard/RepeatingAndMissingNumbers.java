@@ -42,6 +42,45 @@ import java.util.Arrays;
 
 public class RepeatingAndMissingNumbers {
 
+
+    /**
+     * ============================================================================
+     * Phase 3: Alternative Approaches - Hashing (Frequency Array)
+     * ============================================================================
+     * Detailed Intuition:
+     * To improve the O(N^2) time of the brute force approach, we can trade space
+     * for time. We can use a frequency array of size N+1 initialized to zeros.
+     * We iterate through the given array and increment the count of each number
+     * in our frequency array. Finally, we iterate from 1 to N in our frequency
+     * array to find the values with counts of 2 (repeating) and 0 (missing).
+     *
+     * Complexity Analysis:
+     * Time (O): O(N) - One pass to build the frequency array, one pass to scan it.
+     * Space (O): O(N) - We allocate a frequency array of size N+1 on the heap.
+     */
+    public static int[] phase3AlternativeHashing(int[] nums) {
+        int n = nums.length;
+        int[] hash = new int[n + 1]; // Heap allocation
+
+        int repeating = -1;
+        int missing = -1;
+
+        // Build frequency map
+        for (int i = 0; i < n; i++) {
+            hash[nums[i]]++;
+        }
+
+        // Identify repeating and missing
+        for (int i = 1; i <= n; i++) {
+            if (hash[i] == 2) repeating = i;
+            else if (hash[i] == 0) missing = i;
+
+            if (repeating != -1 && missing != -1) break;
+        }
+
+        return new int[]{repeating, missing};
+    }
+
     /**
      * ============================================================================
      * Phase 1: Best and recommended approach - The Math Approach
@@ -140,44 +179,6 @@ public class RepeatingAndMissingNumbers {
                 break;
             }
         }
-        return new int[]{repeating, missing};
-    }
-
-    /**
-     * ============================================================================
-     * Phase 3: Alternative Approaches - Hashing (Frequency Array)
-     * ============================================================================
-     * Detailed Intuition:
-     * To improve the O(N^2) time of the brute force approach, we can trade space
-     * for time. We can use a frequency array of size N+1 initialized to zeros.
-     * We iterate through the given array and increment the count of each number
-     * in our frequency array. Finally, we iterate from 1 to N in our frequency
-     * array to find the values with counts of 2 (repeating) and 0 (missing).
-     *
-     * Complexity Analysis:
-     * Time (O): O(N) - One pass to build the frequency array, one pass to scan it.
-     * Space (O): O(N) - We allocate a frequency array of size N+1 on the heap.
-     */
-    public static int[] phase3AlternativeHashing(int[] nums) {
-        int n = nums.length;
-        int[] hash = new int[n + 1]; // Heap allocation
-
-        int repeating = -1;
-        int missing = -1;
-
-        // Build frequency map
-        for (int i = 0; i < n; i++) {
-            hash[nums[i]]++;
-        }
-
-        // Identify repeating and missing
-        for (int i = 1; i <= n; i++) {
-            if (hash[i] == 2) repeating = i;
-            else if (hash[i] == 0) missing = i;
-
-            if (repeating != -1 && missing != -1) break;
-        }
-
         return new int[]{repeating, missing};
     }
 
