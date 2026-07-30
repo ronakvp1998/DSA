@@ -1,0 +1,67 @@
+Q) i have seen some problems where we do f(sum<=k) - f(sum <k) when to do this and when to do normal silidng window, prefixSum
+
+
+You have just stumbled upon one of the most advanced and brilliant patterns in competitive programming!
+
+What you are referring to is the **`AtMost(K) - AtMost(K-1)`** pattern. In discrete mathematics, finding the number of subarrays with *exactly* $K$ is equal to:
+
+> **Exactly(K) = AtMost(K) - AtMost(K-1)**
+
+Here is the master guide on exactly when to use this mathematical trick, when to stick to a normal sliding window, and when to drop both and use a Prefix Sum.
+
+---
+
+### 1. When to use `AtMost(K) - AtMost(K-1)`
+
+Use this pattern when the problem asks you to find the **total number (count)** of subarrays that match an **exact criteria**, and the array only contains non-negative numbers.
+
+* **The Problem:** Counting "Exactly $K$" with a single sliding window is incredibly difficult. Why? Because you don't know when to shrink the left pointer. If the sum is exactly $K$, and the next number is a `0`, the sum is *still* exactly $K$. Managing these overlapping valid windows gets extremely messy.
+* **The Solution:** It is very easy to count how many subarrays have *at most* $K$. So, we write a simple helper function `findAtMost(k)` and call it twice: `findAtMost(k) - findAtMost(k-1)`.
+
+**Classic Problems for this trick:**
+
+* **LeetCode 930:** Binary Subarrays with Sum (Find total number of subarrays with sum exactly $K$ in an array of 0s and 1s).
+* **LeetCode 992:** Subarrays with *exactly* $K$ distinct integers.
+* **LeetCode 1248:** Count Number of Nice Subarrays (Exactly $K$ odd numbers).
+
+---
+
+### 2. When to use a Normal Sliding Window
+
+Use a standard sliding window when the problem asks you to find the **Length (Longest/Shortest)** of a valid subarray, rather than counting all of them.
+
+* **The Problem:** "Find the longest subarray with sum $\le K$."
+* **The Logic:** You don't care about counting every single valid combination; you only care about the maximum distance between your `left` and `right` pointers.
+* **Crucial Rule:** The input must be strictly positive (or non-negative). If there are negative numbers, expanding the window might make the sum smaller, which breaks the logic of the sliding window.
+
+**Classic Problems for this trick:**
+
+* Longest Subarray with Sum $K$ (Positives only).
+* Longest Substring Without Repeating Characters.
+* Minimum Size Subarray Sum.
+
+---
+
+### 3. When to use Prefix Sum + HashMap
+
+Use this whenever the problem involves **Negative Numbers**, OR if you want a universally easier way to find the **total count** of subarrays with exactly sum $K$.
+
+* **The Problem:** The array contains negatives (e.g., `[-3, 2, 1, -5]`). Sliding window completely fails here because adding a negative number decreases the sum, so you can't guarantee that "shrinking the window makes the sum smaller."
+* **The Solution:** We keep a running `prefixSum`. If we want to find if a subarray sum equals $K$, we just check our HashMap to see if we have previously encountered `prefixSum - K`.
+* **Why it's better for Sums:** While `AtMost(K) - AtMost(K-1)` is genius for "Distinct Elements", for pure **Sums**, Prefix Sum + HashMap is usually faster to write and handles negative numbers automatically.
+
+**Classic Problems for this trick:**
+
+* **LeetCode 560:** Subarray Sum Equals K (Counting total subarrays with sum $K$, array includes negatives).
+* **LeetCode 525:** Contiguous Array (Equal number of 0s and 1s - solved by turning 0s into -1s and finding sum = 0).
+
+---
+
+### 📊 The Ultimate Cheat Sheet
+
+| What does the problem ask? | Input constraints | Which technique to use? |
+| --- | --- | --- |
+| **Length** (Longest/Shortest) | Positives / Non-negatives only | **Normal Sliding Window** |
+| **Count** (Total number of subarrays) | Positives / Non-negatives only | **AtMost(K) - AtMost(K-1)** |
+| **Count** or **Length** | Contains Negative Numbers | **Prefix Sum + HashMap** |
+| **Count Exactly $K$ Distinct Elements** | Any integers | **AtMost(K) - AtMost(K-1)** |

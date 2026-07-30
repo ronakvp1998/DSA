@@ -10,21 +10,21 @@ import java.util.stream.IntStream;
 public class Test {
 
     public int longestSubarrayOptimalMap(int[] nums, int k) {
-        Map<Long,Integer> prefixSum = new HashMap<>();
-        long currentPrefixSum = 0;
+        Map<Long,Integer> prefixSumMap = new HashMap<>();
         int maxLen = 0;
-        for(int i=0;i<nums.length;i++){
-            currentPrefixSum += nums[i];
-            if(currentPrefixSum == k){
+        long currentSum=0;
+        int n = nums.length;
+        for(int i=0;i<n;i++){
+            currentSum += nums[i];
+            if(currentSum == k){
                 maxLen = Math.max(maxLen,i+1);
             }
-            long targetSum = currentPrefixSum - k;
-            if(prefixSum.containsKey(targetSum)){
-                int prevInd = prefixSum.get(targetSum);
-                maxLen = Math.max(maxLen,i-prevInd);
+            long target = currentSum - k;
+            if(prefixSumMap.containsKey(target)){
+                maxLen = Math.max(maxLen,i-prefixSumMap.get(target));
             }
-            if(!prefixSum.containsKey(currentPrefixSum)){
-                prefixSum.put(currentPrefixSum,i);
+            if(!prefixSumMap.containsKey(currentSum)){
+                prefixSumMap.put(currentSum,i);
             }
         }
         return maxLen;
