@@ -56,6 +56,7 @@ package strivers.arrays.hard;
  * ============================================================================
  */
 import java.util.HashMap;
+import java.util.Map;
 
 public class LongestSubarrayZeroSum {
 
@@ -106,6 +107,31 @@ public class LongestSubarrayZeroSum {
         }
 
         return maxLength;
+    }
+
+    public int longestSubSum(int nums[]) {
+        if (nums == null || nums.length == 0) {
+            return 0;
+        }
+
+        Map<Integer, Integer> prefixHashMap = new HashMap<>();
+        // Initialize the map with 0 sum at index -1 to handle subarrays starting from index 0
+        prefixHashMap.put(0, -1);
+
+        int currentSum = 0, maxLen = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            currentSum += nums[i];
+
+            if (prefixHashMap.containsKey(currentSum)) {
+                int previousIdx = prefixHashMap.get(currentSum);
+                maxLen = Math.max(maxLen, i - previousIdx);
+            } else {
+                prefixHashMap.put(currentSum, i);
+            }
+        }
+
+        return maxLen;
     }
 
     /**

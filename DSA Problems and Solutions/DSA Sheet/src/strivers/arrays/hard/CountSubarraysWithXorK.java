@@ -101,7 +101,52 @@ public class CountSubarraysWithXorK {
 
         return count;
     }
+/*
+Both of these initializations—`xr = 0` and `map.put(0, 1)`—are essential for making the Prefix XOR math work correctly, especially for edge cases.
 
+### 1. Why start with `xr = 0`?
+`xr` acts as the running "Prefix XOR" accumulator.
+In mathematics, **0 is the identity element for XOR**. This means that any number XORed with 0 remains exactly the same ($A \oplus 0 = A$).
+By initializing `xr = 0`, we ensure that when we process the very first element of the array `a[0]`,
+the operation `xr ^= a[0]` mathematically evaluates to `0 ^ a[0]`, which correctly results in `a[0]`.
+If we started with any other number, it would corrupt the prefix XOR calculations from the very first step.
+
+### 2. Why put `(0, 1)` in the map initially?
+This is the most crucial part of the algorithm.
+It acts as a "dummy" or "base" prefix to handle the case where **a valid subarray starts at the very beginning of the array (index 0).**
+To understand why, let's look at the core formula the code uses:
+> `target = xr ^ k`
+The algorithm looks in the map for a previous prefix XOR equal to `target`. If it finds it,
+it means chopping off that previous prefix leaves a subarray with an XOR exactly equal to `k`.
+
+**The Edge Case:**
+What if the prefix from index `0` up to the current index `i` already has an XOR sum equal to `k`?
+
+* In this scenario, your current running `xr` is equal to `k`.
+* The code will calculate `target = xr ^ k`.
+* Since `xr` is `k`, this becomes `target = k ^ k`, which is always **`0`**.
+
+If you haven't put `0` into the map beforehand, the map won't find the target `0`,
+and you will completely fail to count this valid subarray.
+
+### Let's look at a concrete example:
+Imagine your array is `[4, 2, 2, 6]` and your target `k = 4`.
+
+**Step 1: At index 0 (Value = 4)**
+* `xr` becomes `4` (since $0 \oplus 4 = 4$).
+* The code calculates `target = xr ^ k` $\rightarrow$ `4 ^ 4 = 0`.
+* The code checks if `0` is in the map.
+
+**If you DID NOT have `map.put(0, 1)`:**
+The map is empty. It doesn't find `0`. `count` remains `0`. You just missed the fact that the subarray `[4]` equals `k`.
+
+**If you DID have `map.put(0, 1)`:**
+The map finds `0` with a frequency of `1`. It adds `1` to `count`.
+It correctly recognizes that the subarray from the very start up to index 0 is valid!
+
+By putting `(0, 1)` in the map, you are mathematically telling the computer:
+*"Before looking at any elements, there is an 'empty' subarray at the beginning with an XOR sum of 0, and we've seen it 1 time."*
+ */
     /**
      * ============================================================================
      * Phase 2: Brute Force approach - The "Think it" stage.
