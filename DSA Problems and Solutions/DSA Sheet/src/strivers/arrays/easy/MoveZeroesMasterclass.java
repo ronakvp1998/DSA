@@ -37,6 +37,43 @@ public class MoveZeroesMasterclass {
 
     /**
      * ============================================================================
+     * 2.2 PHASE 3: ALTERNATIVE APPROACH 1 (Overwrite and Fill)
+     * ============================================================================
+     * Detailed Intuition:
+     * Instead of swapping, we can overwrite. We maintain a pointer for the next
+     * available non-zero slot. We iterate through the array, and whenever we see a
+     * non-zero element, we place it at the available slot and increment the slot.
+     * Once we finish checking all elements, we fill all remaining slots from our
+     * pointer to the end of the array with zeroes.
+     *
+     * While technically O(N) time and O(1) space, this approach writes elements twice
+     * (once during the shift, once during the zero-fill) which makes it slightly
+     * less optimal regarding the "minimize operations" follow-up compared to swapping.
+     *
+     * Complexity Analysis:
+     * - Time Complexity: O(N). We do two partial passes that equal one full pass.
+     * - Space Complexity: O(1) auxiliary space. In-place modification.
+     */
+    public void moveZeroesOverwriteAndFill(int[] nums) {
+        if (nums == null || nums.length <= 1) return;
+
+        int insertPos = 0;
+
+        // Step 1: Push all non-zero elements to the front
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                nums[insertPos++] = nums[i];
+            }
+        }
+
+        // Step 2: Fill the remaining positions with zeros
+        while (insertPos < nums.length) {
+            nums[insertPos++] = 0;
+        }
+    }
+
+    /**
+     * ============================================================================
      * 2.2 PHASE 1: OPTIMAL APPROACH (Two Pointers / Swap Method)
      * ============================================================================
      * Detailed Intuition:
@@ -111,42 +148,6 @@ public class MoveZeroesMasterclass {
         }
     }
 
-    /**
-     * ============================================================================
-     * 2.2 PHASE 3: ALTERNATIVE APPROACH 1 (Overwrite and Fill)
-     * ============================================================================
-     * Detailed Intuition:
-     * Instead of swapping, we can overwrite. We maintain a pointer for the next
-     * available non-zero slot. We iterate through the array, and whenever we see a
-     * non-zero element, we place it at the available slot and increment the slot.
-     * Once we finish checking all elements, we fill all remaining slots from our
-     * pointer to the end of the array with zeroes.
-     *
-     * While technically O(N) time and O(1) space, this approach writes elements twice
-     * (once during the shift, once during the zero-fill) which makes it slightly
-     * less optimal regarding the "minimize operations" follow-up compared to swapping.
-     *
-     * Complexity Analysis:
-     * - Time Complexity: O(N). We do two partial passes that equal one full pass.
-     * - Space Complexity: O(1) auxiliary space. In-place modification.
-     */
-    public void moveZeroesOverwriteAndFill(int[] nums) {
-        if (nums == null || nums.length <= 1) return;
-
-        int insertPos = 0;
-
-        // Step 1: Push all non-zero elements to the front
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != 0) {
-                nums[insertPos++] = nums[i];
-            }
-        }
-
-        // Step 2: Fill the remaining positions with zeros
-        while (insertPos < nums.length) {
-            nums[insertPos++] = 0;
-        }
-    }
 
     /**
      * ============================================================================
