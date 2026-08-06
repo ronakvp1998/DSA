@@ -7,147 +7,135 @@ import java.util.List;
 import java.util.Stack;
 
 public class Test {
+
     public static void main(String[] args) {
-        Stack<Integer> stack = new Stack<>();
-        stack.push(11);
-        stack.push(2);
-        stack.push(222);
-        stack.push(5);
-        stack.push(55);
-        sortStack(stack);
+        int arr[] = {1,2,3};
+        List<List<Integer>> res = new ArrayList<>();
+        generateOneSumk(0,arr,new ArrayList<>(),res,0,3);
+        for(List<Integer> i : res){
+            System.out.println(i);
+        }
+    }
+
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(candidates);
+        comb2(0,candidates,target,new ArrayList<>(),res);
+        return res;
+    }
+
+    private static void comb2(int start,int[] cand,int target,List<Integer>temp,List<List<Integer>> res){
+
+        if(target == 0){
+            res.add(new ArrayList<>(temp));
+            return;
+        }
+        for(int i=start;i<cand.length;i++){
+            if(i > start && cand[i] == cand[i-1]){
+                continue;
+            }
+            if(cand[i] > target){
+                break;
+            }
+            temp.add(cand[i]);
+            comb2(i+1,cand,target-cand[i],temp,res);
+            temp.remove(temp.size()-1);
+        }
+    }
+
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+
+        List<List<Integer>> res = new ArrayList<>();
+        comb(0,candidates,target,new ArrayList<>(),res);
+        return res;
+    }
+
+    private static void comb(int index,int[] cand,int target,List<Integer>temp,List<List<Integer>> res){
+        if(index >= cand.length){
+            return;
+        }
+        if(target == 0){
+            res.add(new ArrayList<>(temp));
+            return;
+        }
+        if(cand[index] <= target){
+            temp.add(cand[index]);
+            comb(index,cand,target-cand[index],temp,res);
+            temp.remove(temp.size()-1);
+        }
+        comb(index+1,cand,target,temp,res);
     }
 
 
-    private static void backtrack(int n,StringBuilder sb,List<String> res){
+    private static int countSubseq(int index,int []arr,int sum,int k){
+        if(index == arr.length){
+            return (sum == k) ? 1 : 0;
+        }
+        int pick = countSubseq(index+1,arr,sum+arr[index],k);
+        int notPick = countSubseq(index+1,arr,sum,k);
+        return pick+notPick;
+    }
+
+    private static boolean generateOneSumk(int index,int[] arr,
+                                        List<Integer> ds,List<List<Integer>>ans,int sum,int k){
+        if(index == arr.length){
+            if(sum == k){
+                ans.add(new ArrayList<>(ds));
+                return true;
+            }
+            return false;
+        }
+        ds.add(arr[index]);
+        if(generateOneSumk(index+1,arr,ds,ans,sum+arr[index],k)){
+            return true;
+        }
+        ds.remove(ds.size()-1);
+        if(generateOneSumk(index+1,arr,ds,ans,sum,k)){
+            return true;
+        }
+        return false;
+    }
+
+    // generate all subsequne with sum k
+    private static void generateAllSumk(int index,int[] arr,
+                                        List<Integer> ds,List<List<Integer>>ans,int sum,int k){
+        if(index == arr.length){
+            if(sum == k){
+                ans.add(new ArrayList<>(ds));
+            }
+            return;
+        }
+        ds.add(arr[index]);
+        generateAllSumk(index+1,arr,ds,ans,sum+arr[index],k);
+        ds.remove(ds.size()-1);
+
+        generateAllSumk(index+1,arr,ds,ans,sum,k);
+    }
+
+
+    private static void generateAll(int index,int[] arr,List<Integer> ds,List<List<Integer>>ans){
+        if(index == arr.length){
+            ans.add(new ArrayList<>(ds));
+            return;
+        }
+        ds.add(arr[index]);
+        generateAll(index+1,arr,ds,ans);
+        ds.remove(ds.size()-1);
+
+        generateAll(index+1,arr,ds,ans);
+    }
+
+    private static void generateBinaryString(int n,StringBuilder sb,List<String> res){
         if(sb.length() == n){
             res.add(sb.toString());
             return;
         }
         sb.append('0');
-        backtrack(n,sb,res);
+        generateBinaryString(n,sb,res);
         sb.deleteCharAt(sb.length()-1);
 
         sb.append('1');
-        backtrack(n,sb,res);
+        generateBinaryString(n,sb,res);
         sb.deleteCharAt(sb.length()-1);
-    }
-
-    public static void reverseOptimal(Stack<Integer> stack) {
-        if(stack.isEmpty()){
-            return;
-        }
-        int topEle = stack.pop();
-        reverseOptimal(stack);
-        insertBottom(stack,topEle);
-    }
-
-    private static void insertBottom(Stack<Integer> stack,int val){
-        if(stack.isEmpty()){
-            stack.push(val);
-            return;
-        }
-        int top = stack.pop();
-        insertBottom(stack,val);;
-        stack.push(top);
-    }
-
-    private static void reverStack(Stack<Integer>stack){
-        if(stack.isEmpty()){
-            return;
-        }
-        int a = stack.pop();
-        reverStack(stack);
-        stack.push(a);
-    }
-
-    private static void sortStack(Stack<Integer> stack){
-        if(stack.size() == 1){
-            return;
-        }
-        int a = stack.pop();
-        sortStack(stack);
-        List<Integer> temp = new ArrayList<>();
-        while (stack.peek() < a){
-            temp.add(stack.pop());
-        }
-        stack.push(a);
-        for(int i : temp){
-            stack.push(i);
-        }
-    }
-
-    private static List<Long> factNum(long n){
-        ArrayList<Long> list = new ArrayList<>();
-        fact(n,list,1,2);
-        return list;
-    }
-
-    private static void fact(long n,ArrayList<Long> list,long res,long i){
-        if(res > n){
-            return;
-        }
-        list.add(res);
-        fact(n,list,res*i,i+1);
-    }
-
-    public static int fib(int n) {
-        if(n == 0 || n == 1){
-            return 1;
-        }
-        return fib(n-1) + fib(n-2);
-    }
-
-    public static boolean isPalindrome(String s) {
-        boolean res = true;
-        int left=0,right=s.length()-1;
-        while (left < right){
-            while (left < right && !Character.isLetterOrDigit(s.charAt(left))){
-                left++;
-            }
-            while (left < right && !Character.isLetterOrDigit(s.charAt(right))){
-                right--;
-            }
-            if(!Character.toString(s.charAt(left)).equalsIgnoreCase(Character.toString(s.charAt(right)))){
-                return false;
-            }else{
-                left++;
-                right--;
-            }
-        }
-        return res;
-    }
-
-    private static void reverseArray(int arr[],int a,int b){
-        if(a >= b){
-            return;
-        }
-        int temp = arr[a];
-        arr[a] = arr[b];
-        arr[b] = temp;
-        reverseArray(arr,a+1,b-1);
-    }
-
-    private static int factorical(int n){
-        if(n == 0 || n == 1){
-            return 1;
-        }
-        return n * factorical(n-1);
-    }
-
-    private static int sumN(int n){
-        if(n == 0){
-            return 0;
-        }
-        return n + sumN(n-1);
-    }
-
-
-    private static void print1ton(int n){
-        if(n == 0){
-            return;
-        }
-        print1ton(n-1);
-        System.out.println(n);
-
     }
 }

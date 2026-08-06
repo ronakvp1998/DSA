@@ -40,6 +40,7 @@ package strivers.recursionbacktracking.medium.subsequences;
  * Example 1:
  * Input: arr = [1, 2, 1], K = 2
  * Output:
+ *   All subsequence: [], [1], [2], [1, 2], [1, 1], [2, 1], [1, 2, 1]
  *   All Sum K: [[1, 1], [2]]
  *   Any One Sum K: [1, 1]
  *   Count Sum K: 2
@@ -82,7 +83,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SubsequenceMasterclass {
+public class SubsequenceBasicProblems {
 
     /**
      * ============================================================================
