@@ -73,24 +73,77 @@ public class CombinationSumIISolution {
 
     /**
      * ============================================================================
-     * PHASE 1A: Optimal Approach - For-Loop Based Backtracking
+     * MASTERCLASS EXPLANATION: COMBINATION SUM II (For-Loop / N-ary Tree Pattern)
      * ============================================================================
-     * Detailed Intuition:
-     * This follows the N-ary tree exploration pattern. Because we cannot have
-     * duplicate combinations and the array might contain duplicate numbers, we
-     * must sort the array first.
      *
-     * When looping through candidates to pick the next element, if the current
-     * element is the same as the previous element at the SAME level of the tree
-     * (i.e., `i > start && candidates[i] == candidates[i - 1]`), we skip it.
-     * Additionally, since the array is sorted, if `candidates[i] > target`, we
-     * can immediately `break` the loop, pruning massive branches of the tree.
+     * THE CORE CHALLENGE:
+     * We need to find combinations that sum to a target.
+     * - Rule 1: We can only use each element ONCE per combination.
+     * - Rule 2: The input array might contain DUPLICATES (e.g., [1, 1, 2, 5, 6]).
+     * - Rule 3: The final result list CANNOT contain duplicate combinations (no two [1, 2, 5]'s).
      *
-     * Complexity Analysis:
-     * - Time Complexity: O(2^N) in the absolute worst case, but practically much
-     *   smaller (O(K) where K is valid combinations) due to aggressive pruning.
-     * - Space Complexity: O(N) auxiliary stack space + O(K * length) heap space.
-     *   The depth of the recursion tree is at most N.
+     * WHY DO WE SORT THE ARRAY? (`Arrays.sort(candidates)`)
+     * 1. Groups duplicates together (e.g., [1, 1, 2]) so we can easily skip them.
+     * 2. Enables "Early Pruning": If our remaining target is 3, and we see a 5,
+     *    we know all numbers after 5 will also be too big, so we can stop searching.
+     *
+     * ----------------------------------------------------------------------------
+     * THE MENTAL MODEL (N-ARY RECURSION TREE)
+     * ----------------------------------------------------------------------------
+     * Instead of asking "Do I pick this element or not?" (Binary Tree), the for-loop
+     * asks: "Out of all remaining valid numbers, which one should I pick NEXT?"
+     *
+     * Let candidates = [1a, 1b, 2], target = 3
+     *
+     *                             [ ] (target = 3)
+     *                  /               |              \
+     *         Pick 1a /         Pick 1b| (SKIPPED)     \ Pick 2
+     *               /                  |                \
+     *            [1a] (t=2)         [1b]               [2] (t=1)
+     *            /   \                                    \
+     *    Pick 1b/     \ Pick 2                        Pick nothing
+     *         /        \                              (loop ends)
+     *    [1a, 1b]    [1a, 2] (t=0) SUCCESS!
+     *     (t=1)
+     *
+     * ----------------------------------------------------------------------------
+     * LINE-BY-LINE MECHANICS & PRUNING
+     * ----------------------------------------------------------------------------
+     *
+     * 1. THE DUPLICATE SKIP: `if (i > start && candidates[i] == candidates[i - 1])`
+     *    - This is the most brilliant line in the algorithm.
+     *    - `i > start` means we are looking at elements at the SAME horizontal level
+     *      of the recursion tree (siblings).
+     *    - If we are at the same level, and this candidate is the exact same as the
+     *      one we just evaluated, we `continue` (skip it).
+     *    - WHY `i > start` AND NOT `i > 0`?
+     *      Because we ARE allowed to use duplicate numbers vertically (parent-child).
+     *      e.g., We can pick `1a`, and then in the next recursive call (where `i == start`),
+     *      we can pick `1b` to form [1, 1]. We just can't use `1b` as the FIRST element
+     *      of a new combination if we already used `1a` as the FIRST element.
+     *
+     * 2. THE EARLY BREAK: `if (candidates[i] > target) break;`
+     *    - Because the array is sorted, if `candidates[i]` is bigger than the remaining
+     *      target, we know `candidates[i+1]` is also bigger.
+     *    - We `break` the loop to completely sever this branch of the recursion tree,
+     *      saving massive amounts of computation.
+     *
+     * 3. THE BACKTRACKING BLUEPRINT:
+     *    - `current.add(...)`       -> CHOOSE the number.
+     *    - `solveForLoop(i + 1...)` -> EXPLORE further down the tree. (Notice we pass `i + 1`
+     *                                  because we cannot reuse the same element).
+     *    - `current.remove(...)`    -> UNCHOOSE the number (backtrack) to leave the `current`
+     *                                  list clean for the next iteration of the loop.
+     *
+     * ----------------------------------------------------------------------------
+     * COMPLEXITY ANALYSIS
+     * ----------------------------------------------------------------------------
+     * Time Complexity: O(2^N) in the absolute worst-case mathematical bound, but
+     * practically much faster (closer to O(K) where K is valid combinations) due
+     * to the aggressive pruning (`continue` and `break`).
+     *
+     * Space Complexity: O(N) auxiliary space for the recursion stack (the depth of
+     * the tree is at most N) + space for the `current` list.
      * ============================================================================
      */
     public List<List<Integer>> combinationSum2ForLoop(int[] candidates, int target) {
@@ -103,26 +156,27 @@ public class CombinationSumIISolution {
     private void solveForLoop(int start, int[] candidates, int target, List<Integer> current, List<List<Integer>> result) {
         // Base case: Target reached
         if (target == 0) {
-            result.add(new ArrayList<>(current));
+            result.add(new ArrayList<>(current)); // Deep copy the valid combination
             return;
         }
 
         for (int i = start; i < candidates.length; i++) {
-            // Pruning 1: Skip duplicates at the same recursive level
+            // Pruning 1: Skip duplicates at the same recursive level (siblings)
             if (i > start && candidates[i] == candidates[i - 1]) {
                 continue;
             }
 
-            // Pruning 2: Since array is sorted, if current exceeds target,
-            // all subsequent elements will also exceed it. Break early.
+            // Pruning 2: Break early if current element exceeds remaining target
             if (candidates[i] > target) {
                 break;
             }
 
             current.add(candidates[i]); // INCLUDE candidate
+
             // RECURSE: pass i + 1 because each number is used only once
             solveForLoop(i + 1, candidates, target - candidates[i], current, result);
-            current.remove(current.size() - 1); // BACKTRACK
+
+            current.remove(current.size() - 1); // BACKTRACK: remove last added element
         }
     }
 

@@ -17,19 +17,56 @@ public class Test {
         }
     }
 
+    public List<List<Integer>> subsetsWithDupForLoop(int[] nums) {
+        Arrays.sort(nums);;
+        List<List<Integer>> res = new ArrayList<>();
+        solveForLoop(0,nums,new ArrayList<>(),res);
+        return res;
+    }
+
+    private void solveForLoop(int start, int[] nums, List<Integer> current, List<List<Integer>> result) {
+        result.add(new ArrayList<>(current));
+        for(int i=start;i<nums.length;i++){
+            if(i > start && nums[i] == nums[i-1]){
+                continue;
+            }
+            current.add(nums[i]);
+            solveForLoop(i+1,nums,current,result);;
+            current.remove(current.size()-1);
+        }
+    }
+
+    public List<List<Integer>> subsetsOptimal(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        backtrack(res,new ArrayList<>(),nums,0);
+        return res;
+    }
+
+    private void backtrack(List<List<Integer>> result, List<Integer> current, int[] nums, int start) {
+        result.add(new ArrayList<>(current));
+        if(start == nums.length){
+            return;
+        }
+        for(int i=start;i<nums.length;i++){
+            current.add(nums[i]);
+            backtrack(result,current,nums,start+1);
+            current.remove(current.size()-1);
+        }
+    }
+
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
         List<List<Integer>> res = new ArrayList<>();
         Arrays.sort(candidates);
         comb2(0,candidates,target,new ArrayList<>(),res);
         return res;
     }
-
-    private static void comb2(int start,int[] cand,int target,List<Integer>temp,List<List<Integer>> res){
+    public void comb2(int start,int cand[],int target,List<Integer>temp,List<List<Integer>>res){
 
         if(target == 0){
             res.add(new ArrayList<>(temp));
             return;
         }
+
         for(int i=start;i<cand.length;i++){
             if(i > start && cand[i] == cand[i-1]){
                 continue;
@@ -41,101 +78,5 @@ public class Test {
             comb2(i+1,cand,target-cand[i],temp,res);
             temp.remove(temp.size()-1);
         }
-    }
-
-    public List<List<Integer>> combinationSum(int[] candidates, int target) {
-
-        List<List<Integer>> res = new ArrayList<>();
-        comb(0,candidates,target,new ArrayList<>(),res);
-        return res;
-    }
-
-    private static void comb(int index,int[] cand,int target,List<Integer>temp,List<List<Integer>> res){
-        if(index >= cand.length){
-            return;
-        }
-        if(target == 0){
-            res.add(new ArrayList<>(temp));
-            return;
-        }
-        if(cand[index] <= target){
-            temp.add(cand[index]);
-            comb(index,cand,target-cand[index],temp,res);
-            temp.remove(temp.size()-1);
-        }
-        comb(index+1,cand,target,temp,res);
-    }
-
-
-    private static int countSubseq(int index,int []arr,int sum,int k){
-        if(index == arr.length){
-            return (sum == k) ? 1 : 0;
-        }
-        int pick = countSubseq(index+1,arr,sum+arr[index],k);
-        int notPick = countSubseq(index+1,arr,sum,k);
-        return pick+notPick;
-    }
-
-    private static boolean generateOneSumk(int index,int[] arr,
-                                        List<Integer> ds,List<List<Integer>>ans,int sum,int k){
-        if(index == arr.length){
-            if(sum == k){
-                ans.add(new ArrayList<>(ds));
-                return true;
-            }
-            return false;
-        }
-        ds.add(arr[index]);
-        if(generateOneSumk(index+1,arr,ds,ans,sum+arr[index],k)){
-            return true;
-        }
-        ds.remove(ds.size()-1);
-        if(generateOneSumk(index+1,arr,ds,ans,sum,k)){
-            return true;
-        }
-        return false;
-    }
-
-    // generate all subsequne with sum k
-    private static void generateAllSumk(int index,int[] arr,
-                                        List<Integer> ds,List<List<Integer>>ans,int sum,int k){
-        if(index == arr.length){
-            if(sum == k){
-                ans.add(new ArrayList<>(ds));
-            }
-            return;
-        }
-        ds.add(arr[index]);
-        generateAllSumk(index+1,arr,ds,ans,sum+arr[index],k);
-        ds.remove(ds.size()-1);
-
-        generateAllSumk(index+1,arr,ds,ans,sum,k);
-    }
-
-
-    private static void generateAll(int index,int[] arr,List<Integer> ds,List<List<Integer>>ans){
-        if(index == arr.length){
-            ans.add(new ArrayList<>(ds));
-            return;
-        }
-        ds.add(arr[index]);
-        generateAll(index+1,arr,ds,ans);
-        ds.remove(ds.size()-1);
-
-        generateAll(index+1,arr,ds,ans);
-    }
-
-    private static void generateBinaryString(int n,StringBuilder sb,List<String> res){
-        if(sb.length() == n){
-            res.add(sb.toString());
-            return;
-        }
-        sb.append('0');
-        generateBinaryString(n,sb,res);
-        sb.deleteCharAt(sb.length()-1);
-
-        sb.append('1');
-        generateBinaryString(n,sb,res);
-        sb.deleteCharAt(sb.length()-1);
     }
 }
