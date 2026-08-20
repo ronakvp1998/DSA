@@ -1,100 +1,159 @@
 package strivers.recursionbacktracking.medium;
-/*
-1922. Count Good Numbers
 
-A digit string is good if the digits (0-indexed) at even indices are even and the digits at odd indices are prime
-(2, 3, 5, or 7).
-
-For example, "2582" is good because the digits (2 and 8) at even positions are even and the digits (5 and 2)
-at odd positions are prime. However, "3245" is not good because 3 is at an even index but is not even.
-Given an integer n, return the total number of good digit strings of length n. Since the answer may be large,
-return it modulo 109 + 7.
-A digit string is a string consisting of digits 0 through 9 that may contain leading zeros.
-
-Example 1:
-
-Input: n = 1
-Output: 5
-Explanation: The good numbers of length 1 are "0", "2", "4", "6", "8".
-Example 2:
-
-Input: n = 4
-Output: 400
-Example 3:
-
-Input: n = 50
-Output: 564908303
-
-Constraints:
-1 <= n <= 1015
+/**
+ * # 1922. Count Good Numbers
+ *
+ * ## 1. Header & Problem Context
+ * A digit string is good if the digits (0-indexed) at even indices are even
+ * and the digits at odd indices are prime (2, 3, 5, or 7).
+ *
+ * For example, "2582" is good because the digits (2 and 8) at even positions
+ * are even and the digits (5 and 2) at odd positions are prime. However, "3245"
+ * is not good because 3 is at an even index but is not even.
+ *
+ * Given an integer n, return the total number of good digit strings of length n.
+ * Since the answer may be large, return it modulo 10^9 + 7.
+ *
+ * A digit string is a string consisting of digits 0 through 9 that may contain leading zeros.
+ *
+ * **Examples:**
+ * - Input: n = 1 | Output: 5
+ *   Explanation: The good numbers of length 1 are "0", "2", "4", "6", "8".
+ * - Input: n = 4 | Output: 400
+ * - Input: n = 50 | Output: 564908303
+ *
+ * **Constraints:**
+ * - $1 \le n \le 10^{15}$
+ *
+ * ---
+ *
+ * ## Conceptual Visualization (Combinatorics)
+ * We have 5 choices for even indices (0, 2, 4, 6, 8).
+ * We have 4 choices for odd indices (2, 3, 5, 7).
+ *
+ * If length is n:
+ * Number of even indices = (n + 1) / 2
+ * Number of odd indices = n / 2
+ *
+ * Total permutations = $(5^{\text{even\_indices}} \times 4^{\text{odd\_indices}}) \pmod{10^9 + 7}$
  */
+import java.math.BigInteger;
+import java.util.Arrays;
+
 public class CountGoodNumbers {
 
-    // Define modulo constant (10^9 + 7)
-    private static final long MOD = 1000000007;
+    private static final long MOD = 1_000_000_007;
 
-    /*
-     * Function to count the number of good digit strings of length n.
+    /**
+     * ## Phase 1: Optimal Approach - Fast Exponentiation
      *
-     * Approach:
-     * - Even positions -> 5 choices (0,2,4,6,8)
-     * - Odd positions  -> 4 choices (2,3,5,7)
-     * - Total = (5 ^ countEvenPositions) * (4 ^ countOddPositions) % MOD
+     * **Detailed Intuition:**
+     * Because $n$ can be up to $10^{15}$, calculating the power linearly will result
+     * in a Time Limit Exceeded (TLE) error. We must use Binary Exponentiation
+     * (also known as Fast Exponentiation) to calculate $x^y \pmod m$ in logarithmic time.
      *
-     * We use fast exponentiation (binary exponentiation) to handle very large n (up to 10^15).
+     * **Complexity Analysis:**
+     * - **Time Complexity:** $O(\log n)$ because we halve the power at each step.
+     * - **Space Complexity:** $O(1)$ auxiliary space since we are using an iterative approach.
      */
-    public int countGoodNumbers(long n) {
-        // Count of even and odd indexed positions
-        long countEvenPositions = (n + 1) / 2;
-        long countOddPositions = n / 2;
+    public int countGoodNumbersOptimal(long n) {
+        long evenPositions = (n + 1) / 2;
+        long oddPositions = n / 2;
 
-        // Calculate power using modular exponentiation
-        long powerOf5 = power(5, countEvenPositions);
-        long powerOf4 = power(4, countOddPositions);
+        long evenChoicesTotal = binaryExp(5, evenPositions);
+        long oddChoicesTotal = binaryExp(4, oddPositions);
 
-        // Multiply and take modulo
-        return (int) ((powerOf5 * powerOf4) % MOD);
+        return (int) ((evenChoicesTotal * oddChoicesTotal) % MOD);
     }
 
-    /*
-     * Helper function: Fast exponentiation (Binary Exponentiation)
-     * Computes (base ^ exp) % MOD efficiently in O(log exp).
-     */
-    private long power(long base, long exp) {
+    private long binaryExp(long base, long power) {
         long result = 1;
-        base %= MOD; // Reduce base modulo first
+        base = base % MOD;
 
-        while (exp > 0) {
-            // If exponent is odd, multiply result with current base
-            if ((exp & 1) == 1) {
+        while (power > 0) {
+            if ((power & 1) == 1) { // If power is odd
                 result = (result * base) % MOD;
             }
-
-            // Square the base and reduce exponent by half
-            base = (base * base) % MOD;
-            exp >>= 1; // Divide exponent by 2
+            base = (base * base) % MOD; // Square the base
+            power >>= 1;                // Divide power by 2
         }
-
         return result;
     }
 
-    // Driver code for testing
-    public static void main(String[] args) {
-        CountGoodNumbers solution = new CountGoodNumbers();
+    /**
+     * ## Phase 2: Brute Force Approach - Linear Multiplication
+     *
+     * **Detailed Intuition:**
+     * The most basic way to compute this is to iterate $n$ times. For every even index,
+     * multiply the running total by 5. For every odd index, multiply by 4.
+     *
+     * **Complexity Analysis:**
+     * - **Time Complexity:** $O(n)$, which will fail for $n = 10^{15}$.
+     * - **Space Complexity:** $O(1)$ heap and stack space.
+     */
+    public int countGoodNumbersBruteForce(long n) {
+        long total = 1;
+        for (long i = 0; i < n; i++) {
+            if (i % 2 == 0) {
+                total = (total * 5) % MOD;
+            } else {
+                total = (total * 4) % MOD;
+            }
+        }
+        return (int) total;
+    }
 
-        System.out.println(solution.countGoodNumbers(1));   // Output: 5
-        System.out.println(solution.countGoodNumbers(4));   // Output: 400
-        System.out.println(solution.countGoodNumbers(50));  // Output: 564908303
+    /**
+     * ## Phase 3: Alternative Approach - BigInteger built-in
+     *
+     * **Detailed Intuition:**
+     * Java's `BigInteger` class has a highly optimized `modPow` method. While
+     * interviewers usually want to see manual Binary Exponentiation, this is the
+     * cleanest and most robust way to handle it in production Java code.
+     *
+     * **Complexity Analysis:**
+     * - **Time Complexity:** $O(\log n)$ underlying implementation.
+     * - **Space Complexity:** $O(1)$ aside from object creation overhead.
+     */
+    public int countGoodNumbersBigInteger(long n) {
+        long evenPositions = (n + 1) / 2;
+        long oddPositions = n / 2;
+
+        BigInteger mod = BigInteger.valueOf(MOD);
+        BigInteger evens = BigInteger.valueOf(5).modPow(BigInteger.valueOf(evenPositions), mod);
+        BigInteger odds = BigInteger.valueOf(4).modPow(BigInteger.valueOf(oddPositions), mod);
+
+        return evens.multiply(odds).mod(mod).intValue();
+    }
+
+    /**
+     * ## 4. Testing Suite
+     */
+    public static void main(String[] args) {
+        CountGoodNumbers solver = new CountGoodNumbers();
+
+        // Test Cases: { n, expectedOutput }
+        long[][] testCases = {
+                {1, 5},
+                {4, 400},
+                {50, 564908303}
+        };
+
+        System.out.println("--- Running Tests ---");
+
+        // Utilizing Java 8 Streams to process tests
+        Arrays.stream(testCases).forEach(test -> {
+            long n = test[0];
+            long expected = test[1];
+
+            System.out.println("Testing n = " + n);
+            System.out.println("Optimal: " + (solver.countGoodNumbersOptimal(n) == expected ? "PASS" : "FAIL"));
+            System.out.println("BigInteger: " + (solver.countGoodNumbersBigInteger(n) == expected ? "PASS" : "FAIL"));
+
+            if (n <= 50) { // Brute force will hang on massive numbers
+                System.out.println("BruteForce: " + (solver.countGoodNumbersBruteForce(n) == expected ? "PASS" : "FAIL"));
+            }
+            System.out.println("---------------------");
+        });
     }
 }
-/*
-⏱️ Time Complexity
-
-power(base, exp) runs in O(log exp).
-
-We call it twice → O(log n) overall.
-
-💾 Space Complexity
-
-Iterative fast exponentiation uses O(1) extra space.
- */
