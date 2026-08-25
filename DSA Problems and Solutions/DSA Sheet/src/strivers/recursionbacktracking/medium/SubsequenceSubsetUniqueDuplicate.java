@@ -50,6 +50,8 @@ public class SubsequenceSubsetUniqueDuplicate {
      *   at each step takes $O(N)$ time.
      * - **Space Complexity:** $O(N)$ auxiliary stack space. $O(N \cdot 2^N)$ heap space to
      *   store the results.
+     *
+     *   You can use this exact code to generate all subsets
      */
     public List<String> allSubsequences(String str) {
         List<String> result = new ArrayList<>();
@@ -82,6 +84,8 @@ public class SubsequenceSubsetUniqueDuplicate {
      * **Complexity Analysis:**
      * - **Time Complexity:** $O(N \cdot 2^N)$.
      * - **Space Complexity:** $O(N)$ auxiliary stack space + $O(N \cdot 2^N)$ heap space.
+     *
+     * You can use this exact for loop code to generate all subsequences.
      */
     public List<String> allSubsets(String str) {
         List<String> result = new ArrayList<>();
