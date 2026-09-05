@@ -50,6 +50,48 @@ import java.util.Map;
 
 public class MajorityElementsN2 {
 
+
+    /**
+     * ========================================================================
+     * PHASE 4: BOYER-MOORE VOTING ALGORITHM (The "Perfect it" stage)
+     * ========================================================================
+     * Approach:
+     * Maintain a `candidate` and a `count`. Iterate through the array.
+     * If `count` is 0, assign the current element as `candidate`.
+     * If the current element equals the candidate, increment `count`.
+     * Otherwise, decrement `count`. Return the `candidate`.
+     * * Intuition:
+     * This answers the specific follow-up for O(N) time and O(1) space.
+     * Imagine elements as votes. Because the majority element has more than
+     * half the total votes, even if every other element uniquely voted against
+     * it, the majority element would still have votes left over. The counter
+     * acts as a cancellation mechanism.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N)
+     * A single pass through the array.
+     * - Space Complexity: O(1)
+     * We only use two variables: `candidate` and `count`.
+     * Heap space: O(1). Stack space: O(1).
+     */
+    public int majorityElementOptimal(int[] nums) {
+        int count = 0;
+        int candidate = 0;
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+
+            if (num == candidate) {
+                count += 1;
+            } else {
+                count -= 1;
+            }
+        }
+
+        return candidate;
+    }
+
     /**
      * ========================================================================
      * PHASE 1: BRUTE FORCE APPROACH (The "Think it" stage)
@@ -139,47 +181,6 @@ public class MajorityElementsN2 {
     public int majorityElementSorting(int[] nums) {
         Arrays.sort(nums);
         return nums[nums.length / 2];
-    }
-
-    /**
-     * ========================================================================
-     * PHASE 4: BOYER-MOORE VOTING ALGORITHM (The "Perfect it" stage)
-     * ========================================================================
-     * Approach:
-     * Maintain a `candidate` and a `count`. Iterate through the array.
-     * If `count` is 0, assign the current element as `candidate`.
-     * If the current element equals the candidate, increment `count`.
-     * Otherwise, decrement `count`. Return the `candidate`.
-     * * Intuition:
-     * This answers the specific follow-up for O(N) time and O(1) space.
-     * Imagine elements as votes. Because the majority element has more than
-     * half the total votes, even if every other element uniquely voted against
-     * it, the majority element would still have votes left over. The counter
-     * acts as a cancellation mechanism.
-     * * Complexity Analysis:
-     * - Time Complexity: O(N)
-     * A single pass through the array.
-     * - Space Complexity: O(1)
-     * We only use two variables: `candidate` and `count`.
-     * Heap space: O(1). Stack space: O(1).
-     */
-    public int majorityElementOptimal(int[] nums) {
-        int count = 0;
-        int candidate = 0;
-
-        for (int num : nums) {
-            if (count == 0) {
-                candidate = num;
-            }
-
-            if (num == candidate) {
-                count += 1;
-            } else {
-                count -= 1;
-            }
-        }
-
-        return candidate;
     }
 
     /**
