@@ -54,6 +54,40 @@ public class FrequencyCounterMasterclass {
 
     /**
      * ========================================================================
+     * Phase 3: Optimal Hash Map Approach - The "Perfect it" stage.
+     * Approach:
+     * Iterate through the array exactly once. Use a Hash Map where the key is
+     * the element and the value is its frequency. For each element, increment
+     * its count in the map.
+     * * ### 3. In-Code Technical Analysis
+     * Detailed Intuition:
+     * To achieve an O(N) time complexity without modifying the input array, we
+     * trade space for time. A Hash Table provides O(1) average time complexity
+     * for lookups and insertions. By using a LinkedHashMap, we also preserve the
+     * exact order of the elements' first appearances.
+     * * Complexity Analysis:
+     * - Time Complexity: O(N)
+     * We traverse the array exactly once. Hash map `getOrDefault` and `put`
+     * operations are O(1) on average.
+     * - Space Complexity: O(N)
+     * We allocate heap space for the Map. In the worst case (all elements are
+     * unique), the Map stores N distinct key-value pairs. Auxiliary stack
+     * space is O(1).
+     * ========================================================================
+     */
+    public Map<Integer, Integer> countFrequencyOptimal(int[] arr) {
+        // LinkedHashMap maintains insertion order to perfectly match the Example 1 output
+        Map<Integer, Integer> frequencyMap = new LinkedHashMap<>();
+
+        for (int num : arr) {
+            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
+        }
+
+        return frequencyMap;
+    }
+
+    /**
+     * ========================================================================
      * ### 2.2 Progressive Implementation Roadmap
      * * Phase 1: Brute Force Approach - The "Think it" stage.
      * Approach:
@@ -144,39 +178,6 @@ public class FrequencyCounterMasterclass {
         return result;
     }
 
-    /**
-     * ========================================================================
-     * Phase 3: Optimal Hash Map Approach - The "Perfect it" stage.
-     * Approach:
-     * Iterate through the array exactly once. Use a Hash Map where the key is
-     * the element and the value is its frequency. For each element, increment
-     * its count in the map.
-     * * ### 3. In-Code Technical Analysis
-     * Detailed Intuition:
-     * To achieve an O(N) time complexity without modifying the input array, we
-     * trade space for time. A Hash Table provides O(1) average time complexity
-     * for lookups and insertions. By using a LinkedHashMap, we also preserve the
-     * exact order of the elements' first appearances.
-     * * Complexity Analysis:
-     * - Time Complexity: O(N)
-     * We traverse the array exactly once. Hash map `getOrDefault` and `put`
-     * operations are O(1) on average.
-     * - Space Complexity: O(N)
-     * We allocate heap space for the Map. In the worst case (all elements are
-     * unique), the Map stores N distinct key-value pairs. Auxiliary stack
-     * space is O(1).
-     * ========================================================================
-     */
-    public Map<Integer, Integer> countFrequencyOptimal(int[] arr) {
-        // LinkedHashMap maintains insertion order to perfectly match the Example 1 output
-        Map<Integer, Integer> frequencyMap = new LinkedHashMap<>();
-
-        for (int num : arr) {
-            frequencyMap.put(num, frequencyMap.getOrDefault(num, 0) + 1);
-        }
-
-        return frequencyMap;
-    }
 
     /**
      * ========================================================================

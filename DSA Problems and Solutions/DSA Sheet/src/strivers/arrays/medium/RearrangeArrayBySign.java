@@ -64,52 +64,6 @@ import java.util.List;
 
 public class RearrangeArrayBySign {
 
-    /**
-     * ========================================================================
-     * PHASE 1: BRUTE FORCE (TWO-PASS / SEPARATION) APPROACH - "Think it"
-     * ========================================================================
-     * Approach:
-     * Iterate through the array and separate all positive numbers into one list
-     * and all negative numbers into another list. Because we append to these
-     * lists as we iterate, relative order is perfectly preserved.
-     * Then, iterate `N/2` times, popping elements from the front of both lists
-     * and placing them sequentially (positive, then negative) into a result array.
-     * * * Detailed Intuition:
-     * The easiest way to preserve relative order without over-complicating index
-     * mathematics is to physically separate the elements into two ordered buckets.
-     * Once separated, reconstructing the alternating pattern is trivial.
-     * * * Complexity Analysis:
-     * - Time Complexity: O(N)
-     * We make one complete pass to segregate the elements (O(N)), and another pass
-     * to merge them back together (O(N)). Total = O(2N) which simplifies to O(N).
-     * - Space Complexity: O(N)
-     * Heap Space: We allocate O(N/2) space for the positives list, O(N/2) for
-     * the negatives list, and O(N) for the result array. Total = O(N) heap space.
-     * Stack Space: O(1) auxiliary stack space since we use iterative loops.
-     */
-    public int[] rearrangeArrayBruteForce(int[] nums) {
-        int n = nums.length;
-        List<Integer> pos = new ArrayList<>();
-        List<Integer> neg = new ArrayList<>();
-
-        // Pass 1: Segregate maintaining relative order
-        for (int i = 0; i < n; i++) {
-            if (nums[i] > 0) {
-                pos.add(nums[i]);
-            } else {
-                neg.add(nums[i]);
-            }
-        }
-
-        // Pass 2: Merge in alternating sequence
-        int[] result = new int[n];
-        for (int i = 0; i < n / 2; i++) {
-            result[2 * i] = pos.get(i);       // Even indices (0, 2, 4...)
-            result[2 * i + 1] = neg.get(i);   // Odd indices (1, 3, 5...)
-        }
-
-        return result;
-    }
 
     /**
      * ========================================================================
@@ -157,6 +111,54 @@ public class RearrangeArrayBySign {
 
         return result;
     }
+
+    /**
+     * ========================================================================
+     * PHASE 1: BRUTE FORCE (TWO-PASS / SEPARATION) APPROACH - "Think it"
+     * ========================================================================
+     * Approach:
+     * Iterate through the array and separate all positive numbers into one list
+     * and all negative numbers into another list. Because we append to these
+     * lists as we iterate, relative order is perfectly preserved.
+     * Then, iterate `N/2` times, popping elements from the front of both lists
+     * and placing them sequentially (positive, then negative) into a result array.
+     * * * Detailed Intuition:
+     * The easiest way to preserve relative order without over-complicating index
+     * mathematics is to physically separate the elements into two ordered buckets.
+     * Once separated, reconstructing the alternating pattern is trivial.
+     * * * Complexity Analysis:
+     * - Time Complexity: O(N)
+     * We make one complete pass to segregate the elements (O(N)), and another pass
+     * to merge them back together (O(N)). Total = O(2N) which simplifies to O(N).
+     * - Space Complexity: O(N)
+     * Heap Space: We allocate O(N/2) space for the positives list, O(N/2) for
+     * the negatives list, and O(N) for the result array. Total = O(N) heap space.
+     * Stack Space: O(1) auxiliary stack space since we use iterative loops.
+     */
+    public int[] rearrangeArrayBruteForce(int[] nums) {
+        int n = nums.length;
+        List<Integer> pos = new ArrayList<>();
+        List<Integer> neg = new ArrayList<>();
+
+        // Pass 1: Segregate maintaining relative order
+        for (int i = 0; i < n; i++) {
+            if (nums[i] > 0) {
+                pos.add(nums[i]);
+            } else {
+                neg.add(nums[i]);
+            }
+        }
+
+        // Pass 2: Merge in alternating sequence
+        int[] result = new int[n];
+        for (int i = 0; i < n / 2; i++) {
+            result[2 * i] = pos.get(i);       // Even indices (0, 2, 4...)
+            result[2 * i + 1] = neg.get(i);   // Odd indices (1, 3, 5...)
+        }
+
+        return result;
+    }
+
 
     /**
      * ========================================================================
